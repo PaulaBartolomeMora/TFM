@@ -1,0 +1,25 @@
+\begin{figure}[htb]
+\begin{center}
+
+\begin{ganttchart}[
+	hgrid,
+	vgrid,
+	y unit chart=.8cm,
+	bar/.append style={fill=cyan!50},
+	expand chart=\textwidth
+	]{1}{15}
+\gantttitle{Semanas}{15} \\
+\gantttitlelist{1,...,15}{1} \\
+\ganttbar{Documentación y estudio}{1}{3} \\
+\ganttbar{Planificación}{1}{3} \ganttnewline
+\ganttbar{Análisis y tratamiento de datos}{3}{5} \ganttnewline
+\ganttbar{Simulación de escenarios}{4}{6} \ganttnewline
+\ganttbar{Desarrollo y entrenamiento de modelos}{4}{12} \ganttnewline
+\ganttbar{Análisis de efectividad}{11}{12} \ganttnewline
+\ganttbar{Informe final}{12}{15}
+\end{ganttchart}
+
+\end{center}
+\caption{Diagrama de Gantt del proyecto}
+\end{figure}
+
