@@ -12,41 +12,18 @@ Desde el equipo de investigación NetIS de la Universidad de Alcalá (\textbf{UA
 
 No obstante, actualmente \textbf{DEN2NE} aún presenta como desafío a afrontar la necesidad de detectar y predecir de una forma precisa los posibles fallos que se pueden producir en el proceso de intercambio energético. Adicionalmente, en caso de error, el algoritmo debería ser capaz de definir una respuesta rápida para tomar acciones a nivel de distribución y evitar que el problema escale al resto de la red.
 
-
-\begin{comment}
-\vspace{0.3cm}
-
-\begin{figure}[!htb]
-	\centering
-    \begin{subfigure}[b]{0.47\textwidth}
-         \centering
-         \includesvg[width=0.75\textwidth]{img/fig_1.svg}
-         \label{fig:outOfband}
-         \caption{Arquitectura Out-Of-Band}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.47\textwidth}
-         \centering
-         \includesvg[width=0.75\textwidth]{img/fig_2.svg}
-         \label{fig:inband}
-         \caption{Arquitectura In-Band}
-     \end{subfigure}
-     \caption{Arquitecturas de conexión con el agente controlador en las redes SDN.}
-    \label{fig:intro}
-\end{figure}
-\end{comment}
-
 \vspace{0.3cm}
 
 \section{Objetivos y campos de aplicación}
 \vspace{0.3cm}
 
-El objetivo principal de este proyecto consiste en desarrollar diferentes técnicas de machine learning (ML) para identificar las circunstancias o motivos por las que se pueden producir fallos en una Smart Grid durante el proceso de distribución energética que lleva a cabo el algoritmo \textbf{DEN2NE}. La identificación de patrones se basará en el análisis de grandes volúmenes de datos provenientes de medidores y sensores implementados en Smart Grids reales. Finalmente, la aplicación de diferentes métodos basados en inteligencia artificial (IA) permitirá determinar un modelo preciso de predicción de fallos. Se pueden sintentizar los diferentes objetivos del proyecto en los siguientes puntos:
+El objetivo principal de este proyecto consiste en desarrollar diferentes técnicas de aprendizaje automático (del inglés machine learning, \textbf{ML}) para identificar las circunstancias o motivos por las que se pueden producir fallos en una Smart Grid durante el proceso de distribución energética que lleva a cabo el algoritmo \textbf{DEN2NE}. La identificación de patrones se basará en el análisis de grandes volúmenes de datos provenientes de medidores (smart meters) y sensores implementados en Smart Grids reales. Finalmente, la aplicación de diferentes métodos basados en inteligencia artificial (IA) permitirá determinar un modelo preciso de predicción de fallos. Se pueden sintentizar los diferentes objetivos del proyecto en los siguientes puntos:
 
 \begin{itemize}
     \item Estudio del estado del arte y análisis de las diferentes fuentes de datos reales disponibles.
     \item Definición y procesado del volumen de datos para el posterior desarrollo. 
-    \item Simulación de diferentes escenarios y topologías mediante plataformas como Contiki-NG o BRITE ????? .
+    \item Planteamiento de diferentes escenarios.
+    \item Generación y simulación de topologías.
     \item Desarrollo y entrenamiento de diferentes modelos de machine learning (ML).
     \item Análisis de los resultados obtenidos.
 \end{itemize}
@@ -64,7 +41,16 @@ Por consiguiente, cuando se hayan adquirido los suficientes conocimientos sobre 
 
 \vspace{0.3cm}
 
-Una vez realizado este proceso, se habrá definido un número determinado de parámetros iniciales que se podrán asignar a los diferentes nodos de una red. Se plantearán una serie de escenarios y topologías a simular a partir del volumen de datos elaborado empleando herramientas como Contiki-NG o BRITE ?????. Los resultados de las diferentes simulaciones realizadas proporcionarán finalmente el conjunto de datos necesario para el entrenamiento de los modelos a desarrollar.
+Una vez realizado este proceso, se habrá definido un número determinado de parámetros iniciales que se podrán asignar a los diferentes nodos de una red. A partir del volumen de datos elaborado, se plantearán una serie de escenarios y se generarán diversas topologías aleatorias mediante la herramienta BRITE. Estas serán posteriormente importadas a un simulador propietario realizado en Python. Los resultados de las diferentes pruebas realizadas proporcionarán finalmente el conjunto de datos necesario para el entrenamiento de los modelos a desarrollar.
+
+\vspace{0.5cm}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=1\textwidth]{img/imagen.drawio.png}
+  \caption{Proceso de detección y predicción de errores}
+  \label{fig:1}
+\end{figure}
 
 \vspace{0.3cm}
 
@@ -82,7 +68,11 @@ Como se viene introduciendo, la siguiente etapa consistirá en el desarrollo de 
 
 \item \textbf{Análisis y tratamiento de datos:} Investigación sobre diferentes implementaciones de redes inteligentes reales, evaluación de su viabilidad para este proyecto y procesado exhaustivo del conjunto de datos disponible.
 
-\item \textbf{Simulación de escenarios:} Establecimiento de diferentes escenarios y simulación de los mismos para la obtención del volumen de datos definitivo que se pretende entrenar.
+\item \textbf{Elaboración de escenarios:} Establecimiento de diferentes escenarios y generación de las topologías a simular mediante la herramienta BRITE.  
+
+\newpage
+
+\item \textbf{Simulación:} Simulación de las topologías generadas para la obtención del volumen de datos definitivo que se pretende entrenar.
 
 \item \textbf{Desarrollo y entrenamiento de modelos:} Selección de varias técnicas de ML acorde a las necesidades del proyecto y, por consiguiente, desarrollo software y entrenamiento progresivo de los modelos.
 
@@ -92,19 +82,17 @@ Como se viene introduciendo, la siguiente etapa consistirá en el desarrollo de 
 
 \end{itemize}
 
+\vspace{0.3cm}
 
-\begin{comment}
-
-La metodología propuesta para la realización del proyecto es la de Proceso Unificado enfocado al desarrollo de software, la cual se caracteriza por estar dirigido por casos de uso, centrado en la arquitectura del sistema y por ser iterativo e incremental. En este proyecto, según se podrá apreciar en la Planificación del TFM (Sección \ref{sec:planificacion}), se plantean 7 iteraciones totales, en las cuales se pasará de forma secuencial por las siguientes etapas:
+La metodología que se propone para la realización del proyecto es la de Proceso Unificado enfocado al desarrollo de software, la cual se caracteriza por estar dirigido por casos de uso o emulaciones, centrado en la arquitectura del sistema y por ser iterativo e incremental. En este proyecto, según se podrá apreciar en la Planificación del TFM (Sección \ref{sec:planificacion}), se plantean múltiples iteraciones, en las cuales se pasará de forma secuencial por las siguientes etapas:
 
 \begin{itemize}
     \item \textbf{Diseño del entorno} 
-    \item \textbf{Desarrollo}
+    \item \textbf{Desarrollo de modelos ML}
     \item \textbf{Validación del desarrollo}
 \end{itemize}
-\end{comment}
 
-\newpage
+\vspace{0.3cm}
 
 \section{Planificación del TFM}
 \label{sec:planificacion}
@@ -116,8 +104,6 @@ La metodología propuesta para la realización del proyecto es la de Proceso Uni
 En cuanto a los medios hardware, para el desarrollo de este proyecto se estima principalmente el empleo de un ordenador portátil. Es importante que este cuente con la suficiente capacidad de memoria RAM y de procesador para poder llevar a cabo el desarrollo software del proyecto de una manera fluida.
 
 \vspace{0.3cm}
-Por otro lado, en cuanto a las herramientas software, se prevé la utilización de \textit{GIT} para llevar a cabo el control de versiones del proyecto y de Visual Studio Code como editor de código fuente.
-
-???? HERRAMIENTAS SIMULACIÓN
+Por otro lado, en cuanto a las herramientas software, se empleará \textit{GIT} para llevar a cabo el control de versiones del proyecto y Visual Studio Code como editor de código fuente. Adicionalmente, se utilizará BRITE como herramienta de generación de topologías aleatorias.
 
 \newpage
