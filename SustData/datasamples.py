@@ -1,12 +1,18 @@
 import pandas as pd
 import numpy as np
+import glob as gl
 
 
 DATETIME_SAMPLE = '2013-01-01'
 HOUR_SAMPLE = 0
 
-dataset = 'dataset/preprocessed/new_power_samples_d3_1split_2.csv'
-df = pd.read_csv(dataset)  
+path = gl.glob('dataset/preprocessed/new_power_samples_d3*.csv')
+dfs = [pd.read_csv(file, low_memory=False) for file in path] #lectura de todos los .csv
+df = pd.concat(dfs, ignore_index=True) #df con todos los dfs
+
+# dataset = 'dataset/preprocessed/new_power_samples_d3_1split_1.csv'
+# df = pd.read_csv(dataset)
+
 
 #parseo de timestamp y creación de nueva columna H
 df['tmstp'] = pd.to_datetime(df['tmstp'])
@@ -38,7 +44,7 @@ def extract(IID_SAMPLE, HOUR_SAMPLE, DATETIME_SAMPLE):
 
 
 iid_array = df['iid'].unique() #ids nodos que aparecen en el dataset
-# print(iid_array) 
+print(iid_array) 
 
 extraction = [extract(iid, HOUR_SAMPLE, DATETIME_SAMPLE) for iid in iid_array] #titulos + filas
 new_df = pd.concat(extraction, ignore_index=True) #único titulo + filas
