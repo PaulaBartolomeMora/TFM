@@ -1,23 +1,24 @@
 import pandas as pd
 import numpy as np
 import glob as gl
+from tqdm import tqdm
 
 
-DATETIME_SAMPLE = '2013-01-01'
+#DATETIME_SAMPLE = '2011-07-01' #d2
+#DATETIME_SAMPLE = '2013-01-01' #d3
+DATETIME_SAMPLE = '2014-01-01' #d4
 HOUR_SAMPLE = 0
 
-path = gl.glob('dataset/preprocessed/new_power_samples_d3*.csv')
+path = gl.glob('dataset/preprocessed/new_power_samples_d4*.csv')
 dfs = [pd.read_csv(file, low_memory=False) for file in path] #lectura de todos los .csv
 df = pd.concat(dfs, ignore_index=True) #df con todos los dfs
-
-# dataset = 'dataset/preprocessed/new_power_samples_d3_1split_1.csv'
-# df = pd.read_csv(dataset)
 
 
 #parseo de timestamp y creación de nueva columna H
 df['tmstp'] = pd.to_datetime(df['tmstp'])
 df['H'] = df['tmstp'].dt.strftime('%H') #nueva columna de hora
 df['H'] = df['H'].astype(int)
+
 
 #extracción de features
 X = df.iloc[:, 3:18] #names + values
@@ -33,8 +34,8 @@ def extract(IID_SAMPLE, HOUR_SAMPLE, DATETIME_SAMPLE):
     filter.head()
 
     hourly_data = pd.DataFrame() #df de almacenamiento
-
-    for feature in X_features:
+ 
+    for feature in tqdm(X_features, desc=f'Procesando IID {IID_SAMPLE}'):
         if feature == 'iid':
             hourly_data[feature] = IID_SAMPLE
         else:
