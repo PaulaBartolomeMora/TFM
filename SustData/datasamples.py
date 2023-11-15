@@ -19,7 +19,8 @@ df['H'] = df['H'].astype(int)
 #extracción de features
 #X = df.iloc[:, 3:18] #names + values
 #X = df.iloc[:, 3:4] #if power_events 
-X = df.iloc[:, 11:12]                          #SIMPLIFICACION PARA COGER SOLO Pavg 
+X = df.iloc[:, 11:12]                                       #SIMPLIFICACION PARA COGER SOLO Pavg 
+
 X_features = X.columns.to_list() #names to list
 X_features.append('iid')
 X_features.append('tmstp')
@@ -46,13 +47,13 @@ def extract_mean(IID_SAMPLE, HOUR_SAMPLE, DATETIME_SAMPLE):
 ################################################################################################################
 #DATETIME_SAMPLE = '2011-07-01' #d2
 #DATETIME_SAMPLE = '2013-01-01' #d3
-DATETIME_SAMPLE = '2014-01-01' #d4
-HOUR_SAMPLE = 0
+#DATETIME_SAMPLE = '2014-01-01' #d4
+#HOUR_SAMPLE = 0
 
 iid_array = df['iid'].unique() #ids nodos que aparecen en el dataset
 print(iid_array) 
 datetime_array = df['datetime'].unique() 
-hour_array = df['H'].unique().sort
+
 ################################################################################################################
 
 
@@ -90,7 +91,7 @@ plt.show() """
 
 
 #extracción de media de valores de cada hora para todas las fechas del id 42 
-extraction = [extract_mean(42, hour, datetime) for datetime in datetime_array for hour in hour_array] 
+extraction = [extract_mean(42, hour, datetime) for datetime in datetime_array for hour in range(24)] 
 new_df = pd.concat(extraction, ignore_index=True) #único titulo + filas
 new_df.to_csv('OUT_42_all.csv', index=False) 
 
@@ -104,7 +105,4 @@ for n, label in enumerate(plt.gca().xaxis.get_ticklabels()):
     if n % 25 != 0:
         label.set_visible(False)
 plt.show() 
-
-
-#visualización de todos los valores para todas las fechas del id 42, MUCHAS MUESTRAS -> reducir y hacer medias por día
 
