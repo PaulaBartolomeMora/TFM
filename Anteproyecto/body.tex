@@ -2,11 +2,11 @@
 \section{Introducción}
 \vspace{0.3cm}
 
-En la actualidad, el concepto de red convencional energética está siendo transformado como resultado del creciente auge de las redes inteligentes de energía (del inglés Smart Grids, \textbf{SG}). La posibilidad de monitorizar a tiempo real el proceso de distribución eléctrica de una forma eficiente y de integrar a la vez una participación activa del consumidor, convierte a estas redes en uno de los pilares fundamentales de la transición hacia la descarbonización. Es por ello que, en este contexto, la búsqueda de nuevos protocolos de encaminamiento y distribución energética se ha vuelto primordial. 
+En la actualidad, el concepto de red convencional energética está siendo transformado como resultado del creciente auge de las redes inteligentes de energía (del inglés \textit{Smart Grids}, \textbf{SG}) \cite{repsol}\cite{impact}. La posibilidad de monitorizar a tiempo real el proceso de distribución eléctrica de una forma eficiente y de integrar a la vez una participación activa del consumidor, convierte a estas redes en uno de los pilares fundamentales de la transición hacia la descarbonización. Es por ello que, en este contexto, la búsqueda de nuevos protocolos de encaminamiento y distribución energética se ha vuelto primordial. 
 
 \vspace{0.3cm}
 
-Desde el equipo de investigación NetIS de la Universidad de Alcalá (\textbf{UAH}) se ha diseñado \textbf{DEN2NE} (Distributed ENergy ENvironments and Networks), un nuevo algoritmo para automatizar la gestión de los recursos en entornos de El Internet de las Cosas (del inglés Internet of Things, \textbf{IoT}) y, en particular, en Smart Grids. En este último caso, el objetivo principal del algoritmo se basa en conseguir un balance energético global de la red. Se encarga de realizar una distribución óptima de los recursos entre los diferentes nodos, que toman el papel de prosumidores, siendo capaces tanto de consumir como de producir energía a partir de fuentes renovables.
+Desde el equipo de investigación NetIS de la Universidad de Alcalá (\textbf{UAH}) se ha diseñado \textbf{DEN2NE} (Distributed ENergy ENvironments and Networks), un nuevo algoritmo para automatizar la gestión de los recursos en entornos del Internet de las Cosas (del inglés \textit{Internet of Things}, \textbf{IoT}) y, en particular, en SGs. En este último caso, el objetivo principal del algoritmo se basa en conseguir un balance energético global de la red. Se encarga de realizar una distribución óptima de los recursos entre los diferentes nodos, que toman el papel de prosumidores, siendo capaces tanto de consumir como de producir energía a partir de fuentes renovables.
 
 \vspace{0.3cm}
 
@@ -17,15 +17,15 @@ No obstante, actualmente \textbf{DEN2NE} aún presenta como desafío a afrontar 
 \section{Objetivos y campos de aplicación}
 \vspace{0.3cm}
 
-El objetivo principal de este proyecto consiste en desarrollar diferentes técnicas de aprendizaje automático (del inglés machine learning, \textbf{ML}) para identificar las circunstancias o motivos por las que se pueden producir fallos en una Smart Grid durante el proceso de distribución energética que lleva a cabo el algoritmo \textbf{DEN2NE}. La identificación de patrones se basará en el análisis de grandes volúmenes de datos provenientes de medidores (smart meters) y sensores implementados en Smart Grids reales. Finalmente, la aplicación de diferentes métodos basados en inteligencia artificial (IA) permitirá determinar un modelo preciso de predicción de fallos. Se pueden sintentizar los diferentes objetivos del proyecto en los siguientes puntos:
+El objetivo principal de este proyecto consiste en desarrollar diferentes técnicas de aprendizaje automático (del inglés \textit{Machine Learning}, \textbf{ML}) para identificar las circunstancias o motivos por las que se pueden producir fallos en una SG durante el proceso de distribución energética que lleva a cabo el algoritmo \textbf{DEN2NE}. La identificación de patrones se basará en el análisis de grandes volúmenes de datos provenientes de medidores (\textit{smart meters}) y sensores implementados en SGs reales \cite{review}\cite{sustdata}. Finalmente, la aplicación de diferentes métodos basados en inteligencia artificial (IA) permitirá determinar un modelo preciso de predicción de fallos. Los diferentes objetivos del proyecto se pueden sintetizar en los siguientes puntos:
 
 \begin{itemize}
     \item Estudio del estado del arte y análisis de las diferentes fuentes de datos reales disponibles.
     \item Definición y procesado del volumen de datos para el posterior desarrollo. 
     \item Planteamiento de diferentes escenarios.
     \item Generación y simulación de topologías.
-    \item Desarrollo y entrenamiento de diferentes modelos de machine learning (ML).
-    \item Análisis de los resultados obtenidos.
+    \item Desarrollo y entrenamiento de diferentes modelos de ML.
+    \item Análisis y evaluación de los resultados obtenidos.
 \end{itemize}
 
 \vspace{0.3cm}
@@ -33,7 +33,7 @@ El objetivo principal de este proyecto consiste en desarrollar diferentes técni
 \section{Descripción del trabajo}
 \vspace{0.3cm}
 
-El desarrollo del trabajo fin de máster (TFM) se ha dividido en distintas etapas. La primera se basará en estudiar en profundidad el contexto en el que se engloban las redes inteligentes de energía y el funcionamiento de los protocolos de distribución de recursos, enfocando el análisis en \textbf{DEN2NE} como se ha mencionado anteriormente. Además, será preciso investigar sobre las diferentes fuentes de datos disponibles provenientes de implementaciones reales y valorar su viabilidad para este proyecto. 
+Teniendo en cuenta los objetivos expuestos, el desarrollo del presente Trabajo Fin de Máster (TFM) se ha dividido en seis etapas. La primera se basará en estudiar en profundidad el contexto en el que se engloban las redes inteligentes de energía y el funcionamiento de los protocolos de distribución de recursos, enfocando el análisis en \textbf{DEN2NE} como se ha mencionado anteriormente. Además, será preciso investigar sobre las diferentes fuentes de datos disponibles provenientes de implementaciones reales y valorar su viabilidad para este proyecto. 
 
 \vspace{0.3cm}
 
@@ -41,7 +41,7 @@ Por consiguiente, cuando se hayan adquirido los suficientes conocimientos sobre 
 
 \vspace{0.3cm}
 
-Una vez realizado este proceso, se habrá definido un número determinado de parámetros iniciales que se podrán asignar a los diferentes nodos de una red. A partir del volumen de datos elaborado, se plantearán una serie de escenarios y se generarán diversas topologías aleatorias mediante la herramienta BRITE. Estas serán posteriormente importadas a un simulador propietario realizado en Python. Los resultados de las diferentes pruebas realizadas proporcionarán finalmente el conjunto de datos necesario para el entrenamiento de los modelos a desarrollar.
+Una vez realizado este proceso, se habrá definido un número determinado de parámetros iniciales que se podrán asignar a los diferentes nodos de una red. A partir del volumen de datos elaborado, se plantearán una serie de escenarios y se generarán diversas topologías aleatorias mediante la herramienta BRITE \cite{brite}. Estas serán posteriormente importadas a un simulador propietario realizado en Python  tomado como base \cite{gitden2ne}. Los resultados de las diferentes pruebas realizadas proporcionarán finalmente el conjunto de datos necesario para el entrenamiento de los modelos a desarrollar.
 
 \vspace{0.5cm}
 
@@ -54,7 +54,7 @@ Una vez realizado este proceso, se habrá definido un número determinado de par
 
 \vspace{0.3cm}
 
-Como se viene introduciendo, la siguiente etapa consistirá en el desarrollo de varias técnicas de machine learning para la búsqueda de patrones de error a partir de los datos procesados. En primera instancia, será necesaria una valoración de los modelos más apropiados a emplear, teniendo en cuenta el contexto en el que se encuentra el proyecto. El desarrollo y entrenamiento progresivo de cada uno de ellos dará lugar a unos resultados de predicción determinados que serán probados y analizados. En base a la precisión obtenida de este proceso, se podrá determinar de forma concluyente el modelo de machine learning con mayor efectividad para poder diagnosticar errores en una Smart Grid. 
+Como se viene introduciendo, la siguiente etapa consistirá en el desarrollo de varias técnicas de ML para la búsqueda de patrones de error a partir de los datos procesados. En primera instancia, será necesaria una valoración de los modelos más apropiados a emplear, teniendo en cuenta el contexto en el que se encuentra el proyecto. El desarrollo y entrenamiento progresivo de cada uno de ellos dará lugar a unos resultados de predicción determinados que serán probados y analizados. En base a la precisión obtenida de este proceso, se podrá determinar de forma concluyente el modelo de ML con mayor efectividad para poder diagnosticar errores en una SG. 
 
 \vspace{0.3cm}
 
@@ -101,9 +101,9 @@ La metodología que se propone para la realización del proyecto es la de Proces
 \section{Medios}
 
 \vspace{0.3cm}
-En cuanto a los medios hardware, para el desarrollo de este proyecto se estima principalmente el empleo de un ordenador portátil. Es importante que este cuente con la suficiente capacidad de memoria RAM y de procesador para poder llevar a cabo el desarrollo software del proyecto de una manera fluida.
+En cuanto a los medios hardware, para el desarrollo de este proyecto se estima principalmente el empleo de un ordenador portátil que contará con una capacidad de 16 GB de memoria RAM para poder llevar a cabo el desarrollo software del proyecto de una manera fluida.
 
 \vspace{0.3cm}
-Por otro lado, en cuanto a las herramientas software, se empleará \textit{GIT} para llevar a cabo el control de versiones del proyecto y Visual Studio Code como editor de código fuente. Adicionalmente, se utilizará BRITE como herramienta de generación de topologías aleatorias.
+Por otro lado, en cuanto a las herramientas software, se empleará GIT \cite{git} para llevar a cabo el control de versiones del proyecto y Visual Studio Code \cite{visual} como editor de código fuente. Adicionalmente, se utilizará BRITE como herramienta de generación de topologías aleatorias.
 
 \newpage
