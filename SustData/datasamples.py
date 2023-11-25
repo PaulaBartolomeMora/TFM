@@ -3,11 +3,25 @@ import numpy as np
 import glob as gl
 from tqdm import tqdm
 import matplotlib.pyplot as plt
+from threading import Thread
+import time
 
 
-files_cons = 'dataset/preprocessed/new_power_samples_d*.csv'
+files_cons = 'unzipped/new_power_samples_d*.csv'
+files_prod = 'unzipped/env+prod.csv'
 files_events = 'dataset/no/power_events/power_events*.csv'
-files_prod = 'dataset/env+prod.csv'
+
+iid_prueba = [4, 9, 13, 20, 25]               
+                                                                                                         
+
+#DATETIME_SAMPLE = '2011-07-01' #d2
+#DATETIME_SAMPLE = '2013-01-01' #d3
+#DATETIME_SAMPLE = '2014-01-01' #d4
+#HOUR_SAMPLE = 13
+#IID_SAMPLE = 42
+
+threads = []
+results = []
 
 
 ################################################################################################################
@@ -15,8 +29,7 @@ files_prod = 'dataset/env+prod.csv'
 ################################################################################################################
 def read_files(files):
     
-    path = gl.glob(files) 
-    #dfs = [pd.read_csv(file, low_memory=False) for file in path] #lectura de todos los .csv        
+    path = gl.glob(files)         
     dfs = []  # Lista para almacenar los DataFrames
 
     for file in path:
@@ -46,10 +59,8 @@ def read_files(files):
     X_features.append('iid')
     X_features.append('datetime')
     X_features.append('h') 
-    datetime_array = df['datetime'].unique() 
-        
+    datetime_array = df['datetime'].unique()         
     return df, X_features, iid_array, datetime_array
-
 
 
 ################################################################################################################
@@ -77,7 +88,6 @@ def extract_mean(df, IID_SAMPLE, HOUR_SAMPLE, DATETIME_SAMPLE, X_features):
     return df2  
   
 
-
 ################################################################################################################
 #función de plot de valores Pavg de un nodo
 ################################################################################################################
@@ -89,7 +99,7 @@ def plot_figure(df, IID_SAMPLE, plotting):
         plt.title(f'Solar Energy (MWh)')
         plt.xlabel('Timestamp')
         plt.ylabel('Pavg')        
-    else: #consumition
+    else: #consumption
         plt.plot(df['datetime'], df['Pavg'], linestyle='-')
         plt.title(f'Pavg (W) (IID: {IID_SAMPLE})')
         plt.xlabel('Timestamp')
@@ -101,106 +111,46 @@ def plot_figure(df, IID_SAMPLE, plotting):
     plt.show() 
 
 
-
-
-#DATETIME_SAMPLE = '2011-07-01' #d2
-#DATETIME_SAMPLE = '2013-01-01' #d3
-#DATETIME_SAMPLE = '2014-01-01' #d4
-#HOUR_SAMPLE = 13
-#IID_SAMPLE = 42
+################################################################################################################
+#función threading
+################################################################################################################
+def thread_processing(IID_SAMPLE, result):
+    extraction = [
+        extract_mean(df, IID_SAMPLE, hour, datetime, X_ps) 
+        for datetime in datetime_array_ps 
+        for hour in range(24)
+    ]
+    #return pd.concat(extraction, ignore_index=True)
+    result.append(extraction)
 
 
 ################################################################################################################
 ################################################################################################################
 ################################################################################################################
-
 
 
 df_power_samples, X_ps, iid_array_ps, datetime_array_ps = read_files(files_cons) 
-df_prod, X_pr, iid_array_pr, datetime_array_pr = read_files(files_prod) 
+#df_prod, X_pr, iid_array_pr, datetime_array_pr = read_files(files_prod) 
 #df_power_events = read_files(files_events) #power_events 
-#print(df_power_samples.head(1))
-#print(df_prod.head(1))
 
 
-#(PRIMERA EXTRACCIÓN) extracción de media de valores de una hora determinada y fecha determinada para todos los ids (mismo instante temporal)
-""" extraction = [extract_mean(df_power_samples, iid, HOUR_SAMPLE, DATETIME_SAMPLE, X_ps) for iid in iid_array_ps] #titulos + filas
-new_df = pd.concat(extraction, ignore_index=True) #único titulo + filas
-new_df.to_csv('OUT.csv', index=False)   """
+# for IID in iid_prueba:
+#     thread = threading.Thread(
+#         target=lambda: results.append(thread_processing(IID))
+#     )
+#     thread.start()
+#     threads.append(thread)
 
+threads = [Thread(target=thread_processing, args=(IID, results)) for IID in iid_prueba]
 
-#extracción de media de valores de la hora x para todas las fechas del id 42 
-""" extraction = [extract_mean(42, HOUR_SAMPLE, datetime, X_ps) for datetime in datetime_array_ps] #titulos + filas
-new_df = pd.concat(extraction, ignore_index=True) #único titulo + filas
-plot_figure(new_df, 42)
-filter_id = df[(df['iid'] == 42)]
-plot_figure(filter_id, 42)"""
+for thread in threads:
+    thread.start()
 
-
-#extracción de media de valores de cada hora para todas las fechas del id 42                                                                              
-""" extraction = [extract_mean(df_power_samples, IID_SAMPLE, 13, datetime, X_ps) for datetime in datetime_array_ps] 
-df_4 = pd.concat(extraction, ignore_index=True) #único titulo + filas
-df_4.to_csv('consum_4_13.csv', index=False)  """
-
-#a partir de aquí pruebas##################################################
-
-
-
-IID_SAMPLE = 4
-#extracción de media de valores de cada hora para todas las fechas del id 42                                                                              
-extraction = [extract_mean(df_power_samples, IID_SAMPLE, hour, datetime, X_ps) for datetime in datetime_array_ps for hour in range(24)] 
-df_4 = pd.concat(extraction, ignore_index=True) #único titulo + filas
-df_4.to_csv('consum_4.csv', index=False) 
-#plot_figure(df_4, IID_SAMPLE)  
-#out = pd.read_csv('consum_4.csv')
-#plot_figure(out, IID_SAMPLE, 0)
-
- 
-IID_SAMPLE = 9
-#extracción de media de valores de cada hora para todas las fechas del id 42                                                                              
-extraction = [extract_mean(df_power_samples, IID_SAMPLE, hour, datetime, X_ps) for datetime in datetime_array_ps for hour in range(24)] 
-df_9 = pd.concat(extraction, ignore_index=True) #único titulo + filas
-df_9.to_csv('consum_9.csv', index=False) 
-#plot_figure(df_9, IID_SAMPLE)  
-#out = pd.read_csv('consum_9.csv')
-#plot_figure(out, IID_SAMPLE, 0)
-
-
-IID_SAMPLE = 13
-#extracción de media de valores de cada hora para todas las fechas del id 42                                                                              
-extraction = [extract_mean(df_power_samples, IID_SAMPLE, hour, datetime, X_ps) for datetime in datetime_array_ps for hour in range(24)] 
-df_13 = pd.concat(extraction, ignore_index=True) #único titulo + filas
-df_13.to_csv('consum_13.csv', index=False) 
-#plot_figure(df_13, IID_SAMPLE)  
-#out = pd.read_csv('consum_13.csv')
-#plot_figure(out, IID_SAMPLE, 0)
-
-
-IID_SAMPLE = 20
-#extracción de media de valores de cada hora para todas las fechas del id 42                                                                              
-extraction = [extract_mean(df_power_samples, IID_SAMPLE, hour, datetime, X_ps) for datetime in datetime_array_ps for hour in range(24)] 
-df_20 = pd.concat(extraction, ignore_index=True) #único titulo + filas
-df_20.to_csv('consum_20.csv', index=False) 
-#plot_figure(df_20, IID_SAMPLE)  
-#out = pd.read_csv('consum_20.csv')
-#plot_figure(out, IID_SAMPLE, 0)
-
-
-IID_SAMPLE = 25
-#extracción de media de valores de cada hora para todas las fechas del id 42                                                                              
-extraction = [extract_mean(df_power_samples, IID_SAMPLE, hour, datetime, X_ps) for datetime in datetime_array_ps for hour in range(24)] 
-df_25 = pd.concat(extraction, ignore_index=True) #único titulo + filas
-df_25.to_csv('consum_25.csv', index=False) 
-#plot_figure(df_13, IID_SAMPLE)  
-#out = pd.read_csv('consum_13.csv')
-#plot_figure(out, IID_SAMPLE, 0)
-
-
-#obtener media de producción de una hora, comparar con media de consumo de un nodo y operar
-mean_production = [extract_mean(df_prod, 0, hour, datetime, X_pr) for datetime in datetime_array_pr for hour in range(24)] 
-df_mean_production = pd.concat(mean_production, ignore_index=True) #único titulo + filas
-df_mean_production.to_csv('mean_production.csv', index=False)  
-#df_mean_production = pd.read_csv('mean_production.csv')
-#plot_figure(df_mean_production, 0, 1) 
-
-
+for thread in threads:
+    thread.join()
+    
+final_result = pd.concat(results, ignore_index=True)
+print(final_result)
+    
+for i, result in enumerate(results):
+    result.to_csv(f'tests/consum_{iid_prueba[i]}.csv', index=False)
