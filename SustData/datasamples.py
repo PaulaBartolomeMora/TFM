@@ -11,8 +11,7 @@ files_cons = 'unzipped/new_power_samples_d*.csv'
 files_prod = 'unzipped/env+prod.csv'
 files_events = 'dataset/no/power_events/power_events*.csv'
 
-iid_prueba = [4, 9, 13, 20, 25]               
-                                                                                                         
+iid_prueba = [4, 9, 13, 20, 25, 30, 41, 43]                                                                           
 
 #DATETIME_SAMPLE = '2011-07-01' #d2
 #DATETIME_SAMPLE = '2013-01-01' #d3
@@ -114,14 +113,14 @@ def plot_figure(df, IID_SAMPLE, plotting):
 ################################################################################################################
 #función threading
 ################################################################################################################
-def thread_processing(IID_SAMPLE, result):
+def thread_processing(IID_SAMPLE):
     extraction = [
-        extract_mean(df_power_samples, IID_SAMPLE, hour, datetime, X_ps) 
-        for datetime in datetime_array_ps 
+        extract_mean(df_power_samples, IID_SAMPLE, hour, '2014-01-01', X_ps) 
+        #for datetime in datetime_array_ps 
         for hour in range(24)
     ]
-    #return pd.concat(extraction, ignore_index=True)
-    result.append(extraction)
+    result = pd.concat(extraction, ignore_index=True)
+    return result    
 
 
 ################################################################################################################
@@ -134,14 +133,8 @@ df_power_samples, X_ps, iid_array_ps, datetime_array_ps = read_files(files_cons)
 #df_power_events = read_files(files_events) #power_events 
 
 
-# for IID in iid_prueba:
-#     thread = threading.Thread(
-#         target=lambda: results.append(thread_processing(IID))
-#     )
-#     thread.start()
-#     threads.append(thread)
-
-threads = [Thread(target=thread_processing, args=(IID, results)) for IID in iid_prueba]
+#threads = [Thread(target=thread_processing, args=(IID)) for IID in iid_prueba]
+threads = [Thread(target=lambda iid=iid: results.append(thread_processing(iid)), args=()) for iid in iid_prueba]
 
 for thread in threads:
     thread.start()
@@ -149,8 +142,7 @@ for thread in threads:
 for thread in threads:
     thread.join()
     
-final_result = pd.concat(results, ignore_index=True)
-print(final_result)
+#print(results)
     
 for i, result in enumerate(results):
     result.to_csv(f'tests/consum_{iid_prueba[i]}.csv', index=False)
