@@ -116,7 +116,7 @@ def plot_figure(df, IID_SAMPLE, plotting):
 ################################################################################################################
 def thread_processing(IID_SAMPLE, result):
     extraction = [
-        extract_mean(df, IID_SAMPLE, hour, datetime, X_ps) 
+        extract_mean(df_power_samples, IID_SAMPLE, hour, datetime, X_ps) 
         for datetime in datetime_array_ps 
         for hour in range(24)
     ]
