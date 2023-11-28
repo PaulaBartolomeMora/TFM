@@ -2,6 +2,7 @@
 
 dir_zip="zipped/"
 dir_dest="unzipped/"
+dir_results="results/"
 
 pip freeze > "before.txt" 
 
@@ -19,6 +20,13 @@ if [ ! -d "$dir_dest" ]; then
     mkdir -p $dir_dest
 else
     echo "Existe $dir_dest"
+fi
+
+if [ ! -d "$dir_results" ]; then
+    echo "Creando directorio destino results/"
+    mkdir -p $dir_results
+else
+    echo "Existe $dir_results"
 fi
 
 if [ ! -d "$dir_zip" ]; then
@@ -46,4 +54,4 @@ echo "Ejecución completada"
 
 pip uninstall -r requirements.txt
 pip freeze > "before2.txt" 
-diff before.txt before2txt
+diff before.txt before2.txt
