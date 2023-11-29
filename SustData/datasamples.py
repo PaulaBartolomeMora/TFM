@@ -122,8 +122,8 @@ def plot_figure(df, IID_SAMPLE, plotting):
 ################################################################################################################
 def thread_processing(IID_SAMPLE):
     extraction = [
-        extract_mean(df_power_samples, IID_SAMPLE, hour, "2014-01-01", X_ps)
-        # for datetime in datetime_array_ps
+        extract_mean(df_power_samples, IID_SAMPLE, hour, datetime, X_ps)
+        for datetime in datetime_array_ps
         for hour in range(24)
     ]
     result = pd.concat(extraction, ignore_index=True)
@@ -139,8 +139,6 @@ df_power_samples, X_ps, iid_array_ps, datetime_array_ps = read_files(files_cons)
 # df_prod, X_pr, iid_array_pr, datetime_array_pr = read_files(files_prod)
 # df_power_events = read_files(files_events) #power_events
 
-
-# threads = [Thread(target=thread_processing, args=(IID)) for IID in iid_prueba]
 threads = [
     Thread(target=lambda iid=iid: results.append(thread_processing(iid)), args=())
     for iid in iid_prueba
