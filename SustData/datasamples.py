@@ -28,7 +28,7 @@ results = []
 ################################################################################################################
 def read_files(files):
     path = gl.glob(files)
-    dfs = []  # Lista para almacenar los DataFrames
+    dfs = []  
 
     for file in path:
         dfs.append(pd.read_csv(file, low_memory=False))
