@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 from multiprocessing import Process, Manager
 
-files_cons = "unzipped/new_power_samples_d*.csv"
+files_cons = "unzipped/new_power_samples_d2*.csv"
 files_prod = "unzipped/env+prod.csv"
 files_events = "dataset/no/power_events/power_events*.csv"
 
-iid_prueba = [4, 9, 13, 20, 25, 30, 41, 43]
+iid_prueba = range(1, 24)
 
 def read_files(files):
     path = gl.glob(files)
