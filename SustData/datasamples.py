@@ -6,12 +6,11 @@ import matplotlib.pyplot as plt
 from threading import Thread
 import time
 
-
-files_cons = "unzipped/new_power_samples_d*.csv"
+files_cons = "unzipped/new_power_samples_d2*.csv"
 files_prod = "unzipped/env+prod.csv"
 files_events = "dataset/no/power_events/power_events*.csv"
 
-iid_prueba = [4, 9, 13, 20, 25, 30, 41, 43]
+iid_prueba = range(1, 24)
 
 # DATETIME_SAMPLE = '2011-07-01' #d2
 # DATETIME_SAMPLE = '2013-01-01' #d3
