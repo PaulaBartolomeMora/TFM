@@ -1,0 +1,100 @@
+% !TeX root = main.tex 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Este proyecto de Latex se ha creado a partir de la plantilla
+%   de Jose Manuel Requena Plens (Universidad de Alicante) para la 
+%   realización de mi TFM. En el siguiente enlace se puede encontrar
+%   dicha plantilla:
+%       
+%       [+] github.com/jmrplens/TFG-TFM_EPS
+%
+%  	  - Autor:   Paula Bartolomé Mora <pbm4@hotmail.es>
+%	  - Fecha:   21 de diciembre de 2022
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%   Config  TFM   %%%%%%%%%%%%%%%%%%%%
+\def\OptimizaTikZ{1} % On
+
+% Config documento general, paquetes y demás
+\input{include/configuracioninicial}
+
+% % Obligatorio colocar en el main en la version para Overleaf, no eliminar
+% \if\OptimizaTikZ 1
+% \tikzexternalize[prefix=archivos/figuras-procesadas/] % Ruta
+% \fi 
+
+
+%%%%%%%%%%%%%%%%%   Configuración adicional   %%%%%%%%%%%%%%%%%%
+
+% Información añadida a las propiedades del archivo PDF.
+\hypersetup{
+pdfauthor = {Paula Bartolomé Mora},
+pdftitle = {Deteccion y predicción de errores en Smart Grids mediante modelos de inteligencia artificial},
+colorlinks=true,     
+urlcolor=RoyalBlue,
+linkcolor=Black,
+filecolor=Black, 
+citecolor=RoyalBlue,
+}
+
+% Archivo de acrónimos
+\makeglossaries
+%\makenoidxglossaries 
+\input{body/anexos/acronimos.tex} % Archivo que contiene los acrónimos
+
+
+
+%%%%%%%%%%%%%%%%%% INICIO DEL DOCUMENTO %%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+% Portada
+\includepdf[pages={1,2,3}]{include/portada/portada_uah_eps_MUIT_TFM.pdf}
+
+
+% Números romanos hasta el mainmatter.
+\frontmatter
+
+% Init
+\input{body/capitulos/00_preliminaresconagradecimientos}
+
+% Indices
+\tableofcontents
+\listoffigures		% Índice de figuras
+\listoftables		% Índice de tablas
+\lstlistoflistings  % Índice de códigos
+
+
+% Inicia la numeración habitual
+\mainmatter
+
+% Body
+\input{body/capitulos/01_Introduccion}
+\input{body/capitulos/02_marcoteorico}
+\input{body/capitulos/03_analisis}
+\input{body/capitulos/04_desarrollo}
+\input{body/capitulos/05_conclusiones}
+
+% Biblio
+%\nocite{*}
+\bibliography{body/bibliografia/bibliografia}
+\bibliographystyle{IEEEtran}
+
+
+% Acronimos 
+\printglossary[style=modsuper,type=\acronymtype,title={Lista de Acrónimos y Abreviaturas}]
+%\glsaddallunused
+
+% Anexos 
+\appendix
+\input{body/anexos/condiciones}
+\input{body/anexos/presupuesto}
+\input{body/anexos/manuales}
+
+
+% Contra portada
+\includepdf[pages={4}]{include/portada/portada_uah_eps_MUIT_TFM.pdf}
+\includepdf[pages={6}]{include/portada/portada_uah_eps_MUIT_TFM.pdf}
+
+\end{document}
