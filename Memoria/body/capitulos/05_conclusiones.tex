@@ -1,0 +1,46 @@
+\chapter{Conclusiones y trabajo futuro}
+\label{conclusiones}
+
+% En este capítulo, se concluirá la memoria presentando las conclusiones del trabajo realizado y evaluando tanto el trabajo en sí como los resultados obtenidos durante el desarrollo. Además, se explorarán las posibles vías de trabajo futuro que surgieron a medida que se llevaba a cabo el TFM. Se presentarán estas vías y se cerrará la memoria con una visión general y reflexiva sobre el proyecto realizado.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Conclusiones del \glsentryshort{tfm}}
+
+% En este \gls{tfm}, se ha llevado a cabo el diseño e implementación de un protocolo de control escalable para redes \gls{iot} en entornos SDN de la nueva generación de redes móviles, \gls{6g}. El protocolo se ha basado en un enfoque de control in-band, estableciendo la conectividad entre los nodos de la red y el controlador a través del plano de datos para transmitir información de control.\\
+% \\
+% En la primera fase del proyecto, se realizó un exhaustivo estudio y documentación de las principales herramientas y tecnologías relacionadas, sentando así una sólida base teórica antes de abordar el diseño y prototipado del protocolo de control in-band. Posteriormente, se analizaron las necesidades y características de las distintas tecnologías para seleccionar las herramientas más adecuadas para la implementación del protocolo de control. Se llevó a cabo un estudio de estas herramientas con el objetivo de lograr una implementación optimizada en la medida de lo posible.  El proyecto se completó mediante la validación del protocolo desarrollado a través de la emulación, lo que permitió realizar pruebas de funcionamiento del protocolo implementado en el entorno \gls{bofus} sobre interfaces inalámbricas emuladas. De este modo, se pudo comprobar el correcto desempeño del protocolo en diferentes casos de uso. Esta validación resulta fundamental para asegurar que el protocolo cumple con los requisitos de escalabilidad y control en entornos \gls{iot} y \gls{sdn}. De forma adicional, se ha estudiado como validarlo en un entorno real, no siendo posible, dado que hay problemas en la traducción de símbolos a la arquitectura ARM.\\
+% \\
+% Durante todo el proceso de ejecución del proyecto, se generaron diversas contribuciones no asociadas directamente a los objetivos del proyecto, pero sí a la comunidad \gls{sdn}. Se aportó claridad al documentar el funcionamiento interno de herramientas como ``dpctl" y su interfaz de comandos, lo que permitió resolver problemas relacionados con ellas. Se exploró a fondo el funcionamiento de Mininet-WiFi, documentando su jerarquía de clases y los módulos que utiliza en el kernel de Linux para emular el entorno de radio, lo que facilitó la identificación de posibles fuentes de errores debido a desvíos en las interfaces inalámbricas emuladas. También se profundizó en el funcionamiento interno de \gls{bofus}, solucionando problemas de compilación para las últimas versiones de distribuciones Linux y actualizando documentación incorrecta sobre su funcionamiento.\\
+% \\
+% Además, se crearon escenarios replicables mediante Vagrant, que incluyen todas las herramientas relacionadas con entornos \gls{sdn} (Mininet, Mininet-WiFi, Ryu, \gls{onos}, \gls{bofus}) en la última versión de Ubuntu 22.04. Esto ha permitido mantener actualizadas estas herramientas y proyectos que habían sido abandonados. Por ejemplo, el proyecto \gls{bofus} fue retomado después de casi cuatro años sin recibir ninguna contribución (\textit{commit}), gracias a la colaboración entre el autor y el autor de este \gls{tfm}, quien asumió un rol de mantenedor en el proyecto.\\
+% \\
+% En conclusión, este \gls{tfm} ha logrado desarrollar un mecanismo de control in-band para dispositivos \gls{iot} en entornos \gls{6g}. Además, se ha generado una cadena de valor al aportar conocimiento y mejoras a herramientas y proyectos previamente abandonados, lo que ha contribuido a revitalizarlos.\\
+% \\
+% Personalmente, este proyecto ha sido un reto, por su complejidad a nivel técnico, y por lo transversal que es. Se ha estudiado las bondades y las tecnologías habilitantes del \gls{6g}, el entorno radio, las nuevas configuraciones de \textit{arrays} de antenas, las arquitecturas propuestas en la nueva generación. Asimismo, se ha ido trabajando herramienta por herramienta del mundo \gls{sdn}, se ha programado desde alto nivel (Python) a bajo nivel (BOFUSS), se ha trabajado desde el espacio de usuario a espacio de kernel, incluso se ha tenido que diseñar una plataforma de emulación inalámbrica. Por todo ello, por el carácter polímata y transversal del proyecto, creo que este \gls{tfm} ilustra bastante bien las competencias y habilidades que un Ingeniero de Telecomunicación debería tener, que es por ello, por lo que somos reconocidos tanto en la industria, como en la sociedad.
+
+% \newpage
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Líneas de trabajo futuro}
+% \label{trabajoFuturo}
+
+% Tras concluir y revisar el alcance conseguido de los objetivos propuestos para la ejecución del proyecto, podemos apuntar a próximas líneas de trabajo futuro basadas en los siguientes puntos:
+% \begin{itemize}
+%     \item Realizar un despliegue en real utilizando Raspberry Pi (RPi) que tienen una interfaz WiFi nativa para evaluar el funcionamiento del win-BOFUSS con varias RPis. Esto permitirá verificar si el rendimiento es similar al observado durante el proyecto.
+
+%     \item Realizar la integración del switch BOFUSS en la jerarquía de clases de Mininet-WiFi. Esto facilitará la realización de pruebas y evaluaciones más consistentes al combinar las funcionalidades de ambos proyectos.
+
+%     \item Añadir seguridad mediante el uso de TLS en las conexiones OpenFlow in-band desde el UserAP hacia el controlador. Esto garantizará la confidencialidad y la integridad de las comunicaciones, protegiendo la información transmitida entre el UserAP y el controlador.
+
+%     \item Realizar simulaciones de pérdida utilizando el protocolo desarrollado y evaluar cómo afecta al funcionamiento intrínseco de la operativa programada. Esto ayudará a comprender el impacto de la pérdida de paquetes en el rendimiento del sistema y permitirá optimizar el protocolo en función de los resultados obtenidos.
+
+%     \item Modificar la interfaz del \gls{bofus} con la herramienta de gestión ``dpctl'' para que implemente una interfaz estándar como JSON.
+
+%     \item Arreglar el trazado de símbolos a la arquitectura ARM. Este punto tiene que ver con el primero a líneas a futuro, porque si no se porta correctamente a ARM según se ha explicado, será imposible desplegarlo en una RPi, o en dispositivos ARM que porten Openwrt, por ejemplo.
+% \end{itemize}
+
+% Estas líneas de trabajo futuro proporcionan oportunidades para mejorar y ampliar el proyecto, explorando nuevas funcionalidades, mejorando la seguridad y evaluando su rendimiento en diferentes escenarios y condiciones. Como se ha indicado en las conclusiones, aparte de apuntar a las posibles líneas de trabajo a futuro, también hay que mencionar la realidad inmediata, que después de estar trabajando con el \textit{software switch} BOFUSS, conseguir hacerlo funcionar en las últimas versiones se tomará el relevo a Eder como mantenedor del proyecto en una nueva organización agnóstica.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
