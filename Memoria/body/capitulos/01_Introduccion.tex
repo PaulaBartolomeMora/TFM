@@ -6,18 +6,18 @@ En este primer capítulo, se presentarán a modo de introducción los aspectos m
 
 \vspace{3mm}
 
-De la misma manera, se hará hincapié en los objetivos que se establecen para este \gls{tfm}, describiendo así la secuencia de acciones que se seguirá para poder llevarlos a cabo. Dichos objetivos serán los pilares sobre los que se sustente el diseño y el desarrollo de un modelo eficiente basado en \gls{ml} para la detección y predicción de errores en \gls{sgs}. De forma adicional, se incluirá un último apartado en referencia a la estructura de capítulos que seguirá este \gls{tfm}, así como una explicación breve sobre los temas que se abordarán en cada uno de ellos.
+De la misma manera, se hará hincapié en los objetivos que se establecen para este \gls{tfm}, describiendo así la secuencia de acciones que se seguirá para poder llevarlos a cabo. Dichos objetivos serán los pilares sobre los que se sustente el diseño y el desarrollo de un modelo eficiente basado en \gls{ml} para la detección y predicción de errores en \gls{sg}s. De forma adicional, se incluirá un último apartado en referencia a la estructura de capítulos que seguirá este \gls{tfm}, así como una explicación breve sobre los temas que se abordarán en cada uno de ellos.
 
 
 \section{Presentación}
 \label{sec:presentacion}
 
-En los últimos años, el concepto de red eléctrica convencional está siendo completamente transformado como resultado del creciente desarrollo de las \gls{sgs}. La posibilidad de brindar a tiempo real una monitorización del proceso de distribución eléctrica y a su vez, integrar una participación activa del consumidor convierte a estas redes en uno de los pilares de la
+En los últimos años, el concepto de red eléctrica convencional está siendo completamente transformado como resultado del creciente desarrollo de las \gls{sg}s \cite{repsol} \cite{impact}. La posibilidad de brindar a tiempo real una monitorización del proceso de distribución eléctrica y a su vez, integrar una participación activa del consumidor convierte a estas redes en uno de los pilares de la
 transición hacia la descarbonización. 
 
 \vspace{3mm}
 
-En este contexto, se ha convertido en un objetivo primordial el diseño de nuevos protocolos que provean un encaminamiento y una distribución energética eficientes. Es por ello que, desde el equipo de investigación NetIS de la \gls{uah} se ha desarrollado el algoritmo \gls{den2ne}, con el fin de automatizar la gestión de los recursos en entornos del Internet de las Cosas (del inglés \gls{iot}), enfocándose especialmente en \gls{sgs}.
+En este contexto, se ha convertido en un objetivo primordial el diseño de nuevos protocolos que provean un encaminamiento y una distribución energética eficientes. Es por ello que, desde el equipo de investigación NetIS de la \gls{uah} se ha desarrollado el algoritmo \gls{den2ne} \cite{den2ne}, con el fin de automatizar la gestión de los recursos en entornos del Internet de las Cosas (del inglés \gls{iot}), enfocándose especialmente en \gls{sg}s.
 
 \vspace{3mm}
 
@@ -25,7 +25,7 @@ En este contexto, se ha convertido en un objetivo primordial el diseño de nuevo
 
 %Estos nodos se definen como prosumidores, al tener una capacidad tanto de consumo como de producción de energía a partir de fuentes renovables. 
 
-\vspace{3mm}
+\pagebreak
 
 Sin embargo, el algoritmo se encuentra actualmente con un desafío a afrontar, basado en la imperiosa necesidad de poder detectar y predecir de una forma precisa los posibles errores que se puedan producir en el proceso de distribución energética entre nodos. En caso de fallos en la red, \gls{den2ne} debería tener la capacidad de responder de una forma rápida y específica, pues es de vital importancia tomar acciones a nivel de distribución para evitar que los errores se agraven y escalen al resto de la red.
 
@@ -41,19 +41,19 @@ Tomando en consideración el apartado anterior, se define como objetivo principa
 
 \vspace{3mm}
 
-La identificación de patrones se apoyará en el análisis de grandes volúmenes de datos provenientes de implementaciones de \gls{sgs} reales. Estos serán previamente procesados de una forma exhaustiva para reducir su tamaño y seleccionar la información verdaderamente necesaria para el posterior desarrollo de técnicas de \gls{ml}.
+La identificación de patrones se apoyará en el análisis de grandes volúmenes de datos provenientes de implementaciones de \gls{sg}s reales. Estos serán previamente procesados de una forma exhaustiva para reducir su tamaño y seleccionar la información verdaderamente necesaria para el posterior desarrollo de técnicas de \gls{ml}.
 
 \vspace{3mm}
 
-Por tanto, el presente \gls{tfm} permitirá determinar un modelo final de predicción de fallos para entornos de \gls{sgs}. Entrando en detalle, se pueden definir los diferentes objetivos en los siguientes puntos:
+Por tanto, el presente \gls{tfm} permitirá determinar un modelo final de predicción de fallos para entornos de \gls{sg}s. Entrando en detalle, se pueden definir los diferentes objetivos en los siguientes puntos:
 
 
 \begin{itemize}
-    \item \textbf{Estudio del estado del arte y análisis de las diferentes fuentes de datos reales disponibles}. Se realizará un estudio en profundidad del contexto en el que se engloban las \gls{sgs} y los protocolos de distribución de recursos, poniendo el enfoque en  \gls{den2ne}. Será necesaria una investigación sobre la disponibilidad de  fuentes de datos reales, además de una evaluación de su viabilidad para este \gls{tfm}.
+    \item \textbf{Estudio del estado del arte y análisis de las diferentes fuentes de datos reales disponibles}. Se realizará un estudio en profundidad del contexto en el que se engloban las \gls{sg}s y los protocolos de distribución de recursos, poniendo el enfoque en  \gls{den2ne}. Será necesaria una investigación sobre la disponibilidad de  fuentes de datos reales, además de una evaluación de su viabilidad para este \gls{tfm}.
     
     \item \textbf{Definición y procesado del volumen de datos para el posterior desarrollo}. El procesamiento de los datos adquiridos será fundamental para simplificar su compresión. Además, se llevará a cabo la selección de la cantidad de información realmente útil para el desarrollo.    
 
-    \item \textbf{Planteamiento de diferentes escenarios}. A partir del volumen final de datos que se elaborará, se plantearán una serie de escenarios mediante la generación de topologías de nodos con la herramienta BRITE. %aqui bib
+    \item \textbf{Planteamiento de diferentes escenarios}. A partir del volumen final de datos que se elaborará, se plantearán una serie de escenarios mediante la generación de topologías de nodos con la herramienta BRITE \cite{brite}.
     
     \item \textbf{Generación y simulación de topologías}. Las topologías se importarán a un simulador propietario realizado en python para obtener el conjunto de datos final.
     
@@ -67,9 +67,7 @@ Por tanto, el presente \gls{tfm} permitirá determinar un modelo final de predic
 \section{Estructura del \glsentryshort{tfm}}
 \label{sec:structure}
 
-
 En esta sección se expone de forma general la estructura de capítulos que tendrá la memoria del presente \gls{tfm} con una breve descripción del contenido que abarcarán cada uno de ellos.
-
 
 \begin{description}
     \item\textbf{Capítulo 1: Introducción}. Se comenzará esta memoria con una presentación de los aspectos más significativos. Se expondrán las motivaciones que han originado la realización de este \gls{tfm} y los objetivos que se prentenden alcanzar con el mismo.
@@ -85,11 +83,7 @@ En esta sección se expone de forma general la estructura de capítulos que tend
     
     \item\textbf{Capítulo 5: Conclusiones y trabajo futuro}. Se finalizará la memoria con un capítulo enfocado a las conclusiones obtenidas tras la realización de este \gls{tfm}. Además, se indicarán las posibles vías de trabajo a futuro.
 
-    \item[]\textbf{Bibliografía}. Se incluirán todas las referencias de artículos, libros, páginas web u otros materiales que han sido consultados y empleados para elaborar esta memoria. Se seguirá el estilo de citación del \gls{ieee}, así como las recomendaciones oficiales de la normativa sobre \gls{tfm}s de la \gls{uah}.
-    
+    \item[]\textbf{Bibliografía}. Se incluirán todas las referencias de artículos, libros, páginas web u otros materiales que han sido consultados y empleados para elaborar esta memoria. Se seguirá el estilo de citación del \gls{ieee}, así como las recomendaciones oficiales de la normativa sobre \gls{tfm}s de la \gls{uah}. 
 
-
-    
-
-    \item[]\textbf{Anexos}. Se añadirán los manuales de usuario y de instalación de herramientas. Adicionalmente, se expondrán las características del \textit{hardware} sobre el que se ha desarrollado este \glsentryshort{tfm} y e un presupuesto que incluya el coste de mano de obra, material y gastos generales.
+    \item[]\textbf{Anexos}. Se añadirán los manuales de usuario y de instalación de herramientas. También, se expondrán las especificaciones del \textit{hardware} sobre el que se ha desarrollado este \glsentryshort{tfm} y una estimación de su presupuesto.
 \end{description}
