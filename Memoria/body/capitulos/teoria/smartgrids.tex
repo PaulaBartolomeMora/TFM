@@ -44,7 +44,7 @@ Otro dispositivo importante en el campo de la generación y de la distribución 
 
 \vspace{3mm}
 
-La confiabilidad y la seguridad de la red también reside en los Sistemas de Transmisión de Corriente Alterna Flexibles (del inglés \gls{facts}) \cite{facts}. Estos vienen dados por la necesidad de superar las limitaciones técnicas introducidas por las redes eléctricas, como son las térmicas o las respectivas al voltaje. En otros términos, incrementan la potencia transmitida y aportan flexibilidad al permitir modificar de forma dinámica los parámetros eléctricos ante cambios en la configuración de la red. 
+La confiabilidad y la seguridad de la red también reside en los Sistemas de Transmisión de Corriente Alterna Flexibles (del inglés \gls{facts}) \cite{facts} \cite{facts3}. Estos vienen dados por la necesidad de superar las limitaciones técnicas introducidas por las redes eléctricas, como son las térmicas o las respectivas al voltaje. En otros términos, incrementan la potencia transmitida y aportan flexibilidad al permitir modificar de forma dinámica los parámetros eléctricos ante cambios en la configuración de la red. 
 
 \vspace{3mm}
 
@@ -52,7 +52,7 @@ Los \gls{facts} incluyen todos los elementos electrónicos basados en tecnologí
 
 \vspace{3mm}
 
-La primera generación de \gls{facts} emplea interruptores controlados por tiristores, mientras que la segunda tiene como base convertidores estáticos de conmutación. En la Tabla \ref{tab:facts} se visualizan las tecnologías \gls{facts} más relevantes. \cite{facts2}
+La primera generación de \gls{facts} emplea interruptores controlados por tiristores, mientras que la segunda tiene como base convertidores estáticos de conmutación. En la Tabla \ref{tab:facts} se visualizan las tecnologías \gls{facts} más relevantes. \cite{facts2} \cite{facts3}
 
 \vspace{3mm}
 
@@ -69,7 +69,7 @@ La primera generación de \gls{facts} emplea interruptores controlados por tiris
     
     \\ \cline{2-3}
 
-    & \gls{svc} & Absorbe o suministra potencia reactiva según las necesidades de una línea de transmisión a través de la variación de la susceptancia en paralelo. Ayuda a mantener el voltaje estable en la red.
+    & \gls{svc} & Absorbe o suministra potencia reactiva según las necesidades de una línea de transmisión a través de la variación de la susceptancia en paralelo. Ayuda a mantener el voltaje estable en la red y proveen un aumento de la capacidad de transferencia de energía.
 
     \\ \hline
     \multirow{4}{*}{2º} 
@@ -95,23 +95,34 @@ La primera generación de \gls{facts} emplea interruptores controlados por tiris
     \label{tab:facts}
 \end{table}
 
+\vspace{0.3cm}
+
+Poniendo el enfoque en la garantía de estabilidad de una \gls{sg}, uno de los sistemas más importantes de los expuestos en la Tabla \ref{tab:facts} es el \gls{svc} \cite{facts}. Los compensadores estáticos son capaces de detectar grandes caídas de tensión resultantes a la producción de un cortocircuito o a la pérdida de líneas de transisión en un área de la red. Esto es importante, ya que una detección rápida de una avería permite restaurar en un corto período de tiempo la tensión del área afectada sin que el problema escale a otras partes de la red. 
+
+\vspace{0.3cm}
+
+En otros términos, aísla este área del resto de la red eléctrica. Además, el \gls{svc} asegura que el proceso de restauración se produzca paulatinamente para que los efectos producidos por el cortocircuito sean prácticamente imperceptibles en los puntos de carga del área afectada. En la Figura \ref{fig:svc} se puede apreciar un ejemplo de instalación de un \gls{svc} en el municipio noruego Sylling y se encuentra conectada a un sistema de 420 kV.
+
+\vspace{0.3cm}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{img/teoria/svc.png}
+  \caption{Instalación de un \gls{svc} en Sylling (Noruega) \cite{facts}}
+  \label{fig:svc}
+\end{figure}
+
 \subsubsection{Consumo}
 
-Poniendo el foco en el consumo, es imprescindible conocer la cantidad de energía demandada por los clientes que pertenecen a una \gls{sg}. La instalación de sensores o medidores inteligentes (del ingles \textit{smart meters}) en las viviendas o ubicaciones finales posibilitan el registro constante de datos respectivos al consumo de energía, niveles de voltaje, corriente y factor de potencia. Estos son almacenados, analizados y procesados por las distribuidoras de energía para obtener a partir de los mismos la información necesaria sobre el comportamiento de los usuarios. \cite{stab}
+Entrando en detalle en las ubicaciones finales del sistema y por tanto, en el proceso de consumo, es imprescindible conocer la cantidad de energía demandada por los clientes que pertenecen a una \gls{sg}. La instalación de sensores o medidores inteligentes (del ingles \textit{smart meters}) en las viviendas posibilitan el registro constante de datos respectivos al consumo de energía, niveles de voltaje, corriente y factor de potencia. Estos son almacenados, analizados y procesados por las distribuidoras de energía para obtener a partir de los mismos la información necesaria sobre el comportamiento de los usuarios. \cite{stab}
 
 \vspace{3mm}
 
-La gestión de los sensores finales en las \gls{sg}s se caracteriza por su alta complejidad, debido a los grandes volúmenes de datos a manejar. 
+La gestión de los sensores finales en las \gls{sg}s se caracteriza por su alta complejidad, debido a los grandes volúmenes de datos a manejar. No obstante, como se ha introducido en el Apartado \ref{sec:smartgrids} esta se trata de uno de los pilares más relevantes de cara a la optimización energética del sistema.
+
+ 
 
 
-
-% Many benefits can be obtained
-% from implementing such technology in the areas of asset management,
-% operations planning, monitoring voltage instability, stability margin
-% prediction and fault detection.
-
-% Accordingly, many challenges are associated with such implementation; the main issues are related to data
-% uncertainty, data quality, data security, and data complexity.
 
 
 
@@ -119,11 +130,15 @@ La gestión de los sensores finales en las \gls{sg}s se caracteriza por su alta 
 %\subsection{Diferencias respecto a Red convencional}
 %Performance in conventional grids and smart grids varies a lot in the sense of both production and consumption. In conventional grids, production is always constant no matter what the consumption is, meanwhile in smart grids, if consumption decreases, this decrease is read and responded to with a decrease in production with the goal of conserving and better distributing power to the rest of the grid. Below are Figures 1 and 2 demonstrating a short comparison between the production and consumption in both conventional power grids and smart grids.
 
+%Smart grids and conventional power grids vary in many areas, conventional grids are one directional grids that provide energy from the distributor to the consumer with no extra analyses that could help service providers to know and track the usage. Smart grids on the other hand are two directional and helps save energy since the distributor could have an entire view on all vital readings that could help on focusing on loss and waste of energy, this is because of components that are used in smart grids, such as sensors, remote monitoring, automated switches, capacitor banks, and many more equipment that a smart meter is equipped with. Another major difference between a smart grid and a conventional grid is that if smart grids encounter any damage, smart grids are adaptive and self-healing since they could process this harm internally and in real-time, in contrast, conventional grids are more sensitive and delicate, the damages could affect an entire city, and shall be dealt with from an outer source such as a professional technicians which is much more costly. Another important factor is the customer choice; in smart grids, customers have more options in the types of services they could acquire making it more flexible and controllable, but in conventional grids, choices are restricted to that almost everything is built-in. In addition, conventional power grids occupy more space and they are huge in size, but smart grids are smaller and easier to install.
 
 
 
 
+\subsection{Seguridad en Smart grids}
 
+%ataques, tipos de ataques, como combatirlos
+%a partir del 3.4 del AI-based FDI Countermeasure for IoE Smart Grids
 
 
 
