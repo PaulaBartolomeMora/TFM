@@ -5,8 +5,3 @@
 **Tutor**: [David Carrascal Acebron](https://scholar.google.com/citations?user=__rsKBoAAAAJ&hl=es) <br>
 **Master Degree**: Telecommunication Engineering, University of Alcalá (UAH)<br>
 
-<br>
-<br>
-<p align="center">
-  <img src="https://i.imgur.com/KPxY6u0.jpg" width="50%"/>
-</p>
