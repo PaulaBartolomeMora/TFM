@@ -7,19 +7,19 @@ En las últimas décadas, se ha observado una transformación integral del model
 
 \vspace{3mm}
 
-No obstante, una red eléctrica no se puede definir como una entidad única e independiente, pues se trata de una agregación de redes, compañías energéticas y operadores que trabajan en distintos niveles de comunicación. Es por ello, que la idea de desarrollar una gran red nacional encuentra cierto equilibrio energético, pero no llega a los altos porcentajes de eficiencia que pueden proveer las redes inteligentes energéticas o de otra forma, las \textit{smart grids} (\gls{sg}). 
+Sin embargo, una red eléctrica no se puede definir como una entidad única e independiente, pues se trata de una agregación de redes, compañías energéticas y operadores que trabajan en distintos niveles de comunicación. Es por ello, que la idea de desarrollar una gran red nacional encuentra cierto equilibrio energético, pero no llega a los altos porcentajes de eficiencia que pueden proveer las redes inteligentes energéticas o de otra forma, las \textit{smart grids} (\gls{sg}). 
 
 \vspace{3mm}
 
-Una \textit{smart grid} \cite{iotfutura} \cite{repsol} se define como una red inteligente con la capacidad de distribuir los suministros de energía de forma optimizada a los usuarios, basándose en la información que recoge de los mismos. Es por ello que supone una actualización digital de las redes de distribución y transmisión a larga distancia para incorporar sistemas de monitorización y control a tiempo real.
+La iniciativa sobre redes inteligentes del \gls{ieee}, califica a las \textit{smart grids} \cite{ieee} como "imperativas y revolucionarias que implican nuevas capacidades de comunicación y control, fuentes de energía, modelos de generación y adherencia a estructuras regulatorias transjurisdiccionales". No obstante, se puede definir una \textit{smart grid} como una red inteligente con la capacidad de distribuir los suministros de energía de forma optimizada a los usuarios, basándose en la información que recoge de los mismos. Es por ello que supone una actualización digital de las redes de distribución y transmisión a larga distancia para incorporar sistemas de monitorización y control a tiempo real. \cite{iotfutura} 
 
 \vspace{3mm}
 
-En otros términos, su base se asienta en el diseño de sistemas inteligentes coordinados capaces de obtener tanto la información respectiva a la demanda o requisitos energéticos de cada zona como la de la disponibilidad de recursos a partir de las diferentes fuentes de producción existentes. Todo ello conduce al desarrollo de un plan estratégico de distribución energética para poder conectar a todas las entidades participantes en la red entre sí.
+Su base se asienta en el diseño de sistemas inteligentes coordinados capaces de obtener tanto la información respectiva a la demanda o requisitos energéticos de cada zona como la de la disponibilidad de recursos a partir de las diferentes fuentes de producción existentes. Todo ello conduce al desarrollo de un plan estratégico de distribución energética para poder conectar a todas las entidades participantes en la red entre sí. \cite{repsol}
 
 \vspace{3mm}
 
-Cabe destacar que una de las principales características diferenciadoras de las \gls{sg} respecto a las redes energéticas convencionales es que se fundamentan en una comunicación bidireccional. Este factor determinante se puede apreciar en la Figura \ref{fig:bidireccional} y se traduce en una producción y una distribución dinámica y personalizada hacia cada usuario de la red. 
+Cabe destacar que una de las principales características diferenciadoras de las \gls{sg}s respecto a las redes energéticas convencionales es que se fundamentan en una comunicación bidireccional. Este factor determinante se puede apreciar en la Figura \ref{fig:bidireccional} y se traduce en una producción y una distribución dinámica y personalizada hacia cada usuario de la red. 
 
 \vspace{3mm}
 
@@ -40,22 +40,123 @@ Teniendo en cuenta esto, se puede decir que los propios usuarios son el gran pil
 
 \vspace{3mm}
 
-No obstante, como se expondrá más adelante en la Sección \ref{sec:consumo}, este proceso de clasificación de usuarios requerirá del análisis de grandes volúmenes de datos adquiridos a tiempo real, por lo que se aumentará la complejidad del sistema a costa de alcanzar la eficiencia.
+Sin embargo, como se expondrá más adelante en la Sección \ref{sec:consumo}, este proceso de clasificación de usuarios requerirá del análisis de grandes volúmenes de datos adquiridos a tiempo real, por lo que se aumentará la complejidad del sistema a costa de alcanzar la eficiencia.
 
+\vspace{1mm}
 
+\subsection{Prosumidores y microgrids}
+\label{sec:prosu}
+
+Dentro del presente contexto, en referencia a los usuarios es preciso introducir el término de prosumidor \cite{prosumer}. Se puede determinar como prosumidora a toda entidad o usuario final que tiene la capacidad de producir de forma alternativa recursos energéticos, además de poder consumirlos. En la Figura \ref{fig:prosumer} se puede visualizar cómo se estructura la \gls{sg} en un conjunto de distintas comunidades o agregaciones de prosumidores con el fin de crear microrredes de distribución y almacenamiento energético (del inglés \textit{microgrids}).
+
+\vspace{3mm}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/teoria/prosumer.jpg}
+  \caption{Estructura de la respuesta a la demanda en el contexto de una \textit{smart grid} con prosumidores \cite{prosumer}}
+  \label{fig:prosumer}
+\end{figure}
+
+\vspace{3mm}
+
+En este caso es imprescindible que los equipos y dispositivos dedicados a la generación de electricidad se encuentren dentro de la microrred o en una ubicación cercana a la misma. Así, se podrá abastecer a los usuarios del conjunto de forma eficiente, reduciendo los costes relacionados con la transmisión energética. 
+
+\vspace{3mm}
+
+Este tipo de esquema puede ser aplicado en diferentes entornos, como pueden ser los residenciales, industriales o agrícolas, para conseguir descentralizar la gestión de los recursos. Sin embargo, debe existir cierta gestión externa y coordinada de todas estas microrredes o comunidades de usuarios. Esta es llevada a cabo por una entidad denominada como operador del sistema distribuido (del ingles \gls{dso}) \cite{transactive} \cite{dso}. Algunas de sus funciones principales se basan en asegurar el abastecimiento de recursos en el interior de las microrredes en función de la demanda existente y en supervisar el estado operativo la infraestructura de red para garantizar su estabilidad y seguridad. 
+
+\vspace{3mm}
+
+Por otro lado, se encuentra también la figura del centro de servicios auxiliares \cite{transactive}, que se encarga de recibir la información sobre los recursos energéticos de los prosumidores y cuantificar en función de la oferta y demanda el beneficio económico que obtendrán los prosumidores. Estos normalmente son gestionados por los operadores del mercado eléctrico, pero puede variar según la región o el país.
+
+\vspace{3mm}
+
+\subsubsection{Mercado energético}
+
+Las agregaciones de prosumidores posibilitan el autoconsumo y la compartición de los recursos generados por sí mismos con los demás participantes de la microrred, incluso con el resto de la \gls{sg}. La mayoría de los prosumidores, sobre todo en entornos residenciales son de pequeño tamaño y tienen mayores complicaciones para participar en los mercados eléctricos por sí mismos. 
+
+\vspace{3mm}
+
+Por ello, los agregadores \cite{bidding} \cite{transactive} se encargan de facilitar esta tarea para que una cantidad de prosumidores locales puedan actuar en conjunto como fijadores de precios de compra/venta en el mercado eléctrico global. Es decir, cada agregador se encarga de representar a los prosumidores que lo componen y actúa como intermediarios entre los mismos y el conjunto de mercados energéticos. 
+
+\vspace{3mm}
+
+A cambio, cada prosumidor debe pagar un plan mensual a la compañía para cubrir los costes eléctricos y así, dejar la responsabilidad de las transacciones a los agregadores para que operen de forma flexible. En esta operativa también incide el \gls{dso}, el cual se encarga de que las transacciones de compra/venta sigan el cumplimiento de los estándares y regulaciones establecidos en el mercado energético. 
+\vspace{3mm}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/teoria/market.png}
+  \caption{Modelo basado en las interacciones de los agregadores con los prosumidores y el mercado eléctrico \cite{business}}
+  \label{fig:market}
+\end{figure}
+
+\vspace{3mm}
+
+A partir del funcionamiento expuesto y de la Figura \ref{fig:market}, se pueden diferenciar los tipos de interacciones que se producen en este modelo \cite{business}:
+
+\begin{itemize}
+  \item Interacciones técnicas 
+    \begin{enumerate}
+      \item Recopilación y adquisición de datos sobre los recursos de los prosumidores para su posterior procesamiento en los agregadores.  
+      \item Cuantificación y presentación de ofertas desde los agregadores hacia los mercados mayoristas de electricidad.
+      \item Comunicación de los resultados de diferentes mercados a los agregadores.
+      \item Envío de instrucciones o recursos distribuidos en función de los resultados del mercado.      
+    \end{enumerate}
+
+  \item Interacciones financieras
+  \begin{enumerate}
+    \item Pago de tarifa mensual de cada prosumidor al agregador.
+    \item Liquidación de las transacciones trasladadas desde los prosumidores en el mercado eléctrico (cobro por demanda y pago por generación).    
+  \end{enumerate}
+\end{itemize}
+
+\vspace{3mm}
+
+En cuanto al proceso de fijación de precios, generalmente, se adoptan tarifas minoristas dinámicas según el instante temporal, como pueden ser la fijación de precios por tiempo de uso (del inglés \gls{tou}) o en tiempo real (del inglés \gls{rtp}). Dentro de este contexto es preciso introducir los programas de gestión del lado de la demanda (del inglés \gls{dsm}). Como término, un programa \gls{dsm} es un programa basado en el control de las interacciones de consumo y de gestión de cargas residenciales desde el lado del cliente. 
+
+\vspace{3mm}
+
+Teniendo en cuenta el modelo de interacciones expuesto anteriormente, se puede expresar que un \gls{dsm} tiene como pilar fundamental la distribución de recursos energéticos de manera eficiente y acorde a la demanda y a la oferta. Permite reducir el coste de la adquisición energética y los costes asociados a la distribución como consecuencia de minimizar el número de interacciones necesarias entre el prosumidor y el resto de entidades del sistema. \cite{dsm}
+
+\vspace{3mm}
+
+Por lo tanto, volviendo a los modos de dinamización de las tarifas, si por ejemplo se emplea \gls{rtp}, se buscará lograr el equilibrio de la demanda en tiempo real, modificando las cargas de los consumidores en las horas pico \cite{rtp}. Es decir, cada uno de los usuarios actúa individualmente en función de los precios dinámicos en el tiempo, comunicándose directamente con la compañía energética como se puede visualizar en la Figura \ref{fig:dsm1}. 
+
+\vspace{3mm}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/teoria/dsm1.png}
+  \caption{Estrategia de \gls{dsm} basada en interacciones individuales de cada consumidor con la compañía \cite{pricing}}
+  \label{fig:dsm1}
+\end{figure}
+
+\vspace{3mm}
+
+Con este proceso, el consumidor como puede saber en tiempo real la tarifa a la que está consumiendo energía, puede trasladar su propia carga desde las horas donde el precio es más alto (horas pico) a las de precio menor (horas valle). Esta gestión produce por tanto, menores picos de demanda y contribuyendo a la bajada de los precios. \cite{dsm} \cite{pricing}
+
+\vspace{3mm}
+
+No obstante, el diseño de un programa \gls{dsm} ideal en el contexto de las \gls{sg}s debería permitir también las interacciones entre los mismos prosumidores dentro de una zona residencial o microgrid. Estas interacciones generalmente se automatizan a través de equipos dedicados a una comunicación digital bidireccional. Como se aprecia en la Figura \ref{fig:dsm2}, este proceso tiene como fin conducir a una coordinación de las acciones respectivas a las cargas de un área determinada. 
+
+\vspace{3mm}
+
+Por tanto, en este caso la monitorización de las cargas totales para todos los nodos participantes en un instante determinado aportará la información necesaria sobre la relación entre la potencia pico y promedio (del inglés \gls{par}) y contribuirá a la fijación del precio unitario para ese mismo instante. \cite{pricing} 
+
+\vspace{3mm}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.65\textwidth]{img/teoria/dsm2.png}
+  \caption{Estrategia de \gls{dsm} para smart grids basada en interacciones entre los usuarios y la compañía \cite{pricing}}
+  \label{fig:dsm2}
+\end{figure}
 
 \vspace{3mm}
 
 
-\cite{impact}
-
-
-% así como para abrir nuevos mercados para la producción de energía alternativa.
-En este contexto se introduce el término de prosumidor.
-
-
-
-%sin interferencia humana. 
 
 
 
@@ -64,11 +165,10 @@ En este contexto se introduce el término de prosumidor.
 
 
 
-%According to the IEEE smart grid initiative [1], “the smart grid is a revolutionary undertaking—entailing new communications-and-control capabilities, energy sources, generation models and adherence to cross-jurisdictional regulatory structures”.
-%La implementación de Smart Grid es imperativa, no sólo en Estados Unidos sino en todo el mundo. Pero la red inteligente es una empresa revolucionaria que implica nuevas capacidades de comunicaciones y control, fuentes de energía, modelos de generación y adhesión a estructuras regulatorias interjurisdiccionales. Una implementación exitosa exigirá colaboración, integración e interoperabilidad objetivas entre una fenomenal variedad de disciplinas, incluidos sistemas de control computacional y de comunicaciones para generación, transmisión, distribución, clientes, operaciones, mercados y proveedores de servicios.
 
 
-%https://smartgrid.ieee.org/about-ieee-smart-grid
+
+
 
 %ver tablasecciones.pdf
 
@@ -77,30 +177,12 @@ En este contexto se introduce el término de prosumidor.
 
 
 
-%%ventajas  
 
 
-\cite{repsol} 
-
-% Mayor flexibilidad
-% La automatización de los procesos y la aplicación de sistemas inteligentes permite responder rápidamente a cualquier imprevisto o avería y dar una respuesta inmediata, incluso en remoto.
-
-% Aumento de la seguridad
-% El circuito interconectado de una smart grid proporciona un suministro eléctrico todavía más fiable, eficiente, seguro y sostenible, lo que supone una mejora en la calidad del servicio.
-
-% Respuesta a la demanda y ahorro
-% Permiten que los usuarios conecten sus dispositivos electrónicos en las franjas en las que las tarifas son más bajas. Lo que se traduce en un ahorro directo en la factura de la luz. 
-
-% Gestión de la carga
-% Gracias a las smart grid los usuarios pueden saber en tiempo real la electricidad y la tarifa a la que están consumiendo energía. Esto permite gestionar y reducir el uso de la misma, lo que evitaría, por ejemplo, un caso de carga elevada.
-
-% Descentralización de la producción
-% Los usuarios no solo son consumidores, sino que también pueden generar energía. A través de las smart grid el excedente de energía se puede almacenar o trasladar a la red eléctrica general para que otros usuarios puedan consumirla. 
-
+% Beneficios ambientales
 
 %Las smart grid son un concepto estratégico clave en la transición energética, ya que suponen un gran paso hacia un mundo descarbonizado. Mediante la digitalización de las redes eléctricas inteligentes se puede conseguir un sistema más eficiente, sostenible, con bajas pérdidas y con altos niveles de calidad en el suministro. Con la implementación de este circuito inteligente no solo se conseguiría una mayor eficiencia energética y ahorro, sino que también tendría múltiples beneficios medioambientales, económicos y sociales.
 
-% Beneficios ambientales
 
 % La eficiencia energética que se pueden conseguir con las smart grid también tiene beneficios directos sobre el medio ambiente, como por ejemplo: 
 
@@ -112,27 +194,10 @@ En este contexto se introduce el término de prosumidor.
 
 
 
-% Beneficios económicos
-
-% Un sistema de red eléctrica eficiente tiene beneficios económicos, entre los que destacan:
-
-% Accesibilidad de la información. Gracias a la recopilación de estos datos, la compañía eléctrica y los consumidores pueden reducir los costes.
-% Permite minimizar el coste de las operaciones. Y, en consecuencia, el coste para el consumidor final.
-% Facilita el almacenamiento de electricidad y mejora la eficacia en la distribución de los flujos de energía por lo que no hay desperdicios.
-% Mayor control de reparaciones localizando el corte energético de manera inmediata.
-% Existen menos picos de demanda, lo que se traduce en una bajada de los precios. 
 
 
 
-% Beneficios sociales
 
-% La implementación de las redes eléctricas smart grid repercute directamente en la sociedad: 
-
-% Permiten una respuesta inmediata, asegurando un sistema energético eficiente.
-% Aumentan el nivel de seguridad, fiabilidad y de calidad del servicio.
-% Posibilitan conocer el consumo y tarifa aplicada en tiempo real.
-% El usuario es parte activa y fundamental del proceso. Puede gestionar el consumo de energía, verter sus excedentes a la red de energía eléctrica o almacenarlo para utilizarlo en otro momento.
-% En caso de interrumpir el servicio, el restablecimiento es más rápido.
 
 
 \cite{smartgrid_overview}
@@ -159,26 +224,7 @@ En este contexto se introduce el término de prosumidor.
 
 
 
-%%%%ESPAÑA HABLAR AQUI DE RED DE ESPAÑA
 
-%http://www.geni.org/globalenergy/library/national_energy_grid/spain/index.shtml
-
-%Spain has the fifth largest electricity market in Europe (behind Germany, France, the United Kingdom, and Italy), and it is growing quickly. Electricity demand for 2001 was estimated to be 210.4 billion kilowatthours (bkwh), a 5% increase over 2000. It is estimated that Spain's electricity demand will increase 30% by 2010.
-
-%To meet Spain's increased demand for electricity, domestic utility companies have invested in generation capacity and distribution. Red Electrica de España (REE), for instance, invested heavily in the network in 2001, dedicating 78.4 million euros to expanding the electricity network. REE also announced plans in October 2001 to invest between 60.2 and 72.2 million euros to improve the electricity connection with France. Spain's three largest electricity groups - Endesa, Iberdrola, and Union Fenosa - have dedicated 34 billion euros of investments from August 2001 to 2005, with much of that in Latin America and other European countries, but nevertheless including 8 billion euros for new generating plants in Spain.
-
-%Endesa is in the process of building a natural-gas-fired, 400 MW, combined-cycle generating turbine (CCGT) plant in Huelva in addition to two other gas-fired 400-MW CCGTs the company already has under construction in Barcelona and Tarragona. Endesa recently completed the construction of a plant with 8,000 MW in Cadiz. Union Fenosa plans to add 5,000 MW of new capacity by 2005, mostly in Spain, of which 2,800 MW would be natural-gas-fired. Piemsa, an affiliate of Petronor, is planning to construct an 800-MW integrated gasification combined-cycle(IGCC) complex at a refinery near Bilbao that will make use of heavy refinery stocks. The plant will be one of the largest and most advanced of its kind in the world.
-
-\vspace{3mm}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.8\textwidth]{img/teoria/spain.png}
-  \caption{Red nacional de transmisión energética \cite{spain}}
-  \label{fig:spain}
-\end{figure}
-
-\vspace{3mm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Internet of Energy}
@@ -201,15 +247,87 @@ Una \gls{sg} está constituida por múltiples elementos diferentes como se puede
   \label{fig:estructura_sg}
 \end{figure}
 
-\subsubsection{Generación y distribución}
+\subsubsection{Generación}
+
+Como ya se introducía en la Sección \ref{sec:prosu}, dentro de una \gls{sg}, el prosumidor se trata de la figura que potencia principalmente el uso de energías renovables, las cuales pueden ser obtenidas por ejemplo a partir de generadores térmicos fotovoltaicos (del inglés \gls{pvt}) o de turbinas eólicas. Para posibilitar posteriormente el uso de la energía generada, esta debe ser convertida y acondicionada mediante dispositivos dedicados, como son unidades combinadas de calor (del inglés \gls{chp}) o de conversión a gas (del inglés \gls{p2g}). \cite{transactive}
 
 \vspace{3mm}
 
-Dentro del contexto de la generación de energía destacan los sistemas de control y adquisición de datos (del inglés \gls{scada}) \cite{scada}. Estos pueden ser instalados en generadores, como son paneles solares fotovoltaicos o turbinas eólicas, consiguiendo una monitorización remota de los mismos. Mediante la información recopilada a tiempo real permiten conocer los niveles de generación y establecer una predicción de la disponibilidad energética que habrá en el sistema o en un área determinada del mismo.
+Las unidades \gls{chp} \cite{chp} llevan a cabo un aprovechamiento del calor residual que deriva del proceso de generación de electricidad. Se emplean como respaldo eléctrico, ya que se componen de sistemas de almacenamiento de energía térmica (del inglés \gls{tes}) para poder separar la producción y el uso del calor y la energía. Luego, este calor almacenado se puede emplear en aplicaciones térmicas como la calefacción u otros procesos industriales. Es por ello que las unidades \gls{chp} mejoran la eficiencia del sistema energético, contribuyendo a un uso mucho más eficaz de los recursos y a una reducción de las pérdidas que se producen en la transmisión. En la Figura \ref{fig:chp} se representa a modo esquemático el funcionamiento de una unidad \gls{chp}. \cite{chp2}
 
 \vspace{3mm}
 
-Otro dispositivo importante en el campo de la generación y de la distribución energética es la Unidad de Medición de Fasores (del inglés \gls{pmu}). Se emplea para medir con una alta precisión los fasores de tensión y corriente en la red eléctrica, proporcionando información relevante sobre las magnitudes y fases de las ondas sinusoidales. Debe contar con una alta tasa de muestreo para capturar eventos transitorios o cambios rápidos en la red y, en consecuencia, tener la capacidad de identificar o detectar a tiempo real posibles anomalías que se puedan dar en la distribución. Es por ello que, el \gls{pmu} se trata de un componente imprescindible para comprobar y garantizar la estabilidad de la \gls{sg}. %BIB
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/teoria/chp.png}
+  \caption{Esquema de funcionamiento de una unidad \gls{chp} \cite{chp}}
+  \label{fig:chp}
+\end{figure}
+
+\vspace{3mm}
+
+Además del \gls{tes}, utilizado para almacenar el calor producido, una unidad \gls{chp} también se constituye de un motor acoplado a un generador eléctrico para llevar a cabo el proceso de generación de electricidad y calor. Como se puede apreciar en la Figura \ref{fig:chp2}, todas las operaciones de la unidad y las interacciones que se producen entre módulos se coordinan desde el gestor de operaciones para que se produzca un correcto funcionamiento.
+
+\vspace{3mm}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{img/teoria/chp2.png}
+  \caption{Gestión de operaciones en una unidad \gls{chp} \cite{chp2}}
+  \label{fig:chp2}
+\end{figure}
+
+Por otro lado, la unidad \gls{p2g}, mencionada anteriormente, se encarga de la conversión de la electricidad en gases sintéticos, como son el hidrógeno o el metano. Es de gran importancia, ya que este tipo de gases son más fácil de transportar y almacenar que la electricidad, por lo que se simplifica la gestión energética. \cite{transactive}
+
+
+%La idea detrás de Power to Gas
+es descomponer el agua mediante
+electrólisis usando electricidad
+de energía renovable
+fuentes y utilizar el hidrógeno
+producido directamente o
+procesarlo en metano o
+portadores de energía líquida. Estos
+Las fuentes de energía renovables pueden
+integrarse a los existentes
+infraestructuras respectivamente
+ser almacenado allí y luego ser
+utilizado en diversas aplicaciones.
+Con esta tecnología renovable
+la electricidad se puede convertir en
+gaseoso (Power to Gas, PtG)
+o líquido (Power to Liquid, PtL)
+portadores de energía, que pueden ayudar
+reducir los gases de efecto invernadero en todos
+sectores
+
+
+
+\vspace{3mm}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/teoria/p2g.jpg}
+  \caption{Representación del proceso \gls{p2g} \cite{p2g}}
+  \label{fig:p2g}
+\end{figure}
+
+
+
+
+\vspace{3mm}
+
+Por otro lado, dentro del contexto de la generación de energía también destacan los sistemas de control y adquisición de datos (del inglés \gls{scada}) \cite{scada}. Estos pueden ser instalados en generadores, como son paneles solares fotovoltaicos o turbinas eólicas, consiguiendo una monitorización remota de los mismos. Mediante la información recopilada a tiempo real permiten conocer los niveles de generación y establecer una predicción de la disponibilidad energética que habrá en el sistema o en un área determinada del mismo.
+
+\vspace{3mm}
+
+\subsubsection{Distribución}
+
+Un dispositivo importante en el campo de la distribución energética es la Unidad de Medición de Fasores (del inglés \gls{pmu}). Se emplea para medir con una alta precisión los fasores de tensión y corriente en la red eléctrica, proporcionando información relevante sobre las magnitudes y fases de las ondas sinusoidales. 
+
+\vspace{3mm}
+
+También, es empleado en los generadores y debe contar con una alta tasa de muestreo para capturar eventos transitorios o cambios rápidos en la red. En otros términos, debe tener la capacidad de identificar o detectar a tiempo real posibles anomalías que se puedan dar en la distribución y por ello, se trata de un componente imprescindible para comprobar y garantizar la estabilidad de la \gls{sg}. %BIB
 
 \vspace{3mm}
 
@@ -318,55 +436,26 @@ Entrando en detalle en las ubicaciones finales del sistema y por tanto, en el pr
 % incidencias, podrá identificarlas, notificar sobre ellas a la compañía y a los propios usuarios y resolverlas
 % por sí mismo de forma automatizada.
 
-La gestión de los sensores finales en las \gls{sg}s se caracteriza por su alta complejidad, debido a los grandes volúmenes de datos a manejar. No obstante, como se ha introducido en el Apartado \ref{sec:smartgrids} esta se trata de uno de los pilares más relevantes de cara a la optimización energética del sistema. Los objetivos principales que se pretenden con este proceso se engloban en la reducción del consumo, la optimización de la distribución y la maximización del beneficio. Respecto a este último, las compañías energéticas a partir de su base de clientes estudian las estrategias de categorización de los mismos para definir el sistema de fijación de precios dinámicos. 
+
+
+
+La gestión de los sensores finales en las \gls{sg}s se caracteriza por su alta complejidad, debido a los grandes volúmenes de datos a manejar. No obstante, como se ha introducido en el Apartado \ref{sec:smartgrids} esta se trata de uno de los pilares más relevantes de cara a la optimización energética del sistema.
 
 \vspace{3mm}
 
-Dentro de este contexto entran los programas de gestión del lado de la demanda (del inglés \gls{dsm}). Como término, un programa \gls{dsm} es un programa basado en el control de las interacciones de consumo y de gestión de cargas residenciales desde el lado del cliente. Se puede expresar que un \gls{dsm} tiene tres pilares fundamentales: respuesta a la demanda, distribución de recursos energéticos y eficiencia energética. Esto es porque permite reducir el coste de la adquisición energética y los costes asociados a la distribución como consecuencia de minimizar el número de interacciones necesarias entre el consumidor y el sistema. \cite{dsm}
-
-\vspace{3mm}
-
-Por ejemplo, los programas de fijación de precios a tiempo real (\gls{rtp}) buscan un equilibrio de la demanda en tiempo real, modificando las cargas de los consumidores en las horas pico \cite{rtp}. Es decir, cada uno de los usuarios actúa individualmente en función de los precios dinámicos en el tiempo, comunicándose directamente con la compañía energética como se puede visualizar en la Figura \ref{fig:dsm1}. Con este proceso, el consumidor puede trasladar su propia carga desde las horas donde el precio es más alto (horas pico) a las de precio menor (horas valle). \cite{dsm} \cite{pricing}
-
-\vspace{3mm}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.75\textwidth]{img/teoria/dsm1.png}
-  \caption{Estrategia de \gls{dsm} basada en interacciones individuales de cada consumidor con la compañía \cite{pricing}}
-  \label{fig:dsm1}
-\end{figure}
-
-\vspace{3mm}
-
-No obstante, el diseño de un programa \gls{dsm} ideal en el contexto de las \gls{sg}s debe permitir las interacciones entre los mismos usuarios dentro de una zona residencial o microgrid. Estas interacciones generalmente son automatizadas a través de una comunicación digital bidireccional. Como se aprecia en la Figura \ref{fig:dsm2}, este proceso tiene como fin conducir a una coordinación de las acciones respectivas a las cargas de un área determinada. 
-
-\vspace{3mm}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.6\textwidth]{img/teoria/dsm2.png}
-  \caption{Estrategia de \gls{dsm} para smart grids basada en interacciones entre los usuarios y la compañía \cite{pricing}}
-  \label{fig:dsm2}
-\end{figure}
-
-\vspace{3mm}
-
-Por tanto, en este caso la monitorización de las cargas totales para todos los nodos participantes en un instante determinado aportará la información necesaria sobre la relación entre la potencia pico y promedio (del inglés \gls{par}) y contribuirá a la fijación del precio unitario para ese mismo instante. \cite{pricing} 
-
-
-%%%%
- 
-%aqui hablar sobre fijación de precios towards concise models
-\cite{towards}
-
-
+Los objetivos principales que se pretenden con este proceso se engloban en la reducción del consumo, la optimización de la distribución y la maximización del beneficio. Respecto a este último, las compañías energéticas a partir de su base de clientes estudian las estrategias de categorización de los mismos para definir el sistema de fijación de precios dinámicos. 
 
 \vspace{3mm}
 
 
 
-%aqui hablar de ml para eficiencia de consumo
+
+
+
+
+
+\vspace{3mm}
+
 
 
 
@@ -439,3 +528,94 @@ Por tanto, en este caso la monitorización de las cargas totales para todos los 
 % (iv) ICC/61968: Common Information Model/Distribution Management; IEC 62351: Security; 
 % (v) IEC 62056: Data Exchange for Meter Reading, Tariff and Load Control; and (vi) IEC 61508: 
 % Functional Safety of Electrical, Electronic, Programmable Electronic Safety Related Systems.
+
+
+
+
+
+
+
+
+\subsection{Situación en España}
+
+
+En el caso de España, nuestro país ocupa el quinto lugar en el mercado eléctrico europeo, solamente por detrás de Alemania, Francia, Reino Unido e Italia. 
+
+%buscar datos españa
+
+Además, en los último años ha crecido en consideración 
+
+y está creciendo rápidamente. La demanda eléctrica estimada para el año 2001 fue de 210.4 mil millones de kilovatios-hora (bkwh), un aumento del 5% respecto al año 2000. Se estima que la demanda eléctrica de España aumentará un 30% para el año 2010.
+
+% Para hacer frente al aumento de la demanda eléctrica en España, las empresas de servicios públicos nacionales han invertido en capacidad de generación y distribución. Red Eléctrica de España (REE), por ejemplo, invirtió considerablemente en la red en 2001, destinando 78.4 millones de euros a la expansión de la red eléctrica. En octubre de 2001, REE también anunció planes para invertir entre 60.2 y 72.2 millones de euros para mejorar la conexión eléctrica con Francia. Las tres mayores compañías eléctricas de España: Endesa, Iberdrola y Unión Fenosa, han dedicado 34 mil millones de euros en inversiones desde agosto de 2001 hasta 2005, gran parte de ellas en América Latina y otros países europeos, pero incluyendo aún así 8 mil millones de euros para nuevas plantas generadoras en España.
+
+% Endesa está construyendo actualmente una planta de turbina de gas de ciclo combinado (CCGT) de 400 MW en Huelva, además de otras dos CCGT de gas de 400 MW que la empresa ya tiene en construcción en Barcelona y Tarragona. Endesa completó recientemente la construcción de una planta con 8,000 MW en Cádiz. Unión Fenosa planea agregar 5,000 MW de nueva capacidad para 2005, principalmente en España, de los cuales 2,800 MW serían de gas natural. Piemsa, una filial de Petronor, planea construir un complejo de gasificación integrada de ciclo combinado (IGCC) de 800 MW en una refinería cerca de Bilbao que utilizará productos pesados de la refinería. La planta será una de las más grandes y avanzadas de su tipo en el mundo.
+
+\cite{spain}
+
+\vspace{3mm}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{img/teoria/spain.png}
+  \caption{Red nacional de transmisión energética \cite{spain}}
+  \label{fig:spain}
+\end{figure}
+
+\vspace{3mm}
+
+
+
+
+
+
+
+
+\subsection{A futuro}
+
+%\cite{overview} Smart Grid: An Overview
+
+% The Key Challenges for Smart Grids 
+%  Strengthening the grid—ensuring that there is sufficient transmission capacity to interconnect energy resources, especially renewable resources; 
+%  Moving offshore—developing the most efficient connections for offshore wind farms and for other marine 
+% technologies; 
+%  Developing decentralized architectures—enabling smalller scale electricity supply systems to operate harmoniously with the total system; 
+%  Communications—delivering the communications infrastructure to allow potentially millions of parties to 
+% operate and trade in the single market; 
+%  Active demand side—enabling all consumers, with or 
+% without their own generation, to play an active role in 
+% the operation of the system; 
+%  Integrating intermittent generation—finding the best 
+% ways of integrating intermittent generation including 
+% residential microgeneration; 
+%  Enhanced intelligence of generation, demand and most 
+% notably in the grid; 
+%  Preparing for electric vehicles—whereas Smart Grids 
+% must accommodate the needs of all consumers, electric vehicles are particularly emphasized due to their 
+% mobile and highly dispersed character and possible 
+% massive deployment in the next years, what would 
+% yield a major challenge for the future electricity networks [2]. 
+% The earliest, and still largest, example of a smart grid 
+% is the Italian system installed by Enel S. p. A. of Italy. 
+% Figure 1. Components of smart grid. 
+% Copyright © 2011 SciRes. SGRE 
+% Smart Grid: An Overview 307
+% Completed in 2005, the Telegestore project was highly 
+% unusual in the utility world because the company designed and manufactured their own meters, acted as their 
+% own system integrator, and developed their own system 
+% software. The Telegestore project is widely regarded as 
+% the first commercial scale use of smart grid technology to 
+% the home
+
+
+
+
+
+
+
+
+
+
+\section{Inteligencia Artificial}
+
+%aqui hablar de ml para eficiencia de consumo
