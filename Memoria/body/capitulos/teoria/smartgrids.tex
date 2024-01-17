@@ -32,8 +32,9 @@ Teniendo estos objetivos en cuenta, se puede definir una \textit{smart grid} com
 
 Su base se asienta en el diseño de sistemas inteligentes coordinados capaces de obtener tanto la información respectiva a la demanda o requisitos energéticos de cada zona como la de la disponibilidad de recursos a partir de las diferentes fuentes de producción existentes. Todo ello conduce al desarrollo de un plan estratégico de distribución energética para poder conectar a todas las entidades participantes en la red entre sí. \cite{repsol}
 
-\vspace{3mm}
+\vspace{1mm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Flujo energético y comunicación bidireccional}
 
 Cabe destacar que una de las principales características diferenciadoras de las \gls{sg}s respecto a las redes energéticas convencionales es que se fundamentan en una comunicación bidireccional. Este factor determinante se puede apreciar en la Figura \ref{fig:bidireccional} y se traduce en una producción y una distribución dinámica y personalizada hacia cada usuario de la red. 
@@ -70,6 +71,7 @@ Es por ello que se emplea una Infraestructura Avanzada de Medición (del inglés
 
 \vspace{1mm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Prosumidores y microgrids}
 \label{sec:prosu}
 
@@ -170,70 +172,6 @@ Por tanto, en este caso la monitorización de las cargas totales para todos los 
   \label{fig:dsm2}
 \end{figure}
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%ver tablasecciones.pdf
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Internet of Energy}
-\cite{ioe}
-
-
-
->>>>>>> 0d7b4e19ce4dbb9c918f8bc78eb546b2d1448fdb
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Estructura de una Smart Grid}
@@ -398,61 +336,9 @@ Como se había introducido en el Apartado \ref{sec:smartgrids} el proceso de adq
 
 No obstante, la gestión de los sensores finales en las \gls{sg}s se caracteriza por su alta complejidad, debido a los grandes volúmenes de datos a manejar. Se requiere un procesamiento eficiente a tiempo real para analizar datos capturados de múltiples fuentes con el fin de evitar latencias o bloqueos en el sistema. Es por ello que se dificulta el empleo de herramientas convencionales de gestión de bases de datos y se requiere una solución más avanzada mediante la aplicación de tecnologías enfocadas al \textit{Big Data}. Se profundizará más sobre ello en la Sección \ref{sec:bigdata}.
 
-\vspace{3mm}
+\vspace{1mm}
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% Beneficios ambientales
-
-%Las smart grid son un concepto estratégico clave en la transición energética, ya que suponen un gran paso hacia un mundo descarbonizado. Mediante la digitalización de las redes eléctricas inteligentes se puede conseguir un sistema más eficiente, sostenible, con bajas pérdidas y con altos niveles de calidad en el suministro. Con la implementación de este circuito inteligente no solo se conseguiría una mayor eficiencia energética y ahorro, sino que también tendría múltiples beneficios medioambientales, económicos y sociales.
-
-
-% La eficiencia energética que se pueden conseguir con las smart grid también tiene beneficios directos sobre el medio ambiente, como por ejemplo: 
-
-% Permiten el desarrollo de ciudades sostenibles.
-% Pueden integrarse en el sistema de fuentes renovables.
-% Facilitan la movilidad eléctrica, proporcionando puntos de carga para vehículos eléctricos.
-% Reducen las emisiones globales de CO2.
-% Contribuye a la descarbonización de la generación eléctrica. 
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 0d7b4e19ce4dbb9c918f8bc78eb546b2d1448fdb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Protocolos}
 % a) Green-RPL
 % (b) Local positive degree coupling
@@ -477,8 +363,9 @@ No obstante, la gestión de los sensores finales en las \gls{sg}s se caracteriza
 %ver tabla https://electrical-engineering-portal.com/smart-grid-deployment-what-weve-done-so-far
 
 
+\vspace{1mm}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Topología de red}
 
 % Smart Grid Network Topology
@@ -492,32 +379,39 @@ No obstante, la gestión de los sensores finales en las \gls{sg}s se caracteriza
 
 
 
+\vspace{1mm}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Seguridad en Smart grids}
 \label{sec:seg}
-<<<<<<< HEAD
  
-Como se ha introducido en la Sección referente a la figura del prosumidor (ver Sección \ref{sec:prosu})
+Como se ha introducido en la Sección referente a la figura del prosumidor (ver Sección \ref{sec:prosu}), el \gls{dso} tiene la capacidad de operar ante problemas y fallos en la red tomando decisiones y dando una respuesta rápida. En determinados casos las incidencias se pueden dar por la configuración del propio sistema, si esta no se realiza de forma correcta y eficiente. No obstante, también es preciso contemplar la posibilidad de ataques externos que atenten contra el sistema de la \gls{sg}.
+
+\vspace{3mm}
+
+Uno de los ataques más peligrosos en este ámbito es el de Inyección de Datos Falsos (del inglés \gls{fdi}) \cite{baddata} y, como su nombre determina, se basa en la inyección de paquetes maliciosos en la red con el fin de bloquear los servicios de la misma y conseguir la autorización para realizar operaciones restringidas. El proceso se puede realizar actuando directamente a través de los sensores finales (\textit{smart meters}) o secuestrando el canal de comunicación. Algunas técnicas empleadas por los atacantes son las siguientes \cite{baddata}:
+
+\begin{itemize}
+  \item Fallo del dispositivo: Se aplica un ataque de Denegación de Servicio (del inglés \gls{ddos}) a los sensores. Cabe destacar que generalmente los sensores que se encuentran en las ubicaciones finales tienen una capacidad limitada de conexión que derivaría en grandes latencias en la comunicación de datos con el resto de entidades de la red. En este momento el atacante se encarga de suplantar al host en cuestión para enviar los paquetes falsos en su nombre.
+  \item \textit{Cracking}: Se descifran las contraseñas para obtener acceso a los equipos mediante ingeniería social o fuerza bruta. De la misma forma que el anterior, la limitación de los recursos computacionales de los sensores provoca que no existan mecanismos de contraseñas lo suficientemente seguros. Además, la mayoría de ellos emplean como protocolos de comunicación Modbus/TCP o DNP 3.0/TCP, los cuales implementan una transmisión de texto en formato plano y sin cifrado. Por ello, un atacante puede tener la posibilidad de monitorear y capturar el tráfico si consigue acceso.
+  \item Envenenamiento de tablas \gls{arp} o \textit{\gls{arp} Spoofing} \cite{arp}: Consiste en enviar mensajes falsos \gls{arp} para monitorizar el tráfico y capturar o alterar los paquetes que se están transmitiendo por la red. 
+\end{itemize}
+
+Teniendo esto en cuenta, es imprescindible definir los mecanismos de detección y mitigación a emplear para evitar que se produzcan ataques \gls{fdi} \cite{baddata}:
+
+\begin{itemize}
+  \item Mecanismo de autenticación estrictos: Los datos que se suministran al \gls{dso} o a otras entidades de control de la \gls{sg} deben de ser autenticados para comprobar su confiabilidad. Para ello, se emplean por ejemplo, marcas de tiempo para evitar ataques de repetición y protocolos de seguridad como \gls{tls} o \gls{ssl}, además de \gls{sha} y \gls{hmac}.
+  \item Gestión dinámica de claves: Se actualizan las claves con una determinada frecuencia para incrementar la seguridad de los estándares \gls{ieee} 802.11s y evitar ataques \gls{ddos}.
+  \item Empleo del protocolo \gls{send} \cite{send}: Para evitar los ataques de \textit{\gls{arp} Spoofing} se emplean pares de claves \gls{rsa} para poder garantizar en el proceso de enrutamiento que los mensajes que tienen como origen un determinado host pertenecen al mismo.
+\end{itemize}
 
 
-el \gls{dso}
-=======
->>>>>>> 0d7b4e19ce4dbb9c918f8bc78eb546b2d1448fdb
 
-
-%ataques, tipos de ataques, como combatirlos
 %a partir del 3.4 del AI-based FDI Countermeasure for IoE Smart Grids
-
 
 %%%Energy Big Data: A Survey pag 10 figura
 
 
-<<<<<<< HEAD
-\cite{baddata}
-=======
-
->>>>>>> 0d7b4e19ce4dbb9c918f8bc78eb546b2d1448fdb
 
 
 
@@ -531,19 +425,10 @@ el \gls{dso}
 
 
 
+\vspace{1mm}
 
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Estándares y regulación en Smart grids}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Estándares y regulación en smart grids}
 
 %estándares smart grids -> cite OUTLOOK FOR INCREASED ADOPTION OF SMART GRID TECHNOLOGIES IN ADB ENERGY SECTOR OPERATIONS
 
@@ -568,7 +453,9 @@ el \gls{dso}
 % Functional Safety of Electrical, Electronic, Programmable Electronic Safety Related Systems.
 
 
+\vspace{1mm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Beneficios ambientales}
 
 %Las smart grid son un concepto estratégico clave en la transición energética, ya que suponen un gran paso hacia un mundo descarbonizado. Mediante la digitalización de las redes eléctricas inteligentes se puede conseguir un sistema más eficiente, sostenible, con bajas pérdidas y con altos niveles de calidad en el suministro. Con la implementación de este circuito inteligente no solo se conseguiría una mayor eficiencia energética y ahorro, sino que también tendría múltiples beneficios medioambientales, económicos y sociales.
@@ -583,7 +470,9 @@ el \gls{dso}
 % Contribuye a la descarbonización de la generación eléctrica. 
 
 
+\vspace{1mm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Situación en España}
 
 En el caso de España, nuestro país ocupa el quinto lugar en el mercado eléctrico europeo, solamente por detrás de Alemania, Francia, Reino Unido e Italia. 
@@ -617,9 +506,10 @@ y está creciendo rápidamente. La demanda eléctrica estimada para el año 2001
 
 
 
+\vspace{1mm}
 
-
-\subsection{A futuro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Desafíos futuros de las smart grids}
 
 %%%%\cite{overview} Smart Grid: An Overview
 
@@ -643,47 +533,40 @@ y está creciendo rápidamente. La demanda eléctrica estimada para el año 2001
 % mobile and highly dispersed character and possible 
 % massive deployment in the next years, what would 
 % yield a major challenge for the future electricity networks [2]. 
-% The earliest, and still largest, example of a smart grid 
-% is the Italian system installed by Enel S. p. A. of Italy. 
-% Figure 1. Components of smart grid. 
-% Copyright © 2011 SciRes. SGRE 
-% Smart Grid: An Overview 307
-% Completed in 2005, the Telegestore project was highly 
-% unusual in the utility world because the company designed and manufactured their own meters, acted as their 
-% own system integrator, and developed their own system 
-% software. The Telegestore project is widely regarded as 
-% the first commercial scale use of smart grid technology to 
-% the home
+
 
 
 
 %%%%cite us
 
-% 4.0 Challenges to Deployment
-% Among the significant challenges facing development of a smart grid are the cost of 
-% implementing a smart grid, with estimates for just the electric utility advanced metering 
-% capability ranging up to $27 billion, and the regulations that allow recovery of such 
-% investments. For perspective, the Brattle Group estimates that it may take as much as 
-% $1.5 trillion to update the grid by 2030 (Chupka et al. 2008). Ensuring interoperability 
-% of smart-grid standards is another hurdle state and federal regulators will need to overcome. 
-% Major technical barriers include developing economical storage systems; these storage systems 
-% can help solve other technical challenges, such as integrating distributed renewable-energy 
-% sources with the grid, addressing power-quality problems that would otherwise exacerbate the 
-% situation, and enhancing asset utilization. Without a smart grid, high penetrations of variable 
-% renewable resources (e.g., wind or solar) may become increasingly difficult and expensive to 
-% manage over time as they penetrate to high levels due to the greater need to coordinate these 
-% resources with dispatchable generation (e.g., natural gas combined cycle) and demand.
-% Another challenge facing a smart grid is the uncertainty of the path that its development will 
-% take over time with changing technology, changing energy mixes, and changing energy policy. 
-% Trying to legislate or regulate the development of a smart grid or its related technologies can 
-% severely diminish the benefits of the virtual, flexible, and transparent energy market it strives 
-% to provide. Conversely, with the entire nation’s energy grid potentially at risk, some may see 
-% the introduction of a smart grid in the United States as too important to allow laissez-faire 
-% evolution. Thus, the challenge of development becomes an issue of providing flexible 
-% regulation that leverages desired and developing technology through goal-directed and 
-% business-case-supported policy that promotes a positive economic outcome. These and other 
-% challenges are discussed in the following sections.
-% 4.1 Technical Challenges
+
+%4.0 Desafíos para la implementación
+% Entre los desafíos importantes que enfrenta el desarrollo de una red inteligente se encuentran el costo de
+% de implementación de una red inteligente, con estimaciones solo para la medición avanzada de la empresa eléctrica
+% de capacidad que asciende a $27 mil millones, y las regulaciones que permiten la recuperación de dicha
+% inversiones. Para tener una perspectiva, Brattle Group estima que podría tomar tanto como
+% 1,5 billones de dólares para actualizar la red para 2030 (Chupka et al. 2008). Garantizar la interoperabilidad % de estándares de redes inteligentes es otro obstáculo que los reguladores estatales y federales deberán superar.
+% Las principales barreras técnicas incluyen el desarrollo de sistemas de almacenamiento económicos; estos sistemas de almacenamiento
+% puede ayudar a resolver otros desafíos técnicos, como la integración de energía renovable distribuida
+% de fuentes con la red, abordando problemas de calidad de energía que de otro modo exacerbarían la
+% de situación y mejorar la utilización de los activos. Sin red inteligente, altas penetraciones de variables
+% de recursos renovables (por ejemplo, eólicos o solares) pueden volverse cada vez más difíciles y costosos de obtener.
+% logran con el tiempo a medida que penetran a niveles altos debido a la mayor necesidad de coordinar estos
+% de recursos con generación despachable (p. ej., ciclo combinado de gas natural) y demanda.
+% Otro desafío al que se enfrenta una red inteligente es la incertidumbre sobre el camino que seguirá su desarrollo.
+% se hace cargo del tiempo con la tecnología cambiante, los cambios en las combinaciones de energía y la política energética.
+% Intentar legislar o regular el desarrollo de una red inteligente o sus tecnologías relacionadas puede
+% disminuyen gravemente los beneficios del mercado energético virtual, flexible y transparente al que se esfuerza.
+% Para proveer. Por el contrario, con la red energética de todo el país potencialmente en riesgo, algunos pueden ver
+% la introducción de una red inteligente en los Estados Unidos es demasiado importante para permitir el laissez-faire
+% evolución. Por lo tanto, el desafío del desarrollo se convierte en una cuestión de proporcionar servicios flexibles
+% de regulación que aprovecha la tecnología deseada y en desarrollo a través de objetivos dirigidos y
+% de políticas respaldadas por casos de negocios que promueven un resultado económico positivo. Estos y otros
+% de desafíos se analiza en las siguientes secciones
+
+
+\subsubsection{Retos técnicos}
+
 % There are a variety of technical challenges facing a smart grid, some of the greatest being 
 % developing, implementing, and deploying the array of different technologies required to 
 % enable both sides of the meter to communicate in a cost-effective way. One of the most 
@@ -733,6 +616,7 @@ y está creciendo rápidamente. La demanda eléctrica estimada para el año 2001
 % manufacturing adjustments; including systems to monitor the status of the battery (including 
 % battery charge and temperature) as well as structural design changes to accommodate the 
 % battery itself.
+
 % A smart grid is needed at the distribution level to manage voltage levels, reactive power, 
 % potential reverse power flows, and power conditioning, all critical to running grid-connected 
 % DG systems, particularly with high penetrations of solar and wind power and PHEVs. 
@@ -760,10 +644,9 @@ y está creciendo rápidamente. La demanda eléctrica estimada para el año 2001
 % infrastructure to communicate wide-area measurement data across the grid requires agreement 
 % by the stakeholders on the information network architecture, the supported functions, data 
 % exchange interface definitions, and legal conditions for granting use of the data.
-<<<<<<< HEAD
 
+\subsubsection{Retos económicos}
 
-% 4.2 Business and Financial Challenges
 % The business case for a smart grid needs to be firmly established for deployment decisions to 
 % progress. In many situations, individual applications may not be cost effective in isolation, 
 % but where common hardware and information network infrastructure can be leveraged to 
@@ -808,6 +691,7 @@ y está creciendo rápidamente. La demanda eléctrica estimada para el año 2001
 % $27 billion (Kuhn 2008). Customers desire good value for the investments reflected in their 
 % power bills and they may want more options to manage their energy usage and bills, especially 
 % during a rate increase.
+
 % While utilities must be able to recover their investment costs, the potential savings from some 
 % of these technologies is considerable. For example, use of data from wide-area measurement 
 % systems (WAMS), including synchro-phasor measurements, could have mitigated or even 
@@ -840,80 +724,3 @@ y está creciendo rápidamente. La demanda eléctrica estimada para el año 2001
 
 
 
-=======
-
-
-% 4.2 Business and Financial Challenges
-% The business case for a smart grid needs to be firmly established for deployment decisions to 
-% progress. In many situations, individual applications may not be cost effective in isolation, 
-% but where common hardware and information network infrastructure can be leveraged to 
-% accomplish a number of objectives, the value proposition can become compelling. The 
-% business challenge is to prove that out with field deployments. Smart grid investments often 
-% require large upfront costs relative to their benefits. However, future benefits may come at 
-% small incremental costs. Utilities and regulators may need to look at full system life cycle 
-% costs and benefits in order to fully justify added investments. Some of the benefits may come 
-% in the form of societal benefits which will need to be clearly understood and evaluated. 
-% Payback periods may be longer than stakeholders would like. The service providers, regulators, 
-% and ultimately ratepayers are going to have to believe it before such substantial investments 
-% are made.
-% Since the technology and value propositions are emerging, utility companies may be reluctant 
-% to expend the significant amount of capital required to move toward a smart grid, especially 
-% because expected cost-recovery timelines are only theoretical and have no precedent. 
-% Currently, regulated utilities and their flat-rate customers have no risk or reward signal. 
-% Regulation makes it difficult for them to raise rates and recover costs, and makes them 
-% reluctant to change. Moreover, transmission-planning difficulties may or may not offset 
-% revenue losses incurred from reduced transmission; with uncertainty about market penetration 
-% of DG these effects can be difficult to model. Without effective cost recovery mechanisms in 
-% place, increased market penetration of DG will translate into lost demand for utilities. The 
-% uncertainty about market penetration is increased when utilities start to consider the time and 
-% cost of training a new smart-grid-skilled labor force (NERC 2007). Thus, utilities seeking to 
-% balance costs and operating efficiency will seek to increase asset utilization through the 
-% implementation of demand response measures and AMI technology, as opposed to expensive 
-% infrastructure upgrades. Further, as more and more devices become “web enabled” and move 
-% toward becoming fully “smart” devices, the inclusion of electronics in these devices, as well as 
-% the development and maintenance of this hardware and its respective software, will require 
-% manufacturers to reevaluate these devices’ life-cycle costs. A smart grid will require service 
-% providers to operate in new ways and be willing to take reasonable risks for reasonable 
-% rewards. Regulators will need to design rules such that customers who do not change are not 
-% worse off, but that businesses can pursue advantageous arrangements between participating 
-% suppliers and consumers. Aside from making a strong analytical business case with existing distribution models, the first 
-% few successful deployments of these new “smart” technologies will be pivotal to ensuring deep 
-% market penetration. Not all of these technologies are necessarily complementary. For 
-% example, when metering residential customers, drive-by and walk-by meters (AMR) are 
-% considered a competing technology and currently are out-shipping AMI products. Other 
-% than the more-convenient data gathering over traditional meters, AMR meters offer very few 
-% to none of the benefits and functions necessary to enable residential customers to 
-% meaningfully participate in a smart grid. However, implementing smart-grid technologies is 
-% daunting; the cost to implement AMI technology alone has been forecast between $19 and 
-% $27 billion (Kuhn 2008). Customers desire good value for the investments reflected in their 
-% power bills and they may want more options to manage their energy usage and bills, especially 
-% during a rate increase.
-% While utilities must be able to recover their investment costs, the potential savings from some 
-% of these technologies is considerable. For example, use of data from wide-area measurement 
-% systems (WAMS), including synchro-phasor measurements, could have mitigated or even 
-% avoided the estimated $4.5 billion in losses suffered by over 50 million people in the 2003 
-% blackout of the northeastern U.S. and Canada (DOE 2004). To fully realize these benefits, 
-% high levels of market penetration must be encouraged; to accomplish this, new technologies 
-% will need simple, streamlined user interfaces, “plug-and-play” setups, and cost models that 
-% accurately forecast a reasonable payback period for newly developed and installed technologies 
-% for both utility companies and consumers, followed by reports on actual and successful 
-% deployments. Prior to successful deployments, important questions remain, including 
-% identifying winners and losers with bulk system reliability, evaluating those losses and gains, 
-% and how reasonable investments are recouped.
-% As consumer participation increases, a higher level of distributed-generation resources are 
-% expected to become available (Eynon 2002). The costs of making these DG resources 
-% dispatchable are estimated to be high and vary significantly between utilities. Storing energy 
-% generated by DG resources will continue to be a problem until a cost-effective, lowmaintenance solution is introduced. Trends suggest this might be done with highly efficient 
-% batteries or by pre-heating and cooling buildings. Until then however, viable payback 
-% strategies, such as storing generated power during off-peak hours and selling it back into the 
-% grid during high-price on-peak hours, will not be feasible. The lack of cost-effective, lowmaintenance batteries is a particular hindrance for renewable energies such as solar and wind 
-% generation, because their generation varies over time and may not match demand patterns.
-% Lastly, consumer concerns about hybrid electric vehicles including price, insufficient power, 
-% and dependability will need to be addressed by PHEV and EV manufacturers. The cost to 
-% convert a hybrid vehicle to a PHEV is currently considered prohibitive; it can vary between 
-% six and eight thousand dollars and consumers may consider the payback period too long. 
-% Because of these concerns, PHEVs will be unlikely to penetrate all markets, leaving heavyduty and long-range vehicles, such as semi-trucks, and high-performance vehicles such as 
-% sports cars requiring contemporary infrastructure, such as gas stations, while PHEVs and EVs 
-% require new supporting infrastructure, such as charge stations. Economies of scale for these 
-% services may or may not exist. 
->>>>>>> 0d7b4e19ce4dbb9c918f8bc78eb546b2d1448fdb

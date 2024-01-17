@@ -1,3 +1,51 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Herramientas software}
 \label{sec:software}
+
+\subsection{BRITE}
+
+\gls{brite} \cite{brite} se presenta como una plataforma dedicada a la generación de topologías de red. Fue desarrollada en la Universidad de Boston y se caracteriza por su gran flexibilidad, ya que soporta múltiples modelos de topología. Cada uno de estos modelos viene determinado por los parámetros de entrada que se definen. Es por ello que \gls{brite} sigue la siguiente secuencia de acciones para diseñar las topologías:
+
+\begin{enumerate}
+    \item Definición del posicionamiento de los nodos:
+    \item Nivel de Interconexión de los nodos y configuración de enlaces:
+    \item Asignación de atributos y características de la red y de los dispositivos: Se determina el delay y el ancho de banda de los enlaces.
+    \item Especificación del formato de salida: Se indica un formato .brite para todas las topologías generadas.
+\end{enumerate}
+
+\footnote{https://github.com/NETSERV-UAH/BRITE}
+
+
+
+
+
+
+
+
+% 6. Generador_brite.py:
+% -----------------------
+% Como se necesita crear un archivo inicial con la configuración de la topología he creado un programa que los crea automaticamente
+% Este recibe por linea de comandos los siguientes parámetros:
+% 	+Nombre del archivo de configuración que vamos a generar
+% 	+Modelo de la topología (Solo da soporte a los modelos RTWaxman = 1, ASWaxman = 3, RTBarbasi = 2 y ASBarbasi)
+% 	+Numero de nodos 
+% 	+NodePlacement
+% 	+GrowthTYpe (solo para Waxman)
+% 	+Numero de enlaces por nodo (m)
+% 	+Alpha (para Waxman)
+% 	+Beta (para Waxman)
+
+
+% 7. Autogenerador.sh
+% --------------------
+% Para automatizar la generación de los archivos de configuración y los archivos brite propiamente dichos, se ha creado un script "autogenerador.sh"
+% En este script podemos ver que los parametros de entrada que hemos explicado en este documento están declarados al principio con los valores que pueden tomar para crear la topología que deseamos.
+% Después ejecutamos el generador_brite.py con los parámetros de entrada correspondientes.
+% Y por último, para cada archivo de configuración creado (determina una configuración de topologias brite), creamos 10 escenarios brite que siendo iguales en parámetros brite(numero de nodos, m, nodePlcement...) son escenarios distintos por el donde están posicionados cada nodo, o las conexiones entre nodos.
+
+
+
+\subsubsection{Parser}
+
+Función que transforma la salida de BRITE en dos archivos, Nodos.txt y Enlaces.txt para ser más legible
+
