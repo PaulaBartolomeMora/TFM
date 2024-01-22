@@ -1,14 +1,172 @@
-<<<<<<< HEAD
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Análisis de fuentes de datos}
 \label{sec:sustdata}
 
-%aqui explicar los datasets que se han visto
-%enfocarlo mas a todos lo datasets o a sustdata?
-%aqui habria que explicar tambien la creacion de los datos de produccion
+En ámbitos como el Procesado de Lenguaje Natural (del inglés \gls{nlp}) o el reconocimiento facial, la disponibilidad de numerosas fuentes de datos ha sido imprescindible para progresar y acelerar el desarrollo de técnicas de minería de datos y de aprendizaje automático (\gls{ml}).
+
+\vspace{3mm}
+
+No obstante, en el contexto energético 
 
 
+%Dentro de los conjuntos de datos relacionados con ICT4S, la carga no intrusiva
+La comunidad de % Monitoring (NILM) es particularmente prominente dado
+% la necesidad de un uso extensivo del aprendizaje automático y la minería de datos
+% técnicas. La investigación en este campo tiene como objetivo desagregar y
+% estimación del consumo de electrodomésticos individuales mediante
+% de aplicación de técnicas de aprendizaje automático al agregado
+Señales de % consumo. Se espera que los conjuntos de datos públicos NILM
+% ayuda a los investigadores a crear procesos de evaluación más sistemáticos
+% que se puede utilizar en los diferentes enfoques existentes.
+% NILM es un problema muy específico que requiere que el conjunto de datos públicos
+El % incluye no solo las medidas de toda la casa.
+% de consumo, pero también información sobre las cargas individuales.
+% de consumo, es decir, datos reales, que se pueden utilizar para
+% evalúa el desempeño de los diferentes algoritmos.
+% Hasta la fecha, hasta donde sabemos, existen
+
+%cinco conjuntos de datos públicos creados específicamente para la investigación NILM, a saber, el
+% Conjunto de datos de desagregación de energía de referencia (REDD) [10], el
+% Conjunto de datos totalmente etiquetados a nivel de edificio para electricidad
+% Desagregación (AZUL) [11], el Almanaque de Minuto
+Conjunto de datos de % de potencia (AMPds) [12] Pecan Street Research
+% Institute (PSRI) [13] y, por último, el conjunto de datos “UK-Dale” [14]. Todo
+% de estos conjuntos de datos proporcionan datos sobre el consumo de toda la casa y
+% de información veraz sobre el terreno de aparatos individuales ya sea por
+% de etiquetado de los cambios de energía en el consumo de toda la casa.
+% de señal (el caso de BLUED) o proporcionando el valor agregado
+% consumo de electrodomésticos o circuitos individuales de la casa
+% (REDD, AMPds, PSRI y “UK-Dale”). Además, dos de
+% estos conjuntos de datos complementan los datos de consumo de energía con
+% otras mediciones, concretamente el consumo de gas y agua en
+% de AMPds y generación fotovoltaica en la calle Pecan
+% conjunto de datos. Se espera que estos desempeñen papeles importantes en la
+% creación de nuevas estrategias de desagregación que incluyan datos de
+% sensores diferentes, es decir, fusión de sensores.
+
+% Motivado por la creciente importancia de los conjuntos de datos públicos
+% para la investigación de TIC4S decidimos hacer público nuestro conjunto de datos. Nuestro
+% de datos es único porque combina ambos NILM específicos
+% de información con consumo a largo plazo y eco-feedback
+% de información, proporcionando así una oportunidad perfecta para probar NILM
+% de enfoques que impactan los estudios a largo plazo de hogares y
+% eco-retroalimentación. Creemos que SustData también puede desempeñar un papel
+% papel importante en los campos de la energía, el medio ambiente y
+% sostenibilidad. Además, dada la naturaleza de nuestros datos, argumentamos
+% que puede ser un aporte muy importante al campo de
+% de eco-retroalimentación energética, lo que permite a los investigadores probar diferentes
+% Técnicas de retroalimentación que utilizan datos de consumo detallados. Él
+% también puede desempeñar un papel en campos emergentes como las redes inteligentes, donde
+Los modelos % precisos de demanda de energía son cruciales para la planificación
+% redes de distribución eléctrica y producción óptima
+% capacidad
+
+
+
+
+
+
+
+%https://www.linkedin.com/pulse/conoces-nilm-aplica-inteligencia-artificial-en-la-gesti%C3%B3n-figueras/?originalSubdomain=es
+%NILM (Non-Intrusive Load Monitoring) o Monitorización de Cargas no Intrusiva, es un proceso para analizar los cambios en el voltaje y corriente que entran a un edificio y deducir qué aparatos se utilizan en el edificio, así como su consumo de energía individual.También conocido como desagregación energética, el proceso NILM tiene como objetivo “dividir” o “repartir” su consumo total de energía en las lecturas de cargas individuales durante un período de tiempo, permitiendo a los usuarios ver cuánta energía ha usado un dispositivo en particular durante ese período.La tecnología NILM es conocida en el sector de la gestión energética como una alternativa de bajo costes a la auditoría energética tradicional altamente efectiva, que requiere la instalación de analizadores individuales en cada circuito para identificar las oportunidades de ahorro de energía.
+%Entonces, EnergyGrader compara esta información de la curva de carga con una base de datos de más de 50.000 localizaciones similares dentro de la base de datos de DEXMA para aproximarse al perfil de consumo energético del edificio analizado.Generando recomendaciones de ahorro energético personalizadas. EnergyGrader utiliza un árbol de decisión autodidacta para definir las mejores opciones de ahorro energético para cada sitio. Cada recomendación puede ser aplicada de acuerdo a la máxima inversión posible, presupuesto total del proyecto, actividades del sitio, tecnología o ubicación. Las recomendaciones finales pueden ser organizadas por período de amortización, o el total de ahorros anuales esperados.
+
+
+
+
+% We have searched and found many datasets containing measurements from a set of monitored 
+% smart meters attached to an active smart grid. These measurements mostly revolved around the 
+% power, voltage, and current values of the users’ energy consumption, along with their 
+% associated timestamps. Many of the datasets we found were limited in size which made us 
+% avoid them since the size of the dataset directly affects the accuracy of our generated AI 
+% classifier, the larger the dataset and the longer the duration of the smart meter monitoring, the 
+% higher the accuracy of our model.
+% As seen in Table 3, our search for the datasets leads us to the table below from Adrea Dominik, 
+% Wilfried, Salvatore and Andrea [13], featuring a group of datasets, the seventh of which was 
+% collected in France and has the longest duration of monitoring whereas the fourth which was 
+% collected in Italy has the smallest resolution of measurement taking at 1 Hz
+
+
+
+%tabla \cite{greend}
+
+
+
+
+
+
+
+\subsection{SustData}
 \cite{sustdata}
+
+
+% The work presented in this paper emerges from a large 
+% multi-disciplinary research project (SINAIS1
+%  – Sustainable 
+% Interactions with Social Networks, context Awareness and 
+% Innovative Services) looking at how social networks and 
+% context-awareness can be used to promote sustainable
+% behaviors. The research team involving civil and electrical 
+% engineers, computer scientists, psychologists and designers was 
+% responsible for designing, implementing and deploying several 
+% low-cost non-intrusive electric energy monitoring systems [5]. 
+% These systems were sensing electrical circuits in many 
+% households with the goal of providing eco-feedback to the 
+% families. The research involved several deployments of 
+% different eco-feedback systems, including both qualitative and 
+% quantitative evaluation of the user interactions with the 
+% deployed systems. The overall goal was to raise the 
+% understanding and the awareness towards motivating people to 
+% consume more sustainably.
+% During this period of almost five years we have collected 
+% and stored large quantities of valuable data, including energy 
+% consumption, user interactions with the eco-feedback systems 
+% and electricity production from renewable sources, which we 
+% are now making publicly available to other researchers in the 
+% Information and Communication Technologies for 
+% Sustainability (ICT4S) community
+
+% Motivated by the increasing importance of public datasets 
+% for ICT4S research we decided to make our dataset public. Our 
+% data is unique because it combines both NILM specific 
+% information with long-term consumption and eco-feedback 
+% information thus providing a perfect opportunity to test NILM 
+% approaches that impact long-term studies of households and 
+% eco-feedback.
+
+
+
+
+
+
+\subsection{Global Solar Atlas}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -39,46 +197,4 @@
 % strategic decisions such as location selection for renewable energy
 % stations to improve output, productivity and efficiency. For a comprehensive review on big data and its techniques for energy systems, the
 % reader is referred to the works by Jiang et al. (2016), Molina-Solana
-=======
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Análisis de fuentes de datos}
-\label{sec:sustdata}
-
-%aqui explicar los datasets que se han visto
-%enfocarlo mas a todos lo datasets o a sustdata?
-%aqui habria que explicar tambien la creacion de los datos de produccion
-
-
-\cite{sustdata}
-
-
-
-
-
-%hacer intro en relacion con el apartado de big data
-
-%%para intro -->
-
-%cite stab
-
-%There are two main types of renewable energy data: geospatial and
-% temporal data. Geospatial data is concerned with the locations, while
-% temporal data is concerned with data time characteristics. For renewable energy, Geospatial data may include the location of transmission
-% infrastructure, cities, factories, hospitals, schools, roads, etc. (Shekhar
-% et al., 2012); this data is based mainly on Geographical Information Systems (GIS) tools. Temporal data may include the consumption patterns
-% with respect to time (annually, monthly, weekly, daily, and hourly)
-% besides the amount of energy (e.g., sunshine) during different times
-% of day or year.
-% A third type user classification data can be the social classification,
-% users can be classified into categories not only according to geographic
-% areas but also to their social stratums that can be an indicator for daily
-% consumption curves (Zhou et al., 2016a). The weather data (e.g., angle
-% of the sun rays, wind speed and direction, temperature, pressure, cloud
-% cover, humidity, etc.) play a basic role in decision-making support in
-% power stations (Zhou et al., 2016b). Hence, the integration between
-% supply and demand data, spatial data, and temporal data can support
-% strategic decisions such as location selection for renewable energy
-% stations to improve output, productivity and efficiency. For a comprehensive review on big data and its techniques for energy systems, the
-% reader is referred to the works by Jiang et al. (2016), Molina-Solana
->>>>>>> 0d7b4e19ce4dbb9c918f8bc78eb546b2d1448fdb
 % et al. (2017), Ma et al. (2017).

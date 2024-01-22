@@ -16,11 +16,7 @@ En los últimos años, el concepto de red eléctrica convencional está siendo c
 
 \vspace{3mm}
 
-En este contexto, se ha convertido en un objetivo primordial el diseño de nuevos protocolos que provean un encaminamiento y una distribución energética eficientes. Es por ello que, desde el equipo de investigación NetIS de la \gls{uah} se ha desarrollado el algoritmo \gls{den2ne} \cite{den2ne}, con el fin de automatizar la gestión de los recursos en entornos del Internet de las Cosas (del inglés \gls{iot}), enfocándose especialmente en \gls{sg}s.
-
-\vspace{3mm}
-
-\gls{den2ne} pretende realizar una distribución óptima de los recursos energéticos de cada uno de los nodos que presenta la red para conseguir finalmente un balance a nivel global. 
+En este contexto, se ha convertido en un objetivo primordial el diseño de nuevos protocolos que provean un encaminamiento y una distribución energética eficientes. Es por ello que, desde el equipo de investigación NetIS de la \gls{uah} se ha desarrollado el algoritmo \gls{den2ne} \cite{den2ne}, con el fin de automatizar la gestión de los recursos en entornos del Internet de las Cosas (del inglés \gls{iot}), enfocándose especialmente en \gls{sg}s. Teniendo esto en cuenta, se puede expresar que \gls{den2ne} pretende realizar una distribución óptima de los recursos energéticos de cada uno de los nodos que presenta una determinada topología de red para conseguir finalmente un balance a nivel global. 
 
 %Estos nodos se definen como prosumidores, al tener una capacidad tanto de consumo como de producción de energía a partir de fuentes renovables. 
 
@@ -40,12 +36,20 @@ Tomando en consideración el apartado anterior, se define como objetivo principa
 
 \vspace{3mm}
 
-La identificación de patrones se apoyará en el análisis de grandes volúmenes de datos provenientes de implementaciones de \gls{sg}s reales. Estos serán previamente procesados de una forma exhaustiva para reducir su tamaño y seleccionar la información verdaderamente necesaria para el posterior desarrollo de técnicas de \gls{ml}.
+La identificación de patrones se apoyará en el análisis de grandes volúmenes de datos provenientes de implementaciones de \gls{sg}s reales. Estos serán previamente procesados de una forma exhaustiva para reducir su tamaño y seleccionar la información verdaderamente necesaria para el posterior desarrollo de técnicas de \gls{ml}. En la Figura \ref{fig:intro} se determina el diagrama de flujo que define la secuencia de acciones a realizar en este \gls{tfm}.
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{img/intro/anteproyecto.drawio.png}
+    \caption{Proceso de detección y predicción de errores}
+    \label{fig:intro}
+\end{figure}
 
 \vspace{3mm}
 
 Por tanto, el presente \gls{tfm} permitirá determinar un modelo final de predicción de fallos para entornos de \gls{sg}s. Entrando en detalle, se pueden definir los diferentes objetivos en los siguientes puntos:
-
 
 \begin{itemize}
     \item \textbf{Estudio del estado del arte y análisis de las diferentes fuentes de datos reales disponibles}. Se realizará un estudio en profundidad del contexto en el que se engloban las \gls{sg}s y los protocolos de distribución de recursos, poniendo el enfoque en  \gls{den2ne}. Será necesaria una investigación sobre la disponibilidad de  fuentes de datos reales, además de una evaluación de su viabilidad para este \gls{tfm}.
@@ -56,12 +60,11 @@ Por tanto, el presente \gls{tfm} permitirá determinar un modelo final de predic
     
     \item \textbf{Generación y simulación de topologías}. Las topologías se importarán a un simulador propietario realizado en python para obtener el conjunto de datos final.
     
-    \item \textbf{Desarrollo y entrenamiento de diferentes modelos de /gls{ml}}. Se realizará un estudio sobre las posibles técnicas de \gls{ml} a emplear y se procederá a seleccionar las más apropiadas, según el contexto en el que se engloba este \gls{tfm}. Por consiguiente, se llevará a cabo el desarrollo y el entrenamiento de los mismos tomando como base los datos procesados anteriormente. 
+    \item \textbf{Desarrollo y entrenamiento de diferentes modelos de \gls{ml}}. Se realizará un estudio sobre las posibles técnicas de \gls{ml} a emplear y se procederá a seleccionar las más apropiadas, según el contexto en el que se engloba este \gls{tfm}. Por consiguiente, se llevará a cabo el desarrollo y el entrenamiento de los mismos tomando como base los datos procesados anteriormente. 
     
     \item \textbf{Análisis y evaluación de los resultados obtenidos}. Los resultados de detección y predicción de errores de los diferentes modelos de \gls{ml} serán analizados. Se determinará de forma concluyente cuál aporta una mayor efectividad para poder diagnosticar con un alto porcentaje de precisión los errores que se producen en una \gls{sg}.
     
 \end{itemize}
-
 
 \section{Estructura del \glsentryshort{tfm}}
 \label{sec:structure}
@@ -71,12 +74,9 @@ En esta sección se expone de forma general la estructura de capítulos que tend
 \begin{description}
     \item\textbf{Capítulo 1: Introducción}. Se comenzará esta memoria con una presentación de los aspectos más significativos. Se expondrán las motivaciones que han originado la realización de este \gls{tfm} y los objetivos que se prentenden alcanzar con el mismo.
 
-    \item\textbf{Capítulo 2: Estado del arte}. Se establecerá el marco teórico en el que se sitúa este \gls{tfm} y se documentarán los conceptos principales para introducir en un contexto lo suficientemente consistente el diseño y desarrollo práctico posterior.
+    \item\textbf{Capítulo 2: Estado del arte}. Se establecerá el marco teórico en el que se sitúa este \gls{tfm} y se documentarán los conceptos principales para introducir en un contexto lo suficientemente consistente el diseño y desarrollo práctico posterior. Además, se expondrá de forma detallada el funcionamiento del algoritmo \gls{den2ne}.
 
-    \item\textbf{Capítulo 3: Diseño y análisis de datos}. Se llevará a cabo un análisis sobre las posibilidades de diseño a través de una investigación exhaustiva sobre las fuentes de datos de implementaciones reales existentes. Por consiguiente, se definirá todo el procesamiento necesario para seleccionar la información útil sobre la que entrenar los modelos de \gls{ml} a desarrollar. 
-    
-    %aqui valorar posibles modelos? o en el siguiente capitulo  
-    %donde introducir den2ne?  
+    \item\textbf{Capítulo 3: Diseño y análisis de datos}. Se llevará a cabo un análisis sobre las posibilidades de diseño a través de una investigación exhaustiva sobre las fuentes de datos de implementaciones reales existentes. Por consiguiente, se definirá todo el procesamiento que deberá llevarse a cabo sobre los datos para seleccionar la información útil sobre la que entrenar los modelos de \gls{ml} a desarrollar. 
 
     \item\textbf{Capítulo 4: Desarrollo y evaluación de los modelos}. Se describirá en detalle el desarrollo de las técnicas de \gls{ml} que han sido seleccionadas según el contexto en el que se engloba este \gls{tfm}. Los modelos obtenidos serán entrenados, analizados y por consiguiente, evaluados. Los resultados definirán finalmente el modelo más apropiado para diagnosticar con alta precisión los errores que se pueden producir en el entorno de una \gls{sg}.
     

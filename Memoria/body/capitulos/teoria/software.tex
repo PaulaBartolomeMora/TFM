@@ -3,8 +3,11 @@
 \label{sec:software}
 
 \subsection{BRITE}
+\label{sec:brite}
 
-\gls{brite} \cite{brite} se presenta como una plataforma dedicada a la generación de topologías de red. Fue desarrollada en la Universidad de Boston y se caracteriza por su gran flexibilidad, ya que soporta múltiples modelos de topología. Cada uno de estos modelos viene determinado por los parámetros de entrada que se definen. Es por ello que \gls{brite} sigue la siguiente secuencia de acciones para diseñar las topologías:
+\gls{brite} \cite{brite} se presenta como una plataforma dedicada a la generación de topologías de red. Fue desarrollada en la Universidad de Boston y se caracteriza por su gran flexibilidad, ya que enfoca su arquitectura en el concepto de modelo topológico. Es decir, soporta varios modelos diferentes y cada uno de ellos viene determinado por los parámetros de entrada que se definen. Es por ello que \gls{brite} sigue la siguiente secuencia de acciones para diseñar las topologías:
+
+\vspace{3mm}
 
 \begin{enumerate}
     \item Definición del posicionamiento de los nodos:
@@ -13,39 +16,115 @@
     \item Especificación del formato de salida: Se indica un formato .brite para todas las topologías generadas.
 \end{enumerate}
 
-\footnote{https://github.com/NETSERV-UAH/BRITE}
+\vspace{3mm}
 
+Como motivo de facilitar el empleo de la herramienta, se incluirá una Sección dedicada al proceso de instalación, configuración y ejecución de la herramienta en el Anexo correspondiente a los manuales de usuario (ver Sección \ref{sec:manualbrite}). Además, de la infse podrá acceder a más información desde el repositorio\footnote{https://github.com/NETSERV-UAH/BRITE} del equipo de investigación NetIS de la \gls{uah}.
 
+\vspace{3mm}
 
+\subsubsection{Definición de topologías}
+\label{sec:param}
 
+La herramienta \gls{brite} basa el proceso de creación de topologías en la definición de los siguientes parámetros de entrada en un fichero con formato .conf:
 
+\begin{itemize}
+    \item \textit{Name}: Modelo de la topología.
+    \item \textit{N}: Número de nodos de la topología.  
+    \item \textit{HS y LS}: Dimensiones del plano. Respectivamente, hacen referencia a la longitud total del plano cuadrado y al tamaño de los cuadros interiores.
+    \item \textit{Node Placement}: Posicionamiento de los nodos. Se puede producir de forma totalmente aleatoria o creando zonas a lo largo del plano con mayor concentración de nodos. 
+    \item \textit{Growth Type}: Método de introducción de los nodos en la topología. Se puede realizar este proceso de forma incremental (uno a uno) o de forma aleatoria (todos a la vez). 
+    \item \textit{m}: Número de enlaces por nodo o número de nodos vecinos a los que se conectará un nuevo nodo al unirse a la red. \gls{brite} puede crear enlaces unidireccionales o bidireccionales y, respectivamente, la topología generada tendría un grado m o 2m.
+    \item \textit{Alpha, Beta}: Parámetros específicos para topologías basadas en el modelo Waxman.
+    \item \textit{BWDist, BWMin, BWMax}: Ancho de banda de los enlaces.
+\end{itemize}
 
+\vspace{1mm}
 
+\subsubsection{Modelos de topologías}
 
-% 6. Generador_brite.py:
-% -----------------------
-% Como se necesita crear un archivo inicial con la configuración de la topología he creado un programa que los crea automaticamente
-% Este recibe por linea de comandos los siguientes parámetros:
-% 	+Nombre del archivo de configuración que vamos a generar
-% 	+Modelo de la topología (Solo da soporte a los modelos RTWaxman = 1, ASWaxman = 3, RTBarbasi = 2 y ASBarbasi)
-% 	+Numero de nodos 
-% 	+NodePlacement
-% 	+GrowthTYpe (solo para Waxman)
-% 	+Numero de enlaces por nodo (m)
-% 	+Alpha (para Waxman)
-% 	+Beta (para Waxman)
+Como se ha introducido, con \gls{brite} se posibilita el uso de múltiples modelos para crear topologías. En la Figura \ref{fig:brite} se representan todos los que soporta la herramienta. No obstante, este \gls{tfm} se va a enfocar en la generación de topologías a nivel de router, como son los modelos Router Waxman y Router Barabasi-Albert. 
 
+\vspace{3mm}
 
-% 7. Autogenerador.sh
-% --------------------
-% Para automatizar la generación de los archivos de configuración y los archivos brite propiamente dichos, se ha creado un script "autogenerador.sh"
-% En este script podemos ver que los parametros de entrada que hemos explicado en este documento están declarados al principio con los valores que pueden tomar para crear la topología que deseamos.
-% Después ejecutamos el generador_brite.py con los parámetros de entrada correspondientes.
-% Y por último, para cada archivo de configuración creado (determina una configuración de topologias brite), creamos 10 escenarios brite que siendo iguales en parámetros brite(numero de nodos, m, nodePlcement...) son escenarios distintos por el donde están posicionados cada nodo, o las conexiones entre nodos.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{img/teoria/brite.PNG}
+    \caption{Modelos soportados por \gls{brite} \cite{brite}}
+    \label{fig:brite}
+\end{figure}
 
+\vspace{3mm}
 
+En el caso del Router Waxman, como su nombre indica, emplea un modelo de probabilidad Waxman para establecer la Interconexión de los nodos en la topología \cite{brite_zegura}:
 
-\subsubsection{Parser}
+\begin{align}
+    P_{\text{Waxman}}(u,v) &= \alpha \cdot e^{-\frac{d}{\beta \cdot L}}
+\end{align}
+    
+    Donde:
+\begin{itemize}
+    \renewcommand{\labelitemi}{}
+    \item \textit{P(u,v)} es la probabilidad en función de la distancia euclidiana entre un nodo \textit{u} y un nodo \textit{v} de la red.
+    \item $\alpha$ es un parámetro específico del modelo que hace referencia a la densidad de enlaces y toma generalmente un valor igual a 0.2.
+    \item $\beta$ es un parámetro específico del modelo que hace referencia al ratio enlaces largos/enlaces cortos en la topología y toma generalmente un valor igual a 0.15.
+    \item \textit{L} es la máxima distancia entre dos nodos cualesquiera.
+\end{itemize}
 
-Función que transforma la salida de BRITE en dos archivos, Nodos.txt y Enlaces.txt para ser más legible
+\vspace{3mm}
 
+Por otro lado, el modelo Router Barabasi-Albert está basado en la generación de topologías con un incremento exponencial del número de nodos a lo largo del tiempo. Además, se permite una conexión preferencial, suponiendo que cuanto mayor grado de conectividad abarque un nodo, mayor será la probabilidad de que este añada nuevos enlaces.
+
+\vspace{3mm}
+
+Por lo tanto, el plano de la topología comienza con un número de nodos inicial \textit{N0} y se van añadiendo los demás uno a uno. Cada uno de estos nuevos nodos se conectará a \textit{N} nodos ya añadidos a la topología con una probabilidad \cite{brite_zegura}:
+
+\begin{align}
+    P_{\text{Barabási-Albert}}(k_i) &= \frac{k_i}{\sum_{j}^{}k_j}
+\end{align}
+    
+    Donde:
+\begin{itemize}
+    \renewcommand{\labelitemi}{}
+    \item \textit{P(k)} es la probabilidad de conexión del nodo \textit{i} con grado \textit{k}.
+    \item $\sum_{j}^{}k_j$ es el sumatorio de los grados de todos los nodos de la topología.
+\end{itemize}
+
+\vspace{3mm}
+
+\subsubsection{Automatización de la ejecución}
+\label{sec:brite_eje}
+
+A modo de facilitar la ejecución de la herramienta \gls{brite} se aporta en el repositorio el fichero de python \textit{generador\_brite.py}, dedicado a la automatización del proceso de creación de un fichero de configuración. Este recibirá los parámetros de entrada que caracterizarán a la topología a generar (ver Sección \ref{sec:param}) y escribirá el nuevo fichero.
+
+\vspace{3mm}
+
+También, se añade el fichero de python \textit{parser.py}, que se encargará de definir la función de transformación del archivo de salida proporcionado por \gls{brite} (en formato .brite) en dos nuevos ficheros: \textit{Nodos.txt} y \textit{Enlaces.txt}. Respectivamente, estos almacenarán las posiciones x e y de los nodos en el plano y la información sobre las distancias y los identificadores de los nodos que se interconectan con cada enlace.
+
+\vspace{3mm}
+
+Teniendo en cuenta estos ficheros, se proporciona un script \textit{autogenerador.sh} donde se incluyen todas sus funcionalidades y se automatiza todo el proceso de ejecución de la herramienta. Este script sigue la siguiente secuencia de pasos:
+
+\begin{enumerate}
+    \item Define los valores de cada uno de los parámetros de entrada
+    \item Ejecuta el fichero de python \textit{generador\_brite.py} aplicando los parámetros definidos.
+    \item Genera 10 escenarios diferentes para cada archivo de configuración a partir de semillas distintas (\textit{seed\_files}).
+    \item Ejecuta el fichero \textit{parser.py} para obtener los ficheros \textit{Nodos.txt} y \textit{Enlaces.txt} a partir de cada topología generada.    
+\end{enumerate}
+
+\vspace{1mm}
+
+En el caso del tercer paso, es preciso detallar que en el repositorio se aporta un directorio con 10 ficheros de semilla para posibilitar la generación de 10 topologías distintas a partir de unos mismos parámetros de entrada. 
+
+\vspace{3mm}
+
+Para ejecutar múltiples pruebas sobre el algoritmo \gls{den2ne} como motivo de este \gls{tfm}, se generarán con \gls{brite} topologías basadas en los modelos Router Waxman y Router Barabasi-Albert. En el script \textit{autogenerador.sh} se define una introducción incremental de los nodos al plano (\textit{GrowthType=1}), varios grados diferentes de conectividad (\textit{m=1,2,3}) y unos valores de $\alpha$ y $\beta$ de 0.2 y 0.15 respectivamente para el modelo Waxman.
+
+\vspace{3mm}
+
+Los nodos se incrementarán de 10 en 10, suponiendo topologías que pueden abarcar desde 10 hasta 200 nodos en total. Teniendo en cuenta el número de semillas (10), los modelos empleados (2), los grados de conectividad configurados (3) y los números de nodos posibles a fijar (20), se puede cuantificar que el número resultante de topologías distintas generadas con \gls{brite} será igual a 1200.
+
+\vspace{3mm}
+
+\subsubsection{Graficación de topologías}
+
+%poner aquí o en diseño?
