@@ -6,7 +6,7 @@ A modo de facilitar al lector el acceso y el uso de las herramientas empleadas e
 
 
 
-\section{Herramienta \glsentryshort{brite}}
+\section{Herramienta \acrshort{brite}}
 \label{sec:manualbrite}
 
 El objetivo de incluir esta sección es exponer al lector la información de instalación y configuración de la plataforma de generación de topologías de red \gls{brite}, descrita previamente en la Sección \ref{sec:brite}.
@@ -22,7 +22,7 @@ Previamente a exponer los pasos de instalación del \gls{brite}, es preciso indi
     \label{fig:ubuntu}
 \end{figure}
 
-\subsection{Compilación e instalación de \gls{brite}}
+\subsection{Compilación e instalación de \acrshort{brite}}
 
 Para proceder a instalar la herramienta, se accede al repositorio del equipo de investigación NetIS de la \gls{uah}\footnote{https://github.com/NETSERV-UAH/BRITE} y se descarga y se descomprime el fichero .zip con todos los contenidos necesarios. Después, se realiza un \textit{make} desde el directorio raíz de la herramienta. Se pueden producir errores por la falta de paquetes \textit{g++} o \textit{openjdk++}, que se soluciona con los comandos dados en el Código \ref{paquetes}.
 
@@ -31,7 +31,7 @@ sudo apt install g++
 sudo apt install openjdk-11-jdk
 \end{lstlisting}
 
-\subsection{Ejecución de \gls{brite}}
+\subsection{Ejecución de \acrshort{brite}}
 
 Se puede ejecutar \gls{brite} mediante la interfaz gráfica (GUI) (ver Código \ref{lst:britegui}) o por comandos. En el caso de los comandos se da la posibilidad de utilizar los ejecutables programados en C++ o en Java (ver Código \ref{lst:ejecutar}), obteniéndose los mismos resultados a partir de una misma entrada.
 

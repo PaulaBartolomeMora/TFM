@@ -1,29 +1,89 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Análisis de fuentes de datos}
+\section{Análisis de los conjuntos de datos}
 \label{sec:sustdata}
 
-En ámbitos como el Procesado de Lenguaje Natural (del inglés \gls{nlp}) o el reconocimiento facial, la disponibilidad de numerosas fuentes de datos ha sido imprescindible para progresar y acelerar el desarrollo de técnicas de minería de datos y de aprendizaje automático (\gls{ml}).
+En ámbitos como el Procesado de Lenguaje Natural (del inglés \gls{nlp}) o el reconocimiento facial, la disponibilidad de numerosas fuentes de datos ha sido imprescindible para acelerar el desarrollo de técnicas de minería de datos y de aprendizaje automático (\gls{ml}).
 
 \vspace{3mm}
 
-No obstante, en el contexto energético 
+A diferencia de estos campos, el contexto energético experimenta un menor grado de disponiblidad de datasets. La protección de la privacidad de los usuarios en el proceso de medición y análisis de su comportamiento energético supone que exista un menor número de datasets públicos enfocados a implementaciones reales. No obstante, la búsqueda de la optimización de la distribución energética y de la reducción del consumo de los usuarios, aparte de otras motivaciones ambientales, ha instado en los últimos años a múltiples ingenieros y científicos a lo largo del mundo a crear datasets públicos enfocados a la investigación (ver Tabla \ref{tab:datasets}). 
+
+\vspace{3mm}
+
+En este contexto han cobrado gran importancia las tecnologías de Monitorización de Cargas no Intrusiva (del inglés \gls{nilm}). Su fin principal reside en la desagregación energética para poder estimar de una forma precisa el consumo individual de cada uno de los dispositivos y electrodomésticos que hay en una vivienda. Para ello, se instalan medidores en cada circuito y después, se analizan, tanto a nivel interno como a nivel externo de la vivienda, los cambios de los parámetros eléctricos en cada instante temporal.~\cite{nilm} \cite{greend}
+
+\vspace{3mm}
+
+Teniendo esto en cuenta, se puede expresar que las técnicas \gls{nilm} se caracterizan por su bajo coste y por su facilidad y flexibilidad de despliegue. No obstante, el proceso de medición y recolección de datos puede llegar a requerir mucho tiempo y esfuerzo. Por ello, en el contexto de la investigación es importante que los datos tengan una disponibilidad pública para progresar en el desarrollo de técnicas de minería de datos y de aprendizaje automático en el ámbito energético. 
+
+\vspace{3mm}
+
+En la Tabla \ref{tab:datasets} se exponen los múltiples datasets residenciales que han sido estudiados en esta fase de diseño, junto con información relativa a la implementación real sobre la que se ha basado cada uno de ellos, como es la ubicación de la misma, el número de viviendas total, el período temporal del despliegue, la frecuencia de las muestras tomadas y los parámetros eléctricos medidos. Tomando en consideración las motivaciones y objetivos del presente \gls{tfm}, es importante tener en cuenta ciertos requisitos para seleccionar el conjunto de datos más apropiado:
+
+\vspace{1mm}
+
+\begin{itemize}
+    \item Cantidad: En primera instancia, es imprescindible revisar la cantidad de datos que aporta cada uno. En otros términos, para llevar a cabo un análisis estadístico del comportamiento energético de una ubicación se requiere partir de un conjunto de datos que agrupe las mediciones de un gran número de edificios residenciales. Adicionalmente, este análisis debe comprender extensos períodos temporales de medición para obtener una perspectiva real del impacto de las estaciones y las condiciones climáticas en el comportamiento de los usuarios.
+    \item Calidad: Se debe evaluar la calidad de los datos recogidos, la cual responde en parte con la resolución de las medidas que se toman. Como se puede observar en la Tabla \ref{tab:datasets}, algunos datasets como \textit{REDD} y \textit{BLUED} se centran en monitorizar un pequeño número de casas a una frecuencia de muestreo alta. En el contexto de las tecnologías \gls{nilm}, esto aporta una vista más representativa del comportamiento energético a nivel interno en una vivienda y permite una desagregación energética más precisa. Por lo tanto, cuanto mayor sea la frecuencia de adquisición de medidas, mayor será la resolucion de los datos.
+    \item Ubicación: En términos de la ubicación de la implementación real sobre la que se han adquirido las mediciones, es preciso tener en cuenta a la hora de analizar los datos las diferencias de voltaje que se manejan en cada país. Por ejemplo, en el caso de los datasets \textit{BLUED}, \textit{REDD} y \textit{Smart*}, provenientes de Estados Unidos, trabajarán a tensiones menores de 120V, mientras que otros como \textit{ECO} o \textit{GREEND}, que se han basado en países europeos, lo harán con tensiones de hasta 230V. \cite{greend}
+    \item Parámetrización: Por lo general, un dataset dedicado a las tecnologías \gls{nilm} estará constituido por una colección de muestras de voltaje (V), corriente (I) y potencia activa (P) y reactiva (Q). Cada una de estas muestras vendrá asociada con su marca de tiempo y con la vivienda o medidores a los que corresponde. ------No obstante, también podrá incluir información adicional relativa a parámetros ambientales, lo que será de gran relevancia en el caso de las \gls{sg}s.
+\end{itemize}
 
 
-%Dentro de los conjuntos de datos relacionados con ICT4S, la carga no intrusiva
-La comunidad de % Monitoring (NILM) es particularmente prominente dado
-% la necesidad de un uso extensivo del aprendizaje automático y la minería de datos
-% técnicas. La investigación en este campo tiene como objetivo desagregar y
-% estimación del consumo de electrodomésticos individuales mediante
-% de aplicación de técnicas de aprendizaje automático al agregado
-Señales de % consumo. Se espera que los conjuntos de datos públicos NILM
-% ayuda a los investigadores a crear procesos de evaluación más sistemáticos
-% que se puede utilizar en los diferentes enfoques existentes.
-% NILM es un problema muy específico que requiere que el conjunto de datos públicos
-El % incluye no solo las medidas de toda la casa.
-% de consumo, pero también información sobre las cargas individuales.
-% de consumo, es decir, datos reales, que se pueden utilizar para
-% evalúa el desempeño de los diferentes algoritmos.
-% Hasta la fecha, hasta donde sabemos, existen
+
+\vspace{3mm}
+
+
+
+\vspace{3mm}
+
+
+
+
+En contraste, el hecho de buscar un conjunto de datos 
+
+
+
+
+
+
+
+
+
+
+
+\begin{sidewaystable}
+    \centering 
+    \begin{tabularx}{\textheight}{|X|X|X|X|X|X|}
+        \hline
+        \rowcolor[HTML]{EFEFEF} 
+        Nombre & Localización & Nº de residencias & Período de medición (días) & Resolución de medición & Parámetros \\ \hline
+        \textit{BLUED} \cite{blued} & Pittsburg (Estados Unidos) & 1 & 8 & 12KHz &  I, V, eventos de switch \\ \hline
+        \textit{ECO} \cite{eco} & Thun (Suiza) & 6 & 244 & 1Hz &  \\ \hline
+        \textit{GREEND} \cite{greend} & Italia y Austria & 9 & 310 & 1Hz & P \\ \hline
+        \textit{iAWE} \cite{iawe} & Nueva Delhi (La India) & 1 & 73 & 1Hz & V, I, P, S \\ \hline
+        \textit{REDD} \cite{redd} & Boston (Estados Unidos) & 6 & 19 & 15KHz & V, P \\ \hline
+        \textit{Smart*} \cite{smart*} & Massachussets (Estados Unidos) & 3 & 90 & 1min & P, S \\ \hline
+        \textit{SustDataED} \cite{sustdata} & Madeira (Portugal) & 50 & 504 & 1min & I, V, P, Q \\ \hline
+        \textit{UK-DALE} \cite{ukdale} & Reino Unido & 5 & 499 & 16KHz & P, estado de switch \\ \hline
+    \end{tabularx}
+    \caption{Comparación entre datasets públicos en el ámbito \acrshort{nilm} \cite{greend} \cite{intrusive} \cite{tabladatasets}}
+    \label{tab:datasets}
+\end{sidewaystable}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %cinco conjuntos de datos públicos creados específicamente para la investigación NILM, a saber, el
 % Conjunto de datos de desagregación de energía de referencia (REDD) [10], el
@@ -44,18 +104,16 @@ Conjunto de datos de % de potencia (AMPds) [12] Pecan Street Research
 % creación de nuevas estrategias de desagregación que incluyan datos de
 % sensores diferentes, es decir, fusión de sensores.
 
-% Motivado por la creciente importancia de los conjuntos de datos públicos
-% para la investigación de TIC4S decidimos hacer público nuestro conjunto de datos. Nuestro
-% de datos es único porque combina ambos NILM específicos
+
+
+
+% combina ambos NILM específicos
 % de información con consumo a largo plazo y eco-feedback
 % de información, proporcionando así una oportunidad perfecta para probar NILM
 % de enfoques que impactan los estudios a largo plazo de hogares y
 % eco-retroalimentación. Creemos que SustData también puede desempeñar un papel
 % papel importante en los campos de la energía, el medio ambiente y
-% sostenibilidad. Además, dada la naturaleza de nuestros datos, argumentamos
-% que puede ser un aporte muy importante al campo de
-% de eco-retroalimentación energética, lo que permite a los investigadores probar diferentes
-% Técnicas de retroalimentación que utilizan datos de consumo detallados. Él
+% sostenibilidad. Él
 % también puede desempeñar un papel en campos emergentes como las redes inteligentes, donde
 Los modelos % precisos de demanda de energía son cruciales para la planificación
 % redes de distribución eléctrica y producción óptima
@@ -67,28 +125,6 @@ Los modelos % precisos de demanda de energía son cruciales para la planificaci�
 
 
 
-%https://www.linkedin.com/pulse/conoces-nilm-aplica-inteligencia-artificial-en-la-gesti%C3%B3n-figueras/?originalSubdomain=es
-%NILM (Non-Intrusive Load Monitoring) o Monitorización de Cargas no Intrusiva, es un proceso para analizar los cambios en el voltaje y corriente que entran a un edificio y deducir qué aparatos se utilizan en el edificio, así como su consumo de energía individual.También conocido como desagregación energética, el proceso NILM tiene como objetivo “dividir” o “repartir” su consumo total de energía en las lecturas de cargas individuales durante un período de tiempo, permitiendo a los usuarios ver cuánta energía ha usado un dispositivo en particular durante ese período.La tecnología NILM es conocida en el sector de la gestión energética como una alternativa de bajo costes a la auditoría energética tradicional altamente efectiva, que requiere la instalación de analizadores individuales en cada circuito para identificar las oportunidades de ahorro de energía.
-%Entonces, EnergyGrader compara esta información de la curva de carga con una base de datos de más de 50.000 localizaciones similares dentro de la base de datos de DEXMA para aproximarse al perfil de consumo energético del edificio analizado.Generando recomendaciones de ahorro energético personalizadas. EnergyGrader utiliza un árbol de decisión autodidacta para definir las mejores opciones de ahorro energético para cada sitio. Cada recomendación puede ser aplicada de acuerdo a la máxima inversión posible, presupuesto total del proyecto, actividades del sitio, tecnología o ubicación. Las recomendaciones finales pueden ser organizadas por período de amortización, o el total de ahorros anuales esperados.
-
-
-
-
-% We have searched and found many datasets containing measurements from a set of monitored 
-% smart meters attached to an active smart grid. These measurements mostly revolved around the 
-% power, voltage, and current values of the users’ energy consumption, along with their 
-% associated timestamps. Many of the datasets we found were limited in size which made us 
-% avoid them since the size of the dataset directly affects the accuracy of our generated AI 
-% classifier, the larger the dataset and the longer the duration of the smart meter monitoring, the 
-% higher the accuracy of our model.
-% As seen in Table 3, our search for the datasets leads us to the table below from Adrea Dominik, 
-% Wilfried, Salvatore and Andrea [13], featuring a group of datasets, the seventh of which was 
-% collected in France and has the longest duration of monitoring whereas the fourth which was 
-% collected in Italy has the smallest resolution of measurement taking at 1 Hz
-
-
-
-%tabla \cite{greend}
 
 
 
@@ -96,7 +132,33 @@ Los modelos % precisos de demanda de energía son cruciales para la planificaci�
 
 
 
-\subsection{SustData}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{SustDataED}
 \cite{sustdata}
 
 
