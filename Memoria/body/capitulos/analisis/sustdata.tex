@@ -28,7 +28,7 @@ En la Tabla \ref{tab:datasets} se exponen los múltiples datasets residenciales 
     
     \clearpage
 
-    \item Ubicación: En términos de la ubicación de la implementación real sobre la que se han adquirido las mediciones, es de importancia conocer a la hora de analizar los datos las diferencias de voltaje que se manejan en cada país. Por ejemplo, en el caso de datasets como \textit{BLUED} o \textit{Smart*}, los cuales provienen de ciudades de Estados Unidos, trabajarán a tensiones menores de 120V, mientras que otros como \textit{ECO} o \textit{GREEND}, cuyos datos se han adquirido en países europeos, lo harán con tensiones de hasta 230V. \cite{greend}
+    \item Ubicación: En términos de la ubicación de la implementación real sobre la que se han adquirido las mediciones, es de importancia conocer a la hora de analizar los datos las diferencias de voltaje que se manejan en cada país. Por ejemplo, en el caso de datasets como \textit{BLUED} o \textit{Smart*}, los cuales provienen de ciudades de Estados Unidos, trabajarán a tensiones menores de 120V, mientras que otros como \textit{ECO} o \textit{GREEND}, cuyos datos se han adquirido en países europeos, lo harán con tensiones de hasta 230V. \cite{greend} \cite{powercons}
     \item Parametrización: Por lo general, un dataset dedicado a las tecnologías de \gls{nilm} estará constituido por una colección de muestras de voltaje (V), corriente (I) y potencia activa (P), reactiva (Q) y aparente (S). Cada una de estas muestras vendrá asociada a una marca de tiempo y a un identificador que haga referencia a la vivienda o medidores a los que corresponde. Adicionalmente, algunos de los datasets que se exponen en la Tabla \ref{tab:datasets}, como son \textit{HUE} o \textit{SustDataED}, también incluyen información relativa a parámetros ambientales. Esto, sobre todo en el contexto de las \gls{sg}s, proporciona información fundamental sobre el impacto de las condiciones climáticas en el comportamiento de los usuarios.
     \item Generación fotovoltaica: Considerando el contexto de \gls{sg}s en el que se engloba este \gls{tfm}, es de vital importancia seleccionar un conjunto de datos que aporte información relativa a la generación de energía a través de fuentes renovables, como ocurre en el caso de \textit{Smart*} o \textit{SustDataED}. En relación con esto, se expondrá en la Sección \ref{sec:global} el estudio de una plataforma específica dedicada a la adquisición de datos de generación energética.
 \end{itemize}
@@ -39,17 +39,18 @@ En la Tabla \ref{tab:datasets} se exponen los múltiples datasets residenciales 
         \hline
         \rowcolor[HTML]{EFEFEF} 
         Nombre & Localización & Nº de residencias & Período de medición (días) & Resolución de medición & Parámetros \\ \hline
+        \textit{AMPds2} \cite{ampds2} & Vancouver (Canadá) & 1 & 730 & 1min &  I, V, P, S, F, pf \\ \hline
         \textit{BLUED} \cite{blued} & Pittsburg (Estados Unidos) & 1 & 8 & 12KHz &  I, V, eventos de switch \\ \hline
         \textit{ECO} \cite{eco} & Thun (Suiza) & 6 & 244 & 1Hz & P \\ \hline
         \textit{GREEND} \cite{greend} & Italia y Austria & 9 & 310 & 1Hz & P \\ \hline
         \textit{HUE} \cite{hue} & British Columbia, Canada & 28 & 60 & 1Hz & P \\ \hline
         \textit{iAWE} \cite{iawe} & Nueva Delhi (La India) & 1 & 73 & 1Hz & V, I, P, S \\ \hline
-        \textit{REDD} \cite{redd} & Boston (Estados Unidos) & 6 & 19 & 15KHz & V, P \\ \hline
+        \textit{REDD} \cite{redd} & Boston (Estados Unidos) & 6 & 119 & 15KHz & I, V, P \\ \hline
         \textit{Smart*} \cite{smart*} & Massachussets (Estados Unidos) & 3 & 90 & 1min & P, S, V, I \\ \hline
-        \textit{SustDataED} \cite{sustdata} & Madeira (Portugal) & 50 & 504 & 1min & I, V, P, Q \\ \hline
+        \textit{SustDataED} \cite{sustdata} & Madeira (Portugal) & 50 & 1144 & 1min & I, V, P, Q, S \\ \hline
         \textit{UK-DALE} \cite{ukdale} & Reino Unido & 5 & 499 & 16KHz & P, estado de switch \\ \hline
     \end{tabularx}
-    \caption{Comparación entre datasets públicos en el ámbito \acrshort{nilm} \cite{greend} \cite{intrusive} \cite{tabladatasets}}
+    \caption{Comparación entre datasets públicos en el ámbito \acrshort{nilm} \cite{greend} \cite{intrusive} \cite{tabladatasets} \cite{powercons}}
     \label{tab:datasets}
 \end{sidewaystable}
 
@@ -62,6 +63,7 @@ De igual manera, es importante que las muestras tengan una buena resolución y q
 \clearpage
 
 \subsection{\textit{SustDataED}}
+\label{sec:sustdataed}
 
 El dataset \textit{SustDataED} \cite{sustdata} es creado a partir del proyecto de investigación \gls{sinais}, dedicado al diseño, implementación y despliegue de sistemas \gls{nilm} de bajo coste. Surge con el objetivo de proporcionar una retroalimentación ecológica a los usuarios para fomentar un comportamiento energético sostenible y un mayor uso de las fuentes de energía renovables.
 
@@ -71,18 +73,272 @@ El dataset \textit{SustDataED} engloba cinco años de datos de consumo y producc
 
 \vspace{3mm}
 
-Pese a la necesidad de procesamiento que conlleva, el uso de \textit{SustDataED} en el presente \gls{tfm} brinda ciertas ventajas. Entre otras, aporta un gran perspectiva del comportamiento eléctrico a largo plazo de múltiples hogares con diferentes características y ofrece un enfoque medioambiental, ya que mediante la adquisición de los datos relativos a las condiciones climáticas posibilita el análisis de la correlación de las mismas con el consumo y la producción de energía de los usuarios.
+Pese a la necesidad de procesamiento que conlleva, el uso de \textit{SustDataED} en el presente \gls{tfm} brinda ciertas ventajas. Entre otras, aporta un gran perspectiva del comportamiento eléctrico a largo plazo de múltiples hogares con diferentes características y ofrece un enfoque medioambiental, ya que mediante la adquisición de los datos relativos a las condiciones climáticas posibilita el análisis de la correlación de las mismas con el consumo de los usuarios y la producción de energía.
 
-\subsection{Estructura del dataset}
+\subsection{Estructura del dataset \textit{SustDataED}}
 
-El proceso de creación del dataset y la adquisición de los datos del mismo se divide en cuatro despliegues diferentes. 
+El proceso de adquisición y recolección de los datos de los 50 hogares que constituyen el dataset se divide en cuatro despliegues diferentes (ver Figura \ref{fig:despliegues}):
+
+\begin{itemize}
+    \item Los despliegues 1 y 2 se pueden tratar en conjunto, ya que abarcan las mismas viviendas, suponiendo un total de 23. El despliegue 1 se inicia en julio de 2010 y finaliza en el mes de noviembre de ese mismo año cuando se reinstala una versión revisada del sistema de realimentación. En este momento, comienza el despliegue 2, que durará hasta abril del 2012.
+    \item El despliegue 3 se implementa en un total de 17 hogares desde el mes de agosto de 2012 hasta enero de 2013. Se introducen novedades en el sistema de adquisición de datos para reducir el número de sensores a instalar, optimizando la arquitectura de monitorización. 
+    \item El despliegue 4 es el último que se realiza y consta de la agrupación de medidas de 10 hogares, comenzando la recolección de datos de los mismos en el mes de julio de 2013 y finalizando en marzo de 2014.
+\end{itemize}
+
+En la Figura \ref{fig:despliegues} se permite visualizar de una forma gráfica los períodos temporales que abarcan cada uno de los despliegues expuestos anteriormente. Como se detallará a continuación, a modo organizativo, el dataset \textit{SustDataED} clasifica en varias tablas los datos en función del tipo de información al que se hace referencia.
+
+\vspace{3mm}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1\textwidth]{img/diseno/despliegues.png}
+    \includegraphics[width=1\textwidth,height=8.5cm]{img/diseno/despliegues.png}
     \caption{Representación del período temporal que comprende el proceso de recolección de datos para cada hogar}
-    \label{fig:bigdata2}
+    \label{fig:despliegues}
 \end{figure}
+
+\subsubsection{Medidas de consumo de energía}
+
+En la Tabla \ref{tab:consumo} se listan los campos que han sido definidos para la recolección de medidas de consumo de cada uno de los hogares. El dataset asocia los parámetros eléctricos a dos identificadores: uno para describir la vivienda de la que se están recogiendo los datos, y otro, para el despliegue al que pertenece. También, se almacena para cada medida una marca de tiempo con la fecha, hora, minuto y segundo en la que se ha recogido la información y se incluye el parámetro \textit{miss\_flag} para indicar si para un instante temporal no se han adquirido datos de forma correcta, suponiendo filas vacías en el dataset.
+
+\vspace{3mm}
+
+Los parámetros de tensión (V) y corriente (I) se muestrean continuamente a una frecuencia de 8KHz y las medidas de potencia activa (P), reactiva (Q) y aparente (S) se cuantifican a un ratio de 50 muestras por segundo a partir de las siguientes expresiones \cite{sustdata}:
+
+\clearpage
+
+\[ S = I_{\text{RMS}} \cdot V_{\text{RMS}} \]
+\[ P = S \cdot \cos(\phi) \]
+\[ Q = S \cdot \sin(\phi) \]
+
+    Donde:
+\begin{itemize}
+    \renewcommand{\labelitemi}{}
+    \item \( I_{\text{RMS}} \) es la corriente eficaz (RMS).
+    \item \( V_{\text{RMS}} \) es el voltaje eficaz (RMS).
+    \item \( \phi \) es el ángulo de fase entre la corriente y el voltaje instantáneos.
+\end{itemize}
+
+\vspace{3mm}
+
+No obstante, como se habia introducido en el Apartado \ref{sec:sustdataed} y se había definido en la Tabla \ref{tab:datasets}, todas estas medidas, una vez son recogidas, se almacenan en el dataset a una resolución de una muestra por minuto. 
+
+\vspace{3mm}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{AAAAAA} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
+    \textit{home\_id} & Identificador de vivienda monitorizada & - \\ \hline
+    \textit{timestamp} & Instante temporal de medida & datetime \\ \hline
+    \textit{deploy} & Identificador del despliegue & - \\ \hline
+    \textit{Imin} & Corriente mínima & A \\ \hline
+    \textit{Imax} & Corriente máxima & A \\ \hline
+    \textit{Iavg} & Corriente media & A \\ \hline
+    \textit{Vmin} & Tensión mínima & V \\ \hline
+    \textit{Vmax} & Tensión máxima & V \\ \hline
+    \textit{Vavg} & Tensión media & V \\ \hline
+    \textit{Pmin} & Potencia activa mínima & W \\ \hline
+    \textit{Pmax} & Potencia activa máxima & W \\ \hline
+    \textit{Pavg} & Potencia activa media & W \\ \hline
+    \textit{Qmin} & Potencia reactiva mínima & VAR \\ \hline
+    \textit{Qmax} & Potencia reactiva máxima & VAR \\ \hline
+    \textit{Qavg} & Potencia reactiva media & VAR \\ \hline
+    \textit{Smin} & Potencia aparente mínima & VA \\ \hline
+    \textit{Smax} & Potencia aparente máxima & VA \\ \hline
+    \textit{Savg} & Potencia aparente media & VA \\ \hline
+    \textit{PFmin} & Factor de potencia mínimo & - \\ \hline
+    \textit{PFmax} & Factor de potencia máximo & - \\ \hline
+    \textit{PFavg} & Factor de potencia medio & - \\ \hline
+    \textit{miss\_flag} & Flag de valores vacíos & - \\ \hline
+    \end{tabular}
+    \caption{Tabla de medidas de consumo energético \cite{sustdata}}
+    \label{tab:consumo}
+\end{table}
+
+\subsubsection{Medidas de eventos de potencia}
+
+La información sobre los eventos de potencia se extrae de las medidas en crudo de potencia activa que, como se ha expresado en el apartado anterior, se producen a una frecuencia de muestreo de 50Hz. La Tabla \ref{tab:eventos} se dedica al proceso de detección de dichos eventos o, en otros términos, de identificación de cambios en la carga total de una vivienda. 
+
+\vspace{3mm}
+
+En este caso, se emplea un método estadístico que calcula la probabilidad de que se produzca un cambio del valor de potencia media entre dos instantes. Para ello, el algoritmo trabaja con dos ventanas temporales: una de detección, que cuantifica la probabilidad del cambio en una muestra determinada y otra, de búsqueda de los valores mínimos y máximos de potencia para definir las posiciones de los eventos en la señal de potencia agregada. En referencia a esto, viene definido un cambio mínimo de potencia real de 30 W.
+
+\vspace{3mm}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{AAAAAA} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
+    \textit{home\_id} & Identificador de vivienda monitorizada & - \\ \hline
+    \textit{timestamp} & Instante temporal de medida & datetime \\ \hline
+    \textit{deploy} & Identificador del despliegue & - \\ \hline
+    \textit{delta\_P} & Cambio real de potencia activa & W \\ \hline
+    \textit{delta\_Q} & Cambio real de potencia reactiva & VA \\ \hline
+    \textit{trace\_P} & Traza real de potencia activa del evento & W \\ \hline
+    \textit{trace\_Q} & Traza real de potencia reactiva del evento & VAR \\ \hline
+    \end{tabular}
+    \caption{Tabla de medidas de eventos de potencia \cite{sustdata}}
+    \label{tab:eventos}
+\end{table}
+
+\subsubsection{Medidas de producción de energía}
+
+El dataset \textit{SustDataED} recoge a nivel global los datos respectivos a la producción de electricidad en intervalos de 15 minutos. Las fuentes energéticas se desagregan según su fuente de procedencia, dando protagonismo a las fuentes renovables. En la Tabla \ref{tab:prod} se indican los campos que han sido definidos para cuantificar las medidas.
+
+\vspace{3mm}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{AAAAAA} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
+    \textit{timestamp} & Instante temporal de medida & datetime \\ \hline
+    \textit{total} & Producción total & MWh \\ \hline
+    \textit{thermal\_fuel} & Electricidad producida por fuentes térmicas & MWh \\ \hline
+    \textit{hydro} & Electricidad producida por fuentes hidroeléctricas & MWh \\ \hline
+    \textit{eolic} & Electricidad producida por fuentes eólicas & MWh \\ \hline
+    \textit{photovoltaic} & Electricidad producida por fuentes fotovoltaicas & MWh \\ \hline
+    \end{tabular}
+    \caption{Tabla de medidas de producción de energía \cite{sustdata}}
+    \label{tab:eventos}
+\end{table}
+
+\subsubsection{Medidas demográficas}
+
+Para el análisis del comportamiento eléctrico de cada uno de los hogares monitorizados se puede visualizar en la Tabla \ref{tab:demo} cómo se almacena la información respectiva a sus inquilinos y a los períodos de adquisición de datos de cada vivienda.
+
+\vspace{3mm}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{AAAAAA} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
+    \textit{home\_id} & Identificador de vivienda monitorizada & - \\ \hline
+    \textit{building\_id} & Identificador de edificio & - \\ \hline
+    \textit{begin\_monitoring} & Fecha de inicio de medición & datetime \\ \hline
+    \textit{end\_monitoring} & Fecha de fin de medición & datetime \\ \hline
+    \textit{begin\_feedback} & Fecha de inicio de realimentación en el despliegue & datetime \\ \hline
+    \textit{end\_feedback} & Fecha de fin de realimentación en el despliegue & datetime \\ \hline
+    \textit{type} & Tipo de vivienda & - \\ \hline
+    \textit{bedrooms} & Número de habitaciones & - \\ \hline
+    \textit{adults} & Número de adultos inquilinos & - \\ \hline
+    \textit{children} & Número de niños inquilinos & - \\ \hline
+    \textit{contracted\_power} & Potencia contratada & kWh \\ \hline
+    \end{tabular}
+    \caption{Tabla de medidas de producción de energía \cite{sustdata}}
+    \label{tab:demo}
+\end{table}
+
+De forma adicional, el dataset \textit{SustDataED} incluye otra tabla con datos complementarios sobre las personas participantes en los despliegues, como son el género, edad, educación y ocupación.
+
+\subsubsection{Medidas de eventos de usuario}
+
+Una de las ventajas que proporciona la monitorización del comportamiento eléctrico de un hogar es la realimentación de la información que se produce hacia los mismos usuarios. El dataset recoge en forma de eventos las interacciones que se llevan a cabo con este sistema de realimentación a través de los campos determinados en la Tabla \ref{tab:users}.
+
+\vspace{3mm}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{AAAAAA} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
+    \textit{home\_id} & Identificador de vivienda monitorizada & - \\ \hline
+    \textit{timestamp} & Instante temporal de medida & datetime \\ \hline
+    \textit{deploy} & Identificador del despliegue & - \\ \hline
+    \textit{type} & Tipo de interacción & - \\ \hline
+    \textit{view\_id} & Identificador de pantalla de visualización & - \\ \hline
+    \textit{view\_name} & Nombre de pantalla de visualización & - \\ \hline
+    \end{tabular}
+    \caption{Tabla de medidas de eventos de usuario \cite{sustdata}}
+    \label{tab:users}
+\end{table}
+
+\subsubsection{Medidas de condiciones ambientales y climáticas}
+
+Como se ha introducido al comienzo de la Sección \ref{sec:sustdataed}, el dataset aporta un enfoque medioambiental a los procesos de consumo y producción energética al incluir la recolección de los datos relativos a las condiciones climáticas que se dan en cada instante. En la Tabla \ref{tab:env} se muestran los parámetros que se tienen en cuenta para ello.
+
+\vspace{3mm}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{AAAAAA} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
+    \textit{timestamp} & Instante temporal de medida & datetime \\ \hline
+    \textit{temperature} & Temperatura exterior & ºC \\ \hline
+    \textit{humidity} & Humedad relativa & \% \\ \hline
+    \textit{pressure} & Presión relativa & hPa \\ \hline
+    \textit{wind\_dir} & Dirección del viento & - \\ \hline
+    \textit{wind\_speed} & Velocidad del viento & kmh \\ \hline
+    \textit{precipitation} & Niveles de precipitación & mm \\ \hline
+    \textit{events} & Eventos relevantes & - \\ \hline
+    \textit{conditions} & Condiciones del cielo & - \\ \hline
+    \end{tabular}
+    \caption{Tabla de medidas de condiciones ambientales \cite{sustdata}}
+    \label{tab:env}
+\end{table}
+
+
+
+
+
+
+
+\subsection{Conclusiones del análisis del dataset \textit{SustDataED}}
+
+Una vez realizado un estudio y un análisis en profundidad de los datos proporcionados por el dataset \textit{SustDataED}, se definen a una serie de conclusiones a considerar antes de iniciar la fase de preprocesamiento de los datos.
+
+Teniendo en cuenta las motivaciones de la realización de este \gls{tfm},  
+
+
+En primer lugar,  en cuanto a los eventos de potencia 
+
+%cambiar datos de produccion
+%hablr del nilm de eventos de potencia
+%eventos de usuarios nos da igual
+
+
+
+
+%meter graficas en los anteriores
+%definir que es lo que se va a utilizar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \subsection{Global Solar Atlas}
@@ -96,8 +352,6 @@ El proceso de creación del dataset y la adquisición de los datos del mismo se 
 %customer web porthole by each customer who then donated the data for research. Weather data was
 %downloaded from the nearest Environment Canada [5] weather station. Simulated solar data was
 %generated by a tool provided by the US Department of Energy [4].
-
-
 
 
 
