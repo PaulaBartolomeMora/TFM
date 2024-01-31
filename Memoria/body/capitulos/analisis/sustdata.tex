@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Análisis de los conjuntos de datos}
+\section{Análisis de los datasets disponibles}
 \label{sec:sustdata}
 
 En ámbitos como el Procesado de Lenguaje Natural (del inglés \gls{nlp}) o el reconocimiento facial, la disponibilidad de numerosas fuentes de datos ha sido imprescindible para acelerar el desarrollo de técnicas de minería de datos y de aprendizaje automático (\gls{ml}).
@@ -85,9 +85,9 @@ El proceso de adquisición y recolección de los datos de los 50 hogares que con
     \item El despliegue 4 es el último que se realiza y consta de la agrupación de medidas de 10 hogares, comenzando la recolección de datos de los mismos en el mes de julio de 2013 y finalizando en marzo de 2014.
 \end{itemize}
 
-En la Figura \ref{fig:despliegues} se permite visualizar de una forma gráfica los períodos temporales que abarcan cada uno de los despliegues expuestos anteriormente. Como se detallará a continuación, a modo organizativo, el dataset \textit{SustDataED} clasifica en varias tablas los datos en función del tipo de información al que se hace referencia.
+En la Figura \ref{fig:despliegues} se permite visualizar de una forma gráfica los períodos temporales que abarcan los despliegues expuestos anteriormente donde cada uno de los 50 hogares participantes se representa con un identificador único (\textit{id}). Como se detallará a continuación, a modo organizativo, el dataset \textit{SustDataED} clasifica en varias tablas los datos en función del tipo de información al que se hace referencia.
 
-\vspace{3mm}
+\vspace{5mm}
 
 \begin{figure}[h!]
     \centering
@@ -98,31 +98,13 @@ En la Figura \ref{fig:despliegues} se permite visualizar de una forma gráfica l
 
 \subsubsection{Medidas de consumo de energía}
 
-En la Tabla \ref{tab:consumo} se listan los campos que han sido definidos para la recolección de medidas de consumo de cada uno de los hogares. El dataset asocia los parámetros eléctricos a dos identificadores: uno para describir la vivienda de la que se están recogiendo los datos, y otro, para el despliegue al que pertenece. También, se almacena para cada medida una marca de tiempo con la fecha, hora, minuto y segundo en la que se ha recogido la información y se incluye el parámetro \textit{miss\_flag} para indicar si para un instante temporal no se han adquirido datos de forma correcta, suponiendo filas vacías en el dataset.
+En la Tabla \ref{tab:consumo} se listan los campos que han sido definidos para la recolección de medidas de consumo de cada uno de los hogares. El dataset asocia los parámetros eléctricos a dos identificadores: uno para describir la vivienda de la que se están recogiendo los datos, y otro, para el despliegue al que pertenece. 
 
 \vspace{3mm}
 
-Los parámetros de tensión (V) y corriente (I) se muestrean continuamente a una frecuencia de 8KHz y las medidas de potencia activa (P), reactiva (Q) y aparente (S) se cuantifican a un ratio de 50 muestras por segundo a partir de las siguientes expresiones \cite{sustdata}:
+Por otro lado, se almacena para cada medida una marca de tiempo con la fecha, hora, minuto y segundo en la que se ha recogido la información y se incluye el parámetro \textit{miss\_flag} para indicar si para un determinado instante temporal se han adquirido datos de forma incorrecta, suponiendo filas vacías en el dataset.
 
 \clearpage
-
-\[ S = I_{\text{RMS}} \cdot V_{\text{RMS}} \]
-\[ P = S \cdot \cos(\phi) \]
-\[ Q = S \cdot \sin(\phi) \]
-
-    Donde:
-\begin{itemize}
-    \renewcommand{\labelitemi}{}
-    \item \( I_{\text{RMS}} \) es la corriente eficaz (RMS).
-    \item \( V_{\text{RMS}} \) es el voltaje eficaz (RMS).
-    \item \( \phi \) es el ángulo de fase entre la corriente y el voltaje instantáneos.
-\end{itemize}
-
-\vspace{3mm}
-
-No obstante, como se habia introducido en el Apartado \ref{sec:sustdataed} y se había definido en la Tabla \ref{tab:datasets}, todas estas medidas, una vez son recogidas, se almacenan en el dataset a una resolución de una muestra por minuto. 
-
-\vspace{3mm}
 
 \begin{table}[h!]
     \centering
@@ -157,13 +139,31 @@ No obstante, como se habia introducido en el Apartado \ref{sec:sustdataed} y se 
     \label{tab:consumo}
 \end{table}
 
-\subsubsection{Medidas de eventos de potencia}
+Los parámetros de tensión (V) y corriente (I) se muestrean continuamente a una frecuencia de 8KHz y las medidas de potencia activa (P), reactiva (Q) y aparente (S) se cuantifican a un ratio de 50 muestras por segundo a partir de las siguientes expresiones \cite{sustdata}:
 
-La información sobre los eventos de potencia se extrae de las medidas en crudo de potencia activa que, como se ha expresado en el apartado anterior, se producen a una frecuencia de muestreo de 50Hz. La Tabla \ref{tab:eventos} se dedica al proceso de detección de dichos eventos o, en otros términos, de identificación de cambios en la carga total de una vivienda. 
+\[ S = I_{\text{RMS}} \cdot V_{\text{RMS}} \]
+\[ P = S \cdot \cos(\phi) \]
+\[ Q = S \cdot \sin(\phi) \]
+
+    Donde:
+\begin{itemize}
+    \renewcommand{\labelitemi}{}
+    \item \( I_{\text{RMS}} \) es la corriente eficaz (RMS).
+    \item \( V_{\text{RMS}} \) es el voltaje eficaz (RMS).
+    \item \( \phi \) es el ángulo de fase entre la corriente y el voltaje instantáneos.
+\end{itemize}
 
 \vspace{3mm}
 
-En este caso, se emplea un método estadístico que calcula la probabilidad de que se produzca un cambio del valor de potencia media entre dos instantes. Para ello, el algoritmo trabaja con dos ventanas temporales: una de detección, que cuantifica la probabilidad del cambio en una muestra determinada y otra, de búsqueda de los valores mínimos y máximos de potencia para definir las posiciones de los eventos en la señal de potencia agregada. En referencia a esto, viene definido un cambio mínimo de potencia real de 30 W.
+No obstante, como se habia introducido en el Apartado \ref{sec:sustdataed} y se había definido en la Tabla \ref{tab:datasets}, todas estas medidas, una vez son recogidas, se almacenan en el dataset a una resolución de una muestra por minuto. Se introduce también en la Tabla \ref{tab:consumo} el valor de factor de potencia (PF) para medir la eficiencia del uso de energía en un sistema eléctrico. Se cuantifica a partir de la razón entre la potencia activa (P) y la potencia aparente (S), siendo ideal un valor de 1. 
+
+\subsubsection{Medidas de eventos de potencia}
+
+La información sobre los eventos de potencia se extrae de las medidas en crudo de potencia activa que, como se ha expresado en el apartado anterior, se producen a una frecuencia de muestreo de 50Hz. La Tabla \ref{tab:eventos} se dedica al proceso de detección de dichos eventos o, en otros términos, de identificación de cambios en la carga total de una vivienda. Como se ha introducido en la Sección \ref{sec:sustdata}, estos datos serían de gran utilidad en el caso de requerirse el empleo de técnicas de \gls{nilm}.   
+
+\vspace{3mm}
+
+El proceso de recolección de las muestras tiene como base un método estadístico que calcula la probabilidad de que se produzca un cambio del valor de potencia media entre dos instantes. Para ello, el algoritmo trabaja con dos ventanas temporales: una de detección, que cuantifica la probabilidad del cambio en una muestra determinada y otra de búsqueda de los valores mínimos y máximos de potencia, que define las posiciones de los eventos en la señal de potencia agregada. En referencia a esto, viene definido un cambio mínimo de potencia real de 30 W.
 
 \vspace{3mm}
 
@@ -185,9 +185,12 @@ En este caso, se emplea un método estadístico que calcula la probabilidad de q
     \label{tab:eventos}
 \end{table}
 
-\subsubsection{Medidas de producción de energía}
+\clearpage
 
-El dataset \textit{SustDataED} recoge a nivel global los datos respectivos a la producción de electricidad en intervalos de 15 minutos. Las fuentes energéticas se desagregan según su fuente de procedencia, dando protagonismo a las fuentes renovables. En la Tabla \ref{tab:prod} se indican los campos que han sido definidos para cuantificar las medidas.
+\subsubsection{Medidas de producción de energía}
+\label{sec:prodsustdata}
+
+El dataset \textit{SustDataED} recoge a nivel global los datos respectivos a la producción de electricidad en intervalos de 15 minutos. La energía generada se desagrega según su fuente de procedencia, dando protagonismo a las fuentes renovables. En la Tabla \ref{tab:prod} se indican los campos que han sido definidos para cuantificar las medidas.
 
 \vspace{3mm}
 
@@ -205,7 +208,7 @@ El dataset \textit{SustDataED} recoge a nivel global los datos respectivos a la 
     \textit{photovoltaic} & Electricidad producida por fuentes fotovoltaicas & MWh \\ \hline
     \end{tabular}
     \caption{Tabla de medidas de producción de energía \cite{sustdata}}
-    \label{tab:eventos}
+    \label{tab:prod}
 \end{table}
 
 \subsubsection{Medidas demográficas}
@@ -240,7 +243,7 @@ De forma adicional, el dataset \textit{SustDataED} incluye otra tabla con datos 
 
 \subsubsection{Medidas de eventos de usuario}
 
-Una de las ventajas que proporciona la monitorización del comportamiento eléctrico de un hogar es la realimentación de la información que se produce hacia los mismos usuarios. El dataset recoge en forma de eventos las interacciones que se llevan a cabo con este sistema de realimentación a través de los campos determinados en la Tabla \ref{tab:users}.
+Una de las ventajas que proporciona la monitorización del comportamiento eléctrico de un hogar es la realimentación de la información que se produce hacia los mismos usuarios. El dataset recoge en forma de eventos las interacciones que se llevan a cabo con este sistema de realimentación a través de los campos determinados en la Tabla \ref{tab:users}. 
 
 \vspace{3mm}
 
@@ -263,7 +266,11 @@ Una de las ventajas que proporciona la monitorización del comportamiento eléct
 
 \subsubsection{Medidas de condiciones ambientales y climáticas}
 
-Como se ha introducido al comienzo de la Sección \ref{sec:sustdataed}, el dataset aporta un enfoque medioambiental a los procesos de consumo y producción energética al incluir la recolección de los datos relativos a las condiciones climáticas que se dan en cada instante. En la Tabla \ref{tab:env} se muestran los parámetros que se tienen en cuenta para ello.
+Como se ha introducido al comienzo de la Sección \ref{sec:sustdataed}, el dataset aporta un enfoque medioambiental a los procesos de consumo y producción energética al incluir la recolección de los datos relativos a las condiciones climáticas que se dan en cada instante.
+
+\vspace{3mm}
+
+En la Tabla \ref{tab:env} se muestran los parámetros que se tienen en cuenta en las mediciones. Se incluye un campo dedicado a los eventos climáticos, que aporta información adicional cuando se produce un suceso metereológico determinado.
 
 \vspace{3mm}
 
@@ -287,120 +294,154 @@ Como se ha introducido al comienzo de la Sección \ref{sec:sustdataed}, el datas
     \label{tab:env}
 \end{table}
 
-
-
-
-
-
-
 \subsection{Conclusiones del análisis del dataset \textit{SustDataED}}
+\label{sec:conclusionessustdata}
 
-Una vez realizado un estudio y un análisis en profundidad de los datos proporcionados por el dataset \textit{SustDataED}, se definen a una serie de conclusiones a considerar antes de iniciar la fase de preprocesamiento de los datos.
+Una vez realizado un estudio y un análisis en profundidad de los datos proporcionados por el dataset \textit{SustDataED}, se definen una serie de conclusiones a tener en cuenta antes de iniciar la fase de preprocesamiento de los datos. Por ello, considerando las motivaciones de la realización de este \gls{tfm}, se puede expresar que la utilidad que proporciona el dataset \textit{SustDataED} viene dada principalmente por el uso de las medidas de consumo, de producción y de las condiciones ambientales (ver Tablas \ref{tab:consumo}, \ref{tab:prod} y \ref{tab:env}). 
 
-Teniendo en cuenta las motivaciones de la realización de este \gls{tfm},  
+\vspace{3mm}
 
+El procesamiento que será requerido para estos datos se detallará en la Sección \ref{sec:preprocesado}. No obstante, es importante destacar las características de los datos de producción eléctrica dados por \textit{SustDataED}. Como se ha expuesto anteriormente en la Sección \ref{prodsustdata}, el dataset proporciona esta información en términos globales y después, desagrega los valores energéticos según su fuente de procedencia. En la Sección \ref{sec:preprocesado} de este documento se detallará cómo será imprescindible determinar si estos datos son precisos y evaluar su utilidad específicamente en un entorno de \gls{sg}s como motivo de los objetivos de este \gls{tfm}.
 
-En primer lugar,  en cuanto a los eventos de potencia 
+\vspace{3mm}
 
-%cambiar datos de produccion
-%hablr del nilm de eventos de potencia
-%eventos de usuarios nos da igual
+Por otro lado, en cuanto a los eventos de potencia (ver Tabla \ref{tab:eventos}), como este \gls{tfm} no se basa en el diseño de técnicas \gls{nilm}, ni se pretende establecer una desagregación de potencia a nivel interno de una vivienda, se expone este tipo de datos únicamente a modo de estudio. De la misma forma, sucede en el caso de los eventos de usuario (ver Tabla \ref{tab:users}), los cuales no proporcionan información de utilidad que sea necesaria de procesar en la siguiente fase.
 
-
-
-
-%meter graficas en los anteriores
-%definir que es lo que se va a utilizar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Global Solar Atlas}
+\section{Extracción de datos de producción}
 \label{sec:global}
 
+Como se ha expuesto en las conclusiones del dataset (ver Sección \ref{sec:conclusionessustdata}), en el siguiente paso de este \gls{tfm}, dedicado al preprocesamiento de los datos adquiridos (ver Sección \ref{sec:preprocesado}), se requerirá evaluar la precisión y la utilidad de los datos de producción proporcionados por \textit{SustDataED}. Para ello, esta Sección viene definida con el fin de obtener una fuente de datos de producción energética adicional, que permita contrastar la información adquirida del dataset anteriormente con la misma.
 
-%/cite hue
-%Consumption history data, simulated solar data, and weather data is stored in simple commaseparated-value (CSV) files. The summary data is stored in a fixed-length format to may it easy to
-%read. There are a total of 27 files in this dataset. Table 1 describes the files within the dataset. Data
-%frequency for all files is hourly (in local Pacific timezone). Data was downloaded from BCHydro's
-%customer web porthole by each customer who then donated the data for research. Weather data was
-%downloaded from the nearest Environment Canada [5] weather station. Simulated solar data was
-%generated by a tool provided by the US Department of Energy [4].
+\vspace{3mm}
+
+El proceso de simulación de los datos de producción energética implica recrear un dataset que sea riguroso con la realidad. Para ello, se debe realizar primero un estudio de las características de la localización para poder cuantificar los datos en función de la misma y de cada instante temporal. Posteriormente, se analizarán los resultados y se evaluará su precisión, con el fin de procesarlos y combinarlos con los datos adquiridos de \textit{SustDataED} (ver Sección \ref{sec:preprocesado}). Es decir, será en este paso de preprocesamiento donde se tome la decisión final de selección de la fuente de datos de producción más adecuada.
+
+\subsection{Estudio y análisis de la ubicación}
+
+En cuanto a la ubicación, en este caso será preciso basarse en Funchal, capital de la isla de Madeira (Portugal), ya que el análisis a realizar tiene que ser acorde a los datos recogidos en el dataset \textit{SustDataED}.
+
+\vspace{3mm}
+
+Según los parámetros de clasificación climática de Köppen \cite{koppen}, la ciudad de Funchal se caracteriza por tener un clima mediterráneo. Al ubicarse en una zona subtropical, presenta oscilaciones diarias mínimas, lo que se traduce en escasos cambios de temperatura entre las diferentes estaciones del año. Por ello, los inviernos son suaves y con precipitaciones moderadas, mientras que los veranos son ligeramente más cálidos y secos. 
+
+\vspace{3mm}
+
+No obstante, para el estudio de la generación energética mediante fuentes renovables, se va a poner el foco en el potencial de los recursos solares de la ubicación mediante el empleo del modelo solar denominado como \textit{Solargis}. Este modelo es proporcionado por la plataforma online \textit{Global Solar Atlas} \cite{globalsolar}, la cual es financiada por el \gls{esmap} y administrada por la organización de El Banco Mundial con el objetivo de mapear los recursos de energía renovable a nivel global. En otros términos, se permite el acceso a una gran cantidad mapas y de datos promediados a largo plazo de cualquier punto de la Tierra. \cite{energydata}
+
+\vspace{3mm}
+
+La información sobre los recursos solares y la cuantificación de la energía se suministran a través de esta plataforma siguiendo el estándar GIS ráster o cuadriculado con formatos GeoTIFF o AAIGRID. Para las diferentes capas de datos que se pueden determinar en función de los parámetros de radiación o del potencial fotovoltaico, se sigue una referencia espacial geográfica en base al código EPSG 4326 \cite{epsg}. Este código es asignado por la organización \gls{epsg} para identificar la proyección geográfica empleada, la cual en este caso hace referencia al sistema de coordenadas convencional (latitud-longitud) que se utiliza para la representación cartográfica de la Tierra. Por otro lado, los metadatos correspondientes a las características de cada capa se proveen en formato PDF o XML, siguiendo la estructura de datos geográficos definida por ISO 19115:2003/19139.~\cite{globalsolar} \cite{globalsolarreport}
+
+\vspace{3mm}
+
+Considerando las motivaciones que se persiguen con el empleo de la plataforma \textit{Global Solar Atlas}, es preciso realizar un paso previo al análisis, basado en la identificación de los tipos de capas de datos que se pueden configurar: \cite{globalsolarreport}
+
+\begin{itemize}    
+    \item \gls{dni} (kWh/m²): El índice de radiación directa normal se define como la cantidad de radiación solar que llega perpendicularmente a la superficie de la placa fotovoltaica, sin tener en cuenta los posibles efectos atmosféricos de dispersión o absorción.
+    \item \gls{dif} (kWh/m²): El índice de radiación difusa hace referencia a la porción de radiación dispersada por los las nubes y los gases atmosféricos, lo que produce que provenga de todas las direcciones.
+    \item \gls{ghi} (kWh/m²): El índice de radiación horizontal global viene dado por el sumatorio de la radiación solar directa (\gls{dni}) y la radiación solar difusa dispersada en consecuencia a los efectos de la atmósfera (\gls{dif}).
+    \item \gls{gti} (kWh/m²): El índice de radiación global inclinada se refiere al total de radiación que incide en una superficie inclinada, que generalmente se encuentra ajustada un ángulo óptimo para maximizar la captación en términos anuales. 
+    \item \gls{pvout} (kWh/kWp): El parámetro que mide el potencial energético de los sistemas fotovoltaicos de una ubicación determinada se cuantifica a partir de un sistema de referencia construido por módulos de silicio cristalino, de 1kWp y que se encuentra inclinado un ángulo óptimo.
+\end{itemize}
+
+Es necesario indicar que todos los parámetros anteriores se proporcionan para cada ubicación como valores promedios anuales de los totales diarios. Adicionalmente, otras capas a tener en cuenta para el análisis de los datos podrían ser la temperatura del aire, que determina en gran medida el ambiente de operación de las placas fotovoltaicas, o la elevación del terreno, que puede convertirse en un factor limitante para la instalación de plantas solares. 
+
+\vspace{3mm}
+
+En las Figuras \ref{fig:dni} y \ref{fig:ghi}, se visualizan en formato GeoTIFF los resultados de aplicar las capas de los índices de radiación \gls{dni} y \gls{ghi} al mapa mundial a través de la plataforma \textit{Global Solar Atlas}. Por otro lado, en la Figura \ref{fig:photo} se representa el potencial fotovoltaico dado por el parámetro \gls{pvout}. Como es de esperar, se puede verificar que existe una gran correlación entre los niveles de radiación que se recibe con respecto a la cantidad de energía que se puede generar con una planta solar en una ubicación determinada. 
+
+\vspace{3mm}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/diseno/dni.png}
+    \caption{Mapa mundial del índice de radiación directa normal (\acrshort{dni}) mundial \cite{globalsolar}}
+    \label{fig:dni}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/diseno/ghi.png}
+    \caption{Mapa del índice de radiación horizontal global (\acrshort{ghi}) mundial \cite{globalsolar}}
+    \label{fig:ghi}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/diseno/photovoltaic.png}
+    \caption{Mapa del potencial de producción energética fotovoltaica (\acrshort{pvout}) mundial \cite{globalsolar}}
+    \label{fig:photo}
+\end{figure}
+
+\vspace{3mm}
+
+En cuanto a la isla de Madeira, ocurre de la misma forma y se puede comprobar con más detalle a través de las Figuras \ref{fig:madeiradni}, \ref{fig:madeiraghi} y \ref{fig:madeirapvout}. Los valores para cada uno de los índices de radiación estudiados anteriormente se extraen específicamente desde la plataforma \textit{Global Solar Atlas} para el caso de la ciudad de Funchal y se recogen en la Tabla \ref{tab:global}.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{AAAAAA} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Parámetro} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}kWh/m²/día} & kWh/m²/año \\ \hline
+    \gls{dni} & 3,698 & 1349,9 \\ \hline
+    \gls{dif} & 2,038 & 743,8 \\ \hline
+    \gls{ghi} & 4,345 & 1586,1 \\ \hline
+    \gls{gti} & 4,730 & 1726,3 \\ \hline
+    \end{tabular}
+    \caption{Tabla de valores extraídos para cada índice de radiación en el municipio de Funchal~\cite{globalsolar}}
+    \label{tab:global}
+\end{table}
 
 
 
 
 
+Para determinar el potencial energético que supondría la instalación de un sistema fotovoltaico, es preciso configurar los siguientes parámetros a través de la plataforma:
 
 
 
 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/diseno/madeiradni.png}
+    \caption{Mapa del índice de radiación directa normal (\acrshort{dni}) de Madeira \cite{globalsolar}}
+    \label{fig:madeiradni}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/diseno/madeiraghi.png}
+    \caption{Mapa del índice de radiación horizontal global (\acrshort{ghi}) de Madeira \cite{globalsolar}}
+    \label{fig:madeiraghi}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/diseno/madeirapvout.png}
+    \caption{Mapa del potencial de producción energética fotovoltaica (\acrshort{pvout}) de Madeira \cite{globalsolar}}
+    \label{fig:madeirapvout}
+\end{figure}
 
 
 
 
+% “En regiones con un buen recurso solar, como Madeira, un sistema solar residencial típico de tamaño moderado podría generar alrededor de 3 a 5 kilovatios-hora (kWh) por día por cada kilovatio pico (kWp) instalado.”
 
 
 
 
+% •	Ver pdf PV Systems Performance in Madeira, gráficas interesantes, indica zonas de madeira con mayor producción
+% •	Ver Solar Energy Resource in Madeira Islands, gráficas interesantes
 
 
 
 
+ 
 
 
+\subsection{Extracción y cuantificación de los datos}
 
+%Simulated solar data was generated by a tool provided by the US Department of Energy [4].
 
-%hacer intro en relacion con el apartado de big data
-
-%%para intro -->
-
-%cite stab
-
-%There are two main types of renewable energy data: geospatial and
-% temporal data. Geospatial data is concerned with the locations, while
-% temporal data is concerned with data time characteristics. For renewable energy, Geospatial data may include the location of transmission
-% infrastructure, cities, factories, hospitals, schools, roads, etc. (Shekhar
-% et al., 2012); this data is based mainly on Geographical Information Systems (GIS) tools. Temporal data may include the consumption patterns
-% with respect to time (annually, monthly, weekly, daily, and hourly)
-% besides the amount of energy (e.g., sunshine) during different times
-% of day or year.
-% A third type user classification data can be the social classification,
-% users can be classified into categories not only according to geographic
-% areas but also to their social stratums that can be an indicator for daily
-% consumption curves (Zhou et al., 2016a). The weather data (e.g., angle
-% of the sun rays, wind speed and direction, temperature, pressure, cloud
-% cover, humidity, etc.) play a basic role in decision-making support in
-% power stations (Zhou et al., 2016b). Hence, the integration between
-% supply and demand data, spatial data, and temporal data can support
-% strategic decisions such as location selection for renewable energy
-% stations to improve output, productivity and efficiency. For a comprehensive review on big data and its techniques for energy systems, the
-% reader is referred to the works by Jiang et al. (2016), Molina-Solana
-% et al. (2017), Ma et al. (2017).
+% •	HUE pdf -> Según bibliografía dataset HUE (este dataset solo tenía consumo residencial), la producción se calcula según ubicación y se elige Funchal, Madeira -> https://pvwatts.nrel.gov/pvwatts.php
