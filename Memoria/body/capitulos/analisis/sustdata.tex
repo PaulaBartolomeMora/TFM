@@ -266,11 +266,7 @@ Una de las ventajas que proporciona la monitorización del comportamiento eléct
 
 \subsubsection{Medidas de condiciones ambientales y climáticas}
 
-Como se ha introducido al comienzo de la Sección \ref{sec:sustdataed}, el dataset aporta un enfoque medioambiental a los procesos de consumo y producción energética al incluir la recolección de los datos relativos a las condiciones climáticas que se dan en cada instante.
-
-\vspace{3mm}
-
-En la Tabla \ref{tab:env} se muestran los parámetros que se tienen en cuenta en las mediciones. Se incluye un campo dedicado a los eventos climáticos, que aporta información adicional cuando se produce un suceso metereológico determinado.
+Como se ha introducido al comienzo de la Sección \ref{sec:sustdataed}, el dataset aporta un enfoque medioambiental a los procesos de consumo y producción energética al incluir la recolección de los datos relativos a las condiciones climáticas que se dan en cada instante. En la Tabla \ref{tab:env} se muestran los parámetros que se tienen en cuenta en las mediciones. Se incluye un campo dedicado a los eventos climáticos, que aporta información adicional cuando se produce un suceso metereológico determinado.
 
 \vspace{3mm}
 
@@ -297,36 +293,40 @@ En la Tabla \ref{tab:env} se muestran los parámetros que se tienen en cuenta en
 \subsection{Conclusiones del análisis del dataset \textit{SustDataED}}
 \label{sec:conclusionessustdata}
 
-Una vez realizado un estudio y un análisis en profundidad de los datos proporcionados por el dataset \textit{SustDataED}, se definen una serie de conclusiones a tener en cuenta antes de iniciar la fase de preprocesamiento de los datos. Por ello, considerando las motivaciones de la realización de este \gls{tfm}, se puede expresar que la utilidad que proporciona el dataset \textit{SustDataED} viene dada principalmente por el uso de las medidas de consumo, de producción y de las condiciones ambientales (ver Tablas \ref{tab:consumo}, \ref{tab:prod} y \ref{tab:env}). 
+Una vez realizado el estudio y el análisis en profundidad de los datos proporcionados por el dataset \textit{SustDataED}, se definen una serie de conclusiones a tener en cuenta antes de iniciar la fase de preprocesamiento de los datos. Por ello, considerando las motivaciones de la realización de este \gls{tfm}, se puede expresar que la utilidad que proporciona el dataset \textit{SustDataED} viene dada principalmente por el uso de las medidas de consumo, de producción y de las condiciones ambientales (ver Tablas \ref{tab:consumo}, \ref{tab:prod} y \ref{tab:env}). 
 
 \vspace{3mm}
 
-El procesamiento que será requerido para estos datos se detallará en la Sección \ref{sec:preprocesado}. No obstante, es importante destacar las características de los datos de producción eléctrica dados por \textit{SustDataED}. Como se ha expuesto anteriormente en la Sección \ref{prodsustdata}, el dataset proporciona esta información en términos globales y después, desagrega los valores energéticos según su fuente de procedencia. En la Sección \ref{sec:preprocesado} de este documento se detallará cómo será imprescindible determinar si estos datos son precisos y evaluar su utilidad específicamente en un entorno de \gls{sg}s como motivo de los objetivos de este \gls{tfm}.
+El procesamiento que será requerido para estos datos se detallará en la Sección \ref{sec:preprocesado}. No obstante, es importante incidir en las características de los datos de producción eléctrica dados por \textit{SustDataED}. Como se ha expuesto anteriormente en la Sección \ref{sec:prodsustdata}, el dataset proporciona esta información en términos globales y después, desagrega los valores energéticos según su fuente de procedencia. Por lo tanto, en la Sección \ref{sec:preprocesado} de este documento se detallará cómo será imprescindible determinar si estos datos son precisos y evaluar su utilidad específicamente en un entorno de \gls{sg}s como motivo de los objetivos de este \gls{tfm}.
 
 \vspace{3mm}
 
 Por otro lado, en cuanto a los eventos de potencia (ver Tabla \ref{tab:eventos}), como este \gls{tfm} no se basa en el diseño de técnicas \gls{nilm}, ni se pretende establecer una desagregación de potencia a nivel interno de una vivienda, se expone este tipo de datos únicamente a modo de estudio. De la misma forma, sucede en el caso de los eventos de usuario (ver Tabla \ref{tab:users}), los cuales no proporcionan información de utilidad que sea necesaria de procesar en la siguiente fase.
 
-\section{Extracción de datos de producción}
+\section{Simulación de datos de producción}
 \label{sec:global}
 
-Como se ha expuesto en las conclusiones del dataset (ver Sección \ref{sec:conclusionessustdata}), en el siguiente paso de este \gls{tfm}, dedicado al preprocesamiento de los datos adquiridos (ver Sección \ref{sec:preprocesado}), se requerirá evaluar la precisión y la utilidad de los datos de producción proporcionados por \textit{SustDataED}. Para ello, esta Sección viene definida con el fin de obtener una fuente de datos de producción energética adicional, que permita contrastar la información adquirida del dataset anteriormente con la misma.
+Como se ha expuesto en el Apartado anterior de conclusiones del dataset (ver Sección \ref{sec:conclusionessustdata}), en la siguiente etapa de este \gls{tfm}, dedicada al preprocesamiento de los datos (ver Sección \ref{sec:preprocesado}), se requerirá evaluar la precisión y la utilidad de los datos de producción proporcionados por \textit{SustDataED}. Para ello, la presente Sección viene definida por la necesidad de obtener una fuente de datos de producción energética adicional, que permita contrastar la información adquirida del dataset anteriormente con la misma.
 
 \vspace{3mm}
 
-El proceso de simulación de los datos de producción energética implica recrear un dataset que sea riguroso con la realidad. Para ello, se debe realizar primero un estudio de las características de la localización para poder cuantificar los datos en función de la misma y de cada instante temporal. Posteriormente, se analizarán los resultados y se evaluará su precisión, con el fin de procesarlos y combinarlos con los datos adquiridos de \textit{SustDataED} (ver Sección \ref{sec:preprocesado}). Es decir, será en este paso de preprocesamiento donde se tome la decisión final de selección de la fuente de datos de producción más adecuada.
+Atendiendo a este fin, se procederá a emplear varias herramientas de análisis y simulación de datos de producción energética, detallándose a su vez, sus características de funcionamiento y la configuración necesaria. Cabe destacar que el proceso de simulación de los datos que se va a llevar a cabo implica recrear un dataset que sea riguroso con la realidad.
+
+\vspace{3mm}
+
+Por lo tanto, en primera instancia, se deberá llevar a cabo un estudio y un análisis específico de las características geográficas y climáticas a largo plazo de la localización que se tomará como base. Por consiguiente, se cuantificarán los datos mediante una herramienta de simulación en función del estudio anterior. Finalmente, se analizarán los resultados y se evaluará su precisión, con el fin de procesarlos y combinarlos con los datos adquiridos de \textit{SustDataED} (ver Sección \ref{sec:preprocesado}). Es decir, será en esta fase de preprocesamiento donde se tome la decisión final de selección de la fuente de datos de producción más adecuada para el desarrollo de este \gls{tfm}.
 
 \subsection{Estudio y análisis de la ubicación}
 
-En cuanto a la ubicación, en este caso será preciso basarse en Funchal, capital de la isla de Madeira (Portugal), ya que el análisis a realizar tiene que ser acorde a los datos recogidos en el dataset \textit{SustDataED}.
+En cuanto a la ubicación, en este caso será preciso basarse concretamente en Funchal, capital de la isla de Madeira (Portugal), ya que el análisis a realizar tiene que ser acorde a los datos recogidos en el dataset \textit{SustDataED}.
 
 \vspace{3mm}
 
-Según los parámetros de clasificación climática de Köppen \cite{koppen}, la ciudad de Funchal se caracteriza por tener un clima mediterráneo. Al ubicarse en una zona subtropical, presenta oscilaciones diarias mínimas, lo que se traduce en escasos cambios de temperatura entre las diferentes estaciones del año. Por ello, los inviernos son suaves y con precipitaciones moderadas, mientras que los veranos son ligeramente más cálidos y secos. 
+Según los parámetros de clasificación climática de Köppen \cite{koppen}, la ciudad de Funchal se caracteriza por tener un clima mediterráneo. Al localizarse en una zona subtropical, presenta oscilaciones diarias mínimas, lo que se traduce en escasos cambios de temperatura entre las diferentes estaciones del año. Por ello, los inviernos son suaves y con precipitaciones moderadas, mientras que los veranos tienden a ser ligeramente más cálidos y secos. 
 
-\vspace{3mm}
+\subsubsection{Plataforma \textit{Global Solar Atlas}}
 
-No obstante, para el estudio de la generación energética mediante fuentes renovables, se va a poner el foco en el potencial de los recursos solares de la ubicación mediante el empleo del modelo solar denominado como \textit{Solargis}. Este modelo es proporcionado por la plataforma online \textit{Global Solar Atlas} \cite{globalsolar}, la cual es financiada por el \gls{esmap} y administrada por la organización de El Banco Mundial con el objetivo de mapear los recursos de energía renovable a nivel global. En otros términos, se permite el acceso a una gran cantidad mapas y de datos promediados a largo plazo de cualquier punto de la Tierra. \cite{energydata}
+Tomando en consideración lo anterior, para conocer el potencial de los recursos solares que presenta la ubicación se va a proceder al empleo del modelo solar \textit{Solargis}, proporcionado por la plataforma online \textit{Global Solar Atlas}\footnote{https://globalsolaratlas.info/map}. Esta plataforma es financiada por el \gls{esmap} y administrada por la organización de El Banco Mundial con el objetivo de mapear los recursos de energía renovable a nivel global, permitiendo el acceso a una gran cantidad mapas y de datos promediados a largo plazo de cualquier punto de la Tierra. \cite{globalsolar} \cite{energydata}
 
 \vspace{3mm}
 
@@ -341,14 +341,14 @@ Considerando las motivaciones que se persiguen con el empleo de la plataforma \t
     \item \gls{dif} (kWh/m²): El índice de radiación difusa hace referencia a la porción de radiación dispersada por los las nubes y los gases atmosféricos, lo que produce que provenga de todas las direcciones.
     \item \gls{ghi} (kWh/m²): El índice de radiación horizontal global viene dado por el sumatorio de la radiación solar directa (\gls{dni}) y la radiación solar difusa dispersada en consecuencia a los efectos de la atmósfera (\gls{dif}).
     \item \gls{gti} (kWh/m²): El índice de radiación global inclinada se refiere al total de radiación que incide en una superficie inclinada, que generalmente se encuentra ajustada un ángulo óptimo para maximizar la captación en términos anuales. 
-    \item \gls{pvout} (kWh/kWp): El parámetro que mide el potencial energético de los sistemas fotovoltaicos de una ubicación determinada se cuantifica a partir de un sistema de referencia construido por módulos de silicio cristalino, de 1kWp y que se encuentra inclinado un ángulo óptimo.
+    \item \gls{pvout} (kWh/kWp): El parámetro que mide el potencial energético de los sistemas fotovoltaicos de una ubicación determinada se cuantifica a partir de un sistema de referencia construido por módulos de silicio cristalino, de 1kWp (kilovatio pico) y que se encuentra inclinado un ángulo óptimo.
 \end{itemize}
 
 Es necesario indicar que todos los parámetros anteriores se proporcionan para cada ubicación como valores promedios anuales de los totales diarios. Adicionalmente, otras capas a tener en cuenta para el análisis de los datos podrían ser la temperatura del aire, que determina en gran medida el ambiente de operación de las placas fotovoltaicas, o la elevación del terreno, que puede convertirse en un factor limitante para la instalación de plantas solares. 
 
 \vspace{3mm}
 
-En las Figuras \ref{fig:dni} y \ref{fig:ghi}, se visualizan en formato GeoTIFF los resultados de aplicar las capas de los índices de radiación \gls{dni} y \gls{ghi} al mapa mundial a través de la plataforma \textit{Global Solar Atlas}. Por otro lado, en la Figura \ref{fig:photo} se representa el potencial fotovoltaico dado por el parámetro \gls{pvout}. Como es de esperar, se puede verificar que existe una gran correlación entre los niveles de radiación que se recibe con respecto a la cantidad de energía que se puede generar con una planta solar en una ubicación determinada. 
+En las Figuras \ref{fig:dni} y \ref{fig:ghi}, se visualizan en formato GeoTIFF los resultados de aplicar las capas de los índices de radiación \gls{dni} y \gls{ghi} al mapa mundial a través de la plataforma \textit{Global Solar Atlas}. Por otro lado, en la Figura \ref{fig:photo} se representa el potencial fotovoltaico dado por el parámetro \gls{pvout}. Como es de esperar, se puede verificar que existe una gran correlación entre los niveles de radiación recibidos con respecto a la cantidad de energía que se puede generar con una planta solar en una ubicación determinada. 
 
 \vspace{3mm}
 
@@ -359,12 +359,16 @@ En las Figuras \ref{fig:dni} y \ref{fig:ghi}, se visualizan en formato GeoTIFF l
     \label{fig:dni}
 \end{figure}
 
+\vspace{3mm}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{img/diseno/ghi.png}
     \caption{Mapa del índice de radiación horizontal global (\acrshort{ghi}) mundial \cite{globalsolar}}
     \label{fig:ghi}
 \end{figure}
+
+\vspace{3mm}
 
 \begin{figure}[H]
     \centering
@@ -375,7 +379,9 @@ En las Figuras \ref{fig:dni} y \ref{fig:ghi}, se visualizan en formato GeoTIFF l
 
 \vspace{3mm}
 
-En cuanto a la isla de Madeira, ocurre de la misma forma y se puede comprobar con más detalle a través de las Figuras \ref{fig:madeiradni}, \ref{fig:madeiraghi} y \ref{fig:madeirapvout}. Los valores para cada uno de los índices de radiación estudiados anteriormente se extraen específicamente desde la plataforma \textit{Global Solar Atlas} para el caso de la ciudad de Funchal y se recogen en la Tabla \ref{tab:global}.
+De la misma forma, lo anterior se hace patente para el caso de la isla de Madeira como se puede visualizar en las Figuras \ref{fig:madeiradni}, \ref{fig:madeiraghi} y \ref{fig:madeirapvout}. Desde la plataforma \textit{Global Solar Atlas} también, se extraen y se recogen en la Tabla \ref{tab:global} los valores de los índices de radiación configurados específicamente para la localización de la ciudad de Funchal. 
+
+\vspace{5mm}
 
 \begin{table}[h!]
     \centering
@@ -388,19 +394,15 @@ En cuanto a la isla de Madeira, ocurre de la misma forma y se puede comprobar co
     \gls{ghi} & 4,345 & 1586,1 \\ \hline
     \gls{gti} & 4,730 & 1726,3 \\ \hline
     \end{tabular}
-    \caption{Tabla de valores extraídos para cada índice de radiación en el municipio de Funchal~\cite{globalsolar}}
+    \caption{Tabla de valores extraídos para cada índice de radiación en la ciudad de Funchal~\cite{globalsolar}}
     \label{tab:global}
 \end{table}
 
+\vspace{3mm}
 
+Por tanto, se puede comprobar a través de estos valores y de la leyenda proporcionada en las figuras anteriores, que Funchal se percibe como una ciudad con un potencial de recursos solares medio alto. Esto es coherente con su localización subtropical y con la elevación del terreno. Es decir, al encontrarse en una zona de costa ronda en valores cercanos a los 100 metros (concretamente 137 metros en la ubicación seleccionada) y se reduce ligeramente el nivel de energía solar captable respecto a otras zonas de la isla más montañosas.
 
-
-
-Para determinar el potencial energético que supondría la instalación de un sistema fotovoltaico, es preciso configurar los siguientes parámetros a través de la plataforma:
-
-
-
-
+\clearpage
 
 \begin{figure}[H]
     \centering
@@ -423,10 +425,88 @@ Para determinar el potencial energético que supondría la instalación de un si
     \label{fig:madeirapvout}
 \end{figure}
 
+\pagebreak
+
+Por otro lado, para calcular de forma aproximada la cantidad de energía que supondría la instalación de un sistema fotovoltaico en la ciudad de Funchal, es preciso configurar primero los siguientes parámetros a través de la plataforma:
+
+\begin{itemize}
+    \item Tipo y tamaño de sistema fotovoltaico: Se permite seleccionar entre un sistema enfocado a una vivienda, a un edificio comercial o a una planta solar de grandes dimensiones. En este caso, como se toma como base el estudio de producción energética en un entorno residencial, se configura el primero. Es preciso indicar que en la plataforma la configuración de un sistema fotovoltaico para un entorno residencial no considera la opción de almacenamiento de electricidad.
+    \item Capacidad de instalación: Se toma una capacidad máxima de generación de 4kWp (kilovatios pico) para el sistema. En otros términos, este valor determina la cantidad de energía que producirían los paneles en condiciones óptimas.
+    \item Azimut \cite{azimut}: Se determina como el ángulo de orientación horizontal y, en función de su valor, define la proyección de los paneles solares en dirección norte, sur, este u oeste. Se indica un valor de 180 grados para establecer una orientación hacia el sur. 
+    \item Inclinación: La plataforma establece como ángulo óptimo para la localización de Funchal un ángulo de 26º, por lo que se configura la instalación de los paneles solares sobre rieles sujetos a un tejado con esta misma inclinación.
+\end{itemize}
+
+Una vez configurados los parámetros expuestos, se obtienen como resultados la trayectoria solar diaria y los perfiles de radiación y generación fotovoltaica diarios y mensuales para la ubicación de Funchal. En la Figura \ref{fig:azimut} se representa la trayectoria solar diaria, en la que se puede visualizar la comparación de la elevación que percibe el sol en función del instante del año, siendo máxima durante el solsticio de junio, y mínima, durante el de diciembre. En el caso del equinoccio, se sigue una curva con valores promedios, al existir una igualdad entre las horas de día y las de noche. 
+
+\vspace{3mm}
+
+Por otro lado, en la Figura \ref{fig:average} se modelan gráficamente los valores promedios tanto de potencial de producción energética, como de radiación directa normal \gls{dni} para visualizar la correlación existente entre los mismos en los distintos meses del año. El valor promedio máximo energético se alcanza en el mes de julio, con un valor de 565kWh, ocurriendo de la misma forma para el valor promedio máximo de radiación, cuyo alcance es de 163,7kWh/m² para este mes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{img/diseno/azimut.png}
+    \caption{Representación de la trayectoria solar percibida en la localización de la ciudad de Funchal \cite{globalsolar}}
+    \label{fig:azimut}
+\end{figure}
+
+\vspace{3mm}
+
+\begin{figure}[H]
+    \centering    
+    \begin{subfigure}{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth,height=5cm]{img/diseno/averagepvout.png}
+        \label{fig:averagepvout}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth,height=5cm]{img/diseno/averagedni.png}
+        \label{fig:averagedni}
+    \end{subfigure}    
+    \caption{Comparación de valores promedios mensuales de potencial de producción energética fotovoltaica (\acrshort{pvout}) respecto a la radiación directa normal (\acrshort{dni}) \cite{globalsolar}}
+    \label{fig:average}
+\end{figure}
+
+De la misma forma, se representan en la Figura \ref{fig:averagehour} los perfiles diarios propromedios de radiación y generación fotovoltaica en función del mes del año, en los cuales se encuentran valores máximos en las horas centrales de los meses de julio y agosto. 
+
+\begin{figure}[H]
+    \centering    
+    \begin{subfigure}{0.75\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/diseno/averagepvouthour.png}
+        \label{fig:averagepvouthour}
+    \end{subfigure}\hfill
+
+    \begin{subfigure}{0.75\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/diseno/averagednihour.png}
+        \label{fig:averagepdnihour}
+    \end{subfigure}    
+    \caption{Perfiles promedios de potencial de producción energética fotovoltaica (\acrshort{pvout}) y de radiación directa normal (\acrshort{dni}) \cite{globalsolar}}
+    \label{fig:averagehour}
+\end{figure}
+
+Tomando en consideración los parámetros configurados y los resultados obtenidos, se puede cuantificar finalmente, que la instalación de un sistema fotovoltaico en un edificio residencial de Funchal proporciona una generación de energía promedia anual igual a 5433kWh.
+
+%ver pag 26 technical report -> losses
+
+
+% Total photovoltaic power output and Global tilted irradiation (4)
+% 0.015MWh per day 4.711kWh/m2 per day
+% 5433kWh per year 1719.4 kWh/m2 per year
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{img/diseno/orient.jpg}
+%     \caption{Geometría solar para la instalación de paneles solares \cite{azimut}}
+%     \label{fig:orient}
+% \end{figure}
 
 
 
-% “En regiones con un buen recurso solar, como Madeira, un sistema solar residencial típico de tamaño moderado podría generar alrededor de 3 a 5 kilovatios-hora (kWh) por día por cada kilovatio pico (kWp) instalado.”
+
+
+
 
 
 
@@ -440,8 +520,13 @@ Para determinar el potencial energético que supondría la instalación de un si
  
 
 
-\subsection{Extracción y cuantificación de los datos}
+\subsection{Cuantificación de los datos}
 
-%Simulated solar data was generated by a tool provided by the US Department of Energy [4].
+Una vez que se han concretado a modo de análisis las características geográficas, climáticas y energéticas de la localización seleccionada en la ciudad de Funchal, se procederá a realizar el paso dedicado a la obtención de los datos de producción fotovoltaica por medio de la simulación. Para ello, se hará uso de la herramienta online \textit{PVWatts} \footnote{https://pvwatts.nrel.gov/pvwatts.php}, proporcionada por el \gls{nrel}, que se trata del laboratorio nacional del Departamento de Energía de Estados Unidos.
+
+
+
 
 % •	HUE pdf -> Según bibliografía dataset HUE (este dataset solo tenía consumo residencial), la producción se calcula según ubicación y se elige Funchal, Madeira -> https://pvwatts.nrel.gov/pvwatts.php
+NREL is a national laboratory of the U.S. Department of Energy, Office of Energy Efficiency and Renewable Energy,
+Operated by the Alliance for Sustainable Energy, LLC.
