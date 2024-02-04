@@ -4,10 +4,9 @@ TOPO_TEST='test_topo.py'
 # Global PATH vars
 RESULT_DIR='./results'
 TOPO_DIR='./data/topos'
-DATASETS_DIR='./datasets'
 
 SIM_TESTS_DIR='./data/simtests' ##
-DATETIME='2011-02-19_15'
+DATETIME='2011-06-26_15'
 SIM_TESTS_FILE="/test_${DATETIME}.csv"
 
 # Experiment vars
@@ -44,7 +43,7 @@ do
                         for topo_criterion in ${TOPO_CRITERIONS[@]}
                         do 
                             echo "[$(date +%T)][INFO] RUNNING: python3 ${TOPO_TEST} ${RESULT_DIR}/exp_loadLimit_${topo_load_limit}_behavioral_${topo_behave}_${DATETIME} ${TOPO_DIR}/${topo_name}-${topo_num_node}-${topo_dregree}/seed_${topo_seed}/ ${topo_seed} ${topo_criterion} ${topo_behave} ${topo_load_limit} ${TOPO_RUNS}"
-                            python3 ${TOPO_TEST} ${RESULT_DIR}/exp_loadLimit_${topo_load_limit}_behavioral_${topo_behave} ${TOPO_DIR}/${topo_name}-${topo_num_node}-${topo_dregree}/seed_${topo_seed}/ ${topo_seed} ${topo_criterion} ${topo_behave} ${topo_load_limit} ${TOPO_RUNS} ${SIM_TESTS_DIR} ${SIM_TESTS_FILE} ${DATASETS_DIR}/exp_${DATETIME}/${topo_name}-${topo_num_node}-${topo_dregree}
+                            python3 ${TOPO_TEST} ${RESULT_DIR}/exp_${DATETIME}_loadLimit_${topo_load_limit}_behavioral_${topo_behave} ${TOPO_DIR}/${topo_name}-${topo_num_node}-${topo_dregree}/seed_${topo_seed}/ ${topo_seed} ${topo_criterion} ${topo_behave} ${topo_load_limit} ${TOPO_RUNS} ${SIM_TESTS_DIR} ${SIM_TESTS_FILE} ${RESULT_DIR}/dataset_exp_${DATETIME}/${topo_name}-${topo_num_node}-${topo_dregree}
                             sleep 0.25
                         done
                     done
