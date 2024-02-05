@@ -2,6 +2,111 @@
 \section{Preprocesado de los datos}
 \label{sec:preprocesado}
 
+En las Secciones anteriores, se ha detallado el proceso de búsqueda y recolección de datos de comportamiento energético en entornos residenciales a partir de las fuentes públicas disponibles. Este proceso ha venido acompañado por un estudio y análisis en profundidad para exponer de forma justificada las razones de la selección de los conjuntos de datos que servirán como base de este \gls{tfm}. 
+
+\vspace{3mm}
+
+También, se ha llevado a cabo una investigación enfocada en dos herramientas de extracción de información geográfica, climática y energética. El fin de este proceso ha sido incorporar una nueva fuente de datos con parámetros relacionados con la producción de electricidad, la cual se ha construido a partir de la simulación de un caso real.
+
+\vspace{3mm}
+
+Entonces, se puede expresar que la ejecución de los procesos anteriores proporcionará múltiples ficheros de datos que soporten extensas cantidades de información. En consecuencia, estos ficheros se caracterizarán por su gran tamaño y su dificultad de manejo y empleo. Por ello, se introduce esta Sección con el fin principal de realizar un procesamiento exhaustivo y reducir los conjuntos de datos únicamente a las muestras que aporten información de utilidad para llevar a cabo el desarrollo posterior. Teniendo en cuenta el objetivo definido, se va a estructurar esta Sección en diferentes fases, enfocándolas en cada uno de los pasos que se deberán realizar para procesar los datos.
+
+\vspace{3mm}
+
+Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. De forma adicional, su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento de los datos.
+
+\subsection{Datos de consumo}
+
+\subsubsection{Análisis de la situación inicial}
+
+El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba en la Sección \ref{sec:sustdataed} como un conjunto de datos que abría multitud de posibilidades de implementación al abarcar un extenso lapso temporal de medidas correspondientes a un gran número de viviendas. Estas medidas venían dadas por una frecuencia de muestreo de un minuto, lo que aportaba una buena resolución para analizar el comportamiento eléctrico de todos los usuarios implicados. 
+
+\vspace{3mm}
+
+Como también se exponía en la Sección comentada, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, los cuales se caracterizaban por abarcar diferentes rangos temporales de medición y un conjunto de viviendas determinado. Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue. \cite{sustdata}
+
+\vspace{3mm}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|c|c|cc}
+    \hline
+    \rowcolor[HTML]{C0C0C0} 
+    \multicolumn{1}{|l|}{\cellcolor[HTML]{C0C0C0}Despliegue} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Muestras} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Días} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Fecha de inicio} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Fecha de fin} \\ \hline
+    \multicolumn{1}{|c|}{1} & 3.474.557 & 123 & \multicolumn{1}{c|}{10/07/2010} & \multicolumn{1}{c|}{10/11/2010} \\ \hline
+    \multicolumn{1}{|c|}{2} & 12.481.536 & 504 & \multicolumn{1}{c|}{25/11/2010} & \multicolumn{1}{c|}{20/04/2012} \\ \hline
+    \multicolumn{1}{|c|}{3} & 5.671.576 & 298 & \multicolumn{1}{c|}{01/08/2012} & \multicolumn{1}{c|}{25/05/2013} \\ \hline
+    \multicolumn{1}{|c|}{4} & 2.884.512 & 219 & \multicolumn{1}{c|}{31/07/2013} & \multicolumn{1}{c|}{10/03/2014} \\ \hline
+    \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF}24.512.181} & \multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF}1144} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{2-3}
+    \end{tabular}
+    \caption{Resumen de los datos de consumo del dataset \textit{SustDataED} \cite{sustdata}}
+    \label{tab:resumen}
+\end{table}
+
+\vspace{3mm}
+
+Tomando lo anterior en consideración, en este paso, enfocado al análisis de la situación inicial del conjunto, es preciso tener el conocimiento de los ficheros de datos de consumo de los que se va a partir. Para ello, se añade la Tabla \ref{tab:fichconsumo}, la cual expone la información relativa a cada despliegue y a los tamaños de cada uno de estos ficheros. 
+
+\vspace{3mm}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{C0C0C0}
+    \multicolumn{1}{|l|}{\cellcolor[HTML]{C0C0C0}Despliegue} & Fichero de muestras & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Tamaño (MB)} \\
+    \hline
+    1 & power\_samples\_d1\_1 & 86.38 \\
+      & power\_samples\_d1\_2 & 69.99 \\
+    \hline
+    2 & power\_samples\_d2\_1 & 289.81 \\
+      & power\_samples\_d2\_2 & 265.13 \\
+      & power\_samples\_d2\_3 & 283.27 \\
+      & power\_samples\_d2\_4 & 311.89 \\
+    \hline
+    3 & power\_samples\_d3\_1 & 259.92 \\
+      & power\_samples\_d3\_2 & 233.69 \\
+      & power\_samples\_d3\_3 & 272.23 \\
+    \hline
+    4 & power\_samples\_d4\_1 & 250.12 \\
+      & power\_samples\_d4\_2 & 252.84 \\
+    \hline
+    \end{tabular}
+    \caption{Resumen de las características de los ficheros de los despliegues de \textit{SustDataED}}
+    \label{tab:fichconsumo}
+\end{table}
+
+\vspace{3mm}
+
+Como se puede comprobar, a priori la mayoría no precisan de un volumen manejable, por lo que la primera acción a realizar será dividir los mismos en nuevos ficheros que supongan un tamaño menor del dado. Esto sobre todo será importante a la hora de trabajar con el repositorio de GitHub, puesto que existe el factor limitante de que el tamaño máximo permitido por archivo es de 100MB. 
+
+\vspace{3mm}
+
+No obstante, antes de dividir los ficheros, es importante volver a la Tabla que hace referencia a las medidas de consumo energético (ver Tabla \ref{tab:consumo}) para observar que estos ficheros contienen una columna dedicada a la marca de tiempo (\textit{timestamp}) del instante en el que se adquirió la medida. A modo de simplificar esta información temporal, se creará el \textit{notebook} \textit{preprocessing\_nodes.ipynb}, que añadirá dos nuevas columnas al dataset para separar la fecha (columna \textit{datetime}) y la hora (columna \textit{hour}). 
+
+\vspace{3mm}
+%codigo timestamp processing
+
+Además, en este \textit{notebook} se comprobará también, si existen filas con valores \textit{NaN} que puedan perjudicar al análisis de los datos. Como ventaja, el dataset \textit{SustDataED} aporta la columna \textit{miss\_flag} (ver Tabla \ref{tab:consumo}) para determinar si para cierto instante temporal se ha producido la adquisición de forma incorrecta o con valores vacíos. Por tanto, la acción a desarrollar será comprobar en todo el conjunto cuándo este valor se encuentra activo y, en ese caso, eliminar la fila respectiva.
+
+\vspace{3mm}
+%codigo miss flag
+
+A modo de resumen, se puede expresar entonces, que se seguirá la siguiente secuencia de pasos en esta primera fase: crear las nuevas columnas temporales, eliminar las filas que estén completamente vacías y dividir los ficheros para ajustar su tamaño a un máximo de 100MB. Es obligatorio seguir este orden, puesto que no sería eficiente extraer los fragmentos del conjunto de datos y, después, añadir información nueva. En otros términos, se estaría superando el tamaño máximo ajustado de los nuevos ficheros de salida.
+
+\vspace{3mm}
+
+Volviendo al proceso de división de los ficheros, se creará otro \textit{notebook} de \textit{Jupyter}, denominado como \textit{split.ipynb}. En primer lugar, se importará al mismo la librería de \textit{Python} \textit{csv}, enfocada al tratamiento de archivos con formato .csv. Después, se escribirá una función que, a partir de un fichero de entrada, itere a través de sus filas de datos hasta llegar al volumen máximo determinado y obtener a la salida el nuevo archivo en la ruta indicada. Para cada nueva fragmentación de los datos se incluirá el encabezado con los nombres de cada uno de los campos.
+
+\vspace{3mm}
+%codigo split
+
+
+
+
+
+
 %meter graficas del paper de sustdata
 %meter graficas de sustdata (ej. consumo de un hogar y tal, correlacion prod-clima)
 %definir que es lo que se va a utilizar
@@ -13,15 +118,9 @@
 % 7 y 7.1 del AI-based FDI Countermeasure for IoE Smart Grids
 
 
-%The SustData dataset contains, at the time of this writing
-% (March 10, 2014), over 50 million individual records of electric 
-% energy related data, spanning a total of 1144 distinct days since 
-% the 29th of July 2010.
+
 
 %hacerme una idea de la estructura -> ver pag 37 AI-based-FDI-Countermeasure-for-IoE-Smart-Grids
-
-
-
 
 
 

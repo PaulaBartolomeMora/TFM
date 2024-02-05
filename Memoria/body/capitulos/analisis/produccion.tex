@@ -269,8 +269,9 @@ Una de las ventajas de uso que permite la herramienta \textit{PVWatts} es la pos
 \end{itemize}
 
 Finalmente, las pérdidas totales del sistema se pueden cuantificar a partir de la siguiente expresión:
-    \[100\% \times (1-(1-0.02) \times (1-0.03) \times (1-0.02) \times (1-0.02) 
-    \times (1-0.005) \times (1-0.015) \times (1-0.01) \times (1-0.03)) = 14,08\%\]
+    \[\textit{Losses} = (1-0.02) \times (1-0.03) \times (1-0.02) \times (1-0.02) 
+    \times (1-0.005) \times (1-0.015) \times (1-0.01) \times (1-0.03)\]
+    \[100\% \times (1-\textit{Losses}) = 14,08\%\]
 
 \begin{figure}[H]
     \centering
@@ -392,6 +393,7 @@ Aparte de las gráficas realizadas, se expone la Tabla \ref{tab:globalvspvwatts}
     \label{tab:globalvspvwatts}
 \end{sidewaystable}
 
+
 \vspace{3mm}
 
 Por lo tanto, a través del sumatorio de todos los valores mensuales de producción energética, se puede cuantificar finalmente, que un sistema fotovoltaico real localizado en la ciudad de Funchal, proveería aproximadamente un total de 4417kWh al año. Este valor representa un 81,3\% del obtenido teóricamente en la Sección \ref{sec:analisisglobal} y viene justificado en gran parte por las pérdidas introducidas. 
@@ -399,3 +401,5 @@ Por lo tanto, a través del sumatorio de todos los valores mensuales de producci
 \vspace{3mm}
 
 Adicionalmente, habría que tener en cuenta las diferencias que presentan las herramientas \textit{Global Solar Atlas} y \textit{PVWatts} en sus algoritmos de cálculo de los valores de potencia, ya que cada una de ellas asignará pesos diferentes a los parámetros de entrada, incidiendo en los resultados. No obstante, con la Tabla \ref{tab:globalvspvwatts}, se puede determinar de forma concluyente que la simulación realizada es coherente con el estudio previo, cumpliendo así el objetivo principal de esta Sección.
+
+\clearpage
