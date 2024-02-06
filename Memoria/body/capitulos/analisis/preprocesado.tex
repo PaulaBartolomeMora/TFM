@@ -2,7 +2,7 @@
 \section{Preprocesado de los datos}
 \label{sec:preprocesado}
 
-En las Secciones anteriores, se ha detallado el proceso de búsqueda y recolección de datos de comportamiento energético en entornos residenciales a partir de las fuentes públicas disponibles. Este proceso ha venido acompañado por un estudio y análisis en profundidad para exponer de forma justificada las razones de la selección de los conjuntos de datos que servirán como base de este \gls{tfm}. 
+En las Secciones anteriores, se ha detallado el proceso de búsqueda y recolección de datos energéticos en entornos residenciales a partir de las fuentes públicas disponibles. Este proceso ha venido acompañado por un estudio y análisis en profundidad para exponer de forma justificada las razones de la selección de los conjuntos de datos que servirán como base de este \gls{tfm}. 
 
 \vspace{3mm}
 
@@ -10,21 +10,22 @@ También, se ha llevado a cabo una investigación enfocada en dos herramientas d
 
 \vspace{3mm}
 
-Entonces, se puede expresar que la ejecución de los procesos anteriores proporcionará múltiples ficheros de datos que soporten extensas cantidades de información. En consecuencia, estos ficheros se caracterizarán por su gran tamaño y su dificultad de manejo y empleo. Por ello, se introduce esta Sección con el fin principal de realizar un procesamiento exhaustivo y reducir los conjuntos de datos únicamente a las muestras que aporten información de utilidad para llevar a cabo el desarrollo posterior. Teniendo en cuenta el objetivo definido, se va a estructurar esta Sección en diferentes fases, enfocándolas en cada uno de los pasos que se deberán realizar para procesar los datos.
+Entonces, se puede expresar que la ejecución de los procesos anteriores proporcionará múltiples ficheros de datos que soporten extensas cantidades de información. En consecuencia, estos ficheros se caracterizarán por su gran tamaño y su dificultad de manejo y empleo. Por ello, se introduce esta Sección con el fin principal de realizar un procesamiento exhaustivo y reducir los conjuntos de datos únicamente a las muestras que aporten información de utilidad para llevar a cabo el desarrollo posterior. Teniendo en cuenta el objetivo definido, se va a estructurar esta Sección en diferentes fases, en función de cada uno de los pasos que se deberán realizar para procesar los datos.
 
 \vspace{3mm}
 
-Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. De forma adicional, su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento de los datos.
+Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. Su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento de los datos. Además, cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras.
 
 \subsection{Datos de consumo}
 
-\subsubsection{Análisis de la situación inicial}
+\subsubsection{Análisis de la situación inicial y primeros pasos}
+\label{sec:inicialproc}
 
-El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba en la Sección \ref{sec:sustdataed} como un conjunto de datos que abría multitud de posibilidades de implementación al abarcar un extenso lapso temporal de medidas correspondientes a un gran número de viviendas. Estas medidas venían dadas por una frecuencia de muestreo de un minuto, lo que aportaba una buena resolución para analizar el comportamiento eléctrico de todos los usuarios implicados. 
+El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba en la Sección \ref{sec:sustdataed} como un conjunto de datos que abría multitud de posibilidades de implementación. Se puede expresar que esto venía justificado por el hecho de abarcar un extenso lapso temporal de medidas correspondientes a un gran número de viviendas. Además, estas medidas se caracterizaban por ser adquiridas a una frecuencia de muestreo de un minuto, lo que aportaba una buena resolución para analizar el comportamiento eléctrico de todos los usuarios implicados. 
 
 \vspace{3mm}
 
-Como también se exponía en la Sección comentada, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, los cuales se caracterizaban por abarcar diferentes rangos temporales de medición y un conjunto de viviendas determinado. Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue. \cite{sustdata}
+Como también se exponía en la Sección comentada, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, cada uno con diferentes rangos temporales de medición y con un conjunto de viviendas determinado. Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue. \cite{sustdata}
 
 \vspace{3mm}
 
@@ -83,30 +84,98 @@ Como se puede comprobar, a priori la mayoría no precisan de un volumen manejabl
 
 \vspace{3mm}
 
-No obstante, antes de dividir los ficheros, es importante volver a la Tabla que hace referencia a las medidas de consumo energético (ver Tabla \ref{tab:consumo}) para observar que estos ficheros contienen una columna dedicada a la marca de tiempo (\textit{timestamp}) del instante en el que se adquirió la medida. A modo de simplificar esta información temporal, se creará el \textit{notebook} \textit{preprocessing\_nodes.ipynb}, que añadirá dos nuevas columnas al dataset para separar la fecha (columna \textit{datetime}) y la hora (columna \textit{hour}). 
-
-\vspace{3mm}
-%codigo timestamp processing
-
-Además, en este \textit{notebook} se comprobará también, si existen filas con valores \textit{NaN} que puedan perjudicar al análisis de los datos. Como ventaja, el dataset \textit{SustDataED} aporta la columna \textit{miss\_flag} (ver Tabla \ref{tab:consumo}) para determinar si para cierto instante temporal se ha producido la adquisición de forma incorrecta o con valores vacíos. Por tanto, la acción a desarrollar será comprobar en todo el conjunto cuándo este valor se encuentra activo y, en ese caso, eliminar la fila respectiva.
-
-\vspace{3mm}
-%codigo miss flag
-
-A modo de resumen, se puede expresar entonces, que se seguirá la siguiente secuencia de pasos en esta primera fase: crear las nuevas columnas temporales, eliminar las filas que estén completamente vacías y dividir los ficheros para ajustar su tamaño a un máximo de 100MB. Es obligatorio seguir este orden, puesto que no sería eficiente extraer los fragmentos del conjunto de datos y, después, añadir información nueva. En otros términos, se estaría superando el tamaño máximo ajustado de los nuevos ficheros de salida.
+No obstante, antes de dividir los ficheros, se debe volver a la Tabla que hace referencia a las medidas de consumo energético (ver Tabla \ref{tab:consumo}) para observar que estos ficheros contienen una columna dedicada a la marca de tiempo (\textit{timestamp}) del instante en el que se adquirió la medida. A modo de simplificar esta información temporal, se crea el \textit{notebook} \textit{preprocessing\_nodes.ipynb}, que va a importa la librería \textit{time} para añadir tres nuevas columnas al dataset que separen los datos de la fecha (columna \textit{datetime}), el instante exacto de la muestra (hora, minuto y segundo) (columna \textit{hour}) y la hora como un valor entero (columna \textit{H}). En el caso de esta última columna, su utilidad vendrá descrita por los requerimientos de la siguiente Sección (ver Sección \ref{sec:datasamples}).
 
 \vspace{3mm}
 
-Volviendo al proceso de división de los ficheros, se creará otro \textit{notebook} de \textit{Jupyter}, denominado como \textit{split.ipynb}. En primer lugar, se importará al mismo la librería de \textit{Python} \textit{csv}, enfocada al tratamiento de archivos con formato .csv. Después, se escribirá una función que, a partir de un fichero de entrada, itere a través de sus filas de datos hasta llegar al volumen máximo determinado y obtener a la salida el nuevo archivo en la ruta indicada. Para cada nueva fragmentación de los datos se incluirá el encabezado con los nombres de cada uno de los campos.
+\begin{lstlisting}[style=Python-color, caption={Formato del timestamp}]
+  df['tmstp'] = pd.to_datetime(df['tmstp']) # Conversión de la columna del dataframe a formato datetime
+  df['datetime'] = df['tmstp'].dt.strftime('%Y-%m-%d') # Formateo de la fecha (año, mes, día)
+  df['hour'] = df['tmstp'].dt.strftime('%H:%M:%S') # Formateo del instante (hora, minuto, segundo)
+  df['H'] = df['tmstp'].dt.strftime('%H').astype(int) # Formateo de la hora como entero
+\end{lstlisting}
 
 \vspace{3mm}
-%codigo split
+
+De forma adicional, en este \textit{notebook} se comprueba también, si existen filas con valores \textit{NaN} que puedan perjudicar al análisis de los datos. Como ventaja, el dataset \textit{SustDataED} aporta la columna \textit{miss\_flag} (ver Tabla \ref{tab:consumo}) para determinar si para cierto instante temporal se ha producido la adquisición de forma incorrecta o con valores vacíos. Por tanto, la acción a desarrollar será comprobar en todo el dataframe cuándo este valor se encuentra activo y, en ese caso, eliminar la fila respectiva.
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Eliminación de valores NaN}]
+  df.isnull().any() # Comprobación previa de existencia de valores NaN en el dataframe
+  df = df[df['miss_flag'] != 1] # Aplicación de filtro al dataframe
+  df = df.dropna(thresh=len(df.columns) - 15 + 1) # Eliminación de columnas con todos los elementos vacíos
+  df.isnull().any() # Comprobación posterior de existencia de valores NaN en el dataframe
+\end{lstlisting}
+
+\vspace{3mm}
+
+A modo de resumen, se puede determinar entonces, que se seguirá la siguiente secuencia de pasos en esta primera fase: crear las nuevas columnas temporales, eliminar las filas que estén completamente vacías y dividir los ficheros iniciales para ajustar su tamaño a un máximo de 100MB. Es obligatorio seguir este orden, puesto que no sería eficiente extraer los fragmentos del conjunto de datos y, después, añadir información nueva. En otros términos, de esta forma se estaría superando el tamaño máximo ajustado en los nuevos ficheros de salida.
+
+\vspace{3mm}
+
+Volviendo al proceso de división de los ficheros, se crea otro \textit{notebook} de \textit{Jupyter}, denominado como \textit{split.ipynb}. En primer lugar, se importa al mismo la librería de \textit{Python} \textit{csv}, enfocada al tratamiento de archivos con formato .csv. Después, se escribe una función que, a partir de un fichero de entrada, itere a través de sus filas de datos hasta llegar al volumen máximo determinado para obtener a la salida el nuevo archivo en la ruta indicada. Además, para cada nueva fragmentación de los datos se incluye el encabezado con los nombres de cada uno de los campos.
+
+\vspace{3mm}
+\begin{lstlisting}[style=Python, caption={Fragmentación de ficheros iniciales}]
+  with open(input_file, 'r') as csv: # Apertura del fichero de entrada
+    reader = csv.reader(csv) # Definición del reader
+    header = next(reader)  
+
+  for row in reader: # Iteración de las filas del fichero
+      if current_row % split_size == 0:  # Condición de máximo de filas
+          if output_file: # Cierre del fichero de salida 
+              output_file.close()
+          split = f'dataset/split_{current_split}.csv'
+          output_name = input_name + split
+          output_file = open(output_name, 'w', newline='') # Apertura del fichero de salida
+          writer = csv.writer(output_file) # Definición del writer
+          writer.writerow(header) # Escritura del encabezado
+          current_split += 1
+      writer.writerow(row) # Escritura de fila
+      current_row += 1
+
+if output_file: # Cierre del fichero de salida
+  output_file.close()
+\end{lstlisting}
+
+\vspace{3mm}
+
+Por tanto, tras realizar este procedimiento, se logra obtener un total de 28 nuevos ficheros en formato .csv de un tamaño reducido, permitiéndose así, una mejor gestión de los datos que contienen los mismos.
+
+\subsubsection{Síntesis y reducción de la información}
+\label{sec:datasamples}
+
+La presente Sección se dedicará principalmente a la reducción de la información dada por \textit{SustDataED}. Como se ha comentado anteriormente, el hecho de que las muestras se hayan adquirido a una frecuencia de un minuto, proporciona un gran volumen de datos que debería sintentizarse. En el caso de este \gls{tfm}, con el fin de reducir el número de filas del dataset, se ha valorado como opción más apropiada realizar una cuantificación del promedio de las mediciones para cada hora. En otros términos, a partir de las muestras iniciales obtenidas cada minuto, se generaría un nuevo conjunto de medidas promediadas cada hora, resultando en una reducción de los datos en un factor 60.
+
+\vspace{3mm}
+
+En primera instancia, para simplificar la programación, se crea un primer \textit{notebook} básico que realice el procedimiento de reducción de datos para uno de los ficheros fragmentados que se han obtenido a partir de \textit{split.ipynb}. Este nuevo \textit{notebook} se denomina como \textit{datasamples\_onenode.ipynb} y aplica el promedio únicamente a las medidas de un nodo contenidas en una hora y fecha determinadas. Estos valores son determinados como parámetros de entrada y, en el caso de la hora, es preciso hacer uso de la columna \textit{H}, definida en la Sección anterior (ver Sección \ref{sec:inicialproc}) para determinar la hora a la que pertenece la medida como un valor entero.
+
+\vspace{3mm}
+
+Por tanto, una vez definidos los valores de los parámetros de entrada, se aplica un filtro al dataframe a partir de los mismos. En este momento, se comprueba que se ha realizado el procedimiento de forma correcta mediante la observación del número de filas que se extraen, que debería ser 60. 
+
+\vspace{3mm}
+
+Sin embargo, para llevar a cabo el cálculo del promedio, es preciso especificar las columnas sobre las que se va a aplicar la operación, que son las que contienen todos los valores que hacen referencia a los parámetros eléctricos. Finalmente, a partir de las 60 filas filtradas y, tomando en consideración estas columnas, se calcula el valor promedio de cada uno de los parámetros eléctricos y se proporcionan estos a la salida en una única fila.
+
+\vspace{3mm}
+
+\subsubsection{Automatización del proceso de síntesis y reducción de la información}
+\label{sec:datasamples}
+
+Como se ha expuesto en la Sección anterior (ver Sección \ref{sec:datasamples}), el proceso de cálculo del promedio de valores viene especificado por los parámetros de entrada definidos y se ejecuta únicamente para las 60 muestras que se han adquirido a partir de uno de los nodos en una hora y fechas determinadas. 
+
+\vspace{3mm}
+
+Esta característica supone que el proceso debe de ser automatizado.
 
 
 
 
 
-
+\subsection{Datos de producción}
 %meter graficas del paper de sustdata
 %meter graficas de sustdata (ej. consumo de un hogar y tal, correlacion prod-clima)
 %definir que es lo que se va a utilizar
@@ -117,10 +186,10 @@ Volviendo al proceso de división de los ficheros, se creará otro \textit{noteb
 
 % 7 y 7.1 del AI-based FDI Countermeasure for IoE Smart Grids
 
-
-
-
 %hacerme una idea de la estructura -> ver pag 37 AI-based-FDI-Countermeasure-for-IoE-Smart-Grids
+
+
+
 
 
 
