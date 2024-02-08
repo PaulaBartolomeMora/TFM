@@ -188,11 +188,9 @@ De la misma forma, se representan en la Figura \ref{fig:averagehour} los perfile
     \label{fig:averagehour}
 \end{figure}
 
-Tomando en consideración los parámetros configurados y los resultados obtenidos, se puede cuantificar finalmente, que la instalación de un sistema fotovoltaico en un edificio residencial de Funchal proporcionaría una generación de energía promedia anual igual a 5433kWh.
+Por lo tanto, tomando en consideración los parámetros configurados y los resultados obtenidos, se puede cuantificar finalmente, que la instalación de un sistema fotovoltaico en un edificio residencial de Funchal proporcionaría en un año una generación de energía promedia igual a 5433kWh y un valor acumulado de \gls{dni} equivalente a 1719.4 kWh/m².
 
 \vspace{3mm}
-
-Este valor viene justificado...
 
 %ver pag 26-31 technical report -> losses
 
@@ -210,10 +208,6 @@ Este valor viene justificado...
 
 % •	Ver pdf PV Systems Performance in Madeira, gráficas interesantes, indica zonas de madeira con mayor producción
 % •	Ver Solar Energy Resource in Madeira Islands, gráficas interesantes
-
-
-
-
 
 
 \subsection{Creación del dataset de producción (\textit{PVWatts})}
@@ -286,7 +280,9 @@ Una vez se ha concluido con la configuración necesaria, se procede a ejecutar l
 
 \vspace{3mm}
 
-%%AQUI HABLAR DE LOS PARAMETROS QUE SE DAN
+Como se puede visualizar, en ambas tablas se proporcionan los valores de potencia DC y AC, que corresponden a la salida del módulo solar (\textit{DC Array Output}) y de los inversores (\textit{AC System Output}), respectivamente. En el caso de la Tabla (ver Tabla \ref{tab:pvwattsdataset}), se incluye de forma adicional toda la información climática y ambiental de cada instante.
+
+vspace{3mm}
 
 \begin{table}[h!]
     \centering
@@ -314,9 +310,9 @@ Una vez se ha concluido con la configuración necesaria, se procede a ejecutar l
     \textit{Month} & Mes de la muestra & - \\ \hline
     \textit{Day} & Día de la muestra & - \\ \hline
     \textit{Hour} & Hora de la muestra & - \\ \hline
-    \textit{Beam Irradiance} & Índice de radiación directa normal (\gls{dni}) & W/m2 \\ \hline %%%%%%%%%%
+    %\textit{Beam Irradiance} & Índice de radiación directa normal (\gls{dni}) & W/m2 \\ \hline 
     \textit{Diffuse Irradiance} & Índice de radiación difusa (\gls{dif}) & W/m2 \\ \hline
-    \textit{Plane of Array Irradiance} & Índice de radiación en el plano del array & W/m2 \\ \hline %%%%%%%%%%
+    \textit{Plane of Array Irradiance} & Índice de radiación en el plano del array (POA) & W/m2 \\ \hline 
     \textit{Ambient Temperature} & Temperatura ambiente & C \\ \hline
     \textit{Wind Speed} & Velocidad del viento & m/s \\ \hline
     \textit{Albedo} & Índice de reflectividad de la superficie & - \\ \hline
@@ -330,11 +326,11 @@ Una vez se ha concluido con la configuración necesaria, se procede a ejecutar l
 
 \vspace{3mm}
 
-En este paso, es imprescindible comprobar que los datos finales obtenidos presentan coherencia respecto al estudio previo y que encajan además, con el análisis de los resultados de la plataforma \textit{Global Solar Atlas}, realizado en la Sección \ref{sec:analisisglobal}. 
+Teniendo en cuenta las tablas anteriores, en este paso será imprescindible comprobar que los datos finales obtenidos presentan coherencia respecto al estudio previo y que encajan además, con el análisis de los resultados de la plataforma \textit{Global Solar Atlas}, realizado en la Sección \ref{sec:analisisglobal}. 
 
 \vspace{3mm}
 
-En primera instancia, se va a proceder a poner el foco en los valores de radiación directa normal \gls{dni}. La herramienta \textit{PVWatts}, como se puede ver en la Tabla \ref{tab:pvwattsdataset2}, no proporciona directamente información mensual sobre este parámetro, sino sobre el índice de radiación en el plano del array (del inglés \gls{poa}), que se calcula a partir de la expresión \cite{poa}:
+Por ello, en primera instancia, se va a proceder a poner el foco en los valores de radiación directa normal \gls{dni}. La herramienta \textit{PVWatts}, como se puede ver en la Tabla \ref{tab:pvwattsdataset2}, no proporciona directamente información mensual sobre este parámetro, sino sobre el índice de radiación en el plano del array (del inglés \gls{poa}), que se calcula a partir de la expresión \cite{poa}:
 
 \[ \gls{poa} = \gls{dni} \cdot \cos(\theta) \]
 
@@ -346,7 +342,7 @@ En primera instancia, se va a proceder a poner el foco en los valores de radiaci
 
 \vspace{3mm}
 
-Por tanto, se pueden calcular los valores de \gls{dni} a partir de los de \gls{poa} dados por el dataset. Mediante la librería \textit{matplotlib} de \textit{Python} se representa la Figura \ref{fig:averagereal} para permitir la visualización de los valores totales mensuales, tanto de producción energética, como de radiación directa normal \gls{dni}. El valor máximo energético se alcanza en el mes de julio, con un valor de 517,8kWh, ocurriendo de la misma forma para el valor promedio máximo de radiación, cuyo alcance es de 181.1kWh/m² para este mes. Por tanto, volviendo a la Sección \ref{sec:analisisglobal} y, específicamente a la \ref{fig:average}, se puede determinar que los valores obtenidos en la simulación son muy precisos respecto al estudio previo.
+Por lo tanto, se pueden calcular los valores de \gls{dni} a partir de los de \gls{poa} dados por el dataset. Mediante la librería \textit{matplotlib} de \textit{Python} se representa la Figura \ref{fig:averagereal} para visualizar los valores totales mensuales, tanto de producción energética, como de radiación directa normal \gls{dni}. El valor máximo energético se alcanza en el mes de julio, con un valor de 517,8kWh, ocurriendo de la misma forma para el valor promedio máximo de radiación, cuyo alcance es de 181.1kWh/m² para este mes. Por tanto, volviendo a la Sección \ref{sec:analisisglobal} y, específicamente a la \ref{fig:average}, se puede determinar que los valores obtenidos en la simulación son muy precisos respecto al estudio previo.
 
 \vspace{3mm}
 
@@ -396,10 +392,10 @@ Aparte de las gráficas realizadas, se expone la Tabla \ref{tab:globalvspvwatts}
 
 \vspace{3mm}
 
-Por lo tanto, a través del sumatorio de todos los valores mensuales de producción energética, se puede cuantificar finalmente, que un sistema fotovoltaico real localizado en la ciudad de Funchal, proveería aproximadamente un total de 4417kWh al año. Este valor representa un 81,3\% del obtenido teóricamente en la Sección \ref{sec:analisisglobal} y viene justificado en gran parte por las pérdidas introducidas. 
+Por lo tanto, a través del sumatorio de todos los valores mensuales de producción energética, se puede cuantificar finalmente, que un sistema fotovoltaico real localizado en la ciudad de Funchal, proveería aproximadamente un total de 4417kWh al año. Este valor representa un 81,3\% del obtenido teóricamente (5433kWh) en la Sección \ref{sec:analisisglobal} y viene justificado en gran parte por las pérdidas introducidas. Por otro lado, en el caso del \gls{dni}, con la herramienta \textit{PVWatts} se obtiene un total anual equivalente a 1598,8 kWh/m², suponiendo un 92,9\% del valor teórico (1719.4 kWh/m²).
 
 \vspace{3mm}
 
-Adicionalmente, habría que tener en cuenta las diferencias que presentan las herramientas \textit{Global Solar Atlas} y \textit{PVWatts} en sus algoritmos de cálculo de los valores de potencia, ya que cada una de ellas asignará pesos diferentes a los parámetros de entrada, incidiendo en los resultados. No obstante, con la Tabla \ref{tab:globalvspvwatts}, se puede determinar de forma concluyente que la simulación realizada es coherente con el estudio previo, cumpliendo así el objetivo principal de esta Sección.
+Es preciso tener en cuenta las diferencias que presentan las herramientas \textit{Global Solar Atlas} y \textit{PVWatts} en sus algoritmos de cálculo, ya que cada una de ellas asignará pesos diferentes a los parámetros de entrada, incidiendo en los resultados. No obstante, a partir de los valores anteriores y de la Tabla \ref{tab:globalvspvwatts}, se puede determinar de forma concluyente que la simulación realizada es coherente con el estudio previo, cumpliendo así el objetivo principal de esta Sección.
 
 \clearpage

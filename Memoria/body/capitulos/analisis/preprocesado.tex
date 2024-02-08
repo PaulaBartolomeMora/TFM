@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Preprocesado de los datos}
+\section{Procesado de los datos}
 \label{sec:preprocesado}
 
 En las Secciones anteriores, se ha detallado el proceso de búsqueda y recolección de datos energéticos en entornos residenciales a partir de las fuentes públicas disponibles. Este proceso ha venido acompañado por un estudio y análisis en profundidad para exponer de forma justificada las razones de la selección de los conjuntos de datos que servirán como base de este \gls{tfm}. 
@@ -14,9 +14,9 @@ Entonces, se puede expresar que la ejecución de los procesos anteriores proporc
 
 \vspace{3mm}
 
-Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. Su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento de los datos. Además, cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras.
+Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. Su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento. Además, cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras.
 
-\subsection{Datos de consumo}
+\subsection{Procesado de datos de consumo}
 
 \subsubsection{Análisis de la situación inicial y primeros pasos}
 \label{sec:inicialproc}
@@ -89,7 +89,7 @@ No obstante, antes de dividir los ficheros, se debe volver a la Tabla que hace r
 \vspace{3mm}
 
 \begin{lstlisting}[style=Python-color, caption={Formato del timestamp}]
-  df['tmstp'] = pd.to_datetime(df['tmstp']) # Conversión de la columna del dataframe a formato datetime
+  df['tmstp'] = pd.to_datetime(df['tmstp']) # Conversión de la columna del \textit{dataframe} a formato datetime
   df['datetime'] = df['tmstp'].dt.strftime('%Y-%m-%d') # Formateo de la fecha (año, mes, día)
   df['hour'] = df['tmstp'].dt.strftime('%H:%M:%S') # Formateo del instante (hora, minuto, segundo)
   df['H'] = df['tmstp'].dt.strftime('%H').astype(int) # Formateo de la hora como entero
@@ -97,15 +97,15 @@ No obstante, antes de dividir los ficheros, se debe volver a la Tabla que hace r
 
 \vspace{3mm}
 
-De forma adicional, en este \textit{notebook} se comprueba también, si existen filas con valores \textit{NaN} que puedan perjudicar al análisis de los datos. Como ventaja, el dataset \textit{SustDataED} aporta la columna \textit{miss\_flag} (ver Tabla \ref{tab:consumo}) para determinar si para cierto instante temporal se ha producido la adquisición de forma incorrecta o con valores vacíos. Por tanto, la acción a desarrollar será comprobar en todo el dataframe cuándo este valor se encuentra activo y, en ese caso, eliminar la fila respectiva.
+De forma adicional, en este \textit{notebook} se comprueba también, si existen filas con valores \textit{NaN} que puedan perjudicar al análisis de los datos. Como ventaja, el dataset \textit{SustDataED} aporta la columna \textit{miss\_flag} (ver Tabla \ref{tab:consumo}) para determinar si para cierto instante temporal se ha producido la adquisición de forma incorrecta o con valores vacíos. Por tanto, la acción a desarrollar será comprobar en todo el \textit{dataframe} cuándo este valor se encuentra activo y, en ese caso, eliminar la fila respectiva.
 
 \vspace{3mm}
 
 \begin{lstlisting}[style=Python, caption={Eliminación de valores NaN}]
-  df.isnull().any() # Comprobación previa de existencia de valores NaN en el dataframe
-  df = df[df['miss_flag'] != 1] # Aplicación de filtro al dataframe
+  df.isnull().any() # Comprobación previa de existencia de valores NaN en el \textit{dataframe}
+  df = df[df['miss_flag'] != 1] # Aplicación de filtro al \textit{dataframe}
   df = df.dropna(thresh=len(df.columns) - 15 + 1) # Eliminación de columnas con todos los elementos vacíos
-  df.isnull().any() # Comprobación posterior de existencia de valores NaN en el dataframe
+  df.isnull().any() # Comprobación posterior de existencia de valores NaN en el \textit{dataframe}
 \end{lstlisting}
 
 \vspace{3mm}
@@ -117,6 +117,7 @@ A modo de resumen, se puede determinar entonces, que se seguirá la siguiente se
 Volviendo al proceso de división de los ficheros, se crea otro \textit{notebook} de \textit{Jupyter}, denominado como \textit{split.ipynb}. En primer lugar, se importa al mismo la librería de \textit{Python} \textit{csv}, enfocada al tratamiento de archivos con formato .csv. Después, se escribe una función que, a partir de un fichero de entrada, itere a través de sus filas de datos hasta llegar al volumen máximo determinado para obtener a la salida el nuevo archivo en la ruta indicada. Además, para cada nueva fragmentación de los datos se incluye el encabezado con los nombres de cada uno de los campos.
 
 \vspace{3mm}
+
 \begin{lstlisting}[style=Python, caption={Fragmentación de ficheros iniciales}]
   with open(input_file, 'r') as csv: # Apertura del fichero de entrada
     reader = csv.reader(csv) # Definición del reader
@@ -143,7 +144,7 @@ if output_file: # Cierre del fichero de salida
 
 Por tanto, tras realizar este procedimiento, se logra obtener un total de 28 nuevos ficheros en formato .csv de un tamaño reducido, permitiéndose así, una mejor gestión de los datos que contienen los mismos.
 
-\subsubsection{Síntesis y reducción de la información}
+\subsubsection{Síntesis de la información}
 \label{sec:datasamples}
 
 La presente Sección se dedicará principalmente a la reducción de la información dada por \textit{SustDataED}. Como se ha comentado anteriormente, el hecho de que las muestras se hayan adquirido a una frecuencia de un minuto, proporciona un gran volumen de datos que debería sintentizarse. En el caso de este \gls{tfm}, con el fin de reducir el número de filas del dataset, se ha valorado como opción más apropiada realizar una cuantificación del promedio de las mediciones para cada hora. En otros términos, a partir de las muestras iniciales obtenidas cada minuto, se generaría un nuevo conjunto de medidas promediadas cada hora, resultando en una reducción de los datos en un factor 60.
@@ -154,28 +155,247 @@ En primera instancia, para simplificar la programación, se crea un primer \text
 
 \vspace{3mm}
 
-Por tanto, una vez definidos los valores de los parámetros de entrada, se aplica un filtro al dataframe a partir de los mismos. En este momento, se comprueba que se ha realizado el procedimiento de forma correcta mediante la observación del número de filas que se extraen, que debería ser 60. 
+Por tanto, una vez definidos los valores de los parámetros de entrada, se aplica un filtro al \textit{dataframe} a partir de los mismos. En este momento, se comprueba que se ha realizado el procedimiento de forma correcta mediante la observación del número de filas que se extraen, que debería ser 60. 
 
 \vspace{3mm}
 
 Sin embargo, para llevar a cabo el cálculo del promedio, es preciso especificar las columnas sobre las que se va a aplicar la operación, que son las que contienen todos los valores que hacen referencia a los parámetros eléctricos. Finalmente, a partir de las 60 filas filtradas y, tomando en consideración estas columnas, se calcula el valor promedio de cada uno de los parámetros eléctricos y se proporcionan estos a la salida en una única fila.
 
-\vspace{3mm}
-
-\subsubsection{Automatización del proceso de síntesis y reducción de la información}
+\subsubsection{Automatización del proceso de síntesis de la información}
 \label{sec:datasamples}
 
-Como se ha expuesto en la Sección anterior (ver Sección \ref{sec:datasamples}), el proceso de cálculo del promedio de valores viene especificado por los parámetros de entrada definidos y se ejecuta únicamente para las 60 muestras que se han adquirido a partir de uno de los nodos en una hora y fechas determinadas. 
+Como se ha expuesto en la Sección anterior (ver Sección \ref{sec:datasamples}), el proceso de cálculo del promedio de valores viene determinado por los parámetros de entrada que se definen y se ejecuta únicamente para las 60 muestras que se han adquirido a partir de un identificador de vivienda y en una hora y fecha específicas. 
 
 \vspace{3mm}
 
-Esta característica supone que el proceso debe de ser automatizado.
+Esta característica supone que, si se desea aplicar el promedio a los valores de las medidas de cada hora para todo el rango temporal que abarca cada uno de los nodos, se debe automatizar el proceso. Por ello, se crea un nuevo archivo de \textit{Python}, denominado como \textit{datasamples\_process.ipynb}, que incluirá todas las funciones necesarias para llevar a cabo el procedimiento de automatización. Es importante comentar que, en esta Sección, se pone el foco en los datos de consumo. Sin embargo, las funciones que se van a exponer a continuación, serán configuradas para ser empleadas también, en el caso de los datos relativos a la producción y al clima de \textit{SustDataED}.
+
+\vspace{3mm}
+
+En primer lugar, \textit{datasamples\_process.ipynb} describe una función de lectura que extrae como argumento el \textit{path} donde se ubican los ficheros .csv a leer y, después, aplica un bucle para concatenar todos ellos en un mismo \textit{dataframe}. Por consiguiente, se comprueba qué tipo de datos contienen los ficheros (ficheros de consumo o de producción) y se almacenan las columnas de los parámetros eléctricos con los que se va a operar en una variable X. En el caso de los ficheros de consumo, se selecciona la columna \textit{Pavg}, que hace referencia a los valores de potencia activa media adquirida en cada instante. Esto es porque se trata de la información que se requiere conocer para poder establecer más adelante las cargas en el algoritmo \gls{den2ne}. Este proceso será detallado en la Sección \ref{sec:cambiosden2ne}.
+
+\vspace{3mm}
+
+En este paso se extraen también los identificadores de las viviendas que vienen contenidos en cada fichero. Finalmente, se devuelve el \textit{dataframe} completo, la variable X y dos listas: una con los identificadores extraídos en el paso anterior y otra con todas las fechas únicas (columna \textit{datetime}) que contiene el \textit{dataframe}.
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Función de lectura de los ficheros}]
+  def read_files(files):
+      path = gl.glob(files) # Definición del path
+      dfs = []
+
+      for file in path:
+          dfs.append(pd.read_csv(file, low_memory=False)) # Lectura de cada fichero
+          print("Leyendo " + file)
+
+      df = pd.concat(dfs, ignore_index=True) # Operación de concatenación
+
+      # Comprobación de tipo de ficheros para almacenar los parámetros eléctricos y los identificadores
+      if files.startswith(files_cons): # Ficheros de consumo
+          X = df.iloc[:, 11:12]
+          iid_array = df["iid"].unique()
+      elif files == files_prod: # Ficheros de producción
+          X = df.iloc[:, 16:17]
+          iid_array = 0
+
+      X_features = X.columns.to_list()
+      X_features.append("iid")
+      X_features.append("datetime")
+      X_features.append("h")
+      datetime_array = df["datetime"].unique() # Extracción de las fechas
+      return df, X_features, iid_array, datetime_array
+\end{lstlisting}
+
+\vspace{3mm}
+
+La siguiente función que se define es la relativa al cálculo del promedio de los valores. En ella, al igual que en la anterior, es preciso comprobar si los ficheros con los que se va a operar contienen datos de consumo o de producción. Se aplica una condición para ello a partir de la existencia de información sobre el identificador de la vivienda, ya que, como se comentaba en la Sección \ref{sec:prodsustdata}, los datos de producción de \textit{SustDataED} se proporcionan en términos globales a todos los hogares. Es decir, no proveen información de identificador, por lo que se conocería el tipo de ficheros que se va a tratar a partir de su valor.
+
+\vspace{3mm}
+
+Por tanto, tomando lo anterior en consideración, se aplica el filtro al \textit{dataframe} de la misma forma que se realizaba en la Sección \label{sec:datasamples} y se informa, a modo de depuración, sobre el progreso del proceso. El siguiente paso es calcular la media de los valores para cada hora y volcar los resultados, junto con el identificador de la vivienda y el dato de la fecha, en un nuevo \textit{dataframe}.
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Función de cálculo del promedio}]
+  def extract_mean(df, IID_SAMPLE, HOUR_SAMPLE, DATETIME_SAMPLE, X_features, result_dict, progress):
+      # Comprobación de tipo de ficheros para aplicar el filtro
+      if IID_SAMPLE == 0: # Ficheros de producción
+          filter = df[(df["h"] == HOUR_SAMPLE) & (df["datetime"] == DATETIME_SAMPLE)]
+          desc = f"Procesando producción {DATETIME_SAMPLE} {HOUR_SAMPLE}"
+      else: # Ficheros de consumo
+          filter = df[(df["iid"] == IID_SAMPLE) & (df["h"] == HOUR_SAMPLE) 
+          & (df["datetime"] == DATETIME_SAMPLE)]
+          desc = f"Procesando consumo de IID {IID_SAMPLE} {DATETIME_SAMPLE} {HOUR_SAMPLE}"
+
+      df2 = pd.DataFrame() # Creación del nuevo \textit{dataframe} para almacenar los resultados
+
+      for feature in X_features:
+          if feature == "iid":
+              df2[feature] = IID_SAMPLE
+          elif feature == "datetime":
+              df2[feature] = DATETIME_SAMPLE
+          else:
+              df2[feature] = [filter[feature].mean()] # Cálculo del promedio
+
+      result_dict[IID_SAMPLE] = df2 # Diccionario final con todos los \textit{dataframes} creados
+      progress.value += 1
+\end{lstlisting}
+
+\vspace{3mm}
+
+Finalmente, se escribe la función que se va a encargar de automatizar el proceso de cálculo de todos los valores promedios mediante compresión de listas. Se produce la llamada a la función \textit{extract\_mean()} con un doble bucle que introduce iteraciones en función de todas las fechas contenidas en la lista de fechas y de todas las horas que hay en un día.
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Función de automatización del cálculo del promedio}]
+  def process_data(iid, df_power_samples, datetime_array_ps, X_ps, result_dict, progress):
+    extraction = [
+        extract_mean(df_power_samples, iid, hour, datetime, X_ps, result_dict, progress)
+        for datetime in datetime_array_ps
+        for hour in range(24)]
+\end{lstlisting}
+
+\vspace{3mm}
+
+%la cual se lleva a cabo desde los ordenadores del laboratorio
+Por lo tanto, una vez definidas las funciones anteriores, ya se permite realizar una ejecución automatizada del proceso de síntesis de los datos. En este caso, para realizar las pruebas de funcionamiento, se crea el script \textit{run\_tests.sh} y se lanza en un equipo que cuenta con un total de 32 cores. Este script posibilita la descompresión de los ficheros de datos, la instalación de las librerías de \textit{Python} necesarias (especificadas en un archivo \textit{requirements.txt}) y la ejecución del \textit{notebook} \textit{datasamples\_process.ipynb}.
+
+\vspace{3mm}
+
+% \begin{lstlisting}[language=bash, style=Consola, caption={Script para el lanzamiento de las pruebas}]
+%   #!/bin/bash
+
+%   dir_zip="zipped/"
+%   dir_dest="unzipped/"
+%   dir_results="results/"
+  
+%   pip freeze > "before.txt" 
+  
+%   if [ -f requirements.txt ]; then
+%       echo "Instalando paquetes"
+%       pip install -r requirements.txt
+%       echo "Instalación completada"
+%       #pip freeze > "after.txt" 
+%   else
+%       echo "El archivo requirements.txt no existe"
+%   fi
+  
+%   if [ ! -d "$dir_dest" ]; then
+%       echo "Creando directorio destino unzipped/"
+%       mkdir -p $dir_dest
+%   else
+%       echo "Existe $dir_dest"
+%   fi
+  
+%   if [ ! -d "$dir_results" ]; then
+%       echo "Creando directorio destino results/"
+%       mkdir -p $dir_results
+%   else
+%       echo "Existe $dir_results"
+%   fi
+  
+%   if [ ! -d "$dir_zip" ]; then
+%       echo "No existe $dir_zip" 
+%   else
+%       ls $dir_zip
+%       if [ "$(ls -A $dir_dest)" ]; then
+%           echo "Descompresión ya realizada anteriormente"
+%       else
+%           unzip $dir_zip"*.zip" -d $dir_dest
+%           echo "Descompresión completada" 
+%       fi 
+%   fi
+  
+%   if [ -f datasamples.py ]; then
+%       echo "-----------------------------------------------------"
+%       echo "Ejecutando archivo"
+%       echo "-----------------------------------------------------"
+%       python3 datasamples.py 
+%   else
+%       echo "El archivo datasamples.py no existe"
+%   fi
+  
+%   echo "Ejecución completada"
+  
+%   pip uninstall -r requirements.txt
+%   pip freeze > "before2.txt" 
+%   diff before.txt before2.txt
+% \end{lstlisting}
+
+% \vspace{3mm}
+
+Se plantea en primera instancia, establecer una ejecución multihilo. Cuando se lleva a cabo el lanzamiento, se observa que, como es de esperar, se están utilizando varios cores. Sin embargo, como se puede visualizar en la Figura \ref{fig:multihilo}, el uso de \textit{threads} no provoca en ningún momento que alguno de los cores se aproxime al 100\% de su operabilidad.
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/multihilo.jpg}
+  \caption{Lanzamiento de pruebas con \textit{threads}}
+  \label{fig:multihilo}
+\end{figure}
+
+\vspace{3mm}
+
+Esto se debe a que los hilos no se tratan de procesos y están enfocados a la concurrencia. Es decir, el planificador del kernel establece en qué core se va a ejecutar cada una de las tareas. Además, se producen cambios de contexto que tienen como consecuencia la introducción de latencias y una pérdida de eficiencia en la ejecución de las pruebas. Teniendo esto en cuenta, se toma la decisión de operar con procesos independientes. En este caso, no se van a producir desalojos, dado que la tarea sí es un proceso. Además, se establece uno para cada identificador, suponiendo que cada uno de ellos se ejecute completamente en un core. En la Figura \ref{fig:multiprocess}, se muestran estos cambios. \cite{thread}
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/multiprocess.jpg}
+  \caption{Lanzamiento de pruebas con procesos}
+  \label{fig:multiprocess}
+\end{figure}
+
+\vspace{3mm}
+
+Tras llevar a cabo la ejecución completa de las pruebas, se obtiene a la salida un fichero de datos de consumo energético por vivienda definida en \textit{SustDataED}, suponiendo en total 50. Se sigue la nomenclatura \textit{consum\_x.csv}, donde x hace referencia al identificador de la vivienda a la que pertenecen las medidas promediadas. En la Tabla \ref{tab:consum} se muestran los campos que contienen estos ficheros.
+
+\vspace{3mm}
+
+Como se puede ver, la información de consumo, la cual venía dada a una frecuencia de muestreo de un minuto, se ha transformado a valores promediados por hora. Por tanto, se puede expresar de forma concluyente, que se logra el objetivo de reducir el tamaño de los ficheros y de sintetizar el volumen de datos a manejar, ya que a partir de ahora se va a trabajar con datos por hora.
+
+\vspace{3mm}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|c|c|c|}
+  \hline
+  \rowcolor[HTML]{AAAAAA} 
+  \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
+  \textit{iid} & Identificador de vivienda & - \\ \hline
+  \textit{datetime} & Fecha del valor promedio & datetime \\ \hline
+  \textit{H} & Hora del valor promedio & - \\ \hline
+  \textit{Pavg} & Potencia activa media & W \\ \hline
+  \end{tabular}
+  \caption{Estructura de campos de cada fichero \textit{consum\_x.csv}}
+  \label{tab:consum}
+\end{table}
+
+\subsubsection{Selección del despliegue}
+
+Teniendo en cuenta los resultados obtenidos en la Sección anterior, el siguiente paso consiste en seleccionar las viviendas sobre -----
+
+
+
+%meter aqui grafica d2
 
 
 
 
 
-\subsection{Datos de producción}
+
+
+
+
+
+\subsection{Procesado de datos de producción}
+
+comentar \ref{sec:datasamples}
+
+
 %meter graficas del paper de sustdata
 %meter graficas de sustdata (ej. consumo de un hogar y tal, correlacion prod-clima)
 %definir que es lo que se va a utilizar
@@ -190,14 +410,8 @@ Esta característica supone que el proceso debe de ser automatizado.
 
 
 
+\subsection{Combinación de datos de consumo y de producción}
 
 
+%meter grafica consumo ejemplo de un nodo
 
-
-
-
-
-
-%ESTO PARA CUANDO SE HABLE DE BRITE
-
-%En la Sección \ref{sec:brite_eje}, referente a la ejecución de la herramienta \gls{brite} se había expuesto la posibilidad de generar un total de 1200 topologías para probar sobre el algoritmo \gls{den2ne}. Ahora, teniendo en cuenta también el número de nodos disponibles (25) y la cantidad de instantes temporales comprendidos en los datos (24*365=8760), existe la posibilidad de realizar hasta 262.800.000 simulaciones únicas.

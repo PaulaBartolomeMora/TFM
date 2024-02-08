@@ -80,9 +80,9 @@ El proceso de adquisición y recolección de los datos de los 50 hogares que con
     \item El despliegue 4 es el último que se realiza y consta de la agrupación de medidas de 10 hogares, comenzando la recolección de datos de los mismos en el mes de julio de 2013 y finalizando en marzo de 2014.
 \end{itemize}
 
-En la Figura \ref{fig:despliegues} se permite visualizar de una forma gráfica los períodos temporales que abarcan los despliegues expuestos anteriormente donde cada uno de los 50 hogares participantes se representa con un identificador único (\textit{id}). Como se detallará a continuación, a modo organizativo, el dataset \textit{SustDataED} clasifica en varias tablas los datos en función del tipo de información al que se hace referencia.
+En la Figura \ref{fig:despliegues} se representan gráficamente los períodos temporales que abarcan los despliegues expuestos anteriormente mediante el empleo de la librería de \textit{Python} \textit{matplotlib}. Además, como se puede apreciar, cada uno de los 50 hogares participantes supone un identificador único (\textit{id}). 
 
-\vspace{5mm}
+\vspace{3mm}
 
 \begin{figure}[h!]
     \centering
@@ -91,12 +91,15 @@ En la Figura \ref{fig:despliegues} se permite visualizar de una forma gráfica l
     \label{fig:despliegues}
 \end{figure}
 
+\vspace{3mm}
+
+A continuación, se detallará a modo organizativo, cómo el dataset \textit{SustDataED} clasifica en varias tablas los datos en función del tipo de información al que se hace referencia.
+
 \subsubsection{Medidas de consumo de energía}
 
 En la Tabla \ref{tab:consumo} se listan los campos que han sido definidos para la recolección de medidas de consumo de cada uno de los hogares. El dataset asocia los parámetros eléctricos a dos identificadores: uno para describir la vivienda de la que se están recogiendo los datos, y otro, para el despliegue al que pertenece. 
 
 \vspace{3mm}
-\pagebreak
 
 Por otro lado, se almacena para cada medida una marca de tiempo con la fecha, hora, minuto y segundo en la que se ha recogido la información y se incluye el parámetro \textit{miss\_flag} para indicar si para un determinado instante temporal se han adquirido datos de forma incorrecta, suponiendo filas vacías en el dataset.
 
@@ -180,8 +183,6 @@ El proceso de recolección de las muestras tiene como base un método estadísti
     \caption{Tabla de medidas de eventos de potencia \cite{sustdata}}
     \label{tab:eventos}
 \end{table}
-
-\clearpage
 
 \subsubsection{Medidas de producción de energía}
 \label{sec:prodsustdata}

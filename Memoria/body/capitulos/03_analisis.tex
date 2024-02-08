@@ -5,11 +5,15 @@ Este Capítulo abordará la fase del \gls{tfm} que se centra en el análisis, di
 
 \vspace{3mm}
 
-Por consiguiente, se añadirá una Sección en referencia al estudio de la generación energética. Esta Sección vendrá justificada por la necesidad de realizar un análisis adicional sobre las herramientas de simulación de los datos de potencia, además de que posibilitará obtener información adicional sobre los recursos solares y las condiciones climáticas de una ubicación determinada.
+Por consiguiente, se añadirá una Sección en referencia al estudio de la generación energética (ver Sección \ref{sec:simuprod}). Esta vendrá justificada por la necesidad de realizar un análisis sobre algunas herramientas de simulación existentes que proporcionan datos de potencia. Este proceso posibilitará obtener información adicional sobre los recursos solares y las condiciones climáticas de una ubicación determinada.
 
 \vspace{3mm}
 
-Por otro lado, una vez expuestas y seleccionadas las fuentes de datos que sevirán como base para el desarrollo de este \gls{tfm}, se añadirá una Sección dedicada a la definición detallada de las acciones que serán necesarias para llevar a cabo el procesamiento de toda la información recopilada (ver Sección \ref{sec:preprocesado}). Finalmente, se obtendrá un conjunto de datos reducido con la información útil sobre la que entrenar los modelos de \gls{ml} a desarrollar. 
+Por otro lado, una vez expuestas y seleccionadas las fuentes de datos que sevirán como base para el desarrollo de este \gls{tfm}, se añadirá una Sección dedicada a la definición detallada de las acciones que serán necesarias para llevar a cabo un procesamiento exhaustivo de toda la información recopilada (ver Sección \ref{sec:preprocesado}). 
+
+\vspace{3mm}
+
+Después, siguiendo las especificaciones expuestas anteriormente en la Sección \ref{sec:brite}, se plantearán una serie de escenarios mediante la generación de múltiples topologías con la herramienta BRITE (ver Sección \ref{sec:ejebrite}). Los resultados que se obtengan a partir de ella se constituirán como la base sobre la que se realizarán las simulaciones en el algoritmo \gls{den2ne}. En esta Sección (ver Sección \ref{sec:cambiosden2ne}) será preciso detallar las modificaciones y ajustes a implementar en el algoritmo. Esto permitirá extraer a la salida del mismo el conjunto de datos final sobre el que se entrenarán los modelos de \gls{ml}.
 
 \vspace{3mm}
 
@@ -21,3 +25,9 @@ Por otro lado, una vez expuestas y seleccionadas las fuentes de datos que sevir�
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{body/capitulos/analisis/preprocesado}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{body/capitulos/analisis/ejebrite}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{body/capitulos/analisis/ejeden2ne}
