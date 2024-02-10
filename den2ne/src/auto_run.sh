@@ -6,7 +6,7 @@ RESULT_DIR='./results'
 TOPO_DIR='./data/topos'
 
 SIM_TESTS_DIR='./data/simtests' ##
-DATETIME='2011-03-24_15'
+DATETIME='2011-10-28_11'
 SIM_TESTS_FILE="/test_${DATETIME}.csv"
 
 # Experiment vars

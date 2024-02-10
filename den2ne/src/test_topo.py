@@ -107,14 +107,7 @@ def prueba(path_results, path_topology, topo_seed, criterion, conf_losses, load_
         fin_balance = time.time()
         
         tiempo_balance = fin_balance - inicio_balance
-        tiempo_id = fin_id - inicio_id
-        
-        
-        #############################################################################################
-        #print(data_topo)
-        #print("\n\n-----------------------------------------------------------------------------------\n\n") 
-        #############################################################################################
-        
+        tiempo_id = fin_id - inicio_id        
         
         #Escritura de resultados
         #FORMATO: seed_run, balance, abs_flux, time_ID, time_balance
