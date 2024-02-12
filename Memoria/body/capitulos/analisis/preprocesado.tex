@@ -25,7 +25,7 @@ El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba e
 
 \vspace{3mm}
 
-Como también se exponía en la Sección comentada, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, cada uno con diferentes rangos temporales de medición y con un conjunto de viviendas determinado. Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue. \cite{sustdata}
+Como también se exponía en la Sección \ref{sec:sustdataed}, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, cada uno con diferentes rangos temporales de medición y con un conjunto de viviendas determinado. Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue. \cite{sustdata}
 
 \vspace{3mm}
 
@@ -47,7 +47,7 @@ Como también se exponía en la Sección comentada, especialmente en la Figura \
 
 \vspace{3mm}
 
-Tomando lo anterior en consideración, en este paso, enfocado al análisis de la situación inicial del conjunto, es preciso tener el conocimiento de los ficheros de datos de consumo de los que se va a partir. Para ello, se añade la Tabla \ref{tab:fichconsumo}, la cual expone la información relativa a cada despliegue y a los tamaños de cada uno de estos ficheros. 
+Tomando lo anterior en consideración, en este paso, enfocado al análisis de la situación inicial del conjunto, es preciso tener el conocimiento de los ficheros de datos de consumo de los que se va a partir. Por este motivo, se añade de forma adicional la Tabla \ref{tab:fichconsumo}, la cual expone la información relativa a cada despliegue y a los tamaños de cada uno de los ficheros proporcionados en el dataset.  
 
 \vspace{3mm}
 
@@ -155,28 +155,41 @@ En primera instancia, para simplificar la programación, se crea un primer \text
 
 \vspace{3mm}
 
-Por tanto, una vez definidos los valores de los parámetros de entrada, se aplica un filtro al \textit{dataframe} a partir de los mismos. En este momento, se comprueba que se ha realizado el procedimiento de forma correcta mediante la observación del número de filas que se extraen, que debería ser 60. 
+Por tanto, una vez definidos los valores de los parámetros de entrada, se aplica un filtro al \textit{dataframe} a partir de los mismos y se comprueba que se ha realizado el procedimiento de forma correcta mediante la observación del número de filas que se extraen, que debería ser 60. Para llevar a cabo el cálculo del promedio, es preciso especificar las columnas sobre las que se va a aplicar la operación, que son las que contienen todos los valores que hacen referencia a los parámetros eléctricos. Por tanto, a partir de las 60 filas filtradas y, tomando en consideración las columnas comentadas, se puede calcular ya el valor promedio de cada uno de los parámetros eléctricos. 
 
 \vspace{3mm}
 
-Sin embargo, para llevar a cabo el cálculo del promedio, es preciso especificar las columnas sobre las que se va a aplicar la operación, que son las que contienen todos los valores que hacen referencia a los parámetros eléctricos. Finalmente, a partir de las 60 filas filtradas y, tomando en consideración estas columnas, se calcula el valor promedio de cada uno de los parámetros eléctricos y se proporcionan estos a la salida en una única fila.
+El resultado de este proceso supone una única fila con todos los valores promediados de una hora. En la Figura \ref{fig:datasamples} se muestra como ejemplo la salida que se obtiene tras aplicar el promedio a las medidas adquiridas en la vivienda con identificador 25 en el instante temporal correspondiente al 8 de abril de 2013 con hora 15:00.
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/datasamples.png}
+  \caption{Salida de \textit{datasamples\_onenode.ipynb} tras aplicar la operación de promedio}
+  \label{fig:datasamples}
+\end{figure}
 
 \subsubsection{Automatización del proceso de síntesis de la información}
 \label{sec:datasamples}
 
-Como se ha expuesto en la Sección anterior (ver Sección \ref{sec:datasamples}), el proceso de cálculo del promedio de valores viene determinado por los parámetros de entrada que se definen y se ejecuta únicamente para las 60 muestras que se han adquirido a partir de un identificador de vivienda y en una hora y fecha específicas. 
+Como se viene exponiendo en la Sección anterior (ver Sección \ref{sec:datasamples}), el proceso de cálculo del promedio de valores viene determinado por los parámetros de entrada que se definen y se produce una ejecución únicamente para las 60 muestras que se han adquirido a partir de un identificador de vivienda y en una hora y fecha específicas. 
 
 \vspace{3mm}
 
-Esta característica supone que, si se desea aplicar el promedio a los valores de las medidas de cada hora para todo el rango temporal que abarca cada uno de los nodos, se debe automatizar el proceso. Por ello, se crea un nuevo archivo de \textit{Python}, denominado como \textit{datasamples\_process.ipynb}, que incluirá todas las funciones necesarias para llevar a cabo el procedimiento de automatización. Es importante comentar que, en esta Sección, se pone el foco en los datos de consumo. Sin embargo, las funciones que se van a exponer a continuación, serán configuradas para ser empleadas también, en el caso de los datos relativos a la producción y al clima de \textit{SustDataED}.
+Esta característica supone que, si se desea aplicar el promedio a los valores de las medidas de cada hora para todo el rango temporal que abarca cada uno de los nodos, se debe automatizar el proceso. Por ello, se crea un nuevo archivo de \textit{Python}, denominado como \textit{datasamples\_process.py}, que incluirá todas las funciones necesarias para llevar a cabo el procedimiento de automatización. 
 
 \vspace{3mm}
 
-En primer lugar, \textit{datasamples\_process.ipynb} describe una función de lectura que extrae como argumento el \textit{path} donde se ubican los ficheros .csv a leer y, después, aplica un bucle para concatenar todos ellos en un mismo \textit{dataframe}. Por consiguiente, se comprueba qué tipo de datos contienen los ficheros (ficheros de consumo o de producción) y se almacenan las columnas de los parámetros eléctricos con los que se va a operar en una variable X. En el caso de los ficheros de consumo, se selecciona la columna \textit{Pavg}, que hace referencia a los valores de potencia activa media adquirida en cada instante. Esto es porque se trata de la información que se requiere conocer para poder establecer más adelante las cargas en el algoritmo \gls{den2ne}. Este proceso será detallado en la Sección \ref{sec:cambiosden2ne}.
+Es importante comentar que en esta Sección se pone el foco en los datos de consumo. Sin embargo, las funciones que se van a exponer a continuación, serán configuradas para ser empleadas también, en el caso de los datos relativos a la producción y al clima de \textit{SustDataED}.
 
 \vspace{3mm}
 
-En este paso se extraen también los identificadores de las viviendas que vienen contenidos en cada fichero. Finalmente, se devuelve el \textit{dataframe} completo, la variable X y dos listas: una con los identificadores extraídos en el paso anterior y otra con todas las fechas únicas (columna \textit{datetime}) que contiene el \textit{dataframe}.
+En primer lugar, \textit{datasamples\_process.ipynb} describe una función de lectura que extrae como argumento el \textit{path} donde se ubican los ficheros .csv a leer y, después, aplica un bucle para concatenar todos ellos en un mismo \textit{dataframe}. Por consiguiente, se comprueba qué tipo de datos contienen los ficheros (ficheros de consumo o de producción) y se almacenan las columnas de los parámetros eléctricos con los que se va a operar en una variable X. En el caso de los ficheros de consumo, se selecciona la columna \textit{Pavg}, que hace referencia a los valores de potencia activa media adquirida en cada instante. Esto es porque se trata de la información que se requiere conocer para poder establecer más adelante las cargas en el algoritmo \gls{den2ne}. Este proceso en cuestión será detallado en la Sección \ref{sec:cambiosden2ne}.
+
+\vspace{3mm}
+
+En el paso de lectura se extraen también los identificadores de las viviendas que vienen contenidos en cada fichero. Finalmente, se devuelve el \textit{dataframe} completo, la variable X y dos listas: una con los identificadores extraídos en el paso anterior y otra con todas las fechas únicas (columna \textit{datetime}) que contiene el \textit{dataframe}.
 
 \vspace{3mm}
 
@@ -209,7 +222,7 @@ En este paso se extraen también los identificadores de las viviendas que vienen
 
 \vspace{3mm}
 
-La siguiente función que se define es la relativa al cálculo del promedio de los valores. En ella, al igual que en la anterior, es preciso comprobar si los ficheros con los que se va a operar contienen datos de consumo o de producción. Se aplica una condición para ello a partir de la existencia de información sobre el identificador de la vivienda, ya que, como se comentaba en la Sección \ref{sec:prodsustdata}, los datos de producción de \textit{SustDataED} se proporcionan en términos globales a todos los hogares. Es decir, no proveen información de identificador, por lo que se conocería el tipo de ficheros que se va a tratar a partir de su valor.
+La siguiente función que se define es la relativa al cálculo del promedio de los valores. En ella, al igual que en la anterior, es preciso comprobar si los ficheros con los que se va a operar contienen datos de consumo o de producción. Se aplica una condición para ello a partir de la existencia de información sobre el identificador de la vivienda, ya que, como se comentaba en la Sección \ref{sec:prodsustdata}, los datos de producción de \textit{SustDataED} se proporcionan en términos globales a todos los hogares. Esto quiere decir que no proveen información de identificador, por lo que es posible conocer el tipo de ficheros que se está tratando a partir del valor de esta columna.
 
 \vspace{3mm}
 
@@ -259,7 +272,7 @@ Finalmente, se escribe la función que se va a encargar de automatizar el proces
 \vspace{3mm}
 
 %la cual se lleva a cabo desde los ordenadores del laboratorio
-Por lo tanto, una vez definidas las funciones anteriores, ya se permite realizar una ejecución automatizada del proceso de síntesis de los datos. En este caso, para realizar las pruebas de funcionamiento, se crea el script \textit{run\_tests.sh} y se lanza en un equipo que cuenta con un total de 32 cores. Este script posibilita la descompresión de los ficheros de datos, la instalación de las librerías de \textit{Python} necesarias (especificadas en un archivo \textit{requirements.txt}) y la ejecución del \textit{notebook} \textit{datasamples\_process.ipynb}.
+Por lo tanto, una vez definidas las funciones anteriores, ya se permite realizar una ejecución automatizada del proceso de síntesis de los datos. En este caso, para realizar las pruebas de funcionamiento, se crea el script \textit{run\_tests.sh} y se lanza en un equipo que cuenta con un total de 32 cores. Este script posibilita la descompresión de los ficheros de datos, la instalación de las librerías de \textit{Python} necesarias (especificadas en un archivo \textit{requirements.txt}) y la ejecución de \textit{datasamples\_process.ipynb}.
 
 \vspace{3mm}
 
@@ -325,7 +338,7 @@ Por lo tanto, una vez definidas las funciones anteriores, ya se permite realizar
 
 % \vspace{3mm}
 
-Se plantea en primera instancia, establecer una ejecución multihilo. Cuando se lleva a cabo el lanzamiento, se observa que, como es de esperar, se están utilizando varios cores. Sin embargo, como se puede visualizar en la Figura \ref{fig:multihilo}, el uso de \textit{threads} no provoca en ningún momento que alguno de los cores se aproxime al 100\% de su operabilidad.
+Se plantea en primera instancia, establecer una ejecución multihilo. Cuando se lleva a cabo el lanzamiento, se observa que, como es de esperar, se están utilizando varios cores. Sin embargo, como se puede visualizar en la Figura \ref{fig:multihilo}, el uso de \textit{threads} no provoca en ningún momento que alguno de los cores disponibles se aproxime al 100\% de su operabilidad.
 
 \vspace{3mm}
 
@@ -338,7 +351,7 @@ Se plantea en primera instancia, establecer una ejecución multihilo. Cuando se 
 
 \vspace{3mm}
 
-Esto se debe a que los hilos no se tratan de procesos y están enfocados a la concurrencia. Es decir, el planificador del kernel establece en qué core se va a ejecutar cada una de las tareas. Además, se producen cambios de contexto que tienen como consecuencia la introducción de latencias y una pérdida de eficiencia en la ejecución de las pruebas. Teniendo esto en cuenta, se toma la decisión de operar con procesos independientes. En este caso, no se van a producir desalojos, dado que la tarea sí es un proceso. Además, se establece uno para cada identificador, suponiendo que cada uno de ellos se ejecute completamente en un core. En la Figura \ref{fig:multiprocess}, se muestran estos cambios. \cite{thread}
+Esto se debe a que los hilos no son procesos y están principalmente enfocados a la concurrencia. Es decir, el planificador del kernel establece en qué core se va a ejecutar cada una de las tareas y se producen cambios de contexto, que tienen como consecuencia, la introducción de latencias y una pérdida de eficiencia en la ejecución de las pruebas. Teniendo esto en cuenta, se toma la decisión de operar con procesos independientes. En este caso, no se van a producir desalojos, dado que la tarea sí es un proceso. Además, se establece uno para cada identificador, suponiendo que cada uno de ellos se ejecute completamente en un core. En la Figura \ref{fig:multiprocess}, se muestran los cambios comentados. \cite{thread}
 
 \vspace{3mm}
 
@@ -351,7 +364,43 @@ Esto se debe a que los hilos no se tratan de procesos y están enfocados a la co
 
 \vspace{3mm}
 
-Tras llevar a cabo la ejecución completa de las pruebas, se obtiene a la salida un fichero de datos de consumo energético por vivienda definida en \textit{SustDataED}, suponiendo en total 50. Se sigue la nomenclatura \textit{consum\_x.csv}, donde x hace referencia al identificador de la vivienda a la que pertenecen las medidas promediadas. En la Tabla \ref{tab:consum} se muestran los campos que contienen estos ficheros.
+Por lo tanto, volviendo al código, en el archivo se debe importar la librería \textit{multiprocessing} y definir el administrador (\textit{manager}) para crear un diccionario que será compartido por los procesos para almacenar los resultados de la ejecución. Después, se crean los procesos, llamando a la función \textit{process\_data}, expuesta anteriormente. Para la misma, se deben añadir los parámetros de entrada necesarios como argumentos e iterar para todos los identificadores de viviendas. En este momento, ya se pueden iniciar los procesos y definir el progreso de la ejecución a través de la terminal. 
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Creación de procesos}]
+  if __name__ == "__main__":
+  df_power_samples, X_ps, iid_array_ps, datetime_array_ps = read_files(files_cons) # Lectura de ficheros
+
+  manager = Manager() # Creación del administrador
+  result_dict = manager.dict() # Definición del diccionario compartido de resultados
+  progress = manager.Value('i', 0) # Creación de valor para indicar el progreso
+
+  processes = [   # Creación de los procesos
+      Process(target=process_data, args=(iid, df_power_samples, datetime_array_ps, X_ps, result_dict, progress))
+      for iid in iid_prueba
+  ]
+
+  for process in processes: 
+      process.start() # Inicio de los procesos
+
+  total_tasks = len(datetime_array_ps) * len(iid_prueba) * 24 # Cálculo del número de tareas
+
+  # Creación de barra de progreso
+  with tqdm(total=total_tasks, desc="Progreso total del script") as pbar:
+      while progress.value < total_tasks:
+          pbar.update(progress.value - pbar.n)
+
+  for process in processes:
+      process.join() # Espera a la finalización de todos los procesos
+
+  for iid, result in result_dict.items(): # Almacenamiento de los resultados en los nuevos ficheros
+      result.to_csv(f"results/consum_{iid}.csv", index=False) 
+\end{lstlisting}
+
+\vspace{3mm}
+
+Para obtener a la salida los nuevos ficheros, se debe esperar a que todos los procesos finalicen. Se consigue un fichero de datos de consumo energético por vivienda definida en \textit{SustDataED}, suponiendo en total 50. A modo organizativo, se sigue la nomenclatura \textit{consum\_x.csv}, donde x hace referencia al identificador de la vivienda a la que pertenecen las medidas promediadas. En la Tabla \ref{tab:consum} se muestran los campos que contienen estos ficheros.
 
 \vspace{3mm}
 
@@ -376,24 +425,161 @@ Como se puede ver, la información de consumo, la cual venía dada a una frecuen
 
 \subsubsection{Selección del despliegue}
 
-Teniendo en cuenta los resultados obtenidos en la Sección anterior, el siguiente paso consiste en seleccionar las viviendas sobre -----
+Teniendo en cuenta los resultados obtenidos en la Sección anterior, el siguiente paso consiste en seleccionar las viviendas sobre las que se va a basar el desarrollo y entrenamiento de modelos de \gls{ml}. En la Sección \ref{sec:estructurasustdata}, se describían los distintos despliegues que componían el proceso de la adquisición y creación del dataset \textit{SustDataED} y se representaban los rangos temporales que comprendían cada uno de ellos en la Figura \ref{fig:despliegues}. Poniendo en consideración esta información, es imprescindible seleccionar un conjunto de viviendas cuyas medidas estén abarcadas en un mismo lapso de tiempo para poder realizar un análisis de forma precisa y entrenar correctamente los modelos de \gls{ml}. 
+
+\vspace{3mm}
+
+En otros términos, la selección de múltiples viviendas se debe reducir a escoger el despliegue más adecuado de los cuatro en los que se estructura \textit{SustDataED}. El objetivo es buscar un balance entre manejar un buen número de hogares y un rango temporal lo suficientemente largo. Volviendo a la Figura \ref{fig:despliegues}, se puede visualizar que los despliegues que cumplen mejor estas condiciones son el primero y el segundo. No obstante, en este proceso de análisis y selección del conjunto de viviendas, se deben añadir también, los datos de producción energética que provee \textit{SustDataED}. En la Figura \ref{fig:fuentes}, se muestra cómo estos datos vienen comprendidos entre el mes de octubre de 2010 y enero de 2013. Esto supone que se debe descartar el primer despliegue de viviendas, ya que este abarca un rango temporal que va desde julio de 2010 a noviembre del mismo año.
+
+\vspace{3mm}
+
+Por lo tanto, teniendo estas condiciones y características en cuenta, se justifica que el despliegue más adecuado a emplear es el segundo, el cual comprende un total de 23 viviendas (desde el identificador 1 al 23). En la Figura \ref{fig:despliegue2}, se representan, mediante el empleo de la librería de \textit{Python}, \textit{matplotlib}, los rangos temporales que abarcan las medidas adquiridas para cada una de las viviendas participantes en el segundo despliegue.
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth,height=8cm]{img/diseno/despliegue2.png}
+    \caption{Representación del período temporal que comprende el proceso de recolección de datos para cada hogar para el segundo despliegue}
+    \label{fig:despliegue2}
+\end{figure}
+
+%tabla datos demographics 23 nodos
 
 
 
-%meter aqui grafica d2
 
 
+\subsubsection{Selección del rango temporal y procesamiento adicional}
+\label{sec:rango}
+%especificar seccion donde se comenta el rango 28-10->28-10
 
+Como se puede ver en la Figura \ref{fig:despliegue2}, aunque las 23 viviendas pertenecen al mismo despliegue y abarcan un lapso temporal parecido, se pueden visualizar ciertas diferencias entre las mismas. Esto supone que realmente cada fichero de datos de consumo tenga un número de muestras diferente, lo que perjudicaría al análisis y entrenamiento posterior. 
 
+\vspace{3mm}
 
+Por tanto, una vez seleccionado el despliegue, se deben acotar los ficheros de datos de consumo a un mismo rango temporal en el se pueda trabajar de forma eficiente. Como se ha indicado anteriormente en esta misma Sección, los datos de producción energética se comienzan a medir desde el mes de octubre de 2010, por lo que es necesario como mínimo establecer el inicio del rango temporal en estas fechas. 
+
+\vspace{3mm}
+
+Por otro lado, entrando en el contenido de los ficheros, la fecha mínima en la que se visualiza que las 23 viviendas adquieren y almacenan medidas es el 28 de octubre de 2010, lo que lleva a tomar la decisión de establecer la misma  como inicio del rango temporal a considerar. En cuanto a la fecha final, a partir de la información dada en la Figura \ref{fig:despliegue2}, se considera que la opción más eficiente es abarcar un año completo de muestras, siendo la fecha final el 28 de octubre de 2011. En Secciones siguientes, se expondrá cómo el hecho de seleccionar un año de medidas será importante para calcular las cargas finales que se fijarán en el algoritmo \gls{den2ne} (ver Sección \ref{sec:cambiosden2ne}), puesto que en el caso de los datos de producción obtenidos de la herramienta \textit{PVWatts} se abarcan valores de potencia de un año completo (ver Sección \ref{sec:preprocpvwatts}).
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Aplicación del rango temporal a los ficheros}]
+rango = df[(df['datetime'] >= '2010-10-28') & (df['datetime'] < '2011-10-28')] 
+\end{lstlisting}
+
+\vspace{3mm}
+
+La aplicación del filtro del rango temporal a los datos se realiza en el \textit{notebook} \textit{consum\_range.ipynb}. De forma adicional, se define el procesamiento que requieren los ficheros de consumo de aquellas viviendas que no incluyen valores en algunos instantes temporales dentro del rango indicado. En este paso, el objetivo es contar con ficheros que contengan un mismo número de medidas para simplificar su manejo. Por ello, para que los datos finales tengan la mayor precisión posible, se deben añadir las muestras que faltan en función del tipo de vivienda a la que se hace referencia. 
+
+\vspace{3mm}
+
+Es decir, como se expuso en la Sección \ref{sec:demographic}, el dataset \textit{SustDataED} provee la Tabla \ref{tab:demo} con toda la información respectiva a cada uno de los hogares monitorizados y a las características sociales de los propios inquilinos. Esta información determina principalmente, el comportamiento eléctrico que toma cada uno de los hogares y se debe tener en cuenta para añadir las muestras necesarias a los ficheros de aquellas viviendas que tienen el rango temporal incompleto. Por ejemplo, para la vivienda con identificador 4 (ver Figura \ref{fig:despliegue2}), se deben aproximar los valores de las muestras a las proporcionadas por las viviendas con identificadores 13 o 21, puesto que la información demográfica es similar y, en consecuencia, el comportamiento eléctrico será parecido. Adicionalmente, se introduce cierto error para que los valores no sean completamente iguales entre las viviendas en cuestión.
+
+%CODIGO
 
 
 
 
 
 \subsection{Procesado de datos de producción}
+\label{sec:procprod}
 
-comentar \ref{sec:datasamples}
+Después de exponer el procesamiento necesario para los datos de consumo, se va a profundizar en la producción energética. Como ya se había detallado en las Secciones \ref{sec:conclusionessustdata} y \ref{sec:simuprod},  referentes, respectivamente, a las conclusiones obtenidas del dataset \textit{SustDataED} y a la introducción a las herramientas de simulación de datos de producción energética, se escribe la presente Sección con el objetivo de tomar la decisión de seleccionar la fuente de datos de producción más adecuada para el desarrollo de este \gls{tfm}.
+
+\vspace{3mm}
+
+Por tanto, se debe comparar las características que presentan, tanto los datos que proporciona \textit{SustDataED}, como los extraídos a través de la simulación en la herramienta \textit{PVWatts}. Para ello, hay que determinar unos pasos iniciales de procesamiento en cada uno de ellos que permitan finalmente, establecer una comparación de forma correcta. En otras palabras, no sería preciso comparar ambas fuentes directamente si estas no están comprendidas en unos mismos rangos temporales o si no contienen los mismos parámetros. 
+
+\subsubsection{Preprocesamiento de datos de \textit{SustDataED}}
+
+En cuanto al dataset \textit{SustDataED}, el primer paso a realizar está basado en la combinación de los parámetros energéticos y los climáticos. Este viene dado por la necesidad de realizar un análisis de la correlación que existe entre la producción solar y las características ambientales que se miden en cada instante. 
+
+\vspace{3mm}
+
+Por ello, se crea un nuevo \textit{notebook}, denominado como \textit{preprocessing\_production.ipynb}, en el cual hay que tener en cuenta los campos expuestos en las Tablas \ref{tab:prod} y \ref{tab:env}. La operación de combinación de los datos energéticos y climáticos se determina a partir de la marca de tiempo (\textit{timestamp}) y resulta en un nuevo \textit{dataframe} de \textit{Pandas}, que será almacenado en un nuevo fichero en formato .csv.
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Combinación de ficheros}]
+  df_merged = pd.merge(df_env, df_prod, on='timestamp') # Operación de merge
+\end{lstlisting}
+
+\vspace{3mm}
+
+Posteriormente, es necesario sintetizar los datos de la misma forma que se ha realizado anteriormente para los ficheros de consumo. Como se había detallado en la Sección \ref{sec:datasamples}, se emplea el \textit{notebook} \textit{datasamples\_process.ipynb} para automatizar este proceso y obtener la media de los valores de potencia. En el caso de la producción, como este \gls{tfm} se engloba en un contexto de \gls{sg}s, se enfoca la operación en la columna de medidas globales de producción fotovoltaica. Tras la ejecución del \textit{notebook}, se obtiene un fichero con los campos definidos en la Tabla \ref{tab:prodsamples}. Adicionalmente, se emplea la librería de \textit{Python}, \textit{matplotlib}, para representar gráficamente en la Figura \ref{fig:solar} los valores de potencia recogidos en el fichero.
+
+\vspace{3mm}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|c|c|c|}
+  \hline
+  \rowcolor[HTML]{AAAAAA} 
+  \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
+  \textit{datetime} & Fecha del valor promedio & datetime \\ \hline
+  \textit{H} & Hora del valor promedio & - \\ \hline
+  \textit{solar} & Electricidad producida por fuentes fotovoltaicas & MWh \\ \hline
+  \end{tabular}
+  \caption{Estructura de campos del fichero \textit{mean\_prod.csv}}
+  \label{tab:prodsamples}
+\end{table}
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/matplotsolar.png}
+  \caption{Gráfica de valores de energía solar producida}
+  \label{fig:solar}
+\end{figure}
+
+\vspace{3mm}
+
+De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anteriormente para los datos de consumo (ver Sección \ref{sec:rango}), se representan a modo comparativo los valores de temperatura y de potencia medidos en las Figuras \ref{fig:temp} y \ref{fig:solaryear}, respectivamente. %%%%%
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/temp.png}
+  \caption{Gráfica de valores de temperatura en el rango seleccionado}
+  \label{fig:temp}
+\end{figure}
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/matplotsolaryear.png}
+  \caption{Gráfica de valores de energía solar producida en el rango seleccionado}
+  \label{fig:solaryear}
+\end{figure}
+
+\subsubsection{Preprocesamiento de datos de \textit{PVWatts}}
+\label{sec:preprocpvwatts}
+
+El preprocesamiento de los datos extraídos de la herramienta \textit{PVWatts} consisten principalmente en el formateo de los mismos y en la adecuación de los valores en cada instante para el posterior cálculo de las cargas. Como motivo de esto, se añaden las operaciones necesarias en el \textit{notebook} \textit{preprocessing\_production.ipynb}. 
+
+\vspace{3mm}
+
+Como se había expuesto en la Sección \ref{sec:resultadossimu} y en las Tablas \ref{tab:pvwattsdataset2} y \ref{tab:pvwattsdataset}, \textit{PVWatts} proporcionaba dos datasets que replicaban un año completo de mediciones. En este caso, el preprocesamiento se va a enfocar en el que contiene las medidas adquiridas por hora para un año completo. En otros términos, como son datos simulados, no hacen referencia a un año en concreto, sino que representan valores anuales generalizados. 
+
+
+Teniendo esto en cuenta, será preciso 
+
+\vspace{3mm}
+
+
+
+%%%%
+% Preprocessing_production.ipynb 
+% c.	Quitar comillas datos extraídos global data
+% d.	New_pvwatts -> se añaden timestamps para crear dataset completo de producción para todas las fechas (GLOBAL). Después, se añade todo en un fichero.** 
+
+
 
 
 %meter graficas del paper de sustdata
@@ -410,8 +596,29 @@ comentar \ref{sec:datasamples}
 
 
 
+\subsubsection{Selección de datos de producción}
+\label{sec:select}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/matplotfuentesyear.png}
+  \caption{Gráfica de valores de múltiples fuentes energéticas proporcionadas por \textit{SustDataED} para un año}
+  \label{fig:fuentesyear}
+\end{figure}
+
+
+
+
+
+
+
+
+
 \subsection{Combinación de datos de consumo y de producción}
+%tratamiento de nans
+
+%meter graica consumo un nodo de ejemplos
 
 
-%meter grafica consumo ejemplo de un nodo
+%meter grafica load ejemplo de un nodo
 

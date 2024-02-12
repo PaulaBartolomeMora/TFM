@@ -71,6 +71,7 @@ El dataset \textit{SustDataED} engloba cinco años de datos de consumo y producc
 Pese a la necesidad de procesamiento que conlleva, el uso de \textit{SustDataED} en el presente \gls{tfm} brinda ciertas ventajas. Entre otras, aporta un gran perspectiva del comportamiento eléctrico a largo plazo de múltiples hogares con diferentes características y ofrece un enfoque medioambiental, ya que mediante la adquisición de los datos relativos a las condiciones climáticas posibilita el análisis de la correlación de las mismas con el consumo de los usuarios y la producción de energía.
 
 \subsection{Estructura del dataset \textit{SustDataED}}
+\label{sec:estructurasustdata}
 
 El proceso de adquisición y recolección de los datos de los 50 hogares que constituyen el dataset se divide en cuatro despliegues diferentes (ver Figura \ref{fig:despliegues}):
 
@@ -80,7 +81,7 @@ El proceso de adquisición y recolección de los datos de los 50 hogares que con
     \item El despliegue 4 es el último que se realiza y consta de la agrupación de medidas de 10 hogares, comenzando la recolección de datos de los mismos en el mes de julio de 2013 y finalizando en marzo de 2014.
 \end{itemize}
 
-En la Figura \ref{fig:despliegues} se representan gráficamente los períodos temporales que abarcan los despliegues expuestos anteriormente mediante el empleo de la librería de \textit{Python} \textit{matplotlib}. Además, como se puede apreciar, cada uno de los 50 hogares participantes supone un identificador único (\textit{id}). 
+En la Figura \ref{fig:despliegues} se representan gráficamente los períodos temporales que abarcan los despliegues expuestos anteriormente mediante el empleo de la librería de \textit{Python}, \textit{matplotlib}. Además, como se puede apreciar, cada uno de los 50 hogares participantes supone un identificador único (\textit{id}). 
 
 \vspace{3mm}
 
@@ -187,7 +188,7 @@ El proceso de recolección de las muestras tiene como base un método estadísti
 \subsubsection{Medidas de producción de energía}
 \label{sec:prodsustdata}
 
-El dataset \textit{SustDataED} recoge a nivel global los datos respectivos a la producción de electricidad en intervalos de 15 minutos. La energía generada se desagrega según su fuente de procedencia, dando protagonismo a las fuentes renovables. En la Tabla \ref{tab:prod} se indican los campos que han sido definidos para cuantificar las medidas.
+El dataset \textit{SustDataED} recoge a nivel global los datos respectivos a la producción de electricidad en intervalos de 15 minutos. La energía generada se desagrega según su fuente de procedencia, dando protagonismo a las fuentes renovables. En la Tabla \ref{tab:prod} se indican los campos que han sido definidos para cuantificar las medidas. Adicionalmente, en la Figura \ref{fig:fuentes} se representan gráficamente los valores recogidos en el dataset a lo largo del tiempo para cada una de las fuentes de energía dadas. En este caso se emplea la librería de \textit{Python} \textit{matplotlib}.
 
 \vspace{3mm}
 
@@ -199,16 +200,27 @@ El dataset \textit{SustDataED} recoge a nivel global los datos respectivos a la 
     \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
     \textit{timestamp} & Instante temporal de medida & datetime \\ \hline
     \textit{total} & Producción total & MWh \\ \hline
-    \textit{thermal\_fuel} & Electricidad producida por fuentes térmicas & MWh \\ \hline
+    \textit{thermal} & Electricidad producida por fuentes térmicas & MWh \\ \hline
     \textit{hydro} & Electricidad producida por fuentes hidroeléctricas & MWh \\ \hline
     \textit{eolic} & Electricidad producida por fuentes eólicas & MWh \\ \hline
-    \textit{photovoltaic} & Electricidad producida por fuentes fotovoltaicas & MWh \\ \hline
+    \textit{biomass} & Electricidad producida por fuentes orgánicas & MWh \\ \hline
+    \textit{solar} & Electricidad producida por fuentes fotovoltaicas & MWh \\ \hline
     \end{tabular}
     \caption{Tabla de medidas de producción de energía \cite{sustdata}}
     \label{tab:prod}
 \end{table}
 
+\vspace{3mm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/matplotfuentes.png}
+  \caption{Gráfica de valores de múltiples fuentes energéticas proporcionadas por \textit{SustDataED}}
+  \label{fig:fuentes}
+\end{figure}
+
 \subsubsection{Medidas demográficas}
+\label{sec:demographic}
 
 Para el análisis del comportamiento eléctrico de cada uno de los hogares monitorizados se puede visualizar en la Tabla \ref{tab:demo} cómo se almacena la información respectiva a sus inquilinos y a los períodos de adquisición de datos de cada vivienda.
 
@@ -294,7 +306,7 @@ Una vez realizado el estudio y el análisis en profundidad de los datos proporci
 
 \vspace{3mm}
 
-El procesamiento que será requerido para estos datos se detallará en la Sección \ref{sec:preprocesado}. No obstante, es importante incidir en las características de los datos de producción eléctrica dados por \textit{SustDataED}. Como se ha expuesto anteriormente en la Sección \ref{sec:prodsustdata}, el dataset proporciona esta información en términos globales y después, desagrega los valores energéticos según su fuente de procedencia. Por lo tanto, en la Sección \ref{sec:preprocesado} de este documento se detallará cómo será imprescindible determinar si estos datos son precisos y evaluar su utilidad específicamente en un entorno de \gls{sg}s como motivo de los objetivos de este \gls{tfm}.
+El procesamiento que será requerido para estos datos se detallará en la Sección \ref{sec:preprocesado}. No obstante, es importante incidir en las características de los datos de producción eléctrica dados por \textit{SustDataED}. Como se ha expuesto anteriormente en la Sección \ref{sec:prodsustdata}, el dataset proporciona esta información en términos globales y después, desagrega los valores energéticos según su fuente de procedencia. Por lo tanto, en la Sección \ref{sec:procprod} de este documento se detallará cómo será imprescindible determinar si estos datos son precisos y evaluar su utilidad específicamente en un entorno de \gls{sg}s como motivo de los objetivos de este \gls{tfm}.
 
 \vspace{3mm}
 
