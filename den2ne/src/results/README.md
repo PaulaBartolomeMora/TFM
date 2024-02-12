@@ -19,4 +19,8 @@ pruebas realizadas para añadir el parámetro degree y modelo
 cambiada estructura dirs (dataset_exp) y nombre fich (viene info de parametros)
 02/02, modo 3, limitload 0, TOPO_NUM_NODES=$(seq 100 50 200), 5 seeds de ejec, 19/02/11_15
 
+# pruebas4.zip 
+
+pruebas ya con todo, se coge el día 28 de todos los meses a las 11:00
+09/02, modo 3, limitload 0, TOPO_NUM_NODES=$(seq 100 50 200), 5 seeds de ejec, 
 
