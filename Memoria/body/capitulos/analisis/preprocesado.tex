@@ -21,11 +21,11 @@ Antes de comenzar a describir este procesamiento, es imprescindible destacar que
 \subsubsection{Análisis de la situación inicial y primeros pasos}
 \label{sec:inicialproc}
 
-El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba en la Sección \ref{sec:sustdataed} como un conjunto de datos que abría multitud de posibilidades de implementación. Se puede expresar que esto venía justificado por el hecho de abarcar un extenso lapso temporal de medidas correspondientes a un gran número de viviendas. Además, estas medidas se caracterizaban por ser adquiridas a una frecuencia de muestreo de un minuto, lo que aportaba una buena resolución para analizar el comportamiento eléctrico de todos los usuarios implicados. 
+El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba en la Sección \ref{sec:sustdataed} como un conjunto de datos que abría multitud de posibilidades de implementación. Se puede expresar que esto venía justificado por el hecho de abarcar un extenso lapso temporal de medidas correspondientes a un gran número de viviendas. Además, estas medidas se caracterizaban por ser adquiridas a una frecuencia de muestreo de un minuto, lo que aportaba una buena resolución para analizar el comportamiento eléctrico de todos los usuarios implicados. Como también se exponía en la Sección \ref{sec:sustdataed}, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, cada uno con diferentes rangos temporales de medición y con un conjunto de viviendas determinado. Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue. \cite{sustdata}
 
 \vspace{3mm}
 
-Como también se exponía en la Sección \ref{sec:sustdataed}, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, cada uno con diferentes rangos temporales de medición y con un conjunto de viviendas determinado. Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue. \cite{sustdata}
+Tomando lo anterior en consideración, en este paso, enfocado al análisis de la situación inicial del conjunto, es preciso tener el conocimiento de los ficheros de datos de consumo de los que se va a partir. Por este motivo, se añade de forma adicional la Tabla \ref{tab:fichconsumo}, la cual expone la información relativa a cada despliegue y a los tamaños de cada uno de los ficheros proporcionados en el dataset.
 
 \vspace{3mm}
 
@@ -44,10 +44,6 @@ Como también se exponía en la Sección \ref{sec:sustdataed}, especialmente en 
     \caption{Resumen de los datos de consumo del dataset \textit{SustDataED} \cite{sustdata}}
     \label{tab:resumen}
 \end{table}
-
-\vspace{3mm}
-
-Tomando lo anterior en consideración, en este paso, enfocado al análisis de la situación inicial del conjunto, es preciso tener el conocimiento de los ficheros de datos de consumo de los que se va a partir. Por este motivo, se añade de forma adicional la Tabla \ref{tab:fichconsumo}, la cual expone la información relativa a cada despliegue y a los tamaños de cada uno de los ficheros proporcionados en el dataset.  
 
 \vspace{3mm}
 
@@ -78,7 +74,7 @@ Tomando lo anterior en consideración, en este paso, enfocado al análisis de la
     \label{tab:fichconsumo}
 \end{table}
 
-\vspace{3mm}
+\pagebreak
 
 Como se puede comprobar, a priori la mayoría no precisan de un volumen manejable, por lo que la primera acción a realizar será dividir los mismos en nuevos ficheros que supongan un tamaño menor del dado. Esto sobre todo será importante a la hora de trabajar con el repositorio de GitHub, puesto que existe el factor limitante de que el tamaño máximo permitido por archivo es de 100MB. 
 
@@ -440,19 +436,13 @@ Por lo tanto, teniendo estas condiciones y características en cuenta, se justif
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth,height=8cm]{img/diseno/despliegue2.png}
-    \caption{Representación del período temporal que comprende el proceso de recolección de datos para cada hogar para el segundo despliegue}
+    \caption{Representación del período temporal que comprende el proceso de recolección de datos para los hogares del segundo despliegue}
     \label{fig:despliegue2}
 \end{figure}
 
-%tabla datos demographics 23 nodos
-
-
-
-
-
 \subsubsection{Selección del rango temporal y procesamiento adicional}
 \label{sec:rango}
-%especificar seccion donde se comenta el rango 28-10->28-10
+%especificar seccion donde se comenta el rango 28-11->28-11
 
 Como se puede ver en la Figura \ref{fig:despliegue2}, aunque las 23 viviendas pertenecen al mismo despliegue y abarcan un lapso temporal parecido, se pueden visualizar ciertas diferencias entre las mismas. Esto supone que realmente cada fichero de datos de consumo tenga un número de muestras diferente, lo que perjudicaría al análisis y entrenamiento posterior. 
 
@@ -462,12 +452,12 @@ Por tanto, una vez seleccionado el despliegue, se deben acotar los ficheros de d
 
 \vspace{3mm}
 
-Por otro lado, entrando en el contenido de los ficheros, la fecha mínima en la que se visualiza que las 23 viviendas adquieren y almacenan medidas es el 28 de octubre de 2010, lo que lleva a tomar la decisión de establecer la misma  como inicio del rango temporal a considerar. En cuanto a la fecha final, a partir de la información dada en la Figura \ref{fig:despliegue2}, se considera que la opción más eficiente es abarcar un año completo de muestras, siendo la fecha final el 28 de octubre de 2011. En Secciones siguientes, se expondrá cómo el hecho de seleccionar un año de medidas será importante para calcular las cargas finales que se fijarán en el algoritmo \gls{den2ne} (ver Sección \ref{sec:cambiosden2ne}), puesto que en el caso de los datos de producción obtenidos de la herramienta \textit{PVWatts} se abarcan valores de potencia de un año completo (ver Sección \ref{sec:preprocpvwatts}).
+Por otro lado, entrando en el contenido de los ficheros, la fecha mínima en la que se visualiza que las 23 viviendas adquieren y almacenan medidas es el 28 de noviembre de 2010, lo que lleva a tomar la decisión de establecer la misma como inicio del rango temporal a considerar. En cuanto a la fecha final, a partir de la información dada en la Figura \ref{fig:despliegue2}, se considera que la opción más eficiente es abarcar un año completo de muestras, siendo la fecha final el 28 de noviembre de 2011. En Secciones siguientes, se expondrá cómo el hecho de seleccionar un año de medidas será importante para calcular las cargas finales que se fijarán en el algoritmo \gls{den2ne} (ver Secciones \ref{sec:combinacion} y \ref{sec:cambiosden2ne}), puesto que en el caso de los datos de producción obtenidos de la herramienta \textit{PVWatts} se abarcan valores de potencia de un año completo (ver Sección \ref{sec:preprocpvwatts}).
 
 \vspace{3mm}
 
 \begin{lstlisting}[style=Python, caption={Aplicación del rango temporal a los ficheros}]
-rango = df[(df['datetime'] >= '2010-10-28') & (df['datetime'] < '2011-10-28')] 
+rango = df[(df['datetime'] >= '2010-11-28') & (df['datetime'] < '2011-11-28')] 
 \end{lstlisting}
 
 \vspace{3mm}
@@ -476,13 +466,27 @@ La aplicación del filtro del rango temporal a los datos se realiza en el \texti
 
 \vspace{3mm}
 
-Es decir, como se expuso en la Sección \ref{sec:demographic}, el dataset \textit{SustDataED} provee la Tabla \ref{tab:demo} con toda la información respectiva a cada uno de los hogares monitorizados y a las características sociales de los propios inquilinos. Esta información determina principalmente, el comportamiento eléctrico que toma cada uno de los hogares y se debe tener en cuenta para añadir las muestras necesarias a los ficheros de aquellas viviendas que tienen el rango temporal incompleto. Por ejemplo, para la vivienda con identificador 4 (ver Figura \ref{fig:despliegue2}), se deben aproximar los valores de las muestras a las proporcionadas por las viviendas con identificadores 13 o 21, puesto que la información demográfica es similar y, en consecuencia, el comportamiento eléctrico será parecido. Adicionalmente, se introduce cierto error para que los valores no sean completamente iguales entre las viviendas en cuestión.
+Es decir, como se expuso en la Sección \ref{sec:demographic}, el dataset \textit{SustDataED} provee la Tabla \ref{tab:demo} con toda la información respectiva a cada uno de los hogares monitorizados y a las características sociales de los propios inquilinos. Esta información determina principalmente, el comportamiento eléctrico que toma cada uno de los hogares y se debe tener en cuenta para añadir las muestras necesarias a los ficheros de aquellas viviendas que tienen el rango temporal incompleto. 
 
-%CODIGO
+\vspace{3mm}
 
+A modo de ejemplo se muestra la Figura \ref{fig:517}, donde para la vivienda con identificador 5, se podrían aproximar las muestras a las dadas por la vivienda con identificador 17. Esto se debe a que la información demográfica de las mismas es similar, ya que están habitadas por una familia de 4 integrantes, de los cuales son 2 adultos y 2 niños. Por lo tanto, se puede apreciar que se obtiene un comportamiento eléctrico parecido. Ocurre de la misma forma en la Figura \ref{fig:1316}. No obstante, en este caso se representa el consumo de potencia de las viviendas con identificador 13 y 16, que se caracterizan por estar habitadas por dos inquilinos adultos, por lo que es coherente que se obtenga un menor consumo medio respecto al caso anterior.
 
+\vspace{3mm}
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/517.png}
+  \caption{Comparación del consumo de las viviendas 5 y 17 en el rango seleccionado (\textit{SustDataED})}
+  \label{fig:517}
+\end{figure}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/1316.png}
+  \caption{Comparación del consumo de las viviendas 13 y 16 en el rango seleccionado (\textit{SustDataED})}
+  \label{fig:1316}
+\end{figure}
 
 \subsection{Procesado de datos de producción}
 \label{sec:procprod}
@@ -494,6 +498,7 @@ Después de exponer el procesamiento necesario para los datos de consumo, se va 
 Por tanto, se debe comparar las características que presentan, tanto los datos que proporciona \textit{SustDataED}, como los extraídos a través de la simulación en la herramienta \textit{PVWatts}. Para ello, hay que determinar unos pasos iniciales de procesamiento en cada uno de ellos que permitan finalmente, establecer una comparación de forma correcta. En otras palabras, no sería preciso comparar ambas fuentes directamente si estas no están comprendidas en unos mismos rangos temporales o si no contienen los mismos parámetros. 
 
 \subsubsection{Preprocesamiento de datos de \textit{SustDataED}}
+\label{sec:preprocsust}
 
 En cuanto al dataset \textit{SustDataED}, el primer paso a realizar está basado en la combinación de los parámetros energéticos y los climáticos. Este viene dado por la necesidad de realizar un análisis de la correlación que existe entre la producción solar y las características ambientales que se miden en cada instante. 
 
@@ -509,7 +514,7 @@ Por ello, se crea un nuevo \textit{notebook}, denominado como \textit{preprocess
 
 \vspace{3mm}
 
-Posteriormente, es necesario sintetizar los datos de la misma forma que se ha realizado anteriormente para los ficheros de consumo. Como se había detallado en la Sección \ref{sec:datasamples}, se emplea el \textit{notebook} \textit{datasamples\_process.ipynb} para automatizar este proceso y obtener la media de los valores de potencia. En el caso de la producción, como este \gls{tfm} se engloba en un contexto de \gls{sg}s, se enfoca la operación en la columna de medidas globales de producción fotovoltaica. Tras la ejecución del \textit{notebook}, se obtiene un fichero con los campos definidos en la Tabla \ref{tab:prodsamples}. Adicionalmente, se emplea la librería de \textit{Python}, \textit{matplotlib}, para representar gráficamente en la Figura \ref{fig:solar} los valores de potencia recogidos en el fichero.
+Posteriormente, es necesario sintetizar los datos de la misma forma que se ha realizado anteriormente para los ficheros de consumo. Como se había detallado en la Sección \ref{sec:datasamples}, se emplea el \textit{notebook} \textit{datasamples\_process.ipynb} para automatizar este proceso y obtener la media de los valores de potencia. En el caso de la producción, como este \gls{tfm} se engloba en un contexto de \gls{sg}s, se enfoca la operación en la columna de medidas globales de producción fotovoltaica. Tras la ejecución del \textit{notebook}, se obtiene un fichero con los campos definidos en la Tabla \ref{tab:prodsamples}. Adicionalmente, se emplea la librería de \textit{Python}, \textit{matplotlib}, para representar gráficamente en la Figura \ref{fig:solar} los valores de potencia recogidos en el fichero en órdenes de kW para simplificar el análisis.
 
 \vspace{3mm}
 
@@ -527,35 +532,44 @@ Posteriormente, es necesario sintetizar los datos de la misma forma que se ha re
   \label{tab:prodsamples}
 \end{table}
 
-\vspace{3mm}
-
 \begin{figure}[h!]
   \centering
   \includegraphics[width=1\textwidth]{img/diseno/matplotsolar.png}
-  \caption{Gráfica de valores de energía solar producida}
+  \caption{Gráfica de energía solar producida (\textit{SustDataED})}
   \label{fig:solar}
 \end{figure}
 
 \vspace{3mm}
 
-De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anteriormente para los datos de consumo (ver Sección \ref{sec:rango}), se representan a modo comparativo los valores de temperatura y de potencia medidos en las Figuras \ref{fig:temp} y \ref{fig:solaryear}, respectivamente. %%%%%
+De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anteriormente para los datos de consumo (ver Sección \ref{sec:rango}), se representan a modo comparativo los valores de temperatura y de potencia medidos en las Figuras \ref{fig:temp} y \ref{fig:solaryear}, respectivamente. Como se puede ver los valores reflejados de generación energética presentan cierta correlación con la temperatura a partir del mes de enero de 2011 y se encuentran diferencias entre los rangos de valores que se manejan en los meses de invierno y los de verano, a medida que se incrementa la temperatura. El análisis se fija a partir de este mes porque es en este momento cuando crecen las dimensiones del sistema fotovoltaico y se produce un salto en los valores medidos, conllevando un incremento de la potencia que se puede generar. Entonces, no sería correcto enfocar la comparación entre la temperatura y la potencia en los meses correspondientes al año 2010, ya que el sistema fotovoltaico no es equivalente al del año posterior.
 
 \vspace{3mm}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{img/diseno/temp.png}
-  \caption{Gráfica de valores de temperatura en el rango seleccionado}
+  \caption{Gráfica de temperatura en el rango seleccionado (\textit{SustDataED})}
   \label{fig:temp}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/matplotsolaryear.png}
+  \caption{Gráfica de energía solar producida en el rango seleccionado (\textit{SustDataED})}
+  \label{fig:solaryear}
 \end{figure}
 
 \vspace{3mm}
 
+Para visualizar de una forma más gráfica la correlación existente entre temperatura y potencia generada, se añade la Figura \ref{fig:energiavstemp} para representar los valores de ambos parámetros para la primera semana de agosto.
+
+\vspace{3mm}
+
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=1\textwidth]{img/diseno/matplotsolaryear.png}
-  \caption{Gráfica de valores de energía solar producida en el rango seleccionado}
-  \label{fig:solaryear}
+  \includegraphics[width=1\textwidth]{img/diseno/energiavstemp.png}
+  \caption{Correlación entre temperatura y energía solar producida en el mes de agosto (\textit{SustDataED})}
+  \label{fig:energiavstemp}
 \end{figure}
 
 \subsubsection{Preprocesamiento de datos de \textit{PVWatts}}
@@ -565,60 +579,96 @@ El preprocesamiento de los datos extraídos de la herramienta \textit{PVWatts} c
 
 \vspace{3mm}
 
-Como se había expuesto en la Sección \ref{sec:resultadossimu} y en las Tablas \ref{tab:pvwattsdataset2} y \ref{tab:pvwattsdataset}, \textit{PVWatts} proporcionaba dos datasets que replicaban un año completo de mediciones. En este caso, el preprocesamiento se va a enfocar en el que contiene las medidas adquiridas por hora para un año completo. En otros términos, como son datos simulados, no hacen referencia a un año en concreto, sino que representan valores anuales generalizados. 
-
-
-Teniendo esto en cuenta, será preciso 
+Como se había expuesto en la Sección \ref{sec:resultadossimu}, además de en las Tablas \ref{tab:pvwattsdataset2} y \ref{tab:pvwattsdataset}, \textit{PVWatts} proporcionaba dos datasets que replicaban un año completo de mediciones. En este caso, el preprocesamiento se va a enfocar en el que contiene las medidas adquiridas por hora para un año completo. Por tanto, teniendo en cuenta esta frecuencia de adquisición, no es necesario a priori sintetizar los datos como se había realizado en el caso de \textit{SustDataED} (ver Sección \ref{sec:datasamples}), para el cual se transformaban muestras adquiridas cada minuto a valores promediados por hora.
 
 \vspace{3mm}
 
+Tampoco se requiere combinar los datos climáticos y ambientales con los valores de producción fotovoltaica, ya que el dataset los proporciona directamente todos en un mismo fichero (ver Tabla \ref{tab:pvwattsdataset}). No obstante, el paso que sí se debe realizar en esta fase de procesamiento es establecer una marca de tiempo específica a cada una de las filas de datos. Es decir, como la herramienta \textit{PVWatts} genera un dataset a partir de la simulación de un sistema real de producción energética, las medidas dadas hacen referencia a una hora, día y mes, pero no se especifican para un año en concreto, sino que representan valores generalizados. 
 
+\vspace{3mm}
 
-%%%%
-% Preprocessing_production.ipynb 
-% c.	Quitar comillas datos extraídos global data
-% d.	New_pvwatts -> se añaden timestamps para crear dataset completo de producción para todas las fechas (GLOBAL). Después, se añade todo en un fichero.** 
+Considerando lo anterior, se debe añadir al dataset de origen una nueva columna dedicada a los valores de marca de tiempo de cada instante (\textit{timestamp}) para poder indicar el año. Este paso es imprescindible para permitir posteriormente la comparación los datos de consumo con los de producción y establecer las cargas en el algoritmo \gls{den2ne}, como se expondrá en las Secciones \ref{sec:combinacion} y \ref{sec:cambiosden2ne}, respectivamente. 
 
+\vspace{3mm}
 
+Es importante recordar en este punto que, para el desarrollo de este \gls{tfm}, se ha seleccionado anteriormente el segundo despliegue \textit{SustDataED} y se ha reducido el manejo de dicho dataset a un rango temporal especificado entre los años 2010 y 2011. No obstante, en este paso del procesamiento del dataset de \textit{PVWatts}, el fichero que se decide generar a la salida abarca un conjunto de datos de producción con marcas de tiempo comprendidas entre los años 2010 y 2014. Esto se realiza a modo de obtener de forma completa el mismo rango temporal de medidas que proporciona el dataset \textit{SustDataED} por si en un futuro se necesitara emplear otro despliegue diferente al seleccionado a priori. En la Figura \ref{fig:solaryearpv} se representan los valores de potencia generada obtenidos en la simulación para el rango temporal seleccionado.
 
+\vspace{3mm}
 
-%meter graficas del paper de sustdata
-%meter graficas de sustdata (ej. consumo de un hogar y tal, correlacion prod-clima)
-%definir que es lo que se va a utilizar
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/matplotsolaryearpvwatts.png}
+  \caption{Gráfica de energía solar producida en el rango seleccionado (\textit{PVWatts})}
+  \label{fig:solaryearpv}
+\end{figure}
 
-%ESTO ES LO QUE ESTA PUESTO ARRIBA --> (PARA ACORDARME DE REFERENCIARLO AQUI Y DETALLARLO)
-% El procesamiento que será requerido para estos datos se detallará en la Sección \ref{sec:preprocesado}. No obstante, es importante destacar las características de los datos de producción eléctrica dados por \textit{SustDataED}. Como se ha expuesto anteriormente en la Sección \ref{prodsustdata}, el dataset proporciona esta información en términos globales y después, desagrega los valores energéticos según su fuente de procedencia. Como se expondrá en la Sección \ref{sec:preprocesado}, será imprescindible determinar si estos datos son precisos en un entorno de \gls{sg}s como se requiere para cumplir con los objetivos de este \gls{tfm}
+\vspace{3mm}
 
+De la misma forma que se ha realizado en la Sección \ref{sec:preprocsust} para los datos de \textit{SustDataED}, se analiza en este punto la correlación existente entre los valores de potencia en cada instante y los parámetros ambientales y climáticos, escogiendo igualmente la primera semana de agosto a modo de ejemplo. En la Figura \ref{fig:energiavstempcel} se comparan los valores de temperatura, tanto ambiental como de la célula, con los de potencia generada en órdenes de kW. Se puede apreciar que, a mayores temperaturas adquiridas por la célula fotovoltaica, se incrementa la potencia generada. No obstante, es preciso indicar que la temperatura de las células puede llegar a ser un factor limitante si se supera el máximo recomendado, puesto que perjudicaría gravemente al rendimiento del sistema.
 
-% 7 y 7.1 del AI-based FDI Countermeasure for IoE Smart Grids
+\vspace{3mm}
 
-%hacerme una idea de la estructura -> ver pag 37 AI-based-FDI-Countermeasure-for-IoE-Smart-Grids
+Por otro lado, en la Figura \ref{fig:energiavsrad} se representan los valores de índice de radiación en el plano del array (\gls{poa}) y de radiación difusa (\gls{dif}) frente a la potencia en cada instante. Como se expuso en la Sección \ref{sec:resultadossimu}, el primero está directamente relacionado con el índice de radiación directa normal (\gls{dni}) y se calcula como el producto del mismo por el ángulo de inclinación de las células. Debido a este motivo y a que el \gls{dif} depende de la dispersión introducida por la atmósfera, se observa una mayor correlación entre los valores de energía generada y los de \gls{poa}.
 
+\vspace{3mm}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/energiavstempcel.png}
+  \caption{Correlación entre temperatura y energía solar producida en el mes de agosto (\textit{PVWatts})}
+  \label{fig:energiavstempcel}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/energiavsrad.png}
+  \caption{Correlación entre radiación y energía solar producida en el mes de agosto (\textit{PVWatts})}
+  \label{fig:energiavsrad}
+\end{figure}
 
 \subsubsection{Selección de datos de producción}
 \label{sec:select}
 
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=1\textwidth]{img/diseno/matplotfuentesyear.png}
-  \caption{Gráfica de valores de múltiples fuentes energéticas proporcionadas por \textit{SustDataED} para un año}
-  \label{fig:fuentesyear}
-\end{figure}
+Como se había introducido en la Sección \ref{sec:procprod}, se requería aplicar un preprocesamiento en relación con los datos de producción energética dados, tanto por el dataset \textit{SustDataED}, como por la herramienta \textit{PVWatts}, para poder llevar a cabo un análisis comparativo de ambos de una forma correcta. Una vez implementados estos pasos, se puede tomar la decisión de seleccionar la fuente de datos más adecuada para el desarrollo de este \gls{tfm} a partir de las características observadas y las representaciones gráficas expuestas en este documento. Añadiendo también a este análisis, el estudio realizado en las Secciones \ref{sec:sustdataed} y \ref{sec:pvw}, se determina finalmente, la elección de \textit{PVWatts} como fuente de datos de producción energética. 
 
+\vspace{3mm}
 
+Esta decisión se rige por la razón principal de la precisión que aportan los datos al tratarse de un dataset generado a partir de la simulación de un sistema real y de la configuración de múltiples parámetros de entrada en referencia a la ubicación y a los requisitos técnicos deseados (ver Sección \ref{sec:pvw}). Es decir, los resultados proporcionados por la herramienta han sido analizados en profundidad, además de constrastados con el estudio teórico, lo que justifica su precisión respecto a un caso real (ver Sección \ref{sec:resultadossimu}).  
 
+\vspace{3mm}
 
+Otra ventaja que aporta el empleo de la herramienta \textit{PVWatts}, es la posibilidad de rediseño y de replicación de los datos anuales. En caso de desearse, se permitiría simular otro tipo de sistema fotovoltaico real y determinar parámetros de entrada diferentes en la configuración, lo que produce un desarrollo mucho más flexible. Además, se aporta una mayor información que \textit{SustDataED} sobre las condiciones climáticas que se dan en cada instante, sobre todo en términos de radiación.
 
+\vspace{3mm}
 
-
-
+El dataset \textit{SustDataED}, en cambio, sí que se basa en medidas de un despliegue de viviendas real, pero los valores de generación energética que aporta se definen en términos globales a todas los hogares. No se aporta información exacta sobre el número de viviendas a los que se abastece, ni sobre las dimensiones del sistema o sistemas fotovoltaicos de los que se han adquirido los datos en cada instante. En consecuencia, no se puede evaluar su utilidad específicamente en un entorno de \gls{sg}s como motivo de los objetivos de este \gls{tfm} y se introducen dificultades para analizar los valores de potencia dados. Por todo esto, se decide reducir el uso del dataset \textit{SustDataED} a los datos de consumo de los hogares.
 
 \subsection{Combinación de datos de consumo y de producción}
-%tratamiento de nans
+\label{sec:combinacion}
 
-%meter graica consumo un nodo de ejemplos
+Se introduce la programación de un nuevo \textit{notebook}, denominado como \textit{power\_selection}, que va a determinar los ficheros con los valores de potencia finales mediante la combinación de los datos de consumo y de producción preprocesados. Es decir, en este punto se parte, por un lado, de los 23 ficheros de consumo (\textit{consum\_x.csv}), obtenidos de \textit{SustDataED} y que han sido creados para representar el comportamiento eléctrico de las 23 viviendas que componen el segundo despliegue. Por otro lado, se dispone del dataset final de producción, extraído de la herramienta \textit{PVWatts} y preprocesado para ser aplicado al rango temporal seleccionado. 
 
+\vspace{3mm}
 
-%meter grafica load ejemplo de un nodo
+Por tanto, el objetivo del \textit{notebook} en cuestión se basa en obtener a la salida 23 nuevos ficheros que contengan los valores de cargas netas para cada instante, las cuales se establecerán posteriormente en el algoritmo \gls{den2ne} (ver Sección \ref{sec:cambiosden2ne}). Para ello, es necesario combinar cada fichero de consumo con los datos de producción y, después, aplicar la diferencia entre la potencia generada y consumida a partir de la marca de tiempo dada en cada fila. Se escoge como ejemplo la vivienda con identificador 1 para representar en las Figuras \ref{fig:calculocarga} y \ref{fig:calculocarga2} los valores de carga resultante a partir de los ficheros de entrada.
+
+\vspace{3mm}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/calculocarga.png}
+  \caption{Comparación entre el consumo y la generación de potencia en la vivienda 1 en el rango seleccionado}
+  \label{fig:calculocarga}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/diseno/calculocarga2.png}
+  \caption{Gráfica de la carga neta resultante en la vivienda 1 en el rango seleccionado}
+  \label{fig:calculocarga2}
+\end{figure}
+
+\vspace{3mm}
+
+Como se realiza una operación de combinación de los datos de consumo y de producción, los campos de los nuevos ficheros de cargas son los definidos en las Tablas \ref{tab:consum} y {tab:pvwattsdataset}, exceptuando algunos parámetros climáticos que se no resultan útiles para el desarrollo y se eliminan. En cuanto a la nomenclatura, cada fichero se nombra como \textit{load\_x.csv}, donde x hace referencia al identificador de la vivienda a la que pertenecen las cargas calculadas. Por tanto, se puede expresar que, después de toda la fase de procesado, se consigue el objetivo de obtener un dataset final compuesto por 23 ficheros con cargas, que supondrá la base principal de la operativa del algoritmo \gls{den2ne} para construir el conjunto de datos a entrenar.
 
