@@ -51,6 +51,8 @@ En la Tabla \ref{tab:datasets} se exponen los múltiples datasets residenciales 
     \label{tab:datasets}
 \end{sidewaystable}
 
+\pagebreak
+
 Como se ha introducido en el Capítulo \ref{ch:intro}, el objetivo principal que se prentende con este \gls{tfm} es desarrollar técnicas de \gls{ml} para identificar y predecir de forma precisa los errores que se pueden producir en una \gls{sg} durante el proceso de distribución energética. A partir de ello, se expresa la necesidad de seleccionar un conjunto de datos en el que se pueda analizar el comportamiento de múltiples usuarios, tanto de consumo como de producción, durante un extenso período de tiempo. 
 
 \vspace{3mm}
@@ -93,6 +95,8 @@ En la Figura \ref{fig:despliegues} se representan gráficamente los períodos te
 \end{figure}
 
 \vspace{3mm}
+
+\pagebreak
 
 A continuación, se detallará a modo organizativo, cómo el dataset \textit{SustDataED} clasifica en varias tablas los datos en función del tipo de información al que se hace referencia.
 
@@ -139,7 +143,9 @@ Por otro lado, se almacena para cada medida una marca de tiempo con la fecha, ho
     \label{tab:consumo}
 \end{table}
 
-Los parámetros de tensión (V) y corriente (I) se muestrean continuamente a una frecuencia de 8KHz y las medidas de potencia activa (P), reactiva (Q) y aparente (S) se cuantifican a un ratio de 50 muestras por segundo a partir de las siguientes expresiones \cite{sustdata}:
+\pagebreak
+
+Los parámetros de tensión (V) y corriente (I) se muestrean continuamente a una frecuencia de 8KHz y las medidas de potencia activa (P), reactiva (Q) y aparente (S) se cuantifican a un ratio de 50 muestras por segundo a partir de las siguientes expresiones~\cite{sustdata}:
 
 \[ S = I_{\text{RMS}} \cdot V_{\text{RMS}} \]
 \[ P = S \cdot \cos(\phi) \]
@@ -185,6 +191,37 @@ El proceso de recolección de las muestras tiene como base un método estadísti
     \label{tab:eventos}
 \end{table}
 
+\subsubsection{Medidas demográficas}
+\label{sec:demographic}
+
+Para el análisis del comportamiento eléctrico de cada uno de los hogares monitorizados se puede visualizar en la Tabla \ref{tab:demo} cómo se almacena la información respectiva a sus inquilinos y a los períodos temporales de adquisición de datos de cada vivienda.
+
+\vspace{3mm}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{AAAAAA} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
+    \textit{home\_id} & Identificador de vivienda monitorizada & - \\ \hline
+    \textit{building\_id} & Identificador de edificio & - \\ \hline
+    \textit{begin\_monitoring} & Fecha de inicio de medición & datetime \\ \hline
+    \textit{end\_monitoring} & Fecha de fin de medición & datetime \\ \hline
+    \textit{begin\_feedback} & Fecha de inicio de realimentación en el despliegue & datetime \\ \hline
+    \textit{end\_feedback} & Fecha de fin de realimentación en el despliegue & datetime \\ \hline
+    \textit{type} & Tipo de vivienda & - \\ \hline
+    \textit{bedrooms} & Número de habitaciones & - \\ \hline
+    \textit{adults} & Número de adultos inquilinos & - \\ \hline
+    \textit{children} & Número de niños inquilinos & - \\ \hline
+    \textit{contracted\_power} & Potencia contratada & kWh \\ \hline
+    \end{tabular}
+    \caption{Tabla de medidas de producción de energía \cite{sustdata}}
+    \label{tab:demo}
+\end{table}
+
+De forma adicional, el dataset \textit{SustDataED} incluye otra tabla con datos complementarios sobre las personas participantes en los despliegues, como son el género, edad, educación y ocupación.
+
 \subsubsection{Medidas de producción de energía}
 \label{sec:prodsustdata}
 
@@ -218,37 +255,6 @@ El dataset \textit{SustDataED} recoge a nivel global los datos respectivos a la 
   \caption{Gráfica de valores de múltiples fuentes energéticas (\textit{SustDataED})}
   \label{fig:fuentes}
 \end{figure}
-
-\subsubsection{Medidas demográficas}
-\label{sec:demographic}
-
-Para el análisis del comportamiento eléctrico de cada uno de los hogares monitorizados se puede visualizar en la Tabla \ref{tab:demo} cómo se almacena la información respectiva a sus inquilinos y a los períodos de adquisición de datos de cada vivienda.
-
-\vspace{3mm}
-
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{|c|c|c|}
-    \hline
-    \rowcolor[HTML]{AAAAAA} 
-    \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
-    \textit{home\_id} & Identificador de vivienda monitorizada & - \\ \hline
-    \textit{building\_id} & Identificador de edificio & - \\ \hline
-    \textit{begin\_monitoring} & Fecha de inicio de medición & datetime \\ \hline
-    \textit{end\_monitoring} & Fecha de fin de medición & datetime \\ \hline
-    \textit{begin\_feedback} & Fecha de inicio de realimentación en el despliegue & datetime \\ \hline
-    \textit{end\_feedback} & Fecha de fin de realimentación en el despliegue & datetime \\ \hline
-    \textit{type} & Tipo de vivienda & - \\ \hline
-    \textit{bedrooms} & Número de habitaciones & - \\ \hline
-    \textit{adults} & Número de adultos inquilinos & - \\ \hline
-    \textit{children} & Número de niños inquilinos & - \\ \hline
-    \textit{contracted\_power} & Potencia contratada & kWh \\ \hline
-    \end{tabular}
-    \caption{Tabla de medidas de producción de energía \cite{sustdata}}
-    \label{tab:demo}
-\end{table}
-
-De forma adicional, el dataset \textit{SustDataED} incluye otra tabla con datos complementarios sobre las personas participantes en los despliegues, como son el género, edad, educación y ocupación.
 
 \subsubsection{Medidas de eventos de usuario}
 

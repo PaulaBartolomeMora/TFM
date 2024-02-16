@@ -2,7 +2,51 @@
 \section{Planteamiento de escenarios y generación de topologías en BRITE}
 \label{sec:ejebrite}
 
+La presente Sección está dedicada al planteamiento de una serie de escenarios de red y a la consecuente generación de topologías mediante el empleo de la herramienta \gls{brite}, cuyo funcionamiento ha sido descrito en la Sección \ref{sec:brite}. La importancia de esta fase del diseño viene dada por la necesidad de aplicar la operativa del algoritmo \gls{den2ne} sobre un múltiples topologías para obtener, finalmente, el dataset sobre el que se entrenarán y desarrollarán los modelos de \gls{ml}. Se debe tener en cuenta que, para que este conjunto de datos final permita aportar suficiente información útil a los modelos, el número de topologías a generar en \gls{brite} debe de ser relativamente elevado.
 
-%ESTO PARA CUANDO SE HABLE DE BRITE
+\vspace{3mm}
 
-%En la Sección \ref{sec:brite_eje}, referente a la ejecución de la herramienta \gls{brite} se había expuesto la posibilidad de generar un total de 1200 topologías para probar sobre el algoritmo \gls{den2ne}. Ahora, teniendo en cuenta también el número de nodos disponibles (25) y la cantidad de instantes temporales comprendidos en los datos (24*365=8760), existe la posibilidad de realizar hasta 262.800.000 simulaciones únicas.
+\subsection{Planteamiento de escenarios y configuración de BRITE}
+\label{sec:conftopo}
+
+Para emplear la herramienta, se deben plantear los escenarios de red sobre los que se desea basar la generación de topologías. Por ello, es preciso definir la configuración de los parámetros de entrada en el script \textit{autogenerador.sh}, tomando en consideración el requerimiento anterior. Como se especificaba en la Sección \ref{sec:brite_eje}, este script está dedicado a la automatización de la ejecución, tanto de la herramienta, como del \textit{parser}, para obtener a la salida los ficheros finales con las posiciones de los nodos en el plano y con la información relativa a las distancias y a los nodos que se interconectan con cada enlace (\textit{Nodos.txt} y \textit{Enlaces.txt}). Es importante destacar que para este proceso se aplican 10 ficheros de semillas, que tendrá como resultado la generación de 10 topologías diferentes para cada uno de los escenarios configurados.
+
+\vspace{3mm}
+
+Como también se había introducido en la Sección \ref{sec:modelostopos}, este \gls{tfm} se va a basar en el empleo de topologías a nivel de router y, en particular, en los modelos Router Waxman y Router Barabasi-Albert. Es por ello que el primer paso es configurar la aplicación de estos modelos en el script. En el caso del primero, es preciso definir además, sus parámetros específicos $\alpha$ y $\beta$, que tomarán valores de 0.2 y 0.15, respectivamente.
+
+\vspace{3mm}
+
+Lo siguiente es determinar los parámetros que hacen referencia a los nodos, como son el modo de introducción al plano y su posicionamiento. Respectivamente, se establece una introducción incremental y un posicionamiento totalmente aleatorio alrededor del plano. En cuanto al número total de nodos que contendrá cada escenario, se pretende manejar topologías lo suficientemente grandes en el algoritmo \gls{den2ne}, pero reduciendo los saltos de incremento del número de nodos. Por tanto, se configura una generación desde 100 a 200 nodos con un incremento de 50 en 50, suponiendo diversas topologías de 100, 150 y 200 nodos. 
+
+\vspace{3mm}
+
+Por otro lado, poniendo el foco en el grado de conectividad, el cual determinará el número de enlaces por nodo, se decide no modificar los valores dados por defecto en el script. Como en \gls{den2ne} se tratarán los enlaces como bidireccionales, realmente cada topología tendrá un grado \textit{2m}.
+
+\vspace{3mm}
+
+\begin{lstlisting}[language=bash, style=Consola, caption={Configuración de los parámetros de entrada en el script de automatización}]
+n_topologias_distintasxnodo=10 # Número de topologías en función del número de semillas
+topologia_rt_waxman=1  # Empleo de modelo RTWaxman
+topologia_rt_barabasi=2  # Empleo de modelo RTBarabasi
+NodePlacement=1 # Posicionamiento aleatorio de los nodos
+GrowthType=1 # Modo de introducción incremental
+nodos=$(seq 100 50 200) # Número de nodos por topología
+m=(1 2 3) # El grado de conectividad real es 2, 4, 6
+
+#parametros especificos de waxman
+alpha=0.2
+beta=0.15
+\end{lstlisting}
+
+\vspace{3mm}
+
+\subsection{Resultados de la generación de topologías}
+\label{sec:gentopo}
+
+Considerando los parámetros de entrada configurados anteriormente, se puede cuantificar el número de topologías que resultará de la ejecución del script \textit{autogenerador.sh}. A modo de síntesis, se determinan diferentes escenarios de red a partir de 2 modelos, 3 grados de conectividad entre nodos y 3 dimensiones de topologías (número de nodos). Además, es preciso tener en cuenta que cada tipo de escenario supondrá la generación 10 topologías completamente diferentes, debido a la introducción de los ficheros de semillas. Por ello, el número total de topologías obtenido a la salida será igual a 180. 
+
+\vspace{3mm}
+
+Es preciso indicar que en el caso de requerirse un mayor número de topologías a simular en \gls{den2ne}, bastaría únicamente con modificar el rango establecido para el número de nodos o el valor del incremento de los mismos. No obstante, puesto que se pretende tener en cuenta para la ejecución del algoritmo el dataset resultante de la etapa de procesamiento (ver Sección \ref{sec:combinacion}), no se precisa aumentar el número de topologías a priori. Estos motivos vendrán justificados detalladamente en la Sección \ref{sec:confden2ne}, dedicada a la configuración de los parámetros de entrada de \gls{den2ne}.
+

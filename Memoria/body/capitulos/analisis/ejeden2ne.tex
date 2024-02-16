@@ -1,3 +1,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulación de las topologías en \textit{den2ne}}
 \label{sec:cambiosden2ne}
+
+\subsection{Configuración de los parámetros de entrada}
+\label{sec:confden2ne}
+
+Como se introducía en la Sección \ref{sec:gentopo}, tras aplicar la ejecución de \gls{brite}, se obtenían 180 topologías diferentes. Por ello, el cálculo de la cantidad total de configuraciones que se podrían llegar a realizar en \gls{den2ne} viene dado por el producto de las 180 topologías obtenidas, el número de filas del dataset resultante de la etapa de procesamiento (ver Sección \ref{sec:combinacion}) y el número de semillas de ejecución configuradas para el algoritmo. 
+
+\vspace{3mm}
+
+El número de filas del dataset se determina a partir de la cantidad de instantes temporales que se han tomado en consideración. En otros términos, al tratarse de muestras tomadas cada hora durante un rango temporal que comprende un año completo, su valor se calcula como 24x365=8760 filas. Por otro lado, en el caso de las semillas de ejecución, de la misma manera que se ha especificado anteriormente para \gls{brite} (ver Sección \ref{sec:conftopo}), se aplica al algoritmo \gls{den2ne} un conjunto de archivos de semillas para obtener simulaciones diferentes a partir de una misma topología a la entrada. En este caso, debido a la cantidad de datos que ya se maneja y para no introducir latencias considerables en el lanzamiento de las pruebas, se especifican 5 semillas por topología.
+
+\vspace{3mm}
+
+Por tanto, teniendo en cuenta lo anterior, el número total de simulaciones únicas que se pueden obtener a partir del empleo del algoritmo \gls{den2ne} se determina con un valor igual a 7.884.000.
+

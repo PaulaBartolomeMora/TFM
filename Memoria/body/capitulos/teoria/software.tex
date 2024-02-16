@@ -18,9 +18,7 @@
 
 \vspace{3mm}
 
-Como motivo de facilitar el empleo de la herramienta, se incluirá una Sección dedicada al proceso de instalación, configuración y ejecución de la herramienta en el Anexo correspondiente a los manuales de usuario (ver Sección \ref{sec:manualbrite}). Además, de la infse podrá acceder a más información desde el repositorio\footnote{https://github.com/NETSERV-UAH/BRITE} del equipo de investigación NetIS de la \gls{uah}.
-
-\vspace{3mm}
+En la Sección \ref{sec:ejebrite} se definirán las acciones realizadas con esta herramienta en el caso de este \gls{tfm}. Por otro lado, con el motivo de facilitar el empleo de \gls{brite}, se incluirá una Sección dedicada al proceso de instalación, configuración y ejecución en el Anexo correspondiente a los manuales de usuario (ver Sección \ref{sec:manualbrite}). Se podrá acceder a más información desde el repositorio\footnote{https://github.com/NETSERV-UAH/BRITE} del equipo de investigación NetIS de la \gls{uah}.
 
 \subsubsection{Definición de topologías}
 \label{sec:param}
@@ -38,9 +36,8 @@ La herramienta \gls{brite} basa el proceso de creación de topologías en la def
     \item \textit{BWDist, BWMin, BWMax}: Ancho de banda de los enlaces.
 \end{itemize}
 
-\vspace{1mm}
-
 \subsubsection{Modelos de topologías}
+\label{sec:modelostopos}
 
 Como se ha introducido, con \gls{brite} se posibilita el uso de múltiples modelos para crear topologías. En la Figura \ref{fig:brite} se representan todos los que soporta la herramienta. No obstante, este \gls{tfm} se va a enfocar en la generación de topologías a nivel de router, como son los modelos Router Waxman y Router Barabasi-Albert. 
 
@@ -89,8 +86,6 @@ Por lo tanto, el plano de la topología comienza con un número de nodos inicial
     \item $\sum_{j}^{}k_j$ es el sumatorio de los grados de todos los nodos de la topología.
 \end{itemize}
 
-\vspace{3mm}
-
 \subsubsection{Automatización de la ejecución}
 \label{sec:brite_eje}
 
@@ -102,29 +97,17 @@ También, se añade el fichero de python \textit{parser.py}, que se encargará d
 
 \vspace{3mm}
 
-Teniendo en cuenta estos ficheros, se proporciona un script \textit{autogenerador.sh} donde se incluyen todas sus funcionalidades y se automatiza todo el proceso de ejecución de la herramienta. Este script sigue la siguiente secuencia de pasos:
+Teniendo en cuenta los ficheros anteriores, se proporciona un script \textit{autogenerador.sh} donde se incluyen todas sus funcionalidades y se automatiza todo el proceso de ejecución de la herramienta. Este script sigue la siguiente secuencia de pasos:
 
 \begin{enumerate}
-    \item Define los valores de cada uno de los parámetros de entrada
-    \item Ejecuta el fichero de python \textit{generador\_brite.py} aplicando los parámetros definidos.
-    \item Genera 10 escenarios diferentes para cada archivo de configuración a partir de semillas distintas (\textit{seed\_files}).
-    \item Ejecuta el fichero \textit{parser.py} para obtener los ficheros \textit{Nodos.txt} y \textit{Enlaces.txt} a partir de cada topología generada.    
+    \item Define los valores de cada uno de los parámetros de entrada.
+    \item Ejecuta el fichero de python \textit{generador\_brite.py} aplicando los parámetros definidos para el modelo Waxman y Barabasi.
+    \item Genera 10 topologías diferentes para cada archivo de configuración a partir de 10 ficheros de semillas (\textit{seed\_files}) dados en el repositorio. Esto posibilita la generación de 10 topologías totalmente diferentes para cada escenario de red definido (a partir de unos mismos parámetros de entrada). 
+    \item Se aplica un bucle en función del número de semilla:
+    \begin{enumerate} 
+        \item Crea el directorio para cada escenario y se ejecuta la heramienta \gls{brite} sobre cada uno.
+        \item Se ejecuta \textit{parser.py} para obtener a la salida los ficheros \textit{Nodos.txt} y \textit{Enlaces.txt} de cada uno de los escenarios.   
+    \end{enumerate} 
 \end{enumerate}
 
-\vspace{1mm}
-
-En el caso del tercer paso, es preciso detallar que en el repositorio se aporta un directorio con 10 ficheros de semilla para posibilitar la generación de 10 topologías distintas a partir de unos mismos parámetros de entrada. 
-
-\vspace{3mm}
-
-Para ejecutar múltiples pruebas sobre el algoritmo \gls{den2ne} como motivo de este \gls{tfm}, se generarán con \gls{brite} topologías basadas en los modelos Router Waxman y Router Barabasi-Albert. En el script \textit{autogenerador.sh} se define una introducción incremental de los nodos al plano (\textit{GrowthType=1}), varios grados diferentes de conectividad (\textit{m=1,2,3}) y unos valores de $\alpha$ y $\beta$ de 0.2 y 0.15 respectivamente para el modelo Waxman.
-
-\vspace{3mm}
-
-Los nodos se incrementarán de 10 en 10, suponiendo topologías que pueden abarcar desde 10 hasta 200 nodos en total. Teniendo en cuenta el número de semillas (10), los modelos empleados (2), los grados de conectividad configurados (3) y los números de nodos posibles a fijar (20), se puede cuantificar que el número resultante de topologías distintas generadas con \gls{brite} será igual a 1200.
-
-\vspace{3mm}
-
 \subsubsection{Graficación de topologías}
-
-%poner aquí o en diseño?

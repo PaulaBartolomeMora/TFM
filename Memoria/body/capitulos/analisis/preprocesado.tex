@@ -21,11 +21,15 @@ Antes de comenzar a describir este procesamiento, es imprescindible destacar que
 \subsubsection{Análisis de la situación inicial y primeros pasos}
 \label{sec:inicialproc}
 
-El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba en la Sección \ref{sec:sustdataed} como un conjunto de datos que abría multitud de posibilidades de implementación. Se puede expresar que esto venía justificado por el hecho de abarcar un extenso lapso temporal de medidas correspondientes a un gran número de viviendas. Además, estas medidas se caracterizaban por ser adquiridas a una frecuencia de muestreo de un minuto, lo que aportaba una buena resolución para analizar el comportamiento eléctrico de todos los usuarios implicados. Como también se exponía en la Sección \ref{sec:sustdataed}, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, cada uno con diferentes rangos temporales de medición y con un conjunto de viviendas determinado. Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue. \cite{sustdata}
+El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba en la Sección \ref{sec:sustdataed} como un conjunto de datos que abría multitud de posibilidades de implementación. Se puede expresar que esto venía justificado por el hecho de abarcar un extenso lapso temporal de medidas correspondientes a un gran número de viviendas. Además, estas medidas se caracterizaban por ser adquiridas a una frecuencia de muestreo de un minuto, lo que aportaba una buena resolución para analizar el comportamiento eléctrico de todos los usuarios implicados. Como también se exponía en la Sección \ref{sec:sustdataed}, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, cada uno con diferentes rangos temporales de medición y con un conjunto de viviendas determinado. 
 
 \vspace{3mm}
 
-Tomando lo anterior en consideración, en este paso, enfocado al análisis de la situación inicial del conjunto, es preciso tener el conocimiento de los ficheros de datos de consumo de los que se va a partir. Por este motivo, se añade de forma adicional la Tabla \ref{tab:fichconsumo}, la cual expone la información relativa a cada despliegue y a los tamaños de cada uno de los ficheros proporcionados en el dataset.
+Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue. \cite{sustdata}
+
+\vspace{3mm}
+
+Por lo tanto, en este paso, enfocado al análisis de la situación inicial del conjunto, es preciso tener el conocimiento de los ficheros de datos de consumo de los que se va a partir. Por este motivo, se añade de forma adicional la Tabla \ref{tab:fichconsumo}, la cual expone la información relativa a cada despliegue y a los tamaños de cada uno de los ficheros proporcionados en el dataset.
 
 \vspace{3mm}
 
@@ -80,7 +84,11 @@ Como se puede comprobar, a priori la mayoría no precisan de un volumen manejabl
 
 \vspace{3mm}
 
-No obstante, antes de dividir los ficheros, se debe volver a la Tabla que hace referencia a las medidas de consumo energético (ver Tabla \ref{tab:consumo}) para observar que estos ficheros contienen una columna dedicada a la marca de tiempo (\textit{timestamp}) del instante en el que se adquirió la medida. A modo de simplificar esta información temporal, se crea el \textit{notebook} \textit{preprocessing\_nodes.ipynb}, que va a importa la librería \textit{time} para añadir tres nuevas columnas al dataset que separen los datos de la fecha (columna \textit{datetime}), el instante exacto de la muestra (hora, minuto y segundo) (columna \textit{hour}) y la hora como un valor entero (columna \textit{H}). En el caso de esta última columna, su utilidad vendrá descrita por los requerimientos de la siguiente Sección (ver Sección \ref{sec:datasamples}).
+No obstante, antes de dividir los ficheros, se debe volver a la Tabla que hace referencia a las medidas de consumo energético (ver Tabla \ref{tab:consumo}) para observar que estos ficheros contienen una columna dedicada a la marca de tiempo (\textit{timestamp}) del instante en el que se adquirió la medida. 
+
+\vspace{3mm}
+
+A modo de simplificar esta información temporal, se crea un nuevo \textit{notebook} de \textit{Jupyter}, denominado como \textit{preprocessing\_nodes.ipynb}, que va a importa la librería \textit{time} para añadir tres nuevas columnas al dataset que separen los datos de la fecha (columna \textit{datetime}), el instante exacto de la muestra (hora, minuto y segundo) (columna \textit{hour}) y la hora como un valor entero (columna \textit{H}). En el caso de esta última columna, su utilidad vendrá descrita por los requerimientos de la siguiente Sección (ver Sección \ref{sec:datasamples}).
 
 \vspace{3mm}
 
@@ -106,11 +114,13 @@ De forma adicional, en este \textit{notebook} se comprueba también, si existen 
 
 \vspace{3mm}
 
+\pagebreak
+
 A modo de resumen, se puede determinar entonces, que se seguirá la siguiente secuencia de pasos en esta primera fase: crear las nuevas columnas temporales, eliminar las filas que estén completamente vacías y dividir los ficheros iniciales para ajustar su tamaño a un máximo de 100MB. Es obligatorio seguir este orden, puesto que no sería eficiente extraer los fragmentos del conjunto de datos y, después, añadir información nueva. En otros términos, de esta forma se estaría superando el tamaño máximo ajustado en los nuevos ficheros de salida.
 
 \vspace{3mm}
 
-Volviendo al proceso de división de los ficheros, se crea otro \textit{notebook} de \textit{Jupyter}, denominado como \textit{split.ipynb}. En primer lugar, se importa al mismo la librería de \textit{Python} \textit{csv}, enfocada al tratamiento de archivos con formato .csv. Después, se escribe una función que, a partir de un fichero de entrada, itere a través de sus filas de datos hasta llegar al volumen máximo determinado para obtener a la salida el nuevo archivo en la ruta indicada. Además, para cada nueva fragmentación de los datos se incluye el encabezado con los nombres de cada uno de los campos.
+Volviendo al proceso de división de los ficheros, se crea otro \textit{notebook} de \textit{Jupyter}, denominado como \textit{split.ipynb}. En primer lugar, se importa al mismo la librería de \textit{Python} \textit{csv}, enfocada al tratamiento de archivos con formato .csv. Después, se escribe una función que, a partir de un fichero de entrada, itere a través de sus filas de datos hasta llegar al volumen máximo determinado para obtener a la salida el nuevo archivo en la ruta indicada. Es importante indicar en la función que, para cada nueva fragmentación de los datos, se incluya el encabezado con los nombres de cada uno de los campos, puesto que suponen ficheros diferentes y, de otro modo, no vendrían definidas correctamente sus columnas.
 
 \vspace{3mm}
 
@@ -173,11 +183,7 @@ Como se viene exponiendo en la Sección anterior (ver Sección \ref{sec:datasamp
 
 \vspace{3mm}
 
-Esta característica supone que, si se desea aplicar el promedio a los valores de las medidas de cada hora para todo el rango temporal que abarca cada uno de los nodos, se debe automatizar el proceso. Por ello, se crea un nuevo archivo de \textit{Python}, denominado como \textit{datasamples\_process.py}, que incluirá todas las funciones necesarias para llevar a cabo el procedimiento de automatización. 
-
-\vspace{3mm}
-
-Es importante comentar que en esta Sección se pone el foco en los datos de consumo. Sin embargo, las funciones que se van a exponer a continuación, serán configuradas para ser empleadas también, en el caso de los datos relativos a la producción y al clima de \textit{SustDataED}.
+Esta característica supone que, si se desea aplicar el promedio a los valores de las medidas de cada hora para todo el rango temporal que abarca cada uno de los nodos, se debe automatizar el proceso. Por ello, se crea un nuevo archivo de \textit{Python}, denominado como \textit{datasamples\_process.py}, que incluirá todas las funciones necesarias para llevar a cabo el procedimiento de automatización. Es importante comentar que en esta Sección se pone el foco en los datos de consumo. Sin embargo, las funciones que se van a exponer a continuación, serán configuradas para ser empleadas también, en el caso de los datos relativos a la producción y al clima de \textit{SustDataED}.
 
 \vspace{3mm}
 
@@ -351,7 +357,7 @@ Esto se debe a que los hilos no son procesos y están principalmente enfocados a
 
 \vspace{3mm}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{img/diseno/multiprocess.jpg}
   \caption{Lanzamiento de pruebas con procesos}
@@ -363,6 +369,10 @@ Esto se debe a que los hilos no son procesos y están principalmente enfocados a
 Por lo tanto, volviendo al código, en el archivo se debe importar la librería \textit{multiprocessing} y definir el administrador (\textit{manager}) para crear un diccionario que será compartido por los procesos para almacenar los resultados de la ejecución. Después, se crean los procesos, llamando a la función \textit{process\_data}, expuesta anteriormente. Para la misma, se deben añadir los parámetros de entrada necesarios como argumentos e iterar para todos los identificadores de viviendas. En este momento, ya se pueden iniciar los procesos y definir el progreso de la ejecución a través de la terminal. 
 
 \vspace{3mm}
+
+Para obtener a la salida los nuevos ficheros, se debe esperar a que todos los procesos finalicen. Se consigue un fichero de datos de consumo energético por vivienda definida en \textit{SustDataED}, suponiendo en total 50. A modo organizativo, se sigue la nomenclatura \textit{consum\_x.csv}, donde x hace referencia al identificador de la vivienda a la que pertenecen las medidas promediadas. En la Tabla \ref{tab:consum} se muestran los campos que contienen estos ficheros. 
+
+\pagebreak
 
 \begin{lstlisting}[style=Python, caption={Creación de procesos}]
   if __name__ == "__main__":
@@ -394,13 +404,9 @@ Por lo tanto, volviendo al código, en el archivo se debe importar la librería 
       result.to_csv(f"results/consum_{iid}.csv", index=False) 
 \end{lstlisting}
 
-\vspace{3mm}
+\vspace{5mm}
 
-Para obtener a la salida los nuevos ficheros, se debe esperar a que todos los procesos finalicen. Se consigue un fichero de datos de consumo energético por vivienda definida en \textit{SustDataED}, suponiendo en total 50. A modo organizativo, se sigue la nomenclatura \textit{consum\_x.csv}, donde x hace referencia al identificador de la vivienda a la que pertenecen las medidas promediadas. En la Tabla \ref{tab:consum} se muestran los campos que contienen estos ficheros.
-
-\vspace{3mm}
-
-Como se puede ver, la información de consumo, la cual venía dada a una frecuencia de muestreo de un minuto, se ha transformado a valores promediados por hora. Por tanto, se puede expresar de forma concluyente, que se logra el objetivo de reducir el tamaño de los ficheros y de sintetizar el volumen de datos a manejar, ya que a partir de ahora se va a trabajar con datos por hora.
+En este caso, la información de consumo, la cual venía dada a una frecuencia de muestreo de un minuto, se ha transformado a valores promediados por hora. Por tanto, se puede expresar de forma concluyente, que se logra el objetivo de reducir el tamaño de los ficheros y de sintetizar el volumen de datos a manejar, ya que a partir de ahora se va a trabajar con datos por hora.
 
 \vspace{3mm}
 
@@ -419,40 +425,46 @@ Como se puede ver, la información de consumo, la cual venía dada a una frecuen
   \label{tab:consum}
 \end{table}
 
+\pagebreak
+
 \subsubsection{Selección del despliegue}
 
-Teniendo en cuenta los resultados obtenidos en la Sección anterior, el siguiente paso consiste en seleccionar las viviendas sobre las que se va a basar el desarrollo y entrenamiento de modelos de \gls{ml}. En la Sección \ref{sec:estructurasustdata}, se describían los distintos despliegues que componían el proceso de la adquisición y creación del dataset \textit{SustDataED} y se representaban los rangos temporales que comprendían cada uno de ellos en la Figura \ref{fig:despliegues}. Poniendo en consideración esta información, es imprescindible seleccionar un conjunto de viviendas cuyas medidas estén abarcadas en un mismo lapso de tiempo para poder realizar un análisis de forma precisa y entrenar correctamente los modelos de \gls{ml}. 
+Teniendo en cuenta los resultados obtenidos en la Sección anterior, el siguiente paso consiste en seleccionar las viviendas sobre las que se va a basar el desarrollo y entrenamiento de modelos de \gls{ml}. En la Sección \ref{sec:estructurasustdata}, se describían los distintos despliegues que componían el proceso de la adquisición y creación del dataset \textit{SustDataED} y se representaban los rangos temporales que comprendían cada uno de ellos en la Figura \ref{fig:despliegues}. 
 
 \vspace{3mm}
 
-En otros términos, la selección de múltiples viviendas se debe reducir a escoger el despliegue más adecuado de los cuatro en los que se estructura \textit{SustDataED}. El objetivo es buscar un balance entre manejar un buen número de hogares y un rango temporal lo suficientemente largo. Volviendo a la Figura \ref{fig:despliegues}, se puede visualizar que los despliegues que cumplen mejor estas condiciones son el primero y el segundo. No obstante, en este proceso de análisis y selección del conjunto de viviendas, se deben añadir también, los datos de producción energética que provee \textit{SustDataED}. En la Figura \ref{fig:fuentes}, se muestra cómo estos datos vienen comprendidos entre el mes de octubre de 2010 y enero de 2013. Esto supone que se debe descartar el primer despliegue de viviendas, ya que este abarca un rango temporal que va desde julio de 2010 a noviembre del mismo año.
+Poniendo en consideración esta información, es imprescindible seleccionar un conjunto de viviendas cuyas medidas estén abarcadas en un mismo lapso de tiempo para poder realizar un análisis de forma precisa y entrenar correctamente los modelos de \gls{ml}. En otros términos, la selección de múltiples viviendas se debe reducir a escoger el despliegue más adecuado de los cuatro en los que se estructura \textit{SustDataED}. El objetivo es buscar un balance entre manejar un buen número de hogares y un rango temporal lo suficientemente largo. Volviendo a la Figura \ref{fig:despliegues}, se puede visualizar que los despliegues que cumplen mejor estas condiciones son el primero y el segundo. 
+
+\vspace{3mm}
+
+No obstante, en este proceso de análisis y selección del conjunto de viviendas, se deben añadir también, los datos de producción energética que provee \textit{SustDataED}. En la Figura \ref{fig:fuentes}, se muestra cómo estos datos vienen comprendidos entre el mes de octubre de 2010 y enero de 2013. Esto supone que se debe descartar el primer despliegue de viviendas, ya que este abarca un rango temporal que va desde julio de 2010 a noviembre del mismo año.
 
 \vspace{3mm}
 
 Por lo tanto, teniendo estas condiciones y características en cuenta, se justifica que el despliegue más adecuado a emplear es el segundo, el cual comprende un total de 23 viviendas (desde el identificador 1 al 23). En la Figura \ref{fig:despliegue2}, se representan, mediante el empleo de la librería de \textit{Python}, \textit{matplotlib}, los rangos temporales que abarcan las medidas adquiridas para cada una de las viviendas participantes en el segundo despliegue.
 
-\vspace{3mm}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1\textwidth,height=8cm]{img/diseno/despliegue2.png}
-    \caption{Representación del período temporal que comprende el proceso de recolección de datos para los hogares del segundo despliegue}
-    \label{fig:despliegue2}
-\end{figure}
-
 \subsubsection{Selección del rango temporal y procesamiento adicional}
 \label{sec:rango}
 %especificar seccion donde se comenta el rango 28-11->28-11
 
-Como se puede ver en la Figura \ref{fig:despliegue2}, aunque las 23 viviendas pertenecen al mismo despliegue y abarcan un lapso temporal parecido, se pueden visualizar ciertas diferencias entre las mismas. Esto supone que realmente cada fichero de datos de consumo tenga un número de muestras diferente, lo que perjudicaría al análisis y entrenamiento posterior. 
+Como se puede ver en la Figura \ref{fig:despliegue2}, aunque las 23 viviendas pertenecen al mismo despliegue y abarcan un lapso temporal parecido, se pueden visualizar ciertas diferencias entre las mismas. Esto supone que realmente cada fichero de datos de consumo tenga un número de muestras diferente, lo que perjudicaría al análisis y entrenamiento posterior. Una vez seleccionado el despliegue, se deben acotar los ficheros de datos de consumo a un mismo rango temporal en el se pueda trabajar de forma eficiente. 
 
 \vspace{3mm}
 
-Por tanto, una vez seleccionado el despliegue, se deben acotar los ficheros de datos de consumo a un mismo rango temporal en el se pueda trabajar de forma eficiente. Como se ha indicado anteriormente en esta misma Sección, los datos de producción energética se comienzan a medir desde el mes de octubre de 2010, por lo que es necesario como mínimo establecer el inicio del rango temporal en estas fechas. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth,height=8.2cm]{img/diseno/despliegue2.png}
+    \caption{Representación del período temporal que comprende el proceso de recolección de datos para los hogares del segundo despliegue}
+    \label{fig:despliegue2}
+\end{figure}
 
 \vspace{3mm}
 
-Por otro lado, entrando en el contenido de los ficheros, la fecha mínima en la que se visualiza que las 23 viviendas adquieren y almacenan medidas es el 28 de noviembre de 2010, lo que lleva a tomar la decisión de establecer la misma como inicio del rango temporal a considerar. En cuanto a la fecha final, a partir de la información dada en la Figura \ref{fig:despliegue2}, se considera que la opción más eficiente es abarcar un año completo de muestras, siendo la fecha final el 28 de noviembre de 2011. En Secciones siguientes, se expondrá cómo el hecho de seleccionar un año de medidas será importante para calcular las cargas finales que se fijarán en el algoritmo \gls{den2ne} (ver Secciones \ref{sec:combinacion} y \ref{sec:cambiosden2ne}), puesto que en el caso de los datos de producción obtenidos de la herramienta \textit{PVWatts} se abarcan valores de potencia de un año completo (ver Sección \ref{sec:preprocpvwatts}).
+Como se ha indicado anteriormente en esta misma Sección, los datos de producción energética se comienzan a medir desde el mes de octubre de 2010, por lo que es necesario como mínimo establecer el inicio del rango temporal en estas fechas. Por otro lado, entrando en el contenido de los ficheros, la fecha mínima en la que se visualiza que las 23 viviendas adquieren y almacenan medidas es el 28 de noviembre de 2010, lo que lleva a tomar la decisión de establecer la misma como inicio del rango temporal a considerar. En cuanto a la fecha final, a partir de la información dada en la Figura \ref{fig:despliegue2}, se considera que la opción más eficiente es abarcar un año completo de muestras, siendo la fecha final el 28 de noviembre de 2011. 
+
+\vspace{3mm}
+
+No obstante, en Secciones siguientes, se expondrá cómo el hecho de seleccionar un año de medidas será importante para calcular las cargas finales que se fijarán en el algoritmo \gls{den2ne} (ver Secciones \ref{sec:combinacion} y \ref{sec:cambiosden2ne}), puesto que en el caso de los datos de producción obtenidos de la herramienta \textit{PVWatts} se comprenden valores de potencia de un año completo (ver Sección \ref{sec:preprocpvwatts}).
 
 \vspace{3mm}
 
@@ -462,6 +474,8 @@ rango = df[(df['datetime'] >= '2010-11-28') & (df['datetime'] < '2011-11-28')]
 
 \vspace{3mm}
 
+\pagebreak
+
 La aplicación del filtro del rango temporal a los datos se realiza en el \textit{notebook} \textit{consum\_range.ipynb}. De forma adicional, se define el procesamiento que requieren los ficheros de consumo de aquellas viviendas que no incluyen valores en algunos instantes temporales dentro del rango indicado. En este paso, el objetivo es contar con ficheros que contengan un mismo número de medidas para simplificar su manejo. Por ello, para que los datos finales tengan la mayor precisión posible, se deben añadir las muestras que faltan en función del tipo de vivienda a la que se hace referencia. 
 
 \vspace{3mm}
@@ -470,7 +484,7 @@ Es decir, como se expuso en la Sección \ref{sec:demographic}, el dataset \texti
 
 \vspace{3mm}
 
-A modo de ejemplo se muestra la Figura \ref{fig:517}, donde para la vivienda con identificador 5, se podrían aproximar las muestras a las dadas por la vivienda con identificador 17. Esto se debe a que la información demográfica de las mismas es similar, ya que están habitadas por una familia de 4 integrantes, de los cuales son 2 adultos y 2 niños. Por lo tanto, se puede apreciar que se obtiene un comportamiento eléctrico parecido. Ocurre de la misma forma en la Figura \ref{fig:1316}. No obstante, en este caso se representa el consumo de potencia de las viviendas con identificador 13 y 16, que se caracterizan por estar habitadas por dos inquilinos adultos, por lo que es coherente que se obtenga un menor consumo medio respecto al caso anterior.
+A modo de ejemplo se muestra la Figura \ref{fig:517}, donde para la vivienda con identificador 5, se podrían aproximar las muestras a las dadas por la vivienda con identificador 17. Esto se debe a que la información demográfica de las mismas es similar, ya que están habitadas por una familia de 4 integrantes, de los cuales son 2 adultos y 2 niños. Por lo tanto, se puede apreciar que se obtiene un comportamiento eléctrico parecido. 
 
 \vspace{3mm}
 
@@ -480,6 +494,12 @@ A modo de ejemplo se muestra la Figura \ref{fig:517}, donde para la vivienda con
   \caption{Comparación del consumo de las viviendas 5 y 17 en el rango seleccionado (\textit{SustDataED})}
   \label{fig:517}
 \end{figure}
+
+\vspace{3mm}
+
+Ocurre de la misma forma en la Figura \ref{fig:1316}. No obstante, en este caso se representa el consumo de potencia de las viviendas con identificador 13 y 16, que se caracterizan por estar habitadas por dos inquilinos adultos, por lo que es coherente que se obtenga un menor consumo medio respecto al caso anterior.
+
+\vspace{3mm}
 
 \begin{figure}[H]
   \centering
@@ -500,11 +520,7 @@ Por tanto, se debe comparar las características que presentan, tanto los datos 
 \subsubsection{Preprocesamiento de datos de \textit{SustDataED}}
 \label{sec:preprocsust}
 
-En cuanto al dataset \textit{SustDataED}, el primer paso a realizar está basado en la combinación de los parámetros energéticos y los climáticos. Este viene dado por la necesidad de realizar un análisis de la correlación que existe entre la producción solar y las características ambientales que se miden en cada instante. 
-
-\vspace{3mm}
-
-Por ello, se crea un nuevo \textit{notebook}, denominado como \textit{preprocessing\_production.ipynb}, en el cual hay que tener en cuenta los campos expuestos en las Tablas \ref{tab:prod} y \ref{tab:env}. La operación de combinación de los datos energéticos y climáticos se determina a partir de la marca de tiempo (\textit{timestamp}) y resulta en un nuevo \textit{dataframe} de \textit{Pandas}, que será almacenado en un nuevo fichero en formato .csv.
+En cuanto al dataset \textit{SustDataED}, el primer paso a realizar está basado en la combinación de los parámetros energéticos y los climáticos. Este viene dado por la necesidad de realizar un análisis de la correlación que existe entre la producción solar y las características ambientales que se miden en cada instante. Por ello, se crea un nuevo \textit{notebook}, denominado como \textit{preprocessing\_production.ipynb}, en el cual hay que tener en cuenta los campos expuestos en las Tablas \ref{tab:prod} y \ref{tab:env}. La operación de combinación de los datos energéticos y climáticos se determina a partir de la marca de tiempo (\textit{timestamp}) y resulta en un nuevo \textit{dataframe} de \textit{Pandas}, que será almacenado en un nuevo fichero en formato .csv.
 
 \vspace{3mm}
 
@@ -514,7 +530,11 @@ Por ello, se crea un nuevo \textit{notebook}, denominado como \textit{preprocess
 
 \vspace{3mm}
 
-Posteriormente, es necesario sintetizar los datos de la misma forma que se ha realizado anteriormente para los ficheros de consumo. Como se había detallado en la Sección \ref{sec:datasamples}, se emplea el \textit{notebook} \textit{datasamples\_process.ipynb} para automatizar este proceso y obtener la media de los valores de potencia. En el caso de la producción, como este \gls{tfm} se engloba en un contexto de \gls{sg}s, se enfoca la operación en la columna de medidas globales de producción fotovoltaica. Tras la ejecución del \textit{notebook}, se obtiene un fichero con los campos definidos en la Tabla \ref{tab:prodsamples}. Adicionalmente, se emplea la librería de \textit{Python}, \textit{matplotlib}, para representar gráficamente en la Figura \ref{fig:solar} los valores de potencia recogidos en el fichero en órdenes de kW para simplificar el análisis.
+Posteriormente, es necesario sintetizar los datos de la misma forma que se ha realizado anteriormente para los ficheros de consumo. Como se había detallado en la Sección \ref{sec:datasamples}, se emplea el \textit{notebook} \textit{datasamples\_process.ipynb} para automatizar este proceso y obtener la media de los valores de potencia. 
+
+\vspace{3mm}
+
+En el caso de la producción, como este \gls{tfm} se engloba en un contexto de \gls{sg}s, se enfoca la operación en la columna de medidas globales de producción fotovoltaica. Tras la ejecución del \textit{notebook}, se obtiene un fichero con los campos definidos en la Tabla \ref{tab:prodsamples}. Adicionalmente, se emplea la librería de \textit{Python}, \textit{matplotlib}, para representar gráficamente en la Figura \ref{fig:solar} los valores de potencia recogidos en el fichero en órdenes de kW para simplificar el análisis.
 
 \vspace{3mm}
 
@@ -535,13 +555,15 @@ Posteriormente, es necesario sintetizar los datos de la misma forma que se ha re
 \begin{figure}[h!]
   \centering
   \includegraphics[width=1\textwidth]{img/diseno/matplotsolar.png}
-  \caption{Gráfica de energía solar producida (\textit{SustDataED})}
+  \caption{Gráfica de energía solar producida a nivel global (\textit{SustDataED})}
   \label{fig:solar}
 \end{figure}
 
 \vspace{3mm}
 
-De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anteriormente para los datos de consumo (ver Sección \ref{sec:rango}), se representan a modo comparativo los valores de temperatura y de potencia medidos en las Figuras \ref{fig:temp} y \ref{fig:solaryear}, respectivamente. Como se puede ver los valores reflejados de generación energética presentan cierta correlación con la temperatura a partir del mes de enero de 2011 y se encuentran diferencias entre los rangos de valores que se manejan en los meses de invierno y los de verano, a medida que se incrementa la temperatura. El análisis se fija a partir de este mes porque es en este momento cuando crecen las dimensiones del sistema fotovoltaico y se produce un salto en los valores medidos, conllevando un incremento de la potencia que se puede generar. Entonces, no sería correcto enfocar la comparación entre la temperatura y la potencia en los meses correspondientes al año 2010, ya que el sistema fotovoltaico no es equivalente al del año posterior.
+\pagebreak
+
+De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anteriormente para los datos de consumo (ver Sección \ref{sec:rango}), se representan a modo comparativo los valores de temperatura y de potencia medidos en las Figuras \ref{fig:temp} y \ref{fig:solaryear}, respectivamente. 
 
 \vspace{3mm}
 
@@ -558,6 +580,10 @@ De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anter
   \caption{Gráfica de energía solar producida en el rango seleccionado (\textit{SustDataED})}
   \label{fig:solaryear}
 \end{figure}
+
+\vspace{3mm}
+
+Como se puede apreciar los valores reflejados de generación energética presentan cierta correlación con la temperatura a partir del mes de enero de 2011 y se encuentran diferencias entre los rangos de valores que se manejan en los meses de invierno y los de verano, a medida que se incrementa la temperatura. El análisis se fija a partir de este mes porque es en este momento cuando crecen las dimensiones del sistema fotovoltaico y se produce un salto en los valores medidos, conllevando un incremento de la potencia que se puede generar. Entonces, no sería correcto enfocar la comparación entre la temperatura y la potencia en los meses correspondientes al año 2010, ya que el sistema fotovoltaico no es equivalente al del año posterior.
 
 \vspace{3mm}
 

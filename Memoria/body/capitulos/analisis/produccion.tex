@@ -67,6 +67,8 @@ En las Figuras \ref{fig:dni} y \ref{fig:ghi}, se visualizan en formato GeoTIFF l
 
 \vspace{3mm}
 
+\pagebreak
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{img/diseno/photovoltaic.png}
@@ -99,7 +101,7 @@ De la misma forma, lo anterior se hace patente para el caso de la isla de Madeir
 
 Por tanto, se puede comprobar a través de estos valores y de la leyenda proporcionada en las figuras anteriores, que Funchal se percibe como una ciudad con un potencial de recursos solares medio alto. Esto es coherente con su localización subtropical y con la elevación del terreno. Es decir, al encontrarse en una zona de costa ronda en valores cercanos a los 100 metros (concretamente 137 metros en la ubicación seleccionada) y se reduce ligeramente el nivel de energía solar captable respecto a otras zonas de la isla más montañosas.
 
-\clearpage
+\pagebreak
 
 \begin{figure}[H]
     \centering
@@ -146,7 +148,7 @@ Por otro lado, en la Figura \ref{fig:average} se modelan gráficamente los valor
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{img/diseno/azimut.png}
+    \includegraphics[width=0.9\textwidth]{img/diseno/azimut.png}
     \caption{Representación de la trayectoria solar percibida en la localización de la ciudad de Funchal \cite{globalsolar}}
     \label{fig:azimut}
 \end{figure}
@@ -171,6 +173,8 @@ Por otro lado, en la Figura \ref{fig:average} se modelan gráficamente los valor
 
 De la misma forma, se representan en la Figura \ref{fig:averagehour} los perfiles diarios propromedios de radiación y generación fotovoltaica en función del mes del año, en los cuales se encuentran valores máximos en las horas centrales de los meses de julio y agosto. 
 
+\pagebreak
+
 \begin{figure}[H]
     \centering    
     \begin{subfigure}{0.75\linewidth}
@@ -187,6 +191,8 @@ De la misma forma, se representan en la Figura \ref{fig:averagehour} los perfile
     \caption{Perfiles promedios de potencial de producción energética fotovoltaica (\acrshort{pvout}) y de radiación directa normal (\acrshort{dni}) \cite{globalsolar}}
     \label{fig:averagehour}
 \end{figure}
+
+\pagebreak
 
 Por lo tanto, tomando en consideración los parámetros configurados y los resultados obtenidos, se puede cuantificar finalmente, que la instalación de un sistema fotovoltaico en un edificio residencial de Funchal proporcionaría en un año una generación de energía promedia igual a 5433kWh y un valor acumulado de \gls{dni} equivalente a 1719.4 kWh/m².
 
@@ -225,7 +231,9 @@ En cuanto a la primera, la herramienta \textit{PVWatts}, a diferencia de \textit
 
 \subsubsection{Configuración de los parámetros de entrada}
 
-Con el objetivo de conseguir a la salida de la simulación unos datos que sean acordes al análisis realizado anteriormente en la Sección \ref{sec:analisisglobal}, es imprescindible replicar y ajustar de la forma más precisa posible los valores de los parámetros de entrada de la herramienta: 
+Con el objetivo de conseguir a la salida de la simulación unos datos que sean coherentes y acordes al análisis realizado anteriormente en la Sección \ref{sec:analisisglobal}, es imprescindible replicar y ajustar de la forma más precisa posible los valores de los parámetros de entrada de la herramienta: 
+
+\pagebreak
 
 \begin{itemize}
     \item Tamaño del sistema fotovoltaico y capacidad de instalación: Por defecto, \textit{PVWatts} determina una capacidad de 4kWp, por lo que coincide directamente con la definida en \textit{Global Solar Atlas}. Además, se especifica la relación existente entre este valor y el tamaño del sistema de la siguiente manera:
@@ -242,7 +250,7 @@ Con el objetivo de conseguir a la salida de la simulación unos datos que sean a
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{img/diseno/array.png}
+    \includegraphics[width=0.9\textwidth]{img/diseno/array.png}
     \caption{Representación de las diferentes opciones de array que permite configurar la herramienta \textit{PVWatts} \cite{pvwatts}}
     \label{fig:array}
 \end{figure}
@@ -256,6 +264,7 @@ Una de las ventajas de uso que permite la herramienta \textit{PVWatts} es la pos
     \item Sombreado: Se reduce la radiación solar que incide en los paneles si se producen sombras por objetos cercanos o por la propia de los módulos si se colocan en fila. Es decir, estos crean sombras sobre los de la fila adyacente. El cálculo se realiza a partir de la gráfica expuesta en la Figura \ref{fig:sombra}. Por lo tanto, como se ha definido un tipo de array fijo con una inclinación de 26º y un valor de índice de cobertura del suelo de 0.4, se determina aproximadamente un valor de pérdidas por sombra igual a un 3\%.
     \item Nieve: Teniendo en cuenta las características climáticas de la ciudad de Funchal debido a su localización en una zona subtropical, se determinan pérdidas del 0\%.
     \item Discordancia: Son pérdidas eléctricas debido a las diferencias que se producen por imperfecciones en la fabricación de los módulos. Esto tiene como consecuencia que cada uno de ellos presente características I-V que varíen ligeramente entre sí. La herramienta proporciona un valor predeterminado del 2\%.
+    \pagebreak
     \item Cableado y conexiones: Pérdidas resistivas en el cableado y en las conexiones entre módulos, inversores y otros elementos del sistema con un valor por defecto del 2\% y del 0.5\%, respectivamente.
     \item Degradación inducida por la luz: Se trata del efecto de reducción de potencia que se produce durante los primeros meses de funcionamiento del sistema fotovoltaico. El valor predeterminado es 1,5\%.
     \item Precisión del fabricante: Son pérdidas, generalmente bajas, que vienen definidas por la precisión del fabricante en el proceso de estudio de eficiencia de los paneles. Se determina un 1\%.
@@ -269,7 +278,7 @@ Finalmente, las pérdidas totales del sistema se pueden cuantificar a partir de 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{img/diseno/sombra.png}
+    \includegraphics[width=0.85\textwidth]{img/diseno/sombra.png}
     \caption{Gráfica para el cálculo de las pérdidas por sombreado en la herramienta \textit{PVWatts}~\cite{pvwatts}}
     \label{fig:sombra}
 \end{figure}
@@ -283,7 +292,7 @@ Una vez se ha concluido con la configuración necesaria, se procede a ejecutar l
 
 Como se puede visualizar, en ambas tablas se proporcionan los valores de potencia DC y AC, que corresponden a la salida del módulo solar (\textit{DC Array Output}) y de los inversores (\textit{AC System Output}), respectivamente. En el caso de la Tabla (ver Tabla \ref{tab:pvwattsdataset}), se incluye de forma adicional toda la información climática y ambiental de cada instante.
 
-vspace{3mm}
+\vspace{3mm}
 
 \begin{table}[h!]
     \centering
@@ -300,7 +309,7 @@ vspace{3mm}
     \label{tab:pvwattsdataset2}
 \end{table}
 
-\vspace{3mm}
+\vspace{1mm}
 
 \begin{table}[h!]
     \centering
@@ -362,6 +371,8 @@ Por lo tanto, se pueden calcular los valores de \gls{dni} a partir de los de \gl
     \caption{Comparación de valores totales mensuales de producción energética fotovoltaica (\acrshort{pvout}) respecto a la radiación directa normal (\acrshort{dni}) a partir de los resultados de la simulación}
     \label{fig:averagereal}
 \end{figure}
+
+\pagebreak
 
 Aparte de las gráficas realizadas, se expone la Tabla \ref{tab:globalvspvwatts} para llevar a cabo de una forma correcta la comparación entre los valores estudiados en \textit{Global Solar Atlas} y los resultantes de la simulación en \textit{PVWatts}. Como se puede ver, existe un menor error entre los valores respectivos a la radiación que entre los valores de potencia producida. Las diferencias percibidas provienen principalmente por las pérdidas configuradas, ya que al final los resultados de la simulación son mucho más cercanos al caso real que los percibidos teóricamente. 
 
