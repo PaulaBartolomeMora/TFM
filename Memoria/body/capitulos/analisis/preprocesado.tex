@@ -14,7 +14,7 @@ Entonces, se puede expresar que la ejecución de los procesos anteriores proporc
 
 \vspace{3mm}
 
-Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. Su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento. Además, cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras.
+Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. Su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento. Cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras. Adicionalmente, para la representación de las diferentes gráficas de la Sección se hará uso de los módulos \textit{matplotlib} y \textit{seaborn}.
 
 \subsection{Procesado de datos de consumo}
 
@@ -187,7 +187,7 @@ Esta característica supone que, si se desea aplicar el promedio a los valores d
 
 \vspace{3mm}
 
-En primer lugar, \textit{datasamples\_process.ipynb} describe una función de lectura que extrae como argumento el \textit{path} donde se ubican los ficheros .csv a leer y, después, aplica un bucle para concatenar todos ellos en un mismo \textit{dataframe}. Por consiguiente, se comprueba qué tipo de datos contienen los ficheros (ficheros de consumo o de producción) y se almacenan las columnas de los parámetros eléctricos con los que se va a operar en una variable X. En el caso de los ficheros de consumo, se selecciona la columna \textit{Pavg}, que hace referencia a los valores de potencia activa media adquirida en cada instante. Esto es porque se trata de la información que se requiere conocer para poder establecer más adelante las cargas en el algoritmo \gls{den2ne}. Este proceso en cuestión será detallado en la Sección \ref{sec:cambiosden2ne}.
+En primer lugar, \textit{datasamples\_process.py} describe una función de lectura que extrae como argumento el \textit{path} donde se ubican los ficheros .csv a leer y, después, aplica un bucle para concatenar todos ellos en un mismo \textit{dataframe}. Por consiguiente, se comprueba qué tipo de datos contienen los ficheros (ficheros de consumo o de producción) y se almacenan las columnas de los parámetros eléctricos con los que se va a operar en una variable X. En el caso de los ficheros de consumo, se selecciona la columna \textit{Pavg}, que hace referencia a los valores de potencia activa media adquirida en cada instante. Esto es porque se trata de la información que se requiere conocer para poder establecer más adelante las cargas en el algoritmo \gls{den2ne}. Este proceso en cuestión será detallado en la Sección \ref{sec:cambiosden2ne}.
 
 \vspace{3mm}
 
@@ -274,7 +274,7 @@ Finalmente, se escribe la función que se va a encargar de automatizar el proces
 \vspace{3mm}
 
 %la cual se lleva a cabo desde los ordenadores del laboratorio
-Por lo tanto, una vez definidas las funciones anteriores, ya se permite realizar una ejecución automatizada del proceso de síntesis de los datos. En este caso, para realizar las pruebas de funcionamiento, se crea el script \textit{run\_tests.sh} y se lanza en un equipo que cuenta con un total de 32 cores. Este script posibilita la descompresión de los ficheros de datos, la instalación de las librerías de \textit{Python} necesarias (especificadas en un archivo \textit{requirements.txt}) y la ejecución de \textit{datasamples\_process.ipynb}.
+Por lo tanto, una vez definidas las funciones anteriores, ya se permite realizar una ejecución automatizada del proceso de síntesis de los datos. En este caso, para realizar las pruebas de funcionamiento, se crea el script \textit{run\_tests.sh} y se lanza en un equipo que cuenta con un total de 32 cores. Este script posibilita la descompresión de los ficheros de datos, la instalación de las librerías de \textit{Python} necesarias (especificadas en un archivo \textit{requirements.txt}) y la ejecución de \textit{datasamples\_process.py}.
 
 \vspace{3mm}
 
@@ -520,21 +520,17 @@ Por tanto, se debe comparar las características que presentan, tanto los datos 
 \subsubsection{Preprocesamiento de datos de \textit{SustDataED}}
 \label{sec:preprocsust}
 
-En cuanto al dataset \textit{SustDataED}, el primer paso a realizar está basado en la combinación de los parámetros energéticos y los climáticos. Este viene dado por la necesidad de realizar un análisis de la correlación que existe entre la producción solar y las características ambientales que se miden en cada instante. Por ello, se crea un nuevo \textit{notebook}, denominado como \textit{preprocessing\_production.ipynb}, en el cual hay que tener en cuenta los campos expuestos en las Tablas \ref{tab:prod} y \ref{tab:env}. La operación de combinación de los datos energéticos y climáticos se determina a partir de la marca de tiempo (\textit{timestamp}) y resulta en un nuevo \textit{dataframe} de \textit{Pandas}, que será almacenado en un nuevo fichero en formato .csv.
+En cuanto al dataset \textit{SustDataED}, por un lado, se realiza la combinación de los parámetros energéticos y los climáticos. Este paso viene dado por la necesidad de realizar un análisis de la correlación que existe entre la producción solar y las características ambientales que se miden en cada instante. Por ello, se crea un nuevo \textit{notebook}, denominado como \textit{preprocessing\_production.ipynb}, en el cual hay que tener en cuenta los campos expuestos en las Tablas \ref{tab:prod} y \ref{tab:env}. La operación de combinación de los datos energéticos y climáticos se determina a partir de la marca de tiempo (\textit{timestamp}) y resulta en un nuevo \textit{dataframe} de \textit{Pandas}, que será almacenado en un nuevo fichero en formato .csv.
 
 \vspace{3mm}
 
-\begin{lstlisting}[style=Python, caption={Combinación de ficheros}]
+\begin{lstlisting}[style=Python, caption={Combinación de datos de clima y de producción}]
   df_merged = pd.merge(df_env, df_prod, on='timestamp') # Operación de merge
 \end{lstlisting}
 
 \vspace{3mm}
 
-Posteriormente, es necesario sintetizar los datos de la misma forma que se ha realizado anteriormente para los ficheros de consumo. Como se había detallado en la Sección \ref{sec:datasamples}, se emplea el \textit{notebook} \textit{datasamples\_process.ipynb} para automatizar este proceso y obtener la media de los valores de potencia. 
-
-\vspace{3mm}
-
-En el caso de la producción, como este \gls{tfm} se engloba en un contexto de \gls{sg}s, se enfoca la operación en la columna de medidas globales de producción fotovoltaica. Tras la ejecución del \textit{notebook}, se obtiene un fichero con los campos definidos en la Tabla \ref{tab:prodsamples}. Adicionalmente, se emplea la librería de \textit{Python}, \textit{matplotlib}, para representar gráficamente en la Figura \ref{fig:solar} los valores de potencia recogidos en el fichero en órdenes de kW para simplificar el análisis.
+Por otro lado, es necesario sintetizar los datos de producción de la misma forma que se ha realizado anteriormente para los ficheros de consumo. Como se había detallado en la Sección \ref{sec:datasamples}, se emplea el \textit{notebook} \textit{datasamples\_process.ipynb} para automatizar este proceso y obtener la media de los valores de potencia. Como este \gls{tfm} se engloba en un contexto de \gls{sg}s, se enfoca la operación en la columna de medidas globales de producción fotovoltaica. Tras la ejecución del \textit{notebook}, se obtiene un fichero con los campos definidos en la Tabla \ref{tab:prodsamples}. Adicionalmente, se emplea la librería de \textit{Python}, \textit{matplotlib}, para representar gráficamente en la Figura \ref{fig:solar} los valores de potencia recogidos en el fichero en órdenes de kW para simplificar el análisis.
 
 \vspace{3mm}
 
@@ -574,6 +570,8 @@ De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anter
   \label{fig:temp}
 \end{figure}
 
+\vspace{3mm}
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{img/diseno/matplotsolaryear.png}
@@ -583,11 +581,13 @@ De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anter
 
 \vspace{3mm}
 
-Como se puede apreciar los valores reflejados de generación energética presentan cierta correlación con la temperatura a partir del mes de enero de 2011 y se encuentran diferencias entre los rangos de valores que se manejan en los meses de invierno y los de verano, a medida que se incrementa la temperatura. El análisis se fija a partir de este mes porque es en este momento cuando crecen las dimensiones del sistema fotovoltaico y se produce un salto en los valores medidos, conllevando un incremento de la potencia que se puede generar. Entonces, no sería correcto enfocar la comparación entre la temperatura y la potencia en los meses correspondientes al año 2010, ya que el sistema fotovoltaico no es equivalente al del año posterior.
+\pagebreak
+
+A priori, se podría apreciar que los valores reflejados de generación energética presentan cierta correlación con la temperatura a partir del mes de enero de 2011 y se encuentran diferencias entre los rangos de valores que se manejan en los meses de invierno y los de verano, a medida que se incrementa la temperatura. El análisis se fija a partir de este mes porque es en este momento cuando crecen las dimensiones del sistema fotovoltaico y se produce un salto en los valores medidos, conllevando un incremento de la potencia que se puede generar. 
 
 \vspace{3mm}
 
-Para visualizar de una forma más gráfica la correlación existente entre temperatura y potencia generada, se añade la Figura \ref{fig:energiavstemp} para representar los valores de ambos parámetros para la primera semana de agosto.
+Por tanto, no sería correcto enfocar la comparación entre la temperatura y la potencia en los meses correspondientes al año 2010, ya que el sistema fotovoltaico no es equivalente al del año posterior. De forma adicional, se muestran de una forma más gráfica en la Figura \ref{fig:energiavstemp} los valores de temperatura y potencia generada en cada instante para la primera semana de agosto. 
 
 \vspace{3mm}
 
@@ -596,6 +596,19 @@ Para visualizar de una forma más gráfica la correlación existente entre tempe
   \includegraphics[width=1\textwidth]{img/diseno/energiavstemp.png}
   \caption{Correlación entre temperatura y energía solar producida en el mes de agosto (\textit{SustDataED})}
   \label{fig:energiavstemp}
+\end{figure}
+
+\vspace{3mm}
+
+No obstante, la Figura \ref{fig:energiavstemp} puede dar una perspectiva equivocada sobre la relación directa que realmente se produce entre los valores y, por ello, es preciso centrar el estudio en la matriz de valores de correlación. A continuación, en la Figura \ref{fig:corr2} se representa en forma de mapa de calor la misma y se puede determinar de forma clara que, en conjunto, la temperatura presenta una escasa correlación hacia la potencia generada, suponiendo un valor de 0,279. Para el resto de parámetros tampoco se mejora, lo que dificulta el análisis entre la producción energética y las condiciones climáticas si se emplean los datos de \textit{SustDataED}.
+
+\vspace{3mm}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.55\textwidth]{img/diseno/corr2.png}
+  \caption{Representación de los valores de correlación mediante un mapa de calor (\textit{SustDataED})}
+  \label{fig:corr2}
 \end{figure}
 
 \subsubsection{Preprocesamiento de datos de \textit{PVWatts}}
@@ -617,7 +630,11 @@ Considerando lo anterior, se debe añadir al dataset de origen una nueva columna
 
 \vspace{3mm}
 
-Es importante recordar en este punto que, para el desarrollo de este \gls{tfm}, se ha seleccionado anteriormente el segundo despliegue \textit{SustDataED} y se ha reducido el manejo de dicho dataset a un rango temporal especificado entre los años 2010 y 2011. No obstante, en este paso del procesamiento del dataset de \textit{PVWatts}, el fichero que se decide generar a la salida abarca un conjunto de datos de producción con marcas de tiempo comprendidas entre los años 2010 y 2014. Esto se realiza a modo de obtener de forma completa el mismo rango temporal de medidas que proporciona el dataset \textit{SustDataED} por si en un futuro se necesitara emplear otro despliegue diferente al seleccionado a priori. En la Figura \ref{fig:solaryearpv} se representan los valores de potencia generada obtenidos en la simulación para el rango temporal seleccionado.
+Es importante recordar en este punto que, para el desarrollo de este \gls{tfm}, se ha seleccionado anteriormente el segundo despliegue de \textit{SustDataED} y se ha reducido el manejo de dicho dataset a un rango temporal especificado entre los años 2010 y 2011. No obstante, en este paso del procesamiento del dataset de \textit{PVWatts}, el fichero que se decide generar a la salida va a abarcar un conjunto de datos de producción con marcas de tiempo comprendidas entre los años 2010 y 2014. 
+
+\vspace{3mm}
+
+En otros términos, se tienen en cuenta los cuatro despliegues para obtener el rango temporal completo de medidas que proporciona el dataset \textit{SustDataED}. El motivo de realizarlo de esta manera es por si en un futuro se necesitara emplear otro despliegue diferente al seleccionado a priori, aportando así cierta flexibilidad. En la Figura \ref{fig:solaryearpv} se representan los valores de potencia generada obtenidos en la simulación para el rango temporal del segundo despliegue.
 
 \vspace{3mm}
 
@@ -630,9 +647,27 @@ Es importante recordar en este punto que, para el desarrollo de este \gls{tfm}, 
 
 \vspace{3mm}
 
-De la misma forma que se ha realizado en la Sección \ref{sec:preprocsust} para los datos de \textit{SustDataED}, se analiza en este punto la correlación existente entre los valores de potencia en cada instante y los parámetros ambientales y climáticos, escogiendo igualmente la primera semana de agosto a modo de ejemplo. En la Figura \ref{fig:energiavstempcel} se comparan los valores de temperatura, tanto ambiental como de la célula, con los de potencia generada en órdenes de kW. Se puede apreciar que, a mayores temperaturas adquiridas por la célula fotovoltaica, se incrementa la potencia generada. No obstante, es preciso indicar que la temperatura de las células puede llegar a ser un factor limitante si se supera el máximo recomendado, puesto que perjudicaría gravemente al rendimiento del sistema.
+Por otro lado, a modo de simplificar la información y de visualizar de una forma gráfica la correlación existente entre cada uno de los parámetros, se introduce la Figura \ref{fig:corr} para representar la matriz de valores mediante un mapa de calor. Un valor igual a 1 indica una correlación positiva perfecta y, como se puede apreciar, la radiación en cada instante incide de una manera directa en la cantidad de potencia generada. Coherentemente, la más destacable a observar es la radiación en el plano del array \gls{poa} con un valor 0.999. Se pueden observar estas correlaciones también, en las gráficas expuestas en la Figura \ref{fig:corrgraficas}.
 
 \vspace{3mm}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/diseno/corr.png}
+  \caption{Representación de los valores de correlación mediante un mapa de calor (\textit{PVWatts})}
+  \label{fig:corr}
+\end{figure}
+
+De la misma forma que se ha realizado en la Sección \ref{sec:preprocsust} para los datos de \textit{SustDataED}, se representa la primera semana de agosto a modo de ejemplo para observar la correlación entre los valores de potencia en cada instante y los parámetros ambientales y climáticos. En la Figura \ref{fig:energiavstempcel} se comparan los valores de temperatura, tanto ambiental como de la célula, con los de potencia generada en órdenes de kW. Se puede apreciar que, a mayores temperaturas adquiridas por la célula fotovoltaica, se incrementa la potencia generada. No obstante, es preciso indicar que la temperatura de las células puede llegar a ser un factor limitante si se supera el máximo recomendado, puesto que perjudicaría gravemente al rendimiento del sistema.
+
+\vspace{3mm}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/diseno/energiavstempcel.png}
+  \caption{Correlación entre temperatura y energía solar producida en el mes de agosto (\textit{PVWatts})}
+  \label{fig:energiavstempcel}
+\end{figure}
 
 Por otro lado, en la Figura \ref{fig:energiavsrad} se representan los valores de índice de radiación en el plano del array (\gls{poa}) y de radiación difusa (\gls{dif}) frente a la potencia en cada instante. Como se expuso en la Sección \ref{sec:resultadossimu}, el primero está directamente relacionado con el índice de radiación directa normal (\gls{dni}) y se calcula como el producto del mismo por el ángulo de inclinación de las células. Debido a este motivo y a que el \gls{dif} depende de la dispersión introducida por la atmósfera, se observa una mayor correlación entre los valores de energía generada y los de \gls{poa}.
 
@@ -640,16 +675,16 @@ Por otro lado, en la Figura \ref{fig:energiavsrad} se representan los valores de
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\textwidth]{img/diseno/energiavstempcel.png}
-  \caption{Correlación entre temperatura y energía solar producida en el mes de agosto (\textit{PVWatts})}
-  \label{fig:energiavstempcel}
+  \includegraphics[width=0.9\textwidth]{img/diseno/energiavsrad.png}
+  \caption{Correlación entre radiación y energía solar producida en el mes de agosto (\textit{PVWatts})}
+  \label{fig:energiavsrad}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\textwidth]{img/diseno/energiavsrad.png}
-  \caption{Correlación entre radiación y energía solar producida en el mes de agosto (\textit{PVWatts})}
-  \label{fig:energiavsrad}
+  \includegraphics[width=0.9\textwidth]{img/diseno/corrgraficas.png}
+  \caption{Representación de los valores de correlación mediante gráficas (\textit{PVWatts})}
+  \label{fig:corrgraficas}
 \end{figure}
 
 \subsubsection{Selección de datos de producción}
@@ -662,12 +697,13 @@ Como se había introducido en la Sección \ref{sec:procprod}, se requería aplic
 Esta decisión se rige por la razón principal de la precisión que aportan los datos al tratarse de un dataset generado a partir de la simulación de un sistema real y de la configuración de múltiples parámetros de entrada en referencia a la ubicación y a los requisitos técnicos deseados (ver Sección \ref{sec:pvw}). Es decir, los resultados proporcionados por la herramienta han sido analizados en profundidad, además de constrastados con el estudio teórico, lo que justifica su precisión respecto a un caso real (ver Sección \ref{sec:resultadossimu}).  
 
 \vspace{3mm}
+\pagebreak
 
-Otra ventaja que aporta el empleo de la herramienta \textit{PVWatts}, es la posibilidad de rediseño y de replicación de los datos anuales. En caso de desearse, se permitiría simular otro tipo de sistema fotovoltaico real y determinar parámetros de entrada diferentes en la configuración, lo que produce un desarrollo mucho más flexible. Además, se aporta una mayor información que \textit{SustDataED} sobre las condiciones climáticas que se dan en cada instante, sobre todo en términos de radiación.
+Otra ventaja que aporta el empleo de la herramienta \textit{PVWatts}, es la posibilidad de rediseño y de replicación de los datos anuales. En caso de desearse, se permitiría simular otro tipo de sistema fotovoltaico real y determinar parámetros de entrada diferentes en la configuración, lo que supone un desarrollo mucho más flexible. Además, se aporta una mayor información que \textit{SustDataED} sobre las condiciones climáticas que se dan en cada instante, sobre todo en términos de radiación. Esto es importante, ya que, como se podía apreciar en los mapas de calor expuestos (ver Figuras \ref{fig:corr2} y \ref{fig:corr}), los valores respectivos a los diferentes tipos de radiación presentan una gran correlación con la cantidad de potencia a la salida del sistema fotovoltaico. Así, se permite determinar de forma directa la potencia que se puede generar en cada instante. Sin embargo, no ocurría de la misma forma para los datos de  temperatura dados por \textit{SustDataED}, lo que suponía una gran limitación para analizar la información.
 
 \vspace{3mm}
 
-El dataset \textit{SustDataED}, en cambio, sí que se basa en medidas de un despliegue de viviendas real, pero los valores de generación energética que aporta se definen en términos globales a todas los hogares. No se aporta información exacta sobre el número de viviendas a los que se abastece, ni sobre las dimensiones del sistema o sistemas fotovoltaicos de los que se han adquirido los datos en cada instante. En consecuencia, no se puede evaluar su utilidad específicamente en un entorno de \gls{sg}s como motivo de los objetivos de este \gls{tfm} y se introducen dificultades para analizar los valores de potencia dados. Por todo esto, se decide reducir el uso del dataset \textit{SustDataED} a los datos de consumo de los hogares.
+Por otro lado, el dataset \textit{SustDataED}, a diferencia de \textit{PVWatts}, sí que se basa en medidas de un despliegue de viviendas real, pero los valores de generación energética que aporta se definen en términos globales a todas los hogares. No se aporta información exacta sobre el número de viviendas a los que se abastece, ni sobre las dimensiones del sistema o sistemas fotovoltaicos de los que se han adquirido los datos en cada instante. En consecuencia, no se puede evaluar su utilidad específicamente en un entorno de \gls{sg}s como motivo de los objetivos de este \gls{tfm} y se introducen dificultades para analizar los valores de potencia dados. Por todo esto, se decide reducir el uso del dataset \textit{SustDataED} a los datos de consumo de los hogares.
 
 \subsection{Combinación de datos de consumo y de producción}
 \label{sec:combinacion}
@@ -676,7 +712,7 @@ Se introduce la programación de un nuevo \textit{notebook}, denominado como \te
 
 \vspace{3mm}
 
-Por tanto, el objetivo del \textit{notebook} en cuestión se basa en obtener a la salida 23 nuevos ficheros que contengan los valores de cargas netas para cada instante, las cuales se establecerán posteriormente en el algoritmo \gls{den2ne} (ver Sección \ref{sec:cambiosden2ne}). Para ello, es necesario combinar cada fichero de consumo con los datos de producción y, después, aplicar la diferencia entre la potencia generada y consumida a partir de la marca de tiempo dada en cada fila. Se escoge como ejemplo la vivienda con identificador 1 para representar en las Figuras \ref{fig:calculocarga} y \ref{fig:calculocarga2} los valores de carga resultante a partir de los ficheros de entrada.
+Por tanto, el objetivo del \textit{notebook} en cuestión se basa en obtener a la salida 23 nuevos ficheros que contengan los valores de cargas netas para cada instante, las cuales se establecerán posteriormente en el algoritmo \gls{den2ne} (ver Sección \ref{sec:cambiosden2ne}). Para ello, es necesario combinar cada fichero de consumo con los datos de producción y, después, aplicar la diferencia entre la potencia generada y consumida a partir de la marca de tiempo dada en cada fila. Se escoge como ejemplo la vivienda con identificador 1 para representar en las Figuras \ref{fig:calculocarga} y \ref{fig:calculocarga2} los valores de carga resultante a partir de los ficheros de entrada. En el caso de la Figura \ref{fig:calculocarga2}, se muestran también de forma continua los valores promedios diarios de carga. 
 
 \vspace{3mm}
 
@@ -687,7 +723,7 @@ Por tanto, el objetivo del \textit{notebook} en cuestión se basa en obtener a l
   \label{fig:calculocarga}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=1\textwidth]{img/diseno/calculocarga2.png}
   \caption{Gráfica de la carga neta resultante en la vivienda 1 en el rango seleccionado}
@@ -696,5 +732,34 @@ Por tanto, el objetivo del \textit{notebook} en cuestión se basa en obtener a l
 
 \vspace{3mm}
 
-Como se realiza una operación de combinación de los datos de consumo y de producción, los campos de los nuevos ficheros de cargas son los definidos en las Tablas \ref{tab:consum} y {tab:pvwattsdataset}, exceptuando algunos parámetros climáticos que se no resultan útiles para el desarrollo y se eliminan. En cuanto a la nomenclatura, cada fichero se nombra como \textit{load\_x.csv}, donde x hace referencia al identificador de la vivienda a la que pertenecen las cargas calculadas. Por tanto, se puede expresar que, después de toda la fase de procesado, se consigue el objetivo de obtener un dataset final compuesto por 23 ficheros con cargas, que supondrá la base principal de la operativa del algoritmo \gls{den2ne} para construir el conjunto de datos a entrenar.
+Como se realiza una operación de combinación de los datos de consumo y de producción, los campos de los nuevos ficheros de cargas suponen los definidos, tanto en la Tabla \ref{tab:consum}, como en la Tabla \ref{tab:pvwattsdataset}, exceptuando algunos parámetros que se descartan para el desarrollo, como son el albedo o la velocidad del viento. En la Tabla \ref{tab:datacombinacion}, se especifican los campos definitivos.
+
+\vspace{3mm}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|}
+  \hline
+  \rowcolor[HTML]{AAAAAA} 
+  \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}Campo} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}Descripción} & Unidades \\ \hline
+  \textit{timestamp} & Instante temporal de medida & datetime \\ \hline
+  \textit{datetime} & Fecha del valor promedio & datetime \\ \hline
+  \textit{H} & Hora del valor promedio & - \\ \hline
+  \textit{iid} & Identificador de vivienda & - \\ \hline
+  \textit{Diffuse Irradiance} & Índice de radiación difusa (\gls{dif}) & W/m2 \\ \hline
+  \textit{Plane of Array Irradiance} & Índice de radiación en el plano del array (\acrshort{poa}) & W/m2 \\ \hline 
+  \textit{Ambient Temperature} & Temperatura ambiente & C \\ \hline
+  \textit{Cell Temperature} & Temperatura de las células solares & C \\ \hline
+  \textit{DC Array Output} & Potencia de salida DC del array & W \\ \hline
+  \textit{AC System Output} & Potencia de salida AC del sistema & W \\ \hline
+  \textit{Pavg} & Potencia consumida & W \\ \hline
+  \textit{Dif} & Carga neta calculada & W \\ \hline
+  \end{tabular}
+  \caption{Dataset resultante de la etapa de procesamiento}
+  \label{tab:datacombinacion}
+\end{table}
+
+\vspace{3mm}
+
+Por otro lado, en cuanto a la nomenclatura, cada fichero se nombra como \textit{load\_x.csv}, donde x hace referencia al identificador de la vivienda a la que pertenecen las cargas calculadas. Por tanto, se puede expresar que, después de toda la fase de procesado, se consigue el objetivo de obtener un dataset final compuesto por 23 ficheros con cargas, que supondrá la base principal de la operativa del algoritmo \gls{den2ne} para construir el conjunto de datos a entrenar.
 

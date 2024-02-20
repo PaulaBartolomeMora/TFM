@@ -2,7 +2,7 @@
 \section{Herramientas software}
 \label{sec:software}
 
-\subsection{BRITE}
+\subsection{\acrshort{brite}}
 \label{sec:brite}
 
 \gls{brite} \cite{brite} se presenta como una plataforma dedicada a la generación de topologías de red. Fue desarrollada en la Universidad de Boston y se caracteriza por su gran flexibilidad, ya que enfoca su arquitectura en el concepto de modelo topológico. Es decir, soporta varios modelos diferentes y cada uno de ellos viene determinado por los parámetros de entrada que se definen. Es por ello que \gls{brite} sigue la siguiente secuencia de acciones para diseñar las topologías:
@@ -93,7 +93,16 @@ A modo de facilitar la ejecución de la herramienta \gls{brite} se aporta en el 
 
 \vspace{3mm}
 
-También, se añade el fichero de python \textit{parser.py}, que se encargará de definir la función de transformación del archivo de salida proporcionado por \gls{brite} (en formato .brite) en dos nuevos ficheros: \textit{Nodos.txt} y \textit{Enlaces.txt}. Respectivamente, estos almacenarán las posiciones x e y de los nodos en el plano y la información sobre las distancias y los identificadores de los nodos que se interconectan con cada enlace.
+También, se añade el fichero de python \textit{parser.py}, que se encargará de definir la función de transformación del archivo de salida proporcionado por \gls{brite} (en formato .brite) en dos nuevos ficheros: \textit{Nodos.txt} y \textit{Enlaces.txt}. Respectivamente, estos almacenarán las posiciones x e y de los nodos en el plano y la información sobre las distancias y los identificadores de los nodos que se interconectan con cada enlace. Este funcionamiento se muestra de forma gráfica en la Figura \ref{fig:parser}.
+
+\vspace{3mm}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/teoria/parser.png}
+    \caption{Esquema de funcionamiento de \acrshort{brite} y del \textit{parser} \cite{den2ne}}
+    \label{fig:parser}
+\end{figure}
 
 \vspace{3mm}
 
