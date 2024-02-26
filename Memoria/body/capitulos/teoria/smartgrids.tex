@@ -13,8 +13,6 @@ Sin embargo, una red eléctrica no se puede definir como una entidad única e in
 
 La iniciativa sobre redes inteligentes del \gls{ieee}, califica a las \textit{smart grids} \cite{ieee} como "imperativas y revolucionarias que implican nuevas capacidades de comunicación y control, fuentes de energía, modelos de generación y adherencia a estructuras regulatorias transjurisdiccionales". Por otro lado, en el año 2009, el Departamento de Energía de Estados Unidos \cite{us} determinó en su reporte anual sobre \textit{smart grids} los siguientes objetivos principales que se perseguían con el desarrollo de este tipo de redes: 
 
-\pagebreak
-
 \begin{itemize}
   \item Permitir una participación activa de los clientes en el sistema.
   \item Integrar todas las opciones de generación y almacenamiento de energía.
@@ -26,69 +24,71 @@ La iniciativa sobre redes inteligentes del \gls{ieee}, califica a las \textit{sm
 
 \vspace{1mm}
 
-Tomando en consideración estos objetivos, se puede definir una \textit{smart grid} como una red inteligente con la capacidad de distribuir los suministros de energía de forma optimizada a los usuarios, basándose en la información que recoge de los mismos. Es por ello que supone una actualización digital de las redes de distribución y transmisión a larga distancia para incorporar sistemas de monitorización y control a tiempo real. \cite{iotfutura} 
+Tomando en consideración estos objetivos, se puede definir una \textit{smart grid} como una red inteligente con la capacidad de distribuir los suministros de energía de forma optimizada a los usuarios, basándose en la información que recoge de los mismos. Es por ello que supone una actualización digital de las redes de distribución y transmisión a larga distancia para incorporar sistemas de monitorización y control a tiempo real (ver Figura \ref{fig:bidireccional2}). \cite{iotfutura} 
 
 \vspace{3mm}
 
-Su base se asienta en el diseño de sistemas inteligentes coordinados capaces de obtener tanto la información respectiva a la demanda o requisitos energéticos de cada zona como la de la disponibilidad de recursos a partir de las diferentes fuentes de producción existentes. Todo ello conduce al desarrollo de un plan estratégico de distribución energética para poder conectar a todas las entidades participantes en la red entre sí. \cite{repsol}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/teoria/sg.png}
+  \caption{Red de distribución y flujo bidireccional de datos y energía en una \textit{smart grid} \cite{sins}}
+  \label{fig:bidireccional}
+\end{figure}
 
-\vspace{1mm}
+\vspace{3mm}
+
+Su base se asienta en el diseño de sistemas inteligentes coordinados capaces de obtener tanto la información respectiva a la demanda o requisitos energéticos de cada zona como la de la disponibilidad de recursos a partir de las diferentes fuentes de producción existentes. Todo ello conduce al desarrollo de un plan estratégico de distribución energética para poder conectar a todas las entidades participantes en la red entre sí. Además, en cuanto al factor medioambiental, las \gls{sg}s son un concepto clave en la transición energética y en el proceso de descarbonización. La aplicación de una distribución energética inteligente y la posibilidad de integrar al sistema fuentes renovables permiten el desarrollo de ciudades sostenibles y una gran reducción de emisiones de CO2. \cite{repsol} \cite{iberdrola}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Flujo energético y comunicación bidireccional}
 
 Cabe destacar que una de las principales características diferenciadoras de las \gls{sg}s respecto a las redes energéticas convencionales es que se fundamentan en una comunicación bidireccional. Este factor determinante se puede apreciar en la Figura \ref{fig:bidireccional} y se traduce en una producción y una distribución dinámica y personalizada hacia cada usuario de la red. 
 
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/teoria/sg.png}
-  \caption{Flujo bidireccional de datos y energía en una \textit{smart grid} \cite{sins}}
-  \label{fig:bidireccional}
-\end{figure}
+\vspace{3mm}
+
+Es decir, en una red tradicional al ser unidireccional, se provee energía desde el distribuidor hacia el consumidor sin llevar a cabo ningún análisis estadístico sobre el consumo que se está produciendo en las líneas finales en un determinado instante temporal. En cambio, en el contexto de las \gls{sg}s, se pone el foco en las acciones de los usuarios y en la consecuente asignación de patrones de consumo eléctrico que permita predecir el comportamiento futuro de los mismos. Sin embargo, como se expondrá más adelante en la Sección \ref{sec:consumo}, este proceso de clasificación de usuarios requerirá del análisis de grandes volúmenes de datos adquiridos a tiempo real, por lo que se aumentará la complejidad del sistema a costa de alcanzar la eficiencia. \cite{conventional}
 
 \vspace{3mm}
 
-\begin{figure}[h!]
+Bajo la premisa de la característica de red bidireccional, se puede expresar que los propios usuarios son el gran pilar sobre el que se cimienta el sistema. En comparación a la red eléctrica tradicional, toman un papel mucho más activo monitorizando continuamente su comportamiento eléctrico y recopilando información para trasladarla al resto de la red. Esto tiene como ventaja una gran reducción de los costes derivados de la distribución y transmisión en el sistema, ya que se evita proporcionar más cantidad de energía de la requerida por las líneas finales. \cite{iotfutura}
+
+\vspace{3mm}
+
+Es por ello que se emplea una Infraestructura Avanzada de Medición (del inglés \gls{ami}) con una interfaz constituida por varias capas o niveles como se puede apreciar en la Figura \ref{fig:bidireccional2}. De esta forma, se dividen los flujos de comunicación entre las diferentes entidades que componen la red para permitir una mejor gestión de los mismos. \cite{us}
+
+\vspace{3mm}
+
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{img/teoria/bidir.png}
   \caption{Infraestructura de una interfaz \acrshort{ami} para el flujo bidireccional de energía y datos \cite{us}}
   \label{fig:bidireccional2}
 \end{figure}
 
-Es decir, en una red tradicional al ser unidireccional, se provee energía desde el distribuidor hacia el consumidor sin llevar a cabo ningún análisis estadístico sobre el consumo que se está produciendo en las líneas finales en un determinado instante temporal. En cambio, en el contexto de las \gls{sg}s, se pone el foco en las acciones de los usuarios y en la consecuente asignación de patrones de consumo eléctrico que permita predecir el comportamiento futuro de los mismos. \cite{convencional}
-
-\vspace{3mm}
-
-Sin embargo, como se expondrá más adelante en la Sección \ref{sec:consumo}, este proceso de clasificación de usuarios requerirá del análisis de grandes volúmenes de datos adquiridos a tiempo real, por lo que se aumentará la complejidad del sistema a costa de alcanzar la eficiencia.
-
-\vspace{3mm}
-
-Por lo tanto, bajo la premisa de la característica de red bidireccional, se puede expresar que los propios usuarios son el gran pilar sobre el que se cimienta el sistema. En comparación a la red eléctrica tradicional, toman un papel mucho más activo monitorizando continuamente su comportamiento eléctrico y recopilando información para trasladarla al resto de la red. Esto tiene como ventaja una gran reducción de los costes derivados de la distribución y transmisión en el sistema, ya que se evita proporcionar más cantidad de energía de la requerida por las líneas finales. \cite{iotfutura}
-
-\vspace{3mm}
-
-Es por ello que se emplea una Infraestructura Avanzada de Medición (del inglés \gls{ami}) con una interfaz constituida por varias capas o niveles como se puede apreciar en la Figura \ref{fig:bidireccional2}. De esta forma, se dividen los flujos de comunicación entre las diferentes entidades que componen la red para permitir una mejor gestión de los mismos. \cite{us}
-
-\vspace{1mm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Prosumidores y microgrids}
 \label{sec:prosu}
 
-Dentro del presente contexto, en referencia a los usuarios es preciso introducir el término de prosumidor \cite{prosumer}. Se puede determinar como prosumidora a toda entidad o usuario final que tiene la capacidad de producir de forma alternativa recursos energéticos, además de poder consumirlos. En la Figura \ref{fig:prosumer} se puede visualizar cómo se estructura la \gls{sg} en un conjunto de distintas comunidades o agregaciones de prosumidores con el fin de crear microrredes de distribución y almacenamiento energético (del inglés \textit{microgrids}).
+Dentro del presente contexto, en referencia a los usuarios es preciso introducir el término de prosumidor \cite{transactive}. Se puede determinar como prosumidora a toda entidad o usuario final que tiene la capacidad de producir de forma alternativa recursos energéticos, además de poder consumirlos. En la Figura \ref{fig:prosumer} se puede visualizar cómo se estructura la \gls{sg} en un conjunto de distintas comunidades o agregaciones de prosumidores con el fin de crear microrredes de distribución y almacenamiento energético (del inglés \textit{microgrids}).
 
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=1\textwidth]{img/teoria/prosumer.jpg}
-  \caption{Estructura de la respuesta a la demanda en el contexto de una \textit{smart grid} con prosumidores \cite{prosumer}}
-  \label{fig:prosumer}
-\end{figure}
+\vspace{3mm}
 
 En este caso es imprescindible que los equipos y dispositivos dedicados a la generación de electricidad se encuentren dentro de la microrred o en una ubicación cercana a la misma. Así, se podrá abastecer a los usuarios del conjunto de forma eficiente, reduciendo los costes relacionados con la transmisión energética. 
 
 \vspace{3mm}
 
 Este tipo de esquema puede ser aplicado en diferentes entornos, como pueden ser los residenciales, industriales o agrícolas, para conseguir descentralizar la gestión de los recursos. Sin embargo, debe existir cierta gestión externa y coordinada de todas estas microrredes o comunidades de usuarios. Esta es llevada a cabo por una entidad denominada como operador del sistema distribuido (del ingles \gls{dso}) \cite{transactive} \cite{dso}. Algunas de sus funciones principales se basan en asegurar el abastecimiento de recursos en el interior de las microrredes en función de la demanda existente y en supervisar el estado operativo la infraestructura de red para garantizar su estabilidad y seguridad. 
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/teoria/prosumer.jpg}
+  \caption{Estructura de la respuesta a la demanda en el contexto de una \textit{smart grid} con prosumidores \cite{transactive}}
+  \label{fig:prosumer}
+\end{figure}
 
 \vspace{3mm}
 
@@ -102,11 +102,8 @@ Las agregaciones de prosumidores posibilitan el autoconsumo y la compartición d
 
 \vspace{3mm}
 
-Por ello, los agregadores \cite{bidding} \cite{transactive} se encargan de facilitar esta tarea para que una cantidad de prosumidores locales puedan actuar en conjunto como fijadores de precios de compra/venta en el mercado eléctrico global. Es decir, cada agregador se encarga de representar a los prosumidores que lo componen y actúa como intermediarios entre los mismos y el conjunto de mercados energéticos. 
+Por ello, los agregadores \cite{bidding} \cite{transactive} se encargan de facilitar esta tarea para que una cantidad de prosumidores locales puedan actuar en conjunto como fijadores de precios de compra/venta en el mercado eléctrico global. Es decir, cada agregador se encarga de representar a los prosumidores que lo componen y actúa como intermediarios entre los mismos y el conjunto de mercados energéticos. A cambio, cada prosumidor debe pagar un plan mensual a la compañía para cubrir los costes eléctricos y así, dejar la responsabilidad de las transacciones a los agregadores para que operen de forma flexible. En esta operativa también incide el \gls{dso}, el cual se encarga de que las transacciones de compra/venta sigan el cumplimiento de los estándares y regulaciones establecidos en el mercado energético. 
 
-\vspace{3mm}
-
-A cambio, cada prosumidor debe pagar un plan mensual a la compañía para cubrir los costes eléctricos y así, dejar la responsabilidad de las transacciones a los agregadores para que operen de forma flexible. En esta operativa también incide el \gls{dso}, el cual se encarga de que las transacciones de compra/venta sigan el cumplimiento de los estándares y regulaciones establecidos en el mercado energético. 
 \vspace{3mm}
 
 \begin{figure}[h!]
@@ -138,15 +135,17 @@ A partir del funcionamiento expuesto y de la Figura \ref{fig:market}, se pueden 
 
 \vspace{1mm}
 
-En cuanto al proceso de fijación de precios, generalmente, se adoptan tarifas minoristas dinámicas según el instante temporal, como pueden ser la fijación de precios por tiempo de uso (del inglés \gls{tou}) o en tiempo real (del inglés \gls{rtp}). Dentro de este contexto es preciso introducir los programas de gestión del lado de la demanda (del inglés \gls{dsm}). Como término, un programa \gls{dsm} es un programa basado en el control de las interacciones de consumo y de gestión de cargas residenciales desde el lado del cliente. 
+En cuanto al proceso de fijación de precios, generalmente, se adoptan tarifas minoristas dinámicas según el instante temporal, como pueden ser la fijación de precios por tiempo de uso (del inglés \gls{tou}) o en tiempo real (del inglés \gls{rtp}). Dentro de este contexto es preciso introducir los programas de gestión del lado de la demanda (del inglés \gls{dsm}). 
 
 \vspace{3mm}
 
-Considerando el modelo de interacciones expuesto anteriormente, se puede expresar que un \gls{dsm} tiene como pilar fundamental la distribución de recursos energéticos de manera eficiente y acorde a la demanda y a la oferta. Permite reducir el coste de la adquisición energética y los costes asociados a la distribución como consecuencia de minimizar el número de interacciones necesarias entre el prosumidor y el resto de entidades del sistema. \cite{dsm}
+Como término, un programa \gls{dsm} es un programa basado en el control de las interacciones de consumo y de gestión de cargas residenciales desde el lado del cliente. Considerando este modelo de interacciones, se puede expresar que un \gls{dsm} tiene como pilar fundamental la distribución de recursos energéticos de manera eficiente y acorde a la demanda y a la oferta. Permite reducir el coste de la adquisición energética y los costes asociados a la distribución como consecuencia de minimizar el número de interacciones necesarias entre el prosumidor y el resto de entidades del sistema. \cite{dsm}
 
 \vspace{3mm}
 
-Por lo tanto, volviendo a los modos de dinamización de las tarifas, si por ejemplo se emplea \gls{rtp}, se buscará lograr el equilibrio de la demanda en tiempo real, modificando las cargas de los consumidores en las horas pico \cite{rtp}. Es decir, cada uno de los usuarios actúa individualmente en función de los precios dinámicos en el tiempo, comunicándose directamente con la compañía energética como se puede visualizar en la Figura \ref{fig:dsm1}. 
+Por lo tanto, volviendo a los modos de dinamización de las tarifas, si por ejemplo se emplea \gls{rtp}, se buscará lograr el equilibrio de la demanda en tiempo real, modificando las cargas de los consumidores en las horas pico \cite{rtp}. Es decir, cada uno de los usuarios actúa individualmente en función de los precios dinámicos en el tiempo, comunicándose directamente con la compañía energética como se puede visualizar en la Figura \ref{fig:dsm1}.
+
+\vspace{3mm}
 
 \begin{figure}[h!]
   \centering
@@ -155,15 +154,15 @@ Por lo tanto, volviendo a los modos de dinamización de las tarifas, si por ejem
   \label{fig:dsm1}
 \end{figure}
 
+\vspace{3mm}
+
 Con este proceso, el consumidor como puede saber en tiempo real la tarifa a la que está consumiendo energía, puede trasladar su propia carga desde las horas donde el precio es más alto (horas pico) a las de precio menor (horas valle). Esta gestión produce por tanto, menores picos de demanda y contribuyendo a la bajada de los precios. \cite{dsm} \cite{pricing}
 
 \vspace{3mm}
 
-No obstante, el diseño de un programa \gls{dsm} ideal en el contexto de las \gls{sg}s debería permitir también las interacciones entre los mismos prosumidores dentro de una zona residencial o microgrid. Estas interacciones generalmente se automatizan a través de equipos dedicados a una comunicación digital bidireccional. Como se aprecia en la Figura \ref{fig:dsm2}, este proceso tiene como fin conducir a una coordinación de las acciones respectivas a las cargas de un área determinada. 
+No obstante, el diseño de un programa \gls{dsm} ideal en el contexto de las \gls{sg}s debería permitir también las interacciones entre los mismos prosumidores dentro de una zona residencial o microgrid. Estas interacciones generalmente se automatizan a través de equipos dedicados a una comunicación digital bidireccional. Como se aprecia en la Figura \ref{fig:dsm2}, este proceso tiene como fin conducir a una coordinación de las acciones respectivas a las cargas de un área determinada. Por tanto, en este caso la monitorización de las cargas totales para todos los nodos participantes en un instante determinado aportará la información necesaria sobre la relación entre la potencia pico y promedio (del inglés \gls{par}) y contribuirá a la fijación del precio unitario para ese mismo instante. \cite{pricing}
 
 \vspace{3mm}
-
-Por tanto, en este caso la monitorización de las cargas totales para todos los nodos participantes en un instante determinado aportará la información necesaria sobre la relación entre la potencia pico y promedio (del inglés \gls{par}) y contribuirá a la fijación del precio unitario para ese mismo instante. \cite{pricing} 
 
 \begin{figure}[h!]
   \centering
@@ -191,36 +190,46 @@ Como ya se introducía en la Sección \ref{sec:prosu}, dentro de una \gls{sg}, e
 
 \vspace{3mm}
 
-Las unidades \gls{chp} \cite{chp} llevan a cabo un aprovechamiento del calor residual que deriva del proceso de generación de electricidad. Se emplean como respaldo eléctrico, ya que se componen de sistemas de almacenamiento de energía térmica (del inglés \gls{tes}) para poder separar la producción y el uso del calor y la energía. Luego, este calor almacenado se puede emplear en aplicaciones térmicas como la calefacción u otros procesos industriales. Es por ello que las unidades \gls{chp} mejoran la eficiencia del sistema energético, contribuyendo a un uso mucho más eficaz de los recursos y a una reducción de las pérdidas que se producen en la transmisión. En la Figura \ref{fig:chp} se representa a modo esquemático el funcionamiento de una unidad \gls{chp}. \cite{chp2}
+Las unidades \gls{chp} \cite{chp}, como se puede apreciar en la Figura \ref{fig:chp}, llevan a cabo un aprovechamiento del calor residual que deriva del proceso de generación de electricidad. Se emplean como respaldo eléctrico, ya que se componen de sistemas de almacenamiento de energía térmica (del inglés \gls{tes}) para poder separar la producción y el uso del calor y la energía. Luego, este calor almacenado se puede emplear en aplicaciones térmicas como la calefacción u otros procesos industriales. \cite{chp2}
 
-\begin{figure}[h!]
+\vspace{3mm}
+
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{img/teoria/chp.png}
   \caption{Esquema de funcionamiento de una unidad \acrshort{chp} \cite{chp}}
   \label{fig:chp}
 \end{figure}
 
-Además del \gls{tes}, utilizado para almacenar el calor producido, una unidad \gls{chp} también se constituye de un motor acoplado a un generador eléctrico para llevar a cabo el proceso de generación de electricidad y calor. Como se puede apreciar en la Figura \ref{fig:chp2}, todas las operaciones de la unidad y las interacciones que se producen entre módulos se coordinan desde el gestor de operaciones para que se produzca un correcto funcionamiento.
+\vspace{3mm}
+
+\pagebreak
+
+Es por ello que las unidades \gls{chp} mejoran la eficiencia del sistema energético, contribuyendo a un uso mucho más eficaz de los recursos y a una reducción de las pérdidas que se producen en la transmisión. Además del \gls{tes}, utilizado para almacenar el calor producido, una unidad \gls{chp} también se constituye de un motor acoplado a un generador eléctrico para llevar a cabo el proceso de generación de electricidad y calor. Como se puede apreciar en la Figura \ref{fig:chp2}, todas las operaciones de la unidad y las interacciones que se producen entre módulos se coordinan desde el gestor de operaciones para que se produzca un correcto funcionamiento.
+
+\vspace{3mm}
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.65\textwidth]{img/teoria/chp2.png}
+  \includegraphics[width=0.6\textwidth]{img/teoria/chp2.png}
   \caption{Gestión de operaciones en una unidad \acrshort{chp} \cite{chp2}}
   \label{fig:chp2}
 \end{figure}
 
-Por otro lado, la unidad \gls{p2g}, mencionada anteriormente, se encarga de la conversión de la electricidad en gases sintéticos, como son el hidrógeno o el metano. Es de gran importancia, ya que este tipo de gases son más fácil de transportar y almacenar que la electricidad, por lo que se simplifica la gestión energética. \cite{transactive}
+\vspace{3mm}
+
+Por otro lado, la unidad \gls{p2g}, mencionada anteriormente, se encarga de la conversión de la electricidad en gases sintéticos, como son el hidrógeno o el metano. Es de gran importancia, ya que este tipo de gases son más fácil de transportar y almacenar que la electricidad, por lo que se simplifica la gestión energética. Como se puede apreciar en la Figura \ref{fig:p2g}, el objetivo del \gls{p2g} se basa en descomponer el agua mediante un proceso de electrólisis a partir de electricidad proveniente de fuentes renovables. Después, el hidrógeno que se produce se puede utilizar directamente o procesarlo de forma adicional en metano.~\cite{transactive} 
 
 \vspace{3mm}
 
-Como se puede apreciar en la Figura \ref{fig:p2g}, el objetivo del \gls{p2g} se basa en descomponer el agua mediante un proceso de electrólisis a partir de electricidad proveniente de fuentes renovables. Después, el hidrógeno que se produce se puede utilizar directamente o procesarlo de forma adicional en metano. 
-
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.85\textwidth]{img/teoria/p2g.jpg}
+  \includegraphics[width=0.9\textwidth]{img/teoria/p2g.jpg}
   \caption{Representación del proceso \acrshort{p2g} \cite{p2g}}
   \label{fig:p2g}
 \end{figure}
+
+\vspace{3mm}
 
 Dentro del contexto de la generación de energía también es importante destacar algunos equipos, como son los sistemas de control y adquisición de datos (del inglés \gls{scada}) \cite{scada}. Estos pueden ser instalados en generadores, como son paneles solares fotovoltaicos o turbinas eólicas, consiguiendo una monitorización remota de los mismos. Mediante la información recopilada a tiempo real permiten conocer los niveles de generación y establecer una predicción de la disponibilidad energética que habrá en el sistema o en un área determinada del mismo.
 
@@ -240,50 +249,9 @@ La confiabilidad y la seguridad de la red también reside en los Sistemas de Tra
 
 \vspace{3mm}
 
-Los \gls{facts} incluyen todos los elementos electrónicos basados en tecnología de alta potencia y que son empleados dentro de una \gls{sg} para la transferencia de energía de CA y el control de la potencia reactiva. También, realizan tareas de reducción de impedancia en las líneas de transmisión y de optimización del factor de potencia y pueden actuar tanto a nivel individual como de forma coordinada con otros controladores.
+Los \gls{facts} incluyen todos los elementos electrónicos basados en tecnología de alta potencia y que son empleados dentro de una \gls{sg} para la transferencia de energía de CA y el control de la potencia reactiva. También, realizan tareas de reducción de impedancia en las líneas de transmisión y de optimización del factor de potencia y pueden actuar tanto a nivel individual como de forma coordinada con otros controladores. Los \gls{facts} se dividen en dos generaciones: la primera emplea interruptores controlados por tiristores y la segunda tiene como base convertidores estáticos de conmutación. En la Tabla \ref{tab:facts} se visualizan las tecnologías \gls{facts} más relevantes. \cite{facts2} \cite{facts3}
 
 \vspace{3mm}
-
-La primera generación de \gls{facts} emplea interruptores controlados por tiristores, mientras que la segunda tiene como base convertidores estáticos de conmutación. En la Tabla \ref{tab:facts} se visualizan las tecnologías \gls{facts} más relevantes. \cite{facts2} \cite{facts3}
-
-\begin{table}[!h]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{| c | c | m{6cm} |}
-    \hline
-    \rowcolor[HTML]{EFEFEF}
-    Generación & Tipo & \multicolumn{1}{c|}{Descripción} \\ \hline
-    \multirow{2}{*}{1º} 
-
-    & \gls{tcsc} & Controla el flujo de potencia tanto reactiva como activa por la línea de transmisión mediante el ajuste de impedancia en serie y amortigua las oscilaciones.
-    
-    \\ \cline{2-3}
-
-    & \gls{svc} & Absorbe o suministra potencia reactiva según las necesidades de una línea de transmisión a través de la variación de la susceptancia en paralelo. Ayuda a mantener el voltaje estable en la red y proveen un aumento de la capacidad de transferencia de energía.
-
-    \\ \hline
-    \multirow{4}{*}{2º} 
-    
-    & \gls{statcom} & Compensa la potencia reactiva al igual que el \gls{svc}, pero en este caso empleando electrónica de potencia para proporcionar una respuesta más rápida.
-
-    \\ \cline{2-3} 
-
-    & \gls{upfc} & Combina las funciones de un \gls{tcsc} y un \gls{svc}, teniendo la capacidad de controlar en una línea de transmisión tanto la impedancia en serie como la susceptancia en paralelo.
-
-    \\ \cline{2-3} 
-
-    & \gls{sssc} & Modifica dinámicamente la impedancia y es capaz de controlar la fase y la amplitud de la tensión en la línea.
-
-    \\ \cline{2-3} 
-
-    & \gls{ipfc} & Conecta varias líneas de transmisión en paralelo. No obstante, modula la impedancia y la fase de la tensión de cada línea de transmisión de forma independiente, lo que permite operar sobre el flujo de potencia de una forma controlada. Mejora la capacidad de transmisión y reduce las pérdidas energéticas. 
-    
-    \\ \hline
-    \end{tabular}
-    }
-    \caption{Tecnologías FACTS de 1ª y 2ª generación}
-    \label{tab:facts}
-\end{table}
 
 Poniendo el enfoque en la garantía de estabilidad de una \gls{sg}, uno de los sistemas más importantes de los expuestos en la Tabla \ref{tab:facts} es el \gls{svc} \cite{facts}. Los compensadores estáticos son capaces de detectar grandes caídas de tensión resultantes a la producción de un cortocircuito o a la pérdida de líneas de transisión en un área de la red. Esto es importante, ya que una detección rápida de una avería permite restaurar en un corto período de tiempo la tensión del área afectada sin que el problema escale a otras partes de la red. 
 
@@ -295,24 +263,57 @@ En otros términos, aísla este área del resto de la red eléctrica. Además, e
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.75\textwidth]{img/teoria/svc.png}
+  \includegraphics[width=0.7\textwidth]{img/teoria/svc.png}
   \caption{Instalación de un \acrshort{svc} en Sylling (Noruega) \cite{facts}}
   \label{fig:svc}
 \end{figure}
 
-Siguiendo en el ámbito de la distribución energética, es importante también exponer las tecnologías enfocadas a la transmisión de electricidad a larga distancia, como son las Corriente Continua de Alto Voltaje (del ingles \gls{hvdc}) \cite{hvdc}. Como su nombre indica, utilizan corriente continua para ello, lo que minimiza las pérdidas en el proceso de transmisión respecto al caso de la Corriente Alterna de Alto Voltaje (del ingles \gls{hvac}), además de permitir portar mucha más potencia. 
+\begin{table}[!h]
+  \centering
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{| c | c | m{6cm} |}
+  \hline
+  \rowcolor[HTML]{EFEFEF}
+  Generación & Tipo & \multicolumn{1}{c|}{Descripción} \\ \hline
+  \multirow{2}{*}{1º} 
+
+  & \gls{tcsc} & Controla el flujo de potencia tanto reactiva como activa por la línea de transmisión mediante el ajuste de impedancia en serie y amortigua las oscilaciones.
+  
+  \\ \cline{2-3}
+
+  & \gls{svc} & Absorbe o suministra potencia reactiva según las necesidades de una línea de transmisión a través de la variación de la susceptancia en paralelo. Ayuda a mantener el voltaje estable en la red y proveen un aumento de la capacidad de transferencia de energía.
+
+  \\ \hline
+  \multirow{4}{*}{2º} 
+  
+  & \gls{statcom} & Compensa la potencia reactiva al igual que el \gls{svc}, pero en este caso empleando electrónica de potencia para proporcionar una respuesta más rápida.
+
+  \\ \cline{2-3} 
+
+  & \gls{upfc} & Combina las funciones de un \gls{tcsc} y un \gls{svc}, teniendo la capacidad de controlar en una línea de transmisión tanto la impedancia en serie como la susceptancia en paralelo.
+
+  \\ \cline{2-3} 
+
+  & \gls{sssc} & Modifica dinámicamente la impedancia y es capaz de controlar la fase y la amplitud de la tensión en la línea.
+
+  \\ \cline{2-3} 
+
+  & \gls{ipfc} & Conecta varias líneas de transmisión en paralelo. No obstante, modula la impedancia y la fase de la tensión de cada línea de transmisión de forma independiente, lo que permite operar sobre el flujo de potencia de una forma controlada. Mejora la capacidad de transmisión y reduce las pérdidas energéticas. 
+  
+  \\ \hline
+  \end{tabular}
+  }
+  \caption{Tecnologías FACTS de 1ª y 2ª generación}
+  \label{tab:facts}
+\end{table}
+
+\pagebreak
+
+Siguiendo en el ámbito de la distribución energética, es importante también exponer las tecnologías enfocadas a la transmisión de electricidad a larga distancia, como son las Corriente Continua de Alto Voltaje (del ingles \gls{hvdc})~\cite{hvdc}. Como su nombre indica, utilizan corriente continua para ello, lo que minimiza las pérdidas en el proceso de transmisión respecto al caso de la Corriente Alterna de Alto Voltaje (del ingles \gls{hvac}), además de permitir portar mucha más potencia. Esto es fundamental cuando se pretende integrar al sistema global fuentes de energía ubicadas en áreas remotas, sobre todo dentro del contexto de las \gls{sg}s. Generalmente, las fuentes de energías renovables, como pueden ser la solar o la eólica, se encuentran alejadas de los puntos geográficos con mayor demanda y se requiere una respuesta rápida ante cambios de carga para mantener la estabilidad del sistema. 
 
 \vspace{3mm}
 
-Esto es fundamental cuando se pretende integrar al sistema global fuentes de energía ubicadas en áreas remotas, sobre todo dentro del contexto de las \gls{sg}s. Generalmente, las fuentes de energías renovables, como pueden ser la solar o la eólica, se encuentran alejadas de los puntos geográficos con mayor demanda y se requiere una respuesta rápida ante cambios de carga para mantener la estabilidad del sistema. 
-
-\vspace{3mm}
-
-Es decir, cuando se transmiten grandes cantidades de potencia a largas distancias con líneas de \gls{hvac}, se generan ángulos eléctricos entre los voltajes y las corrientes en la línea muy grandes que pueden producir oscilaciones descontroladas y por tanto, desencadenar inestabilidades que llegaráin a escalar a lo largo del sistema. 
-
-\vspace{3mm}
-
-Por ello, las tecnologías \gls{hvdc} simplifican la interconexión entre microrredes y permiten una mayor integración de sistemas dedicados al almacenamiento energético para facilitar la gestión de los recursos disponibles. Como desventaja, se encuentra el alto coste que supone su implementación, ya que al final solamente se puede emplear en el caso de aplicaciones punto a punto.
+Es decir, cuando se transmiten grandes cantidades de potencia a largas distancias con líneas de \gls{hvac}, se generan ángulos eléctricos entre los voltajes y las corrientes en la línea muy grandes que pueden producir oscilaciones descontroladas y por tanto, desencadenar inestabilidades que llegaráin a escalar a lo largo del sistema. Por ello, las tecnologías \gls{hvdc} simplifican la interconexión entre microrredes y permiten una mayor integración de sistemas dedicados al almacenamiento energético para facilitar la gestión de los recursos disponibles. Como desventaja, se encuentra el alto coste que supone su implementación, ya que al final solamente se puede emplear en el caso de aplicaciones punto a punto.
 
 \vspace{3mm}
 
@@ -320,8 +321,8 @@ En la Figura \ref{fig:hvdc} se muestra como ejemplo una infraestructura de trans
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{img/teoria/hvdc.png}
-  \caption{Representación de un sistema de transmisión de energía eólica con líneas \acrshort{hvdc} \cite{hvdc2}}
+  \includegraphics[width=1\textwidth]{img/teoria/hvdc.png}
+  \caption{Representación de un sistema de transmisión de energía eólica con líneas \acrshort{hvdc}~\cite{hvdc2}}
   \label{fig:hvdc}
 \end{figure}
 
@@ -338,50 +339,6 @@ Como se había introducido en el Apartado \ref{sec:smartgrids} el proceso de adq
 
 No obstante, la gestión de los sensores finales en las \gls{sg}s se caracteriza por su alta complejidad, debido a los grandes volúmenes de datos a manejar. Se requiere un procesamiento eficiente a tiempo real para analizar datos capturados de múltiples fuentes con el fin de evitar latencias o bloqueos en el sistema. Es por ello que se dificulta el empleo de herramientas convencionales de gestión de bases de datos y se requiere una solución más avanzada mediante la aplicación de tecnologías enfocadas al \textit{Big Data}. Se profundizará más sobre ello en la Sección \ref{sec:bigdata}.
 
-\vspace{1mm}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Protocolos}
-% a) Green-RPL
-% (b) Local positive degree coupling
-% (c) IEEE 802.11s
-% (d) Web Of Energy
-% (e) Dynamic Barrier Coverage
-% (f) IEC61850
-% (g) Wind-driven bacterian foraging algorithm
-% (h) Data Slicing
-% (i) TSUBE energy trading algorithm
-% (j) Stochastic Geometry
-% (k) Rectangular quadrature amplitude modulation
-% (l) Policy-based group authentication algorithm
-% (m) Mapping interface integration COIIoT
-% (n) Nash Equilibrium (NE) and the Bayesian NE
-% (o) Wireless sensor network protocol
-% (p) Algorithmic Approach
-
-
-%Green-RPL, Local positive degree coupling, IEEE 802.11s, Web Of Energy, Dynamic Barrier Coverage, IEC61850, Wind-driven bacterial foraging algorithm, Data Slicing, TSUBE energy trading algorithm, Stochastic Geometry, Rectangular quadrature amplitude modulation, Policy-based group authentication algorithm, Mapping interface integration COIIoT, Nash Equilibrium (NE) and the Bayesian NE, Wireless sensor network protocol and Algorithmic Approac
-
-%ver tabla https://electrical-engineering-portal.com/smart-grid-deployment-what-weve-done-so-far
-
-
-\vspace{1mm}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Topología de red}
-
-% Smart Grid Network Topology
-% (a) Neighborhood Area Networks (NAN)
-% (b) Software-Defined Networks (SDN)
-% (c) Interdependent Networks (IN)
-% (d) Field Area Networks (FAN)
-% (e) Wireless Sensor Networks (WSN)
-% (f) Not Defined
-%NAN, FAN AND THE SDN are widely used network topology
-
-
-
-\vspace{1mm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Seguridad en Smart grids}
@@ -408,57 +365,8 @@ Teniendo esto en cuenta, es imprescindible definir los mecanismos de detección 
 \end{itemize}
 
 
-
-%a partir del 3.4 del AI-based FDI Countermeasure for IoE Smart Grids
-
-%%%Energy Big Data: A Survey pag 10 figura
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\vspace{1mm}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Estándares y regulación en smart grids}
-
-%estándares smart grids -> cite OUTLOOK FOR INCREASED ADOPTION OF SMART GRID TECHNOLOGIES IN ADB ENERGY SECTOR OPERATIONS
-
-% International Technical Standards for Smart Grids (Smart Grid Codes)
-% Grid code development and implementation is a critical area in smart grid implementation. It has to be 
-% aligned with the standards being used in respective countries and international standards. This is an 
-% important first step in smart grid implementation. Some of the international standards are as follows.
-% (i) IEEE1547 Family of Standards. IEEE 1547 family of standards deals with smart grid components 
-% involving distributed resources interconnection. Released in 2003, this provides the basis and 
-% sets the standards for the integration of distributed energy generation by detailing requirements 
-% related to interconnection performance, operation, testing, safety, and maintenance.
-% (ii) IEEE 2030 Family of Standards. The  IEEE Standard 2030–2011’s “Guide for Smart Grid 
-% Interoperability of Energy Technology and Information Technology Operation with the 
-% Electric Power System, and End-Use Applications and Loads” is the root standard of the 2030 
-% series. This standard provides alternative approaches and best practices for achieving smart 
-% grid interoperability.
-% (iii) IEC Family of Standards. IEC has identified over 100 standards relevant to smart grids. The 
-% following are core standards: (i) IEC/TR 62357: Service Oriented Architecture; (ii) IEC/61970: 
-% Common Information Model/Energy Management; (iii) IEC 61850: Power Utility Automation; 
-% (iv) ICC/61968: Common Information Model/Distribution Management; IEC 62351: Security; 
-% (v) IEC 62056: Data Exchange for Meter Reading, Tariff and Load Control; and (vi) IEC 61508: 
-% Functional Safety of Electrical, Electronic, Programmable Electronic Safety Related Systems.
-
-
-\vspace{1mm}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Beneficios ambientales}
+%\subsection{Beneficios ambientales}
 
 %Las smart grid son un concepto estratégico clave en la transición energética, ya que suponen un gran paso hacia un mundo descarbonizado. Mediante la digitalización de las redes eléctricas inteligentes se puede conseguir un sistema más eficiente, sostenible, con bajas pérdidas y con altos niveles de calidad en el suministro. Con la implementación de este circuito inteligente no solo se conseguiría una mayor eficiencia energética y ahorro, sino que también tendría múltiples beneficios medioambientales, económicos y sociales.
 
@@ -472,18 +380,19 @@ Teniendo esto en cuenta, es imprescindible definir los mecanismos de detección 
 % Contribuye a la descarbonización de la generación eléctrica. 
 
 
-\vspace{1mm}
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Situación en España}
+%\subsection{Situación en España}
 
-En el caso de España, nuestro país ocupa el quinto lugar en el mercado eléctrico europeo, solamente por detrás de Alemania, Francia, Reino Unido e Italia. 
+%En el caso de España, nuestro país ocupa el quinto lugar en el mercado eléctrico europeo, solamente por detrás de Alemania, Francia, Reino Unido e Italia. 
 
 %buscar datos españa
 
-Además, en los último años ha crecido en consideración 
-
-y está creciendo rápidamente. La demanda eléctrica estimada para el año 2001 fue de 210.4 mil millones de kilovatios-hora (bkwh), un aumento del 5% respecto al año 2000. Se estima que la demanda eléctrica de España aumentará un 30% para el año 2010.
+%Además, en los último años ha crecido en consideración y está creciendo rápidamente. La demanda eléctrica estimada para el año 2001 fue de 210.4 mil millones de kilovatios-hora (bkwh), un aumento del 5% respecto al año 2000. Se estima que la demanda eléctrica de España aumentará un 30% para el año 2010.
 
 % Para hacer frente al aumento de la demanda eléctrica en España, las empresas de servicios públicos nacionales han invertido en capacidad de generación y distribución. Red Eléctrica de España (REE), por ejemplo, invirtió considerablemente en la red en 2001, destinando 78.4 millones de euros a la expansión de la red eléctrica. En octubre de 2001, REE también anunció planes para invertir entre 60.2 y 72.2 millones de euros para mejorar la conexión eléctrica con Francia. Las tres mayores compañías eléctricas de España: Endesa, Iberdrola y Unión Fenosa, han dedicado 34 mil millones de euros en inversiones desde agosto de 2001 hasta 2005, gran parte de ellas en América Latina y otros países europeos, pero incluyendo aún así 8 mil millones de euros para nuevas plantas generadoras en España.
 
@@ -492,23 +401,19 @@ y está creciendo rápidamente. La demanda eléctrica estimada para el año 2001
 
 %https://www.smartgridsinfo.es/2020/01/23/6-congreso-smart-grids-refuerza-consolida-redes-electricas-inteligentes-politica-energetica-espana
 
-\cite{spain}
+% \cite{spain}
 
 
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{img/teoria/spain.png}
-  \caption{Red nacional de transmisión energética \cite{spain}}
-  \label{fig:spain}
-\end{figure}
-
-
-
+% \begin{figure}[h!]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{img/teoria/spain.png}
+%   \caption{Red nacional de transmisión energética \cite{spain}}
+%   \label{fig:spain}
+% \end{figure}
 
 
 
 
-\vspace{1mm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Desafíos futuros de las smart grids}
