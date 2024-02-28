@@ -42,18 +42,26 @@ Una vez expuestas las diferentes categorías donde se engloban las técnicas de 
 
 Como se detallará más adelante en la Sección \ref{sec:cambiosden2ne}, se creará un conjunto de datos etiquetados en función de la existencia de error o no para entrenar los modelos. Teniendo en cuenta esto, a continuación, se incluyen dos Secciones (ver Secciones \ref{sec:mlsvm} y \ref{sec:mlrf}) para presentar el funcionamiento de las dos técnicas de \gls{ml} que se desarrollarán posteriormente.
 
+\subsubsection{Random Forest (\acrshort{rf})}
+\label{sec:mlrf}
+
+
+
+
+
+
 
 \subsubsection{Support Vector Machines (\acrshort{svm})}
 \label{sec:mlsvm}
 
-El algoritmo de Máquinas de Vector Soporte (del inglés \gls{svm}) es una técnica que se emplea tanto en problemas de regresión como de clasificación. Se basa en el concepto del \textit{Maximal Margin Classifier}, puesto que tiene el fin principal de encontrar el hiperplano óptimo que consiga una máxima separación entre dos clases diferentes dentro de un espacio de características. Esta separación se define como margen y se mide como la distancia perpendicular que existe desde el hiperplano hacia los vectores de soporte, que son las muestras más cercanas a la frontera de separación de clases. En la Figura \ref{fig:svm} se representa el cálculo del mejor hiperplano entre dos clases de datos. \cite{svmciencia}
+El algoritmo de Máquinas de Vector Soporte (del inglés \gls{svm}) es una técnica que se emplea tanto en problemas de regresión como de clasificación. Se basa en el concepto del \textit{Maximal Margin Classifier} o \textit{Hard Margin Classifier}, puesto que tiene el fin principal de encontrar el hiperplano óptimo que consiga una máxima separación entre dos clases diferentes dentro de un espacio de características. Esta separación se define como margen y se mide como la distancia perpendicular que existe desde el hiperplano hacia los vectores de soporte, que son las muestras más cercanas a la frontera de separación de clases. En la Figura \ref{fig:svm} se representa el cálculo del mejor hiperplano entre dos clases de datos. \cite{svmmedium2} \cite{svmciencia}
 
 \vspace{3mm}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.7\textwidth]{img/teoria/svm.png}
-    \caption{Cuantificación del hiperplano óptimo entre dos clases en el \acrshort{svm} \cite{svmciencia}}
+    \includegraphics[width=0.65\textwidth]{img/teoria/svm.png}
+    \caption{Cuantificación del hiperplano óptimo entre dos clases en el \acrshort{svm} \cite{svmmedium2}}
     \label{fig:svm}
 \end{figure}
 
@@ -75,53 +83,67 @@ Por ello, se puede expresar que los vectores de soporte son los puntos más crí
 
 \vspace{3mm}
 
-No obstante, en la práctica es complicado determinar un hiperplano si no se trata de un problema ideal y linearmente separable. En la Figura \ref{fig:svmerror} se representa la opción alternativa que se lleva a cabo en la mayoría de casos, basada en obtener un margen máximo, permitiendo cierto grado de error. Esto tiene como consecuencia que existan una serie de vectores clasificados de forma errónea en el plano. \cite{svmmedium} \cite{matlab}
+No obstante, en la práctica es complicado determinar un hiperplano si no se trata de un problema ideal y basado en datos linearmente separables. Generalmente, en los casos reales si se intenta forzar un máximo margen, se pueden llegar a producir problemas de sobreentrenamiento, ya que nuevos datos pueden suponer grandes variaciones en el hiperplano. En la Figura \ref{fig:svmerror} se representa la opción alternativa que se lleva a cabo en la mayoría de casos, basada en obtener un margen máximo, permitiendo cierto grado de error (\textit{Soft Margin Classifier}). \cite{matlab} \cite{svmciencia}
 
 \vspace{3mm}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.9\textwidth]{img/teoria/svm2.png}
+    \includegraphics[width=0.55\textwidth]{img/teoria/svm2.png}
     \caption{Representación de vectores clasificados erróneamente dentro de los márgenes establecidos en el \acrshort{svm} \cite{svmmedium}}
     \label{fig:svmerror}
 \end{figure}
 
 \vspace{3mm}
 
-En este proceso se incluyen las variables de holgura (\textit{slack variables}) para determinar si un vector está correctamente clasificado (ξi = 0) o si se encuentra en una zona errónea del margen (0<ξi<1) o del hiperplano (ξi>1).
+Esto tiene como consecuencia que existan una serie de vectores clasificados de forma errónea en el plano. En este proceso se introduce el concepto de variables de holgura (\textit{slack variables}) a partir de la siguiente expresión:
 
 \[ \xi_i = \max(0, 1 - y_i (\mathbf{w} \cdot \mathbf{x}_i + b))\]
 
+Estas variables determinan si un vector está correctamente clasificado o si se encuentra en una zona errónea del margen o del hiperplano, respectivamente. En el caso de posición incorrecta, el valor de la variable define la distancia al margen o el error cometido:
 
-%Estas slack variables se introducen para permitir que las observaciones estén dentro del margen o incluso clasificadas incorrectamente, pero penalizadas por una función de pérdida, el valor de ξi representa la distancia a la margen o el error cometido. La suma de estas slack variables se incluye en el objetivo de la función de pérdida del SVM para minimizar el error de clasificación y maximizar el margen, y el parámetro de regularización C controla el equilibrio entre estos dos objetivos.
+\[\begin{array}{ll}
+    \xi_i = 0 & \text{si } 1 - y_i (\mathbf{w} \cdot \mathbf{x}_i + b) \leq 0 \\
+    0 \text{<} \xi_i \text{<} 1 & \text{si } 0 < 1 - y_i (\mathbf{w} \cdot \mathbf{x}_i + b) \leq 1 \\
+    \xi_i \text{>} 1 & \text{si } 1 - y_i (\mathbf{w} \cdot \mathbf{x}_i + b) > 1 \\
+\end{array}\]
 
+\vspace{3mm}
 
+El sumatorio de todas las variables de holgura que existen en el plano vienen incluidas en el objetivo de la función de pérdida del modelo para que el error de clasificación sea mínimo, a la vez que el margen es máximo. Como es preciso encontrar un cierto equilibrio entre ambos, el \gls{svm} se determina como una técnica de optimización convexa que se fundamenta en el hiperparámetro \textit{C}. En la Figura \ref{fig:parametroc} se representa de forma gráfica cómo su valor establece el control de forma inversamente proporcional de la cantidad de muestras clasificadas erróneamente, por lo que se define como el parámetro de regularización del modelo. Es decir, cuanto más alto sea su valor, menores violaciones del margen y del hiperplano serán permitidas y más se enfocará el modelo en un \textit{Maximal Margin Classifier}.~\cite{svmciencia}
 
+\vspace{3mm}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{img/teoria/parametroc.png}
+    \caption{Configuración del parámetro de regularización \textit{C} \cite{velocity}}
+    \label{fig:parametroc}
+\end{figure}
 
+\vspace{3mm}
 
-% SVM formula el problema de encontrar el hiperplano óptimo como un problema de optimización convexa, donde se minimiza la clasificación incorrecta y se maximiza el margen. Además, SVM utiliza el "Kernel Trick" para manejar problemas de clasificación no lineales, mapeando los datos a un espacio de características de mayor dimensionalidad donde es más probable que los datos sean linealmente separables. Finalmente, SVM incorpora un parámetro de regularización (C) que controla el equilibrio entre maximizar el margen y minimizar el error de clasificación en el conjunto de datos de entrenamiento, lo que permite un ajuste adecuado del modelo.
+Para enfrentar problemas con datos no linearmente separables, además de permitir cierto grado de error, como se ha expuesto anteriormente, es imprescindible incrementar las dimensiones del espacio original de características. En este caso se introduce el concepto de kernel como función para obtener un nuevo espacio dimensional diferente al original donde exista una mayor probabilidad de que los datos sean linearmente separables. La aplicación de los diferentes tipos de kernels se caracterizan por las siguientes expresiones:~\cite{svmciencia}~\cite{velocity}
 
-% Este espacio en el caso simplificado es de dos dimensiones, pero puede llegar a ser de k dimensiones en función de la linearidad de las características.
+\[\begin{array}{ll}
+    \text{Kernel lineal: } & K(\mathbf{x}_i, \mathbf{x}_j) = \mathbf{x}_i \cdot \mathbf{x}_j\\
+    \text{Kernel polinómico: } & K(\mathbf{x}_i, \mathbf{x}_j) = (\gamma \mathbf{x}_i \cdot \mathbf{x}_j + r)^d\\
+    \text{Kernel radial o gaussiano: } & K(\mathbf{x}_i, \mathbf{x}_j) = \exp \left( -\gamma \| \mathbf{x}_i - \mathbf{x}_j \|^2 \right)\\
+    \text{Kernel sigmoid: } & K(\mathbf{x}_i, \mathbf{x}_j) = \tanh(\gamma \mathbf{x}_i \cdot \mathbf{x}_j + r)\\
+\end{array}\]
 
+\vspace{3mm}
 
+De forma adicional, en la Figura \ref{fig:rbf} se representa cómo se produce la transformación dimensional de las características para el caso del kernel gaussiano o \gls{rbf}.
 
+\vspace{3mm}
 
-%Si bien la demostración matemática queda fuera del objetivo de esta introducción, es importante mencionar que el proceso incluye un hiperparámetro llamado  C.  Ccontrola el número y severidad de las violaciones del margen (y del hiperplano) que se toleran en el proceso de ajuste. Si  C=∞, no se permite ninguna violación del margen y por lo tanto, el resultado es equivalente al Maximal Margin Classifier (teniendo en cuenta que esta solución solo es posible si las clases son perfectamente separables). Cuando más se aproxima  Ca cero, menos se penalizan los errores y más observaciones pueden estar en el lado incorrecto del margen o incluso del hiperplano.  Ces a fin de cuentas el hiperparámetro encargado de controlar el balance entre bias y varianza del modelo. En la práctica, su valor óptimo se identifica mediante validación cruzada.El proceso de optimización tiene la peculiaridad de que solo las observaciones que se encuentran justo en el margen o que lo violan influyen sobre el hiperplano. A estas observaciones se les conoce como vectores soporte y son las que definen el clasificador obtenido. Esta es la razón por la que el parámetro  C controla el balance entre bias y varianza. Cuando el valor de  Ces pequeño, el margen es más ancho, y más observaciones violan el margen, convirtiéndose en vectores soporte. El hiperplano está, por lo tanto, sustentado por más observaciones, lo que aumenta el bias pero reduce la varianza. Cuando mayor es el valor de  C , menor el margen, menos observaciones son vectores soporte y el clasificador resultante tiene menor bias pero mayor varianza.Otra propiedad importante que deriva de que el hiperplano dependa únicamente de una pequeña proporción de observaciones (vectores soporte), es su robustez frente a observaciones muy alejadas del hiperplano. Esto hace al método de clasificación vector soporte distinto a otros métodos tales como Linear Discrimiant Analysis (LDA), donde la regla de clasificación depende de la media de todas las observaciones.
-
-
-
-
-
-
-
-
-
-\subsubsection{Random Forest (\acrshort{rf})}
-\label{sec:mlrf}
-
-
-
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{img/teoria/rbf.png}
+    \caption{Aplicación del kernel \acrshort{rbf} \cite{rbf}}
+    \label{fig:rbf}
+\end{figure}
 
 \subsection{Deep Learning (\acrshort{dl})}
 \label{sec:dl}
@@ -170,7 +192,7 @@ Las redes neuronales artificiales (\gls{ann})
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.9\textwidth]{img/teoria/ann.jpg}
+    \includegraphics[width=0.8\textwidth]{img/teoria/ann.jpg}
     \caption{Arquitectura de una \acrshort{ann} \cite{ann}}
     \label{fig:features}
 \end{figure}
