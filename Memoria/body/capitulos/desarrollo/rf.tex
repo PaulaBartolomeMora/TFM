@@ -4,7 +4,7 @@
 
 
 
-
+https://www.analyticsvidhya.com/blog/2021/10/an-introduction-to-random-forest-algorithm-for-beginners/
 %se podria indicar aqui que criterio y que modelo (bara,wax) da mas problemas
 
 
@@ -19,3 +19,19 @@
 % Recall = TP / (TP + FN)
 
 % F1 Score = 2 * Precision * Recall / (Precision + Recall)
+
+
+
+%%pasos
+
+%Construcción de árboles de decisión: Durante la fase de entrenamiento, se construyen varios árboles de decisión. Cada árbol se construye de forma independiente utilizando una técnica conocida como "bagging" (bootstrap aggregating). Bagging implica entrenar cada árbol en una muestra aleatoria del conjunto de datos de entrenamiento, con reemplazo. Esto significa que algunas muestras pueden aparecer múltiples veces en la muestra de entrenamiento para un árbol en particular, mientras que otras no aparecen en absoluto.
+
+% Selección de características aleatorias: En cada paso de construcción de un árbol, también se selecciona un subconjunto aleatorio de características (columnas) del conjunto de datos. Esto ayuda a aumentar la diversidad entre los árboles en el bosque, lo que resulta en modelos más robustos.
+
+% Criterio de división: En cada nodo del árbol, se selecciona una característica y un umbral para dividir los datos en dos grupos. La selección de la característica y el umbral se realiza de manera que maximice la pureza de las clases en los nodos hija. Para problemas de clasificación, la pureza puede medirse utilizando la ganancia de información o el índice Gini, mientras que para problemas de regresión, se puede utilizar la reducción de la varianza.
+
+% Construcción del árbol: Los árboles se construyen recursivamente dividiendo el conjunto de datos en cada nodo hasta que se alcanza un criterio de parada, como una profundidad máxima del árbol o un número mínimo de muestras en cada nodo hoja.
+
+% Predicción: Una vez que se han construido todos los árboles, para hacer una predicción para una nueva instancia (en el caso de clasificación) o una nueva observación (en el caso de regresión), se pasa a través de cada árbol en el bosque y se obtiene una predicción. En el caso de clasificación, la predicción final puede ser la clase más frecuente entre todos los árboles (votación) y, en el caso de regresión, la predicción final puede ser el promedio de todas las predicciones de los árboles.
+
+% Importancia de las características: Además de hacer predicciones, Random Forest también proporciona una medida de la importancia de las características. Esta medida se calcula evaluando cuánto disminuye la precisión del modelo cuando se permutan los valores de una característica mientras se mantienen constantes todas las demás características. Las características que causan una mayor disminución en la precisión se consideran más importantes.

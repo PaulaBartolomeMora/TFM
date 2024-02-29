@@ -45,16 +45,40 @@ Como se detallará más adelante en la Sección \ref{sec:cambiosden2ne}, se crea
 \subsubsection{Random Forest (\acrshort{rf})}
 \label{sec:mlrf}
 
+El modelo de Bosques Aleatorios (del inglés \gls{rf}) está fundamentado en la aplicación de un conjunto de árboles de decisión. Cada uno de estos árboles se definen como estimadores y crecen mediante un proceso de entrenamiento sobre un subconjunto de datos extraído de forma aleatoria del conjunto completo. A la salida del esquema de estimadores se obtiene una predicción final basada en la votación mayoritaria de los árboles. No obstante, es un método que se puede emplear también en problemas de regresión y, en este caso, se proporcionaría un valor numérico promedio, calculado a partir de todas las salidas. En la Figura \ref{fig:rf} se representa de forma gráfica el diagrama de flujo que expone el funcionamiento del modelo. \cite{rfmedium}
 
+\vspace{3mm}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{img/teoria/rf.png}
+    \caption{Modelo \acrshort{rf} \cite{rfmedium}}
+    \label{fig:rf}
+\end{figure}
 
+\vspace{3mm}
 
+El proceso de construcción de los árboles de decisión se constituye por operaciones de división que van formando nodos y ramificaciones de forma iterativa. El objetivo es lograr la mayor ganancia de información posible a través de la valoración de la importancia que presentan cada una de las características del conjunto de datos. Es decir, en cada nodo del árbol se cuantifica la ganancia de información que presenta cada característica y, después, se selecciona la que tenga el mayor valor para dividir los datos existentes en dos subconjuntos homogéneos de menor tamaño. Este proceso se va repitiendo en todos los nodos hasta llegar al final del árbol. En cuanto al cálculo de la ganancia de información, es preciso introducir el concepto de impureza. Este se define como el procedimiento de evaluación de la calidad de las divisiones que se producen en los nodos. En otros términos, se puede expresar que indica el nivel de ruido que hay en los datos de los subconjuntos creados. Principalmente, se pueden emplear dos métodos de medición de la impureza: \cite{rfmedium2}
+
+\begin{itemize}
+    \item Entropía: Mide la incertidumbre que proporciona un conjunto de datos. Por ello, supone un mayor valor cuanto mayor sea la incertidumbre calculada, siendo máxima cuando las clases estén representadas homogéneamente en el conjunto de datos. 
+    \item Gini:
+\end{itemize}
+
+https://scikit-learn.org/stable/modules/tree.html#tree-mathematical-formulation
+
+La medida de la impureza a partir de los métodos anteriores se calcula mediante las siguientes expresiones \cite{}:
+
+\[\begin{array}{ll}
+    \text{Entropía} & H(Q_m) = - \sum_k p_{mk} \log(p_{mk}) \\
+    \text{Gini} & \H(Q_m) = \sum_k p_{mk} (1 - p_{mk}) \\
+\end{array}\]
 
 
 \subsubsection{Support Vector Machines (\acrshort{svm})}
 \label{sec:mlsvm}
 
-El algoritmo de Máquinas de Vector Soporte (del inglés \gls{svm}) es una técnica que se emplea tanto en problemas de regresión como de clasificación. Se basa en el concepto del \textit{Maximal Margin Classifier} o \textit{Hard Margin Classifier}, puesto que tiene el fin principal de encontrar el hiperplano óptimo que consiga una máxima separación entre dos clases diferentes dentro de un espacio de características. Esta separación se define como margen y se mide como la distancia perpendicular que existe desde el hiperplano hacia los vectores de soporte, que son las muestras más cercanas a la frontera de separación de clases. En la Figura \ref{fig:svm} se representa el cálculo del mejor hiperplano entre dos clases de datos. \cite{svmmedium2} \cite{svmciencia}
+El modelo de Máquinas de Vector Soporte (del inglés \gls{svm}) es una técnica que se emplea tanto en problemas de regresión como de clasificación. Se basa en el concepto del \textit{Maximal Margin Classifier} o \textit{Hard Margin Classifier}, puesto que tiene el fin principal de encontrar el hiperplano óptimo que consiga una máxima separación entre dos clases diferentes dentro de un espacio de características. Esta separación se define como margen y se mide como la distancia perpendicular que existe desde el hiperplano hacia los vectores de soporte, que son las muestras más cercanas a la frontera de separación de clases. En la Figura \ref{fig:svm} se representa el cálculo del mejor hiperplano entre dos clases de datos. \cite{svmmedium2} \cite{svmciencia}
 
 \vspace{3mm}
 
