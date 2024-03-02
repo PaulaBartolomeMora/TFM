@@ -37,13 +37,17 @@ Tomando en consideración estos objetivos, se puede definir una \textit{smart gr
 
 \vspace{3mm}
 
-Su base se asienta en el diseño de sistemas inteligentes coordinados capaces de obtener tanto la información respectiva a la demanda o requisitos energéticos de cada zona como la de la disponibilidad de recursos a partir de las diferentes fuentes de producción existentes. Todo ello conduce al desarrollo de un plan estratégico de distribución energética para poder conectar a todas las entidades participantes en la red entre sí. Además, en cuanto al factor medioambiental, las \gls{sg}s son un concepto clave en la transición energética y en el proceso de descarbonización. La aplicación de una distribución energética inteligente y la posibilidad de integrar al sistema fuentes renovables permiten el desarrollo de ciudades sostenibles y una gran reducción de emisiones de CO2. \cite{repsol} \cite{iberdrola}
+Su base se asienta en el diseño de sistemas inteligentes coordinados capaces de obtener tanto la información respectiva a la demanda o requisitos energéticos de cada zona como la de la disponibilidad de recursos a partir de las diferentes fuentes de producción existentes. Todo ello conduce al desarrollo de un plan estratégico de distribución energética para poder conectar a todas las entidades participantes en la red entre sí. 
+
+\vspace{3mm}
+
+Además, en cuanto al factor medioambiental, las \gls{sg}s son un concepto clave en la transición energética y en el proceso de descarbonización. La aplicación de una distribución energética inteligente y la posibilidad de integrar al sistema fuentes renovables y limpias potencian el desarrollo de ciudades sostenibles y permiten una gran reducción de emisiones de CO2. \cite{repsol} \cite{iberdrola}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Flujo energético y comunicación bidireccional}
 
-Cabe destacar que una de las principales características diferenciadoras de las \gls{sg}s respecto a las redes energéticas convencionales es que se fundamentan en una comunicación bidireccional. Este factor determinante se puede apreciar en la Figura \ref{fig:bidireccional} y se traduce en una producción y una distribución dinámica y personalizada hacia cada usuario de la red. 
+Cabe destacar que una de las principales características diferenciadoras de las \gls{sg}s respecto a las redes energéticas convencionales es que se fundamentan en una comunicación bidireccional. Este factor determinante se puede apreciar en la Figura \ref{fig:bidireccional} y se traduce en una producción y una distribución dinámica y personalizada hacia cada uno de los usuarios de la red. 
 
 \vspace{3mm}
 
@@ -54,6 +58,7 @@ Es decir, en una red tradicional al ser unidireccional, se provee energía desde
 Bajo la premisa de la característica de red bidireccional, se puede expresar que los propios usuarios son el gran pilar sobre el que se cimienta el sistema. En comparación a la red eléctrica tradicional, toman un papel mucho más activo monitorizando continuamente su comportamiento eléctrico y recopilando información para trasladarla al resto de la red. Esto tiene como ventaja una gran reducción de los costes derivados de la distribución y transmisión en el sistema, ya que se evita proporcionar más cantidad de energía de la requerida por las líneas finales. \cite{iotfutura}
 
 \vspace{3mm}
+\pagebreak
 
 Es por ello que se emplea una Infraestructura Avanzada de Medición (del inglés \gls{ami}) con una interfaz constituida por varias capas o niveles como se puede apreciar en la Figura \ref{fig:bidireccional2}. De esta forma, se dividen los flujos de comunicación entre las diferentes entidades que componen la red para permitir una mejor gestión de los mismos. \cite{us}
 
@@ -75,17 +80,18 @@ Dentro del presente contexto, en referencia a los usuarios es preciso introducir
 
 \vspace{3mm}
 
-En este caso es imprescindible que los equipos y dispositivos dedicados a la generación de electricidad se encuentren dentro de la microrred o en una ubicación cercana a la misma. Así, se podrá abastecer a los usuarios del conjunto de forma eficiente, reduciendo los costes relacionados con la transmisión energética. 
+En este caso es imprescindible que los equipos y dispositivos dedicados a la generación de electricidad se encuentren dentro de la microrred o en una ubicación cercana a la misma. Así, se podrá abastecer a los usuarios del conjunto de forma eficiente, reduciendo los costes relacionados con la transmisión energética. Este tipo de esquema puede ser aplicado en diferentes entornos, como pueden ser los residenciales, industriales o agrícolas, para conseguir descentralizar la gestión de los recursos. 
 
 \vspace{3mm}
+\pagebreak
 
-Este tipo de esquema puede ser aplicado en diferentes entornos, como pueden ser los residenciales, industriales o agrícolas, para conseguir descentralizar la gestión de los recursos. Sin embargo, debe existir cierta gestión externa y coordinada de todas estas microrredes o comunidades de usuarios. Esta es llevada a cabo por una entidad denominada como operador del sistema distribuido (del ingles \gls{dso}) \cite{transactive} \cite{dso}. Algunas de sus funciones principales se basan en asegurar el abastecimiento de recursos en el interior de las microrredes en función de la demanda existente y en supervisar el estado operativo la infraestructura de red para garantizar su estabilidad y seguridad. 
+Sin embargo, debe existir cierta gestión externa y coordinada de todas estas microrredes o comunidades de usuarios. Esta es llevada a cabo por una entidad denominada como operador del sistema distribuido (del ingles \gls{dso}) \cite{transactive} \cite{dso}. Algunas de sus funciones principales se basan en asegurar el abastecimiento de recursos en el interior de las microrredes en función de la demanda existente y en supervisar el estado operativo la infraestructura de red para garantizar su estabilidad y seguridad. 
 
 \vspace{3mm}
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.85\textwidth]{img/teoria/prosumer.jpg}
+  \includegraphics[width=0.8\textwidth]{img/teoria/prosumer.jpg}
   \caption{Estructura de la respuesta a la demanda en el contexto de una \textit{smart grid} con prosumidores \cite{transactive}}
   \label{fig:prosumer}
 \end{figure}
@@ -98,24 +104,24 @@ Por otro lado, se encuentra también la figura del centro de servicios auxiliare
 
 \subsubsection{Mercado energético}
 
-Las agregaciones de prosumidores posibilitan el autoconsumo y la compartición de los recursos generados por sí mismos con los demás participantes de la microrred, incluso con el resto de la \gls{sg}. La mayoría de los prosumidores, sobre todo en entornos residenciales son de pequeño tamaño y tienen mayores complicaciones para participar en los mercados eléctricos por sí mismos. 
-
-\vspace{3mm}
-
-Por ello, los agregadores \cite{bidding} \cite{transactive} se encargan de facilitar esta tarea para que una cantidad de prosumidores locales puedan actuar en conjunto como fijadores de precios de compra/venta en el mercado eléctrico global. Es decir, cada agregador se encarga de representar a los prosumidores que lo componen y actúa como intermediarios entre los mismos y el conjunto de mercados energéticos. A cambio, cada prosumidor debe pagar un plan mensual a la compañía para cubrir los costes eléctricos y así, dejar la responsabilidad de las transacciones a los agregadores para que operen de forma flexible. En esta operativa también incide el \gls{dso}, el cual se encarga de que las transacciones de compra/venta sigan el cumplimiento de los estándares y regulaciones establecidos en el mercado energético. 
+En la Figura \ref{fig:market} se ilustra la estructura del modelo que presenta el mercado energético. Por un lado, las agregaciones de prosumidores posibilitan el autoconsumo y la compartición de los recursos generados por sí mismos con los demás participantes de la microrred, además de con el resto de la \gls{sg}. La mayoría de los prosumidores, sobre todo en entornos residenciales son de pequeño tamaño y tienen mayores complicaciones para participar en los mercados eléctricos por sí mismos. 
 
 \vspace{3mm}
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{img/teoria/market.png}
+  \includegraphics[width=0.8\textwidth]{img/teoria/market.png}
   \caption{Modelo basado en las interacciones de los agregadores con los prosumidores y el mercado eléctrico \cite{business}}
   \label{fig:market}
 \end{figure}
 
+Por ello, los agregadores \cite{bidding} \cite{transactive} se encargan de facilitar esta tarea para que una cantidad de prosumidores locales puedan actuar en conjunto como fijadores de precios de compra/venta en el mercado eléctrico global. Es decir, cada agregador se encarga de representar a los prosumidores que lo componen y actúa como intermediarios entre los mismos y el conjunto de mercados energéticos. Cada prosumidor debe pagar a cambio un plan mensual a la compañía para cubrir los costes eléctricos y así, dejar la responsabilidad de las transacciones a los agregadores para que operen de forma flexible.
+
 \vspace{3mm}
 
-A partir del funcionamiento expuesto y de la Figura \ref{fig:market}, se pueden diferenciar los tipos de interacciones que se producen en este modelo \cite{business}:
+Por otro lado, en esta operativa también incide el \gls{dso}, el cual se encarga de que las transacciones de compra/venta sigan el cumplimiento de los estándares y regulaciones establecidos en el mercado energético. A partir del funcionamiento expuesto y de la Figura \ref{fig:market}, se pueden diferenciar los tipos de interacciones que se producen en este modelo \cite{business}:
+
+\vspace{3mm}
 
 \begin{itemize}
   \item Interacciones técnicas 
@@ -143,13 +149,13 @@ Como término, un programa \gls{dsm} es un programa basado en el control de las 
 
 \vspace{3mm}
 
-Por lo tanto, volviendo a los modos de dinamización de las tarifas, si por ejemplo se emplea \gls{rtp}, se buscará lograr el equilibrio de la demanda en tiempo real, modificando las cargas de los consumidores en las horas pico \cite{rtp}. Es decir, cada uno de los usuarios actúa individualmente en función de los precios dinámicos en el tiempo, comunicándose directamente con la compañía energética como se puede visualizar en la Figura \ref{fig:dsm1}.
+Por lo tanto, volviendo a los modos de dinamización de las tarifas, si por ejemplo se emplea \gls{rtp}, se buscará lograr el equilibrio de la demanda en tiempo real, modificando las cargas de los consumidores en las horas pico \cite{rtp}. Es decir, cada uno de los usuarios actúa individualmente en función de los precios dinámicos en el tiempo, comunicándose directamente con la compañía energética como se puede visualizar en la Figura \ref{fig:dsm1}. 
 
 \vspace{3mm}
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.8\textwidth]{img/teoria/dsm1.png}
+  \includegraphics[width=0.75\textwidth]{img/teoria/dsm1.png}
   \caption{Estrategia de \acrshort{dsm} basada en interacciones individuales de cada consumidor con la compañía \cite{pricing}}
   \label{fig:dsm1}
 \end{figure}
@@ -186,24 +192,22 @@ Una \gls{sg} está constituida por múltiples elementos diferentes como se puede
 
 \subsubsection{Generación}
 
-Como ya se introducía en la Sección \ref{sec:prosu}, dentro de una \gls{sg}, el prosumidor se trata de la figura que potencia principalmente el uso de energías renovables, las cuales pueden ser obtenidas por ejemplo a partir de generadores térmicos fotovoltaicos (del inglés \gls{pvt}) o de turbinas eólicas. Para posibilitar posteriormente el uso de la energía generada, esta debe ser convertida y acondicionada mediante dispositivos dedicados, como son unidades combinadas de calor (del inglés \gls{chp}) o de conversión a gas (del inglés \gls{p2g}). \cite{transactive}
+Como ya se introducía en la Sección \ref{sec:prosu}, dentro de una \gls{sg}, el prosumidor se trata de la figura que potencia principalmente el uso de energías renovables, las cuales pueden ser obtenidas por ejemplo a partir de generadores térmicos fotovoltaicos (del inglés \gls{pvt}) o de turbinas eólicas. Para posibilitar posteriormente el uso de la energía generada, esta debe ser convertida y acondicionada mediante dispositivos dedicados, como pueden ser las unidades combinadas de calor (del inglés \gls{chp}) o las de conversión a gas (del inglés \gls{p2g}). \cite{transactive}
 
 \vspace{3mm}
 
-Las unidades \gls{chp} \cite{chp}, como se puede apreciar en la Figura \ref{fig:chp}, llevan a cabo un aprovechamiento del calor residual que deriva del proceso de generación de electricidad. Se emplean como respaldo eléctrico, ya que se componen de sistemas de almacenamiento de energía térmica (del inglés \gls{tes}) para poder separar la producción y el uso del calor y la energía. Luego, este calor almacenado se puede emplear en aplicaciones térmicas como la calefacción u otros procesos industriales. \cite{chp2}
+Las unidades \gls{chp} \cite{chp}, como se puede apreciar en la Figura \ref{fig:chp}, llevan a cabo un aprovechamiento del calor residual que deriva del proceso de generación de electricidad. Se emplean como respaldo eléctrico, ya que se componen de sistemas de almacenamiento de energía térmica (del inglés \gls{tes}) para poder separar la producción y el uso del calor y la energía. Luego, este calor almacenado se puede emplear en aplicaciones térmicas como la calefacción, además de en otros procesos enfocados a entornos industriales. \cite{chp2}
 
 \vspace{3mm}
 
-\begin{figure}[H]
+\begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{img/teoria/chp.png}
+  \includegraphics[width=0.95\textwidth]{img/teoria/chp.png}
   \caption{Esquema de funcionamiento de una unidad \acrshort{chp} \cite{chp}}
   \label{fig:chp}
 \end{figure}
 
 \vspace{3mm}
-
-\pagebreak
 
 Es por ello que las unidades \gls{chp} mejoran la eficiencia del sistema energético, contribuyendo a un uso mucho más eficaz de los recursos y a una reducción de las pérdidas que se producen en la transmisión. Además del \gls{tes}, utilizado para almacenar el calor producido, una unidad \gls{chp} también se constituye de un motor acoplado a un generador eléctrico para llevar a cabo el proceso de generación de electricidad y calor. Como se puede apreciar en la Figura \ref{fig:chp2}, todas las operaciones de la unidad y las interacciones que se producen entre módulos se coordinan desde el gestor de operaciones para que se produzca un correcto funcionamiento.
 
@@ -211,12 +215,13 @@ Es por ello que las unidades \gls{chp} mejoran la eficiencia del sistema energé
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.6\textwidth]{img/teoria/chp2.png}
+  \includegraphics[width=0.65\textwidth]{img/teoria/chp2.png}
   \caption{Gestión de operaciones en una unidad \acrshort{chp} \cite{chp2}}
   \label{fig:chp2}
 \end{figure}
 
 \vspace{3mm}
+\pagebreak
 
 Por otro lado, la unidad \gls{p2g}, mencionada anteriormente, se encarga de la conversión de la electricidad en gases sintéticos, como son el hidrógeno o el metano. Es de gran importancia, ya que este tipo de gases son más fácil de transportar y almacenar que la electricidad, por lo que se simplifica la gestión energética. Como se puede apreciar en la Figura \ref{fig:p2g}, el objetivo del \gls{p2g} se basa en descomponer el agua mediante un proceso de electrólisis a partir de electricidad proveniente de fuentes renovables. Después, el hidrógeno que se produce se puede utilizar directamente o procesarlo de forma adicional en metano.~\cite{transactive} 
 
@@ -224,12 +229,13 @@ Por otro lado, la unidad \gls{p2g}, mencionada anteriormente, se encarga de la c
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.9\textwidth]{img/teoria/p2g.jpg}
+  \includegraphics[width=0.85\textwidth]{img/teoria/p2g.jpg}
   \caption{Representación del proceso \acrshort{p2g} \cite{p2g}}
   \label{fig:p2g}
 \end{figure}
 
 \vspace{3mm}
+\pagebreak
 
 Dentro del contexto de la generación de energía también es importante destacar algunos equipos, como son los sistemas de control y adquisición de datos (del inglés \gls{scada}) \cite{scada}. Estos pueden ser instalados en generadores, como son paneles solares fotovoltaicos o turbinas eólicas, consiguiendo una monitorización remota de los mismos. Mediante la información recopilada a tiempo real permiten conocer los niveles de generación y establecer una predicción de la disponibilidad energética que habrá en el sistema o en un área determinada del mismo.
 
@@ -237,11 +243,7 @@ Dentro del contexto de la generación de energía también es importante destaca
 
 \subsubsection{Distribución}
 
-Un dispositivo importante en el campo de la distribución energética es la Unidad de Medición de Fasores (del inglés \gls{pmu}). Se emplea para medir con una alta precisión los fasores de tensión y corriente en la red eléctrica, proporcionando información relevante sobre las magnitudes y fases de las ondas sinusoidales. 
-
-\vspace{3mm}
-
-También, es empleado en los generadores y debe contar con una alta tasa de muestreo para capturar eventos transitorios o cambios rápidos en la red. En otros términos, debe tener la capacidad de identificar o detectar a tiempo real posibles anomalías que se puedan dar en la distribución y por ello, se trata de un componente imprescindible para comprobar y garantizar la estabilidad de la \gls{sg}. %BIB
+Un dispositivo importante en el campo de la distribución energética es la Unidad de Medición de Fasores (del inglés \gls{pmu}). Se emplea para medir con una alta precisión los fasores de tensión y corriente en la red eléctrica, proporcionando información relevante sobre las magnitudes y fases de las ondas sinusoidales. También, es empleado en los generadores y debe contar con una alta tasa de muestreo para capturar eventos transitorios o cambios rápidos en la red. En otros términos, debe tener la capacidad de identificar o detectar a tiempo real posibles anomalías que se puedan dar en la distribución y por ello, se trata de un componente imprescindible para comprobar y garantizar la estabilidad de la \gls{sg}. \cite{dynamic}
 
 \vspace{3mm}
 
@@ -253,20 +255,19 @@ Los \gls{facts} incluyen todos los elementos electrónicos basados en tecnologí
 
 \vspace{3mm}
 
-Poniendo el enfoque en la garantía de estabilidad de una \gls{sg}, uno de los sistemas más importantes de los expuestos en la Tabla \ref{tab:facts} es el \gls{svc} \cite{facts}. Los compensadores estáticos son capaces de detectar grandes caídas de tensión resultantes a la producción de un cortocircuito o a la pérdida de líneas de transisión en un área de la red. Esto es importante, ya que una detección rápida de una avería permite restaurar en un corto período de tiempo la tensión del área afectada sin que el problema escale a otras partes de la red. 
-
-\vspace{3mm}
-
-En otros términos, aísla este área del resto de la red eléctrica. Además, el \gls{svc} asegura que el proceso de restauración se produzca paulatinamente para que los efectos producidos por el cortocircuito sean prácticamente imperceptibles en los puntos de carga del área afectada. En la Figura \ref{fig:svc} se puede apreciar un ejemplo de instalación de un \gls{svc} en el municipio noruego Sylling y se encuentra conectada a un sistema de 420 kV.
+Poniendo el enfoque en la garantía de estabilidad de una \gls{sg}, uno de los sistemas más importantes de los expuestos en la Tabla \ref{tab:facts} es el \gls{svc} \cite{facts}. En la Figura \ref{fig:svc} se puede apreciar un ejemplo de instalación de compensador, ubicado en el municipio noruego Sylling y conectado a un sistema de 420 kV.
 
 \vspace{3mm}
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.7\textwidth]{img/teoria/svc.png}
+  \includegraphics[width=0.8\textwidth]{img/teoria/svc.png}
   \caption{Instalación de un \acrshort{svc} en Sylling (Noruega) \cite{facts}}
   \label{fig:svc}
 \end{figure}
+
+\vspace{3mm}
+\pagebreak
 
 \begin{table}[!h]
   \centering
@@ -309,11 +310,17 @@ En otros términos, aísla este área del resto de la red eléctrica. Además, e
 
 \pagebreak
 
+\vspace{3mm}
+
+Los compensadores estáticos son capaces de detectar grandes caídas de tensión resultantes a la producción de un cortocircuito o a la pérdida de líneas de transisión en un área de la red. Esto es importante, ya que una detección rápida de una avería permite restaurar en un corto período de tiempo la tensión del área afectada sin que el problema escale a otras partes de la red. En otros términos, aísla este área del resto de la red eléctrica. Además, el \gls{svc} asegura que el proceso de restauración se produzca paulatinamente para que los efectos producidos por el cortocircuito sean prácticamente imperceptibles en los puntos de carga del área afectada. 
+
+\vspace{3mm}
+
 Siguiendo en el ámbito de la distribución energética, es importante también exponer las tecnologías enfocadas a la transmisión de electricidad a larga distancia, como son las Corriente Continua de Alto Voltaje (del ingles \gls{hvdc})~\cite{hvdc}. Como su nombre indica, utilizan corriente continua para ello, lo que minimiza las pérdidas en el proceso de transmisión respecto al caso de la Corriente Alterna de Alto Voltaje (del ingles \gls{hvac}), además de permitir portar mucha más potencia. Esto es fundamental cuando se pretende integrar al sistema global fuentes de energía ubicadas en áreas remotas, sobre todo dentro del contexto de las \gls{sg}s. Generalmente, las fuentes de energías renovables, como pueden ser la solar o la eólica, se encuentran alejadas de los puntos geográficos con mayor demanda y se requiere una respuesta rápida ante cambios de carga para mantener la estabilidad del sistema. 
 
 \vspace{3mm}
 
-Es decir, cuando se transmiten grandes cantidades de potencia a largas distancias con líneas de \gls{hvac}, se generan ángulos eléctricos entre los voltajes y las corrientes en la línea muy grandes que pueden producir oscilaciones descontroladas y por tanto, desencadenar inestabilidades que llegaráin a escalar a lo largo del sistema. Por ello, las tecnologías \gls{hvdc} simplifican la interconexión entre microrredes y permiten una mayor integración de sistemas dedicados al almacenamiento energético para facilitar la gestión de los recursos disponibles. Como desventaja, se encuentra el alto coste que supone su implementación, ya que al final solamente se puede emplear en el caso de aplicaciones punto a punto.
+En otros términos, cuando se transmiten grandes cantidades de potencia a largas distancias con líneas de \gls{hvac}, se generan ángulos eléctricos entre los voltajes y las corrientes en la línea muy grandes que pueden producir oscilaciones descontroladas y por tanto, desencadenar inestabilidades que llegaráin a escalar a lo largo del sistema. Por ello, las tecnologías \gls{hvdc} simplifican la interconexión entre microrredes y permiten una mayor integración de sistemas dedicados al almacenamiento energético para facilitar la gestión de los recursos disponibles. Sin embargo, presentan ciertas desventajas, destacando el alto coste que supone su implementación, ya que al final únicamente se pueden emplear en el caso de aplicaciones punto a punto.
 
 \vspace{3mm}
 
@@ -364,27 +371,6 @@ Teniendo esto en cuenta, es imprescindible definir los mecanismos de detección 
   \item Empleo del protocolo \gls{send} \cite{send}: Para evitar los ataques de \textit{\gls{arp} Spoofing} se emplean pares de claves \gls{rsa} para poder garantizar en el proceso de enrutamiento que los mensajes que tienen como origen un determinado host pertenecen al mismo.
 \end{itemize}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Beneficios ambientales}
-
-%Las smart grid son un concepto estratégico clave en la transición energética, ya que suponen un gran paso hacia un mundo descarbonizado. Mediante la digitalización de las redes eléctricas inteligentes se puede conseguir un sistema más eficiente, sostenible, con bajas pérdidas y con altos niveles de calidad en el suministro. Con la implementación de este circuito inteligente no solo se conseguiría una mayor eficiencia energética y ahorro, sino que también tendría múltiples beneficios medioambientales, económicos y sociales.
-
-
-% La eficiencia energética que se pueden conseguir con las smart grid también tiene beneficios directos sobre el medio ambiente, como por ejemplo: 
-
-% Permiten el desarrollo de ciudades sostenibles.
-% Pueden integrarse en el sistema de fuentes renovables.
-% Facilitan la movilidad eléctrica, proporcionando puntos de carga para vehículos eléctricos.
-% Reducen las emisiones globales de CO2.
-% Contribuye a la descarbonización de la generación eléctrica. 
-
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Situación en España}
 
@@ -418,261 +404,14 @@ Teniendo esto en cuenta, es imprescindible definir los mecanismos de detección 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Desafíos futuros de las smart grids}
 
-%\cite{ioe}
-% Nowadays, some novel concepts are introduced in the area 
-% of energy research such as the second generation of smart 
-% grids (smart grid 2.0) [15], smart energy, future energy 
-% networks [16], industry 4.0 [17], which are connected with 
-% internet and telecommunications technologies. 
-% Smart grid 2.0 refers to the next generation of smart grids 
-% which will be implemented from 2020 which has specific 
-% distinctions such as increase in interactions between supplysides and demand-side using advanced smart metering 
-% infrastructures, share of energy and its correlated information 
-% between deserved players using informatics infrastructure, and 
-% the plug & play capability, which means the ability to provide 
-% energy even by tiny-scale generation resources (e.g. V2Gs) so 
-% that they can be able to deliver power to the grid as easy as 
-% plugging in a plug into an outlet. Such a consumer which can 
-% sometimes play the role of a provider is called “prosumers”. It 
-% is noticeable that the ability of connection or disconnection of 
-% distributed generation at each desired moment is not possible 
-% at the current time. However, in smart grid 2.0, a wider range 
-% of consumer devices and equipment will be in control which 
-% 628
-% provides more flexibility for power systems. The control of 
-% such a massive number of elements cannot be viable without 
-% improving the smartness of grids. It is alleged that more than 
-% 50% of demand will be controlled by real-time controllers in 
-% smart grids 2.0. In such an environment, all players can 
-% participate in power markets and monitor its transactions and 
-% power exchanges using an internet-based interface in peer-topeer (P2P) mode, in which the buyer and seller are specified. 
-% In the first generation of smart grids, the main attention has 
-% been focused on the development of fundamental prerequisites 
-% such as advanced metering infrastructures (AMI), and the 
-% installation of them in the local distribution networks. 
-% However, the smart grid concept will be more globalized at a 
-% wider level using IoT-based interfaces and will be inclined 
-% toward a macro-level and worldwide pervasiveness. The smart 
-% grid 2.0 must be able to keep working after any contingency 
-% automatically and effectively so that the infected region 
-% immediately begin to be supplied using self-healing schemes, 
-% which highly depends on real-time data gathering and 
-% analysis. In addition, the proper application programming 
-% interface (API) will be employed as a platform to display 
-% information for P2P and third-party access [18].
+Las \gls{sg}s, a pesar del progreso tecnológico que han proporcionado en el ámbito de la gestión energética en la última década, no están exentas de de desafíos importantes que deben de abordarse para seguir potenciando su crecimiento a futuro. La segunda generación de \gls{sg}s viene dada por la necesidad de implementar las siguientes mejoras: \cite{overview} \cite{ioe}
 
-
-
-%%%%\cite{overview} Smart Grid: An Overview
-
-% The Key Challenges for Smart Grids 
-%  Strengthening the grid—ensuring that there is sufficient transmission capacity to interconnect energy resources, especially renewable resources; 
-%  Moving offshore—developing the most efficient connections for offshore wind farms and for other marine 
-% technologies; 
-%  Developing decentralized architectures—enabling smalller scale electricity supply systems to operate harmoniously with the total system; 
-%  Communications—delivering the communications infrastructure to allow potentially millions of parties to 
-% operate and trade in the single market; 
-%  Active demand side—enabling all consumers, with or 
-% without their own generation, to play an active role in 
-% the operation of the system; 
-%  Integrating intermittent generation—finding the best 
-% ways of integrating intermittent generation including 
-% residential microgeneration; 
-%  Enhanced intelligence of generation, demand and most 
-% notably in the grid; 
-%  Preparing for electric vehicles—whereas Smart Grids 
-% must accommodate the needs of all consumers, electric vehicles are particularly emphasized due to their 
-% mobile and highly dispersed character and possible 
-% massive deployment in the next years, what would 
-% yield a major challenge for the future electricity networks [2]. 
-
-
-
-
-%%%%cite us
-
-
-%4.0 Desafíos para la implementación
-% Entre los desafíos importantes que enfrenta el desarrollo de una red inteligente se encuentran el costo de
-% de implementación de una red inteligente, con estimaciones solo para la medición avanzada de la empresa eléctrica
-% de capacidad que asciende a $27 mil millones, y las regulaciones que permiten la recuperación de dicha
-% inversiones. Para tener una perspectiva, Brattle Group estima que podría tomar tanto como
-% 1,5 billones de dólares para actualizar la red para 2030 (Chupka et al. 2008). Garantizar la interoperabilidad % de estándares de redes inteligentes es otro obstáculo que los reguladores estatales y federales deberán superar.
-% Las principales barreras técnicas incluyen el desarrollo de sistemas de almacenamiento económicos; estos sistemas de almacenamiento
-% puede ayudar a resolver otros desafíos técnicos, como la integración de energía renovable distribuida
-% de fuentes con la red, abordando problemas de calidad de energía que de otro modo exacerbarían la
-% de situación y mejorar la utilización de los activos. Sin red inteligente, altas penetraciones de variables
-% de recursos renovables (por ejemplo, eólicos o solares) pueden volverse cada vez más difíciles y costosos de obtener.
-% logran con el tiempo a medida que penetran a niveles altos debido a la mayor necesidad de coordinar estos
-% de recursos con generación despachable (p. ej., ciclo combinado de gas natural) y demanda.
-% Otro desafío al que se enfrenta una red inteligente es la incertidumbre sobre el camino que seguirá su desarrollo.
-% se hace cargo del tiempo con la tecnología cambiante, los cambios en las combinaciones de energía y la política energética.
-% Intentar legislar o regular el desarrollo de una red inteligente o sus tecnologías relacionadas puede
-% disminuyen gravemente los beneficios del mercado energético virtual, flexible y transparente al que se esfuerza.
-% Para proveer. Por el contrario, con la red energética de todo el país potencialmente en riesgo, algunos pueden ver
-% la introducción de una red inteligente en los Estados Unidos es demasiado importante para permitir el laissez-faire
-% evolución. Por lo tanto, el desafío del desarrollo se convierte en una cuestión de proporcionar servicios flexibles
-% de regulación que aprovecha la tecnología deseada y en desarrollo a través de objetivos dirigidos y
-% de políticas respaldadas por casos de negocios que promueven un resultado económico positivo. Estos y otros
-% de desafíos se analiza en las siguientes secciones
-
-
-\subsubsection{Retos técnicos}
-
-% There are a variety of technical challenges facing a smart grid, some of the greatest being 
-% developing, implementing, and deploying the array of different technologies required to 
-% enable both sides of the meter to communicate in a cost-effective way. One of the most 
-% important developments facing a smart grid is AMI technology. These devices help 
-% coordinate consumer equipment, as well as receive market signals and adjust household 
-% consumption based on a combination of this data and consumer preferences. However, 
-% alternatives to such AMI systems do exist. For example, market information such as prices 
-% and grid conditions can be decoupled from communication of energy consumption. Thus, 
-% the meter can be separate while pricing signals and the like can be transmitted via other public 
-% communication mechanisms such as phone, internet, cable, and wireless radio. A decoupled 
-% situation can make sense for commercial buildings and industrial uses where energy savings 
-% can be significant, while a more traditional bundled AMI package may be more desirable for 
-% residential consumers due to its “all-in-one” and “plug-and-play” aspects. Implementing 
-% price- and consumption-bundled AMI technology has been estimated to cost as much as 
-% $27 billion (Kuhn 2008) and will require very aggressive deployment to meet desired market 
-% penetration levels in the near future. Failure to successfully deploy technology that captures 
-% bi-directional power flow rather than net consumed energy, as well as dynamic pricing 
-% support, such as AMI technology or others, will keep the two sides of the market from 
-% properly communicating, and a smart grid will not function as desired regardless of other
-% successful technical deployments, such as distributed generation, demand-response measures, 
-% or automated distribution schemes. Without real-time demand-response signals being 
-% promptly communicated and quickly addressed by consumers, the power system will not 
-% be flexible enough to provide the market transparency or the price signals required for a 
-% functioning energy market (FERC 2006a). Further, AMI billing techniques and the machines 
-% themselves may require regional customization reducing potential economies of scale in 
-% production and deployment. Regional customization may be required because of differences 
-% in consumer preferences, aggressiveness of service providers, state and local regulations, and 
-% the speed with which smart grid structures and technology change over time. Not all regions 
-% are likely to respond identically and may have different needs.
-% Another significant technical consideration is the impact of high levels of new technology 
-% penetration on existing grid infrastructure. Implementing new improvements into the grid, 
-% including smart-grid technologies, is pivotal to increasing efficient operations, as the operating 
-% efficiency gains from familiar technologies have begun to plateau (DOE/EIA 2007a). In 
-% addition, a NERC survey recently ranked the number one challenge to grid reliability as 
-% “aging infrastructure and limited new construction.” How this aging infrastructure will 
-% function when combined with new “smart” technology remains to be seen, particularly with 
-% regard to solar, wind, and other forms of distributed generation (NERC 2007). Adding large 
-% amounts of variable and distributed generation, for example, requires a fundamental 
-% reworking of how the delivery system is managed, power quality is monitored, faults are 
-% detected, and maintenance is handled (Pai 2002). This problem is compounded when 
-% PHEVs and EVs are considered, potentially making each vehicle its own DG resource and 
-% requiring supporting infrastructure to draw, generate, and price power transactions. 
-% However, these technologies themselves face several technical challenges. Cost-effective 
-% battery technology continues to be a challenge for PHEVs and EVs and local wind and solar 
-% resources. Issues such as discharge, battery life, size and weight are all serious considerations. 
-% Additionally, incorporating battery power storage into current automobile frames will require 
-% manufacturing adjustments; including systems to monitor the status of the battery (including 
-% battery charge and temperature) as well as structural design changes to accommodate the 
-% battery itself.
-
-% A smart grid is needed at the distribution level to manage voltage levels, reactive power, 
-% potential reverse power flows, and power conditioning, all critical to running grid-connected 
-% DG systems, particularly with high penetrations of solar and wind power and PHEVs. 
-% Advanced voltage regulation, fault-detection, and system-protection practices need to be 
-% rethought as an increasing number of DG resources become available. This may require new 
-% equipment to identify and isolate DG resources in the event of a fault occurrence (Driesen 
-% and Belmans 2006). Another consideration for power-generation systems, distributed or 
-% otherwise, is power quality. Customers and the utilities that serve them lack standards for 
-% classifying varying qualities of power. Because customers have different power quality 
-% requirements (e.g., willingness to accept outages of varying durations, and load sensitivity to 
-% power harmonics) and with the increasing availability of DG resources to produce power 
-% locally, there may be smaller sub-markets for power that would be better served if such 
-% differentiated power standards existed.
-% Designing and retrofitting household appliances, such as washers, dryers, and water heaters 
-% with technology to communicate and respond to market signals and user preferences via 
-% home automation technology will be a significant challenge. Substantial investment will be 
-% required to implement user-friendly communication equipment which ensures that data
-% storage and transmissions are tamper proof, reliable, and do not corrupt or break down over 
-% the lifetime of an appliance. Devices that communicate wirelessly with their facility energymanagement systems must broadcast powerful-enough signals, or other technical barriers to 
-% effective communication must be resolved. For example, a washer/dryer located in a house’s 
-% basement attempting to communicate with an energy-management system on the far side of 
-% the building will require a stronger signal than a closer device on the ground floor. Therefore 
-% communication equipment may need a flexible and dynamic range of broadcast strengths. 
-% Finally, aggregating and sharing system data involves its own concerns; for example, providing 
-% infrastructure to communicate wide-area measurement data across the grid requires agreement 
-% by the stakeholders on the information network architecture, the supported functions, data 
-% exchange interface definitions, and legal conditions for granting use of the data.
-
-\subsubsection{Retos económicos}
-
-% The business case for a smart grid needs to be firmly established for deployment decisions to 
-% progress. In many situations, individual applications may not be cost effective in isolation, 
-% but where common hardware and information network infrastructure can be leveraged to 
-% accomplish a number of objectives, the value proposition can become compelling. The 
-% business challenge is to prove that out with field deployments. Smart grid investments often 
-% require large upfront costs relative to their benefits. However, future benefits may come at 
-% small incremental costs. Utilities and regulators may need to look at full system life cycle 
-% costs and benefits in order to fully justify added investments. Some of the benefits may come 
-% in the form of societal benefits which will need to be clearly understood and evaluated. 
-% Payback periods may be longer than stakeholders would like. The service providers, regulators, 
-% and ultimately ratepayers are going to have to believe it before such substantial investments 
-% are made.
-% Since the technology and value propositions are emerging, utility companies may be reluctant 
-% to expend the significant amount of capital required to move toward a smart grid, especially 
-% because expected cost-recovery timelines are only theoretical and have no precedent. 
-% Currently, regulated utilities and their flat-rate customers have no risk or reward signal. 
-% Regulation makes it difficult for them to raise rates and recover costs, and makes them 
-% reluctant to change. Moreover, transmission-planning difficulties may or may not offset 
-% revenue losses incurred from reduced transmission; with uncertainty about market penetration 
-% of DG these effects can be difficult to model. Without effective cost recovery mechanisms in 
-% place, increased market penetration of DG will translate into lost demand for utilities. The 
-% uncertainty about market penetration is increased when utilities start to consider the time and 
-% cost of training a new smart-grid-skilled labor force (NERC 2007). Thus, utilities seeking to 
-% balance costs and operating efficiency will seek to increase asset utilization through the 
-% implementation of demand response measures and AMI technology, as opposed to expensive 
-% infrastructure upgrades. Further, as more and more devices become “web enabled” and move 
-% toward becoming fully “smart” devices, the inclusion of electronics in these devices, as well as 
-% the development and maintenance of this hardware and its respective software, will require 
-% manufacturers to reevaluate these devices’ life-cycle costs. A smart grid will require service 
-% providers to operate in new ways and be willing to take reasonable risks for reasonable 
-% rewards. Regulators will need to design rules such that customers who do not change are not 
-% worse off, but that businesses can pursue advantageous arrangements between participating 
-% suppliers and consumers. Aside from making a strong analytical business case with existing distribution models, the first 
-% few successful deployments of these new “smart” technologies will be pivotal to ensuring deep 
-% market penetration. Not all of these technologies are necessarily complementary. For 
-% example, when metering residential customers, drive-by and walk-by meters (AMR) are 
-% considered a competing technology and currently are out-shipping AMI products. Other 
-% than the more-convenient data gathering over traditional meters, AMR meters offer very few 
-% to none of the benefits and functions necessary to enable residential customers to 
-% meaningfully participate in a smart grid. However, implementing smart-grid technologies is 
-% daunting; the cost to implement AMI technology alone has been forecast between $19 and 
-% $27 billion (Kuhn 2008). Customers desire good value for the investments reflected in their 
-% power bills and they may want more options to manage their energy usage and bills, especially 
-% during a rate increase.
-
-% While utilities must be able to recover their investment costs, the potential savings from some 
-% of these technologies is considerable. For example, use of data from wide-area measurement 
-% systems (WAMS), including synchro-phasor measurements, could have mitigated or even 
-% avoided the estimated $4.5 billion in losses suffered by over 50 million people in the 2003 
-% blackout of the northeastern U.S. and Canada (DOE 2004). To fully realize these benefits, 
-% high levels of market penetration must be encouraged; to accomplish this, new technologies 
-% will need simple, streamlined user interfaces, “plug-and-play” setups, and cost models that 
-% accurately forecast a reasonable payback period for newly developed and installed technologies 
-% for both utility companies and consumers, followed by reports on actual and successful 
-% deployments. Prior to successful deployments, important questions remain, including 
-% identifying winners and losers with bulk system reliability, evaluating those losses and gains, 
-% and how reasonable investments are recouped.
-% As consumer participation increases, a higher level of distributed-generation resources are 
-% expected to become available (Eynon 2002). The costs of making these DG resources 
-% dispatchable are estimated to be high and vary significantly between utilities. Storing energy 
-% generated by DG resources will continue to be a problem until a cost-effective, lowmaintenance solution is introduced. Trends suggest this might be done with highly efficient 
-% batteries or by pre-heating and cooling buildings. Until then however, viable payback 
-% strategies, such as storing generated power during off-peak hours and selling it back into the 
-% grid during high-price on-peak hours, will not be feasible. The lack of cost-effective, lowmaintenance batteries is a particular hindrance for renewable energies such as solar and wind 
-% generation, because their generation varies over time and may not match demand patterns.
-% Lastly, consumer concerns about hybrid electric vehicles including price, insufficient power, 
-% and dependability will need to be addressed by PHEV and EV manufacturers. The cost to 
-% convert a hybrid vehicle to a PHEV is currently considered prohibitive; it can vary between 
-% six and eight thousand dollars and consumers may consider the payback period too long. 
-% Because of these concerns, PHEVs will be unlikely to penetrate all markets, leaving heavyduty and long-range vehicles, such as semi-trucks, and high-performance vehicles such as 
-% sports cars requiring contemporary infrastructure, such as gas stations, while PHEVs and EVs 
-% require new supporting infrastructure, such as charge stations. Economies of scale for these 
-% services may or may not exist. 
-
-
+\begin{itemize}
+  \item Inteligencia mejorada: Será preciso poner el foco en el desarrollo de nuevas infraestructuras avanzadas de medición inteligente para afrontar cada vez una mayor demanda y globalizar el mercado energético.
+  \item Fortalecimiento de la red: Se debe garantizar una suficiente capacidad de transmisión para favorecer la transmisión de larga distancia y el empleo de fuentes energéticas aisladas, como pueden ser los parques eólicos en el mar.
+  \item Adaptación de la red al empleo de vehículos eléctricos: Se requiere preparar la arquitectura de las \gls{sg}s para el creciente uso de vehículos eléctricos que se espera en la próxima década.
+  \item Gestión de la generación intermitente y del almacenamiento: Es importante potenciar el empleo de los recursos de generación a pequeña escala, sobre todo en el caso de los entornos residenciales, para conseguir cada vez una mayor descentralización de la red. De la misma manera, se deben abordar las limitaciones actuales que presentan los sistemas de almacenamiento energético para permitir una mayor acumulación de recursos provenientes de fuentes de generación intermitente, como es la solar y la eólica. Esto es imprescindible para garantizar la disponibilidad energética y poder afrontar los posibles picos de demanda que se produzcan a lo largo del tiempo.
+  \item Regulación favorable e incentivos económicos: Se puede potenciar la transformación de las redes energéticas mediante el establecimiento de políticas regulatorias que fomenten la inversión en \gls{sg}s y mediante colaboraciones entre el sector público y el privado. De la misma forma, implementar estructuras de tarifas de precios dinámicos motivará a un número mayor de usuarios finales a adoptar tecnologías inteligentes para obtener beneficios económicos. 
+\end{itemize}
 
 

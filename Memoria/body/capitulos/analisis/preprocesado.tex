@@ -522,8 +522,6 @@ Por tanto, se debe comparar las características que presentan, tanto los datos 
 
 En cuanto al dataset \textit{SustDataED}, por un lado, se realiza la combinación de los parámetros energéticos y los climáticos. Este paso viene dado por la necesidad de realizar un análisis de la correlación que existe entre la producción solar y las características ambientales que se miden en cada instante. Por ello, se crea un nuevo \textit{notebook}, denominado como \textit{preprocessing\_production.ipynb}, en el cual hay que tener en cuenta los campos expuestos en las Tablas \ref{tab:prod} y \ref{tab:env}. La operación de combinación de los datos energéticos y climáticos se determina a partir de la marca de tiempo (\textit{timestamp}) y resulta en un nuevo \textit{dataframe} de \textit{Pandas}, que será almacenado en un nuevo fichero en formato .csv.
 
-\vspace{3mm}
-
 \begin{lstlisting}[style=Python, caption={Combinación de datos de clima y de producción}]
   df_merged = pd.merge(df_env, df_prod, on='timestamp') # Operación de merge
 \end{lstlisting}
@@ -557,9 +555,7 @@ Por otro lado, es necesario sintetizar los datos de producción de la misma form
 
 \vspace{3mm}
 
-\pagebreak
-
-De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anteriormente para los datos de consumo (ver Sección \ref{sec:rango}), se representan a modo comparativo los valores de temperatura y de potencia medidos en las Figuras \ref{fig:temp} y \ref{fig:solaryear}, respectivamente. 
+De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anteriormente para los datos de consumo (ver Sección \ref{sec:rango}), se comparan los valores de temperatura y de potencia medidos en las Figuras \ref{fig:temp} y \ref{fig:solaryear}, respectivamente. 
 
 \vspace{3mm}
 
@@ -580,8 +576,6 @@ De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anter
 \end{figure}
 
 \vspace{3mm}
-
-\pagebreak
 
 A priori, se podría apreciar que los valores reflejados de generación energética presentan cierta correlación con la temperatura a partir del mes de enero de 2011 y se encuentran diferencias entre los rangos de valores que se manejan en los meses de invierno y los de verano, a medida que se incrementa la temperatura. El análisis se fija a partir de este mes porque es en este momento cuando crecen las dimensiones del sistema fotovoltaico y se produce un salto en los valores medidos, conllevando un incremento de la potencia que se puede generar. 
 

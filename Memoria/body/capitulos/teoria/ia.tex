@@ -21,11 +21,7 @@ Entrando en estas técnicas, se establecen dos divisiones dentro del campo de la
 
 La rama de aprendizaje automático (\acrfull{ml}) se enfoca en el desarrollo de modelos que sean capaces de aprender y tomar decisiones en base a la introducción de datos. Durante el proceso se realizan observaciones a la información existente y, en función de la técnica a emplear, se aplican algoritmos estadísticos para identificar patrones en los datos. Por lo tanto, mediante un entrenamiento progresivo en el tiempo, un modelo de \gls{ml} puede llegar a realizar predicciones sobre datos futuros sin la intervención humana y con una alta precisión. Como se representa en la Figura \ref{fig:ml}, las técnicas de \gls{ml} pueden pertenecer a tres categorías diferentes en función del enfoque de la información y de los objetivos que se pretenden conseguir con su aplicación: \cite{mlcat} \cite{iageeks} \cite{mltlf}
 
-\begin{itemize}
-    \item Aprendizaje no supervisado: Se parte de datos sin etiquetar para el entrenamiento de los modelos. Es decir, se parte del conocimiento de unos datos de entrada, pero no de la salida, por lo que el objetivo de los modelos no supervisados se basa en explorar posibles patrones en los datos mediante clustering.
-    \item Aprendizaje supervisado: Se manejan conjuntos de datos con un conocimiento de las posibles salidas, las cuales se proporcionan en forma de etiquetas o de valores numéricos. Las técnicas de aprendizaje supervisado buscan un función óptima que consiga, dadas unas determinadas variables o características de entrada, predecir la salida con cierta precisión y son aplicables a dos tipos de problemas: de regresión, si a partir de las variables de entrada se desea predecir un valor numérico continuo a la salida, o de clasificación, si se predefinen diferentes clases y se asignan las variables de entrada a una de ellas. 
-    \item Aprendizaje por refuerzo: Las técnicas englobadas en este tipo aprenden por prueba y error, por lo que su entrenamiento a lo largo del tiempo y la experiencia permiten optimizar los resultados sin la necesidad de disponer de un gran volumen de datos.
-\end{itemize}
+\vspace{3mm}
 
 \begin{figure}[h!]
     \centering
@@ -34,7 +30,11 @@ La rama de aprendizaje automático (\acrfull{ml}) se enfoca en el desarrollo de 
     \label{fig:ml}
 \end{figure}
 
-\vspace{3mm}
+\begin{itemize}
+    \item Aprendizaje no supervisado: Se parte de datos sin etiquetar para el entrenamiento de los modelos. Es decir, se parte del conocimiento de unos datos de entrada, pero no de la salida, por lo que el objetivo de los modelos no supervisados se basa en explorar posibles patrones en los datos mediante clustering.
+    \item Aprendizaje supervisado: Se manejan conjuntos de datos con un conocimiento de las posibles salidas, las cuales se proporcionan en forma de etiquetas o de valores numéricos. Las técnicas de aprendizaje supervisado buscan un función óptima que consiga, dadas unas determinadas variables o características de entrada, predecir la salida con cierta precisión y son aplicables a dos tipos de problemas: de regresión, si a partir de las variables de entrada se desea predecir un valor numérico continuo a la salida, o de clasificación, si se predefinen diferentes clases y se asignan las variables de entrada a una de ellas. 
+    \item Aprendizaje por refuerzo: Las técnicas englobadas en este tipo aprenden por prueba y error, por lo que su entrenamiento a lo largo del tiempo y la experiencia permiten optimizar los resultados sin la necesidad de disponer de un gran volumen de datos.
+\end{itemize}
 
 Una vez expuestas las diferentes categorías donde se engloban las técnicas de \gls{ml}, es preciso indicar que se va a centrar el estudio en el aprendizaje supervisado y, en particular, en la resolución de problemas de clasificación binaria. El motivo principal viene dado porque el objetivo que se persigue con la realización de este \gls{tfm} se basa en el desarrollo de modelos que permitan detectar y predecir posibles errores que se pueden producir en una \gls{sg} durante el proceso de distribución energética. 
 
@@ -49,45 +49,65 @@ El modelo de Bosques Aleatorios (del inglés \gls{rf}) está fundamentado en la 
 
 \vspace{3mm}
 
+El proceso de construcción de los árboles de decisión se constituye por operaciones de división que van formando nodos y ramificaciones de forma iterativa. El objetivo es lograr la mayor ganancia de información posible a través de la valoración de la importancia que presentan cada una de las características del conjunto de datos. Es decir, en cada nodo \textit{m} del árbol se cuantifica la ganancia de información que presenta cada característica y, después, se selecciona la que tenga el mayor valor (\textit{j}). Se aplica una división de los datos existentes en dos subconjuntos homogéneos de menor tamaño: \cite{rfmedium2}
+
+\[\theta = (j, t_m)\]
+\[\begin{array}{ll}
+    Q_m^{left}(\theta) = \{(x, y) | x_j \leq t_m\}\\
+    Q_m^{right}(\theta) = Q_m \setminus Q_m^{left}(\theta)
+\end{array}\]
+
+Donde:
+\begin{itemize}
+    \renewcommand{\labelitemi}{}
+    \item \( \theta \) es la operación de división en un nodo \textit{m}.
+    \item \( j\) es la característica seleccionada.
+    \item \( t_m\) es el nivel de partición de los datos.
+    \item \( Q_m^{left}\) es el subconjunto de datos en la ramificación izquierda.
+    \item \( Q_m^{right}\) es el subconjunto de datos en la ramificación derecha.
+\end{itemize}
+
+\vspace{3mm}
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1\textwidth]{img/teoria/rf.png}
+    \includegraphics[width=0.95\textwidth]{img/teoria/rf.png}
     \caption{Modelo \acrshort{rf} \cite{rfmedium}}
     \label{fig:rf}
 \end{figure}
 
 \vspace{3mm}
 
-El proceso de construcción de los árboles de decisión se constituye por operaciones de división que van formando nodos y ramificaciones de forma iterativa. El objetivo es lograr la mayor ganancia de información posible a través de la valoración de la importancia que presentan cada una de las características del conjunto de datos. Es decir, en cada nodo del árbol se cuantifica la ganancia de información que presenta cada característica y, después, se selecciona la que tenga el mayor valor para dividir los datos existentes en dos subconjuntos homogéneos de menor tamaño. Este proceso se va repitiendo en todos los nodos hasta llegar al final del árbol. En cuanto al cálculo de la ganancia de información, es preciso introducir el concepto de impureza. Este se define como el procedimiento de evaluación de la calidad de las divisiones que se producen en los nodos. En otros términos, se puede expresar que indica el nivel de ruido que hay en los datos de los subconjuntos creados. Principalmente, se pueden emplear dos métodos de medición de la impureza: \cite{rfmedium2}
+Este proceso se va repitiendo en todos los nodos hasta llegar al final del árbol y, en cuanto al cálculo de la ganancia de información, es preciso introducir el concepto de impureza. Este se define como el procedimiento de evaluación de la calidad de las divisiones que se producen en los nodos. En otros términos, se puede expresar que indica el nivel de ruido que hay en los datos de los subconjuntos creados mediante una función de impureza \textit{H()}:
+
+\vspace{3mm}
+
+\[G(Q_m, \theta) = \frac{n_m^{left}}{n_m} H(Q_m^{left}(\theta)) + \frac{n_m^{right}}{n_m} H(Q_m^{right}(\theta))\]
+
+\vspace{3mm}
+\pagebreak
+
+Tomando esto en consideración, se pueden emplear dos funciones o métodos de medición de la impureza:~\cite{rfmedium2} \cite{scikitrf}
 
 \begin{itemize}
-    \item Entropía: Mide la incertidumbre que proporciona un conjunto de datos. Por ello, supone un mayor valor cuanto mayor sea la incertidumbre calculada, siendo máxima cuando las clases estén representadas homogéneamente en el conjunto de datos. 
-    \item Gini:
+    \item Entropía: Su objetivo está orientado a establecer divisiones de los datos de forma que la entropía en los nodos inferiores o hijos sea menor que la del nodo superior o padre. Para ello, se aplica la teoría de la entropía de Shannon \cite{rfmedium2} para escoger las características que minimicen la entropía y, en consecuencia, la incertidumbre y la función de pérdidas. De forma contraria, en un nodo se obtiene una entropía máxima cuando las clases están representadas homogéneamente en el conjunto de datos.
+    \[H(Q_m) = - \sum_k p_{mk} \log(p_{mk})\]
+    \item Gini: La impureza es definida a partir del cálculo de la probabilidad de una característica determinada que es clasificada erróneamente cuando se selecciona aleatoriamente. Un índice Gini nulo expresa una clasificación pura donde todos los datos corresponden a una clase específic, en cambio, un índice Gini igual a 1, representa una distribución aleatoria de los datos.
+    \[H(Q_m) = \sum_k p_{mk} (1 - p_{mk})\]
 \end{itemize}
 
-https://scikit-learn.org/stable/modules/tree.html#tree-mathematical-formulation
-
-La medida de la impureza a partir de los métodos anteriores se calcula mediante las siguientes expresiones \cite{}:
-
-\[\begin{array}{ll}
-    \text{Entropía} & H(Q_m) = - \sum_k p_{mk} \log(p_{mk}) \\
-    \text{Gini} & \H(Q_m) = \sum_k p_{mk} (1 - p_{mk}) \\
-\end{array}\]
+Donde:
+\begin{itemize}
+    \renewcommand{\labelitemi}{}
+    \item \(p_{mk}\) es la proporción de datos de entrenamiento que pertenecen a una clase determinada.
+    \item \(H(Q_m)\) es la función de impureza.
+\end{itemize}
 
 
 \subsubsection{Support Vector Machines (\acrshort{svm})}
 \label{sec:mlsvm}
 
 El modelo de Máquinas de Vector Soporte (del inglés \gls{svm}) es una técnica que se emplea tanto en problemas de regresión como de clasificación. Se basa en el concepto del \textit{Maximal Margin Classifier} o \textit{Hard Margin Classifier}, puesto que tiene el fin principal de encontrar el hiperplano óptimo que consiga una máxima separación entre dos clases diferentes dentro de un espacio de características. Esta separación se define como margen y se mide como la distancia perpendicular que existe desde el hiperplano hacia los vectores de soporte, que son las muestras más cercanas a la frontera de separación de clases. En la Figura \ref{fig:svm} se representa el cálculo del mejor hiperplano entre dos clases de datos. \cite{svmmedium2} \cite{svmciencia}
-
-\vspace{3mm}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.65\textwidth]{img/teoria/svm.png}
-    \caption{Cuantificación del hiperplano óptimo entre dos clases en el \acrshort{svm} \cite{svmmedium2}}
-    \label{fig:svm}
-\end{figure}
 
 \vspace{3mm}
 
@@ -107,22 +127,33 @@ Por ello, se puede expresar que los vectores de soporte son los puntos más crí
 
 \vspace{3mm}
 
-No obstante, en la práctica es complicado determinar un hiperplano si no se trata de un problema ideal y basado en datos linearmente separables. Generalmente, en los casos reales si se intenta forzar un máximo margen, se pueden llegar a producir problemas de sobreentrenamiento, ya que nuevos datos pueden suponer grandes variaciones en el hiperplano. En la Figura \ref{fig:svmerror} se representa la opción alternativa que se lleva a cabo en la mayoría de casos, basada en obtener un margen máximo, permitiendo cierto grado de error (\textit{Soft Margin Classifier}). \cite{matlab} \cite{svmciencia}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.65\textwidth]{img/teoria/svm.png}
+    \caption{Cuantificación del hiperplano óptimo entre dos clases en el \acrshort{svm} \cite{svmmedium2}}
+    \label{fig:svm}
+\end{figure}
 
 \vspace{3mm}
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.55\textwidth]{img/teoria/svm2.png}
-    \caption{Representación de vectores clasificados erróneamente dentro de los márgenes establecidos en el \acrshort{svm} \cite{svmmedium}}
-    \label{fig:svmerror}
-\end{figure}
+No obstante, en la práctica es complicado determinar un hiperplano si no se trata de un problema ideal y basado en datos linearmente separables. Generalmente, en los casos reales si se intenta forzar un máximo margen, se pueden llegar a producir problemas de sobreentrenamiento, ya que nuevos datos pueden suponer grandes variaciones en el hiperplano. En la Figura \ref{fig:svmerror} se representa la opción alternativa que se lleva a cabo en la mayoría de casos, basada en obtener un margen máximo, permitiendo cierto grado de error (\textit{Soft Margin Classifier}). \cite{matlab} \cite{svmciencia}
 
 \vspace{3mm}
 
 Esto tiene como consecuencia que existan una serie de vectores clasificados de forma errónea en el plano. En este proceso se introduce el concepto de variables de holgura (\textit{slack variables}) a partir de la siguiente expresión:
 
 \[ \xi_i = \max(0, 1 - y_i (\mathbf{w} \cdot \mathbf{x}_i + b))\]
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/teoria/svm2.png}
+    \caption{Representación de vectores clasificados erróneamente dentro de los márgenes establecidos en el \acrshort{svm} \cite{svmmedium}}
+    \label{fig:svmerror}
+\end{figure}
+
+\vspace{3mm}
 
 Estas variables determinan si un vector está correctamente clasificado o si se encuentra en una zona errónea del margen o del hiperplano, respectivamente. En el caso de posición incorrecta, el valor de la variable define la distancia al margen o el error cometido:
 
@@ -147,7 +178,7 @@ El sumatorio de todas las variables de holgura que existen en el plano vienen in
 
 \vspace{3mm}
 
-Para enfrentar problemas con datos no linearmente separables, además de permitir cierto grado de error, como se ha expuesto anteriormente, es imprescindible incrementar las dimensiones del espacio original de características. En este caso se introduce el concepto de kernel como función para obtener un nuevo espacio dimensional diferente al original donde exista una mayor probabilidad de que los datos sean linearmente separables. La aplicación de los diferentes tipos de kernels se caracterizan por las siguientes expresiones:~\cite{svmciencia}~\cite{velocity}
+Además de permitir cierto grado de error como se ha expuesto anteriormente, para enfrentar problemas con datos no linearmente separables, es imprescindible incrementar las dimensiones del espacio original de características. En este caso se introduce el concepto de kernel como función para obtener un nuevo espacio dimensional diferente al original donde exista una mayor probabilidad de que los datos sí sean linearmente separables. La aplicación de los diferentes tipos de kernels que permiten las \gls{svm} se caracteriza a partir de las expresiones expuestas a continuación:~\cite{svmciencia}~\cite{velocity}
 
 \[\begin{array}{ll}
     \text{Kernel lineal: } & K(\mathbf{x}_i, \mathbf{x}_j) = \mathbf{x}_i \cdot \mathbf{x}_j\\
@@ -158,13 +189,13 @@ Para enfrentar problemas con datos no linearmente separables, además de permiti
 
 \vspace{3mm}
 
-De forma adicional, en la Figura \ref{fig:rbf} se representa cómo se produce la transformación dimensional de las características para el caso del kernel gaussiano o \gls{rbf}.
+Para obtener una mayor compresión, se representa de forma adicional la Figura \ref{fig:rbf}. En la misma se puede apreciar gráficamente cómo se produce la transformación dimensional de las características, especificando para el caso del kernel gaussiano o \gls{rbf}.
 
 \vspace{3mm}
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{img/teoria/rbf.png}
+    \includegraphics[width=0.9\textwidth]{img/teoria/rbf.png}
     \caption{Aplicación del kernel \acrshort{rbf} \cite{rbf}}
     \label{fig:rbf}
 \end{figure}
@@ -184,33 +215,36 @@ Por otro lado, a nivel estructural las diferencias entre las técnicas de \gls{m
 
 \vspace{3mm}
 
+Una vez presentada la rama de aprendizaje profundo, se introduce una Sección dedicada a la exposición del modelo de \gls{dl} que se desarrollará para lograr los objetivos de este \gls{tfm} (ver Sección \ref{sec:dlann}). 
+
+\vspace{3mm}
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.85\textwidth]{img/teoria/mlvsdl.png}
+    \includegraphics[width=0.8\textwidth]{img/teoria/mlvsdl.png}
     \caption{Diferencias estructurales entre el \acrshort{ml} y el \acrshort{dl} \cite{valohai}}
     \label{fig:features}
 \end{figure}
 
-\vspace{3mm}
-
-Una vez definida la rama de aprendizaje profundo, además de presentar las diferencias que presenta respecto a la de aprendizaje automático, se introduce una Sección dedicada a la exposición del modelo de \gls{dl} que se desarrollará como motivo del objetivo de este \gls{tfm} (ver Sección \ref{sec:dlann}). 
-
 \subsubsection{Red Neuronal Artificial (\acrshort{ann})}
 \label{sec:dlann}
 
-Las redes neuronales artificiales (\gls{ann})
+Las redes neuronales artificiales (\gls{ann}) se construyen a partir de distintas capas de nodos y conexiones que replican la estructura neuronal que tiene el cerebro humano. Como se representa en la Figura \ref{fig:ann}, se define una capa de entrada (\textit{input layer}), una o múltiples capas ocultas (\textit{hidden layer}) y una capa de salida (\textit{output layer}). El entrenamiento de la arquitectura de neuronas viene dado por las conexiones que se van estableciendo entre los nodos de las capas y los pesos y los valores de umbral que se van especificando durante el proceso. \cite{ibmann}
 
+\vspace{3mm}
 
+En otros términos, se toma cada nodo como una aplicación del modelo de regresión lineal, donde se parte de unos datos en la capa de entrada, que son ponderados con unos determinados pesos en cada capa oculta de la siguiente forma:
 
+\[z = \mathbf{w}^T \cdot \mathbf{x} + b\]
 
-% de procesamiento de información
-
-% Se modelan múltiples capas de neuronas para procesar los datos de entrada y aprender a través de un proceso iterativo de ajuste de los pesos de las conexiones entre neuronas.
-
-% Además, tiene la capacidad de identificar patrones y características más complejas en los datos, lo que puede llevar a mejores resultados en aplicaciones como el reconocimiento de voz, la visión por computadora y el procesamiento del lenguaje natural.
-
-
-
+Donde:
+\begin{itemize}
+    \renewcommand{\labelitemi}{}
+    \item \(z\) es la salida de cada capa oculta. 
+    \item \(w\) es el vector de pesos. 
+    \item \(b\) es el sesgo.
+    \item \(x\) es el vector de entrada
+\end{itemize}
 
 \vspace{3mm}
 
@@ -218,47 +252,30 @@ Las redes neuronales artificiales (\gls{ann})
     \centering
     \includegraphics[width=0.8\textwidth]{img/teoria/ann.jpg}
     \caption{Arquitectura de una \acrshort{ann} \cite{ann}}
-    \label{fig:features}
+    \label{fig:ann}
 \end{figure}
 
 \vspace{3mm}
 
+De la misma forma, en cada capa oculta se aplica una función de activación o de umbral, que impone un valor límite a la salida final del nodo en cuestión y, en consecuencia, a la entrada del nodo siguiente al que se encuentre conectado. Las funciones de activación principales que se pueden emplear se representan en la Figura \ref{fig:functions} y vienen dadas por las siguientes expresiones: \cite{factiv} \cite{functions}
 
+\[\begin{array}{ll}
+    \text{Función Sigmoidal (Logística):} & f(x) = \frac{1}{1 + e^{-x}}\\
+    \text{Función ReLU (Rectified Linear Unit):} & f(x) = \max(0, x)\\
+    \text{Función tanh (Tangente Hiperbólica):} & f(x) = \tanh(x)\\
+    \text{Función Softmax:} & \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_{j}^{ } e^{x_j}}\\
+\end{array}\]
 
+\vspace{3mm}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/teoria/functions.png}
+    \caption{Funciones de activación \cite{functions}}
+    \label{fig:functions}
+\end{figure}
 
+\vspace{3mm}
 
-
-%hablar sobre ml
-%relacionar ml con sg
-\cite{impact}
-
-
-%aqui hablar de ml para eficiencia de consumo
-
-
-%ver figura pag6 cite stab -> esquema acciones desarrollo
-
-
-
-
-
-
-
-%cite stab (para que se usan los algoritmos)
-
-% Los algoritmos de predicción se utilizan para estimar la oferta y la demanda.
-% de la red (Wang et al., 2018). En Singh y Yassine (2018), el
-% Se abordó el análisis de datos de medidores inteligentes y se propusieron tres principales
-% Aplicaciones: análisis de carga, previsión de carga y gestión de carga. El
-% Las técnicas clave para estas aplicaciones incluyen series temporales, agrupación de datos, reducción de dimensionalidad, clasificación de datos, detección de valores atípicos,
-% matriz de bajo rango y aprendizaje en línea. En Kezunovic et al. (2013), un
-% Se propuso un modelo de minería de datos inteligente que se puede utilizar para analizar,
-% predecir y visualizar patrones de consumo de series temporales de energía. A
-% La parte clave de este modelo fue el uso de "minería de patrones frecuentes"; frecuente
-% Los patrones son conjuntos de elementos que aparecen en un conjunto de datos con una frecuencia igual.
-% o más que un umbral especificado por el usuario. La minería de patrones frecuente es una
-% Herramienta de minería de datos esencial para procesar y analizar big data.
-
-
+Teniendo todo el procedimiento anterior en cuenta, se puede expresar que, a partir de una serie de características, el objetivo es escoger aquellas que contribuyan a obtener una mayor precisión en la clasificación de datos de entrada futuros. Mediante el entrenamiento progresivo de la \gls{ann}, se podrán seleccionar las más importantes y establecer las conexiones óptimas entre los nodos de las capas ocultas. Es preciso indicar que el funcionamiento del modelo se basa en una red de propagación hacia delante, lo que supone que se defina un flujo unidireccional, desde la entrada a la salida. No obstante, para ajustar las ponderaciones se aporta una retroalimentación, que depende directamente de la función de coste y de la salida del modelo en cada ejecución o \textit{epoch}. Generalmente, se aplica el método del gradiente descendiente para encontrar la configuración de pesos que minimice la función de coste. \cite{ibmann}
 

@@ -54,9 +54,7 @@ Como se ha introducido, con \gls{brite} se posibilita el uso de múltiples model
 
 En el caso del Router Waxman, como su nombre indica, emplea un modelo de probabilidad Waxman para establecer la Interconexión de los nodos en la topología \cite{brite_zegura}:
 
-\begin{align}
-    P_{\text{Waxman}}(u,v) &= \alpha \cdot e^{-\frac{d}{\beta \cdot L}}
-\end{align}
+\[P_{\text{Waxman}}(u,v) = \alpha \cdot e^{-\frac{d}{\beta \cdot L}}\]
     
     Donde:
 \begin{itemize}
@@ -69,15 +67,9 @@ En el caso del Router Waxman, como su nombre indica, emplea un modelo de probabi
 
 \vspace{3mm}
 
-Por otro lado, el modelo Router Barabasi-Albert está basado en la generación de topologías con un incremento exponencial del número de nodos a lo largo del tiempo. Además, se permite una conexión preferencial, suponiendo que cuanto mayor grado de conectividad abarque un nodo, mayor será la probabilidad de que este añada nuevos enlaces.
+Por otro lado, el modelo Router Barabasi-Albert está basado en la generación de topologías con un incremento exponencial del número de nodos a lo largo del tiempo. Además, se permite una conexión preferencial, suponiendo que cuanto mayor grado de conectividad abarque un nodo, mayor será la probabilidad de que este añada nuevos enlaces. Por lo tanto, el plano de la topología comienza con un número de nodos inicial \textit{N0} y se van añadiendo los demás uno a uno. Cada uno de estos nuevos nodos se conectará a \textit{N} nodos ya añadidos a la topología con una probabilidad \cite{brite_zegura}:
 
-\vspace{3mm}
-
-Por lo tanto, el plano de la topología comienza con un número de nodos inicial \textit{N0} y se van añadiendo los demás uno a uno. Cada uno de estos nuevos nodos se conectará a \textit{N} nodos ya añadidos a la topología con una probabilidad \cite{brite_zegura}:
-
-\begin{align}
-    P_{\text{Barabási-Albert}}(k_i) &= \frac{k_i}{\sum_{j}^{}k_j}
-\end{align}
+\[P_{\text{Barabási-Albert}}(k_i) = \frac{k_i}{\sum_{j}^{}k_j}\]
     
     Donde:
 \begin{itemize}
@@ -118,5 +110,3 @@ Teniendo en cuenta los ficheros anteriores, se proporciona un script \textit{aut
         \item Se ejecuta \textit{parser.py} para obtener a la salida los ficheros \textit{Nodos.txt} y \textit{Enlaces.txt} de cada uno de los escenarios.   
     \end{enumerate} 
 \end{enumerate}
-
-\subsubsection{Graficación de topologías}
