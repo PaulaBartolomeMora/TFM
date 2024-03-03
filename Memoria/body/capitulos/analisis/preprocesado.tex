@@ -445,8 +445,6 @@ Por lo tanto, teniendo estas condiciones y características en cuenta, se justif
 
 \subsubsection{Selección del rango temporal y procesamiento adicional}
 \label{sec:rango}
-%especificar seccion donde se comenta el rango 28-11->28-11
-
 Como se puede ver en la Figura \ref{fig:despliegue2}, aunque las 23 viviendas pertenecen al mismo despliegue y abarcan un lapso temporal parecido, se pueden visualizar ciertas diferencias entre las mismas. Esto supone que realmente cada fichero de datos de consumo tenga un número de muestras diferente, lo que perjudicaría al análisis y entrenamiento posterior. Una vez seleccionado el despliegue, se deben acotar los ficheros de datos de consumo a un mismo rango temporal en el se pueda trabajar de forma eficiente. 
 
 \vspace{3mm}
@@ -756,4 +754,18 @@ Como se realiza una operación de combinación de los datos de consumo y de prod
 \vspace{3mm}
 
 Por otro lado, en cuanto a la nomenclatura, cada fichero se nombra como \textit{load\_x.csv}, donde x hace referencia al identificador de la vivienda a la que pertenecen las cargas calculadas. Por tanto, se puede expresar que, después de toda la fase de procesado, se consigue el objetivo de obtener un dataset final compuesto por 23 ficheros con cargas, que supondrá la base principal de la operativa del algoritmo \gls{den2ne} para construir el conjunto de datos a entrenar.
+
+\vspace{3mm}
+
+Adicionalmente, a modo de simplificar la compresión de toda la secuencia de acciones que se han llevado a cabo durante la Sección \ref{sec:preprocesado}, se representa en la Figura \ref{fig:total1} el diagrama completo. En el mismo se detallan los datos de origen empleados, los \textit{notebooks} de \textit{Jupyter} creados y ejecutados en cada paso de procesamiento y los resultados en forma de nuevos ficheros .csv que derivan hasta obtener finalmente, los 23 ficheros \textit{load\_x.csv}.
+
+\vspace{8mm}
+
+\begin{sidewaysfigure}
+    \centering
+    \includegraphics[width=1\textwidth]{img/diseno/total1.png} 
+    \caption{Diagrama completo de diseño y procesamiento para la obtención de los ficheros \textit{load\_x.csv}}
+    \label{fig:total1}
+\end{sidewaysfigure}
+
 

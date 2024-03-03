@@ -2,7 +2,7 @@
 \section{Planteamiento de escenarios y generación de topologías en \acrshort{brite}}
 \label{sec:ejebrite}
 
-La presente Sección está dedicada al planteamiento de una serie de escenarios de red y a la consecuente generación de topologías mediante el empleo de la herramienta \gls{brite}, cuyo funcionamiento ha sido descrito en la Sección \ref{sec:brite}. La importancia de esta fase del diseño viene dada por la necesidad de aplicar la operativa del algoritmo \gls{den2ne} sobre un múltiples topologías para obtener, finalmente, el dataset sobre el que se entrenarán y desarrollarán los modelos de \gls{ml}. Se debe tener en cuenta que, para que este conjunto de datos final permita aportar suficiente información útil a los modelos, el número de topologías a generar en \gls{brite} debe de ser relativamente elevado.
+La presente Sección está dedicada al planteamiento de una serie de escenarios de red y a la consecuente generación de topologías mediante el empleo de la herramienta \gls{brite}, cuyo funcionamiento ha sido descrito en la Sección \ref{sec:brite}. La importancia de esta fase del diseño viene dada por la necesidad de aplicar la operativa del algoritmo \gls{den2ne} sobre múltiples topologías para obtener, finalmente, el dataset sobre el que se entrenarán y desarrollarán los modelos de \gls{ml}. Se debe tener en cuenta que, para que este conjunto de datos final permita aportar suficiente información útil a los modelos, el número de topologías a generar en \gls{brite} debe de ser relativamente elevado.
 
 \vspace{3mm}
 
@@ -23,7 +23,6 @@ Por ello, se puede expresar que el cálculo del número total de topologías que
 \end{itemize}
 
 \vspace{3mm}
-\pagebreak
 
 Adicionalmente, se deben determinar otros parámetros que hacen referencia a los nodos, como son el modo de introducción al plano y su posicionamiento. Respectivamente, se establece una introducción incremental y un posicionamiento totalmente aleatorio alrededor del plano. También, los parámetros específicos del modelo Router Waxman, $\alpha$ y $\beta$, que toman valores de 0.2 y 0.15, respectivamente.
 
@@ -44,8 +43,6 @@ alpha=0.2
 beta=0.15
 \end{lstlisting}
 
-\vspace{3mm}
-
 \subsection{Resultados de la generación de topologías}
 \label{sec:gentopo}
 
@@ -59,3 +56,24 @@ Considerando los parámetros de entrada configurados anteriormente, se puede cua
 
 Es preciso indicar que en el caso de requerirse un mayor número de topologías a simular en \gls{den2ne}, bastaría únicamente con modificar el rango establecido para el número de nodos o el valor del incremento de los mismos. No obstante, puesto que se pretende tener en cuenta para la ejecución del algoritmo el dataset resultante de la etapa de procesamiento (ver Sección \ref{sec:combinacion}), no se precisa aumentar el número de topologías a priori. Estos motivos vendrán justificados detalladamente en la Sección \ref{sec:confden2ne}, dedicada a la configuración de los parámetros de entrada de \gls{den2ne}.
 
+\vspace{3mm}
+
+De forma adicional, para observar de forma gráfica los resultados que se obtienen a la salida se representan dos ejemplos de topologías generadas en la Figura {fig:grafbrite}. Respectivamente, las gráficas obtenidas de \textit{matlab} hacen referencia al modelo Barabasi-Albert y al Waxman y presentan una configuración de 150 nodos y un grado de conectividad \textit{m}=2, que al suponer enlaces direccionales realmente toma el valor de 4. Es importante indicar que, para apreciar las diferencias existentes entre ambos modelos, se selecciona el mismo fichero de semilla (\textit{seed\_4}) para la representación.
+
+\vspace{3mm}
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{img/diseno/britebarabasi.png}
+      \label{fig:grafbrite1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{img/diseno/britewaxman.png}
+      \label{fig:grafbrite2}
+    \end{minipage}\hfill
+    \caption{Representación de diferencias de los modelos Router Barabasi-Albert y Waxman a partir de los mismos parámetros de entrada}
+    \label{fig:grafbrite}
+\end{figure}

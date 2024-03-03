@@ -1,55 +1,76 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulación de las topologías en \acrshort{den2ne}}
 
-Esta Sección viene dada por el objetivo de obtener el conjunto de datos final sobre el que se entrenarán los modelos de \gls{ml} en el Capítulo \ref{cha:desarrollo}. Para lograrlo, se necesita emplear el algoritmo \gls{den2ne} para realizar un gran número de simulaciones a partir de las topologías generadas en la herramienta \gls{brite} (ver Sección \ref{sec:ejebrite}). 
+Esta Sección viene dada por el objetivo de obtener el conjunto de datos final sobre el que se basará el desarrollo en el Capítulo \ref{cha:desarrollo}. Para lograrlo, se requiere llevar a cabo un gran número de  simulaciones en \gls{den2ne} a partir de las topologías generadas con la herramienta \gls{brite} (ver Sección \ref{sec:ejebrite}). 
 
 \vspace{3mm}
 
-En primera instancia, es imprescindible implementar una serie de modificaciones en el algoritmo \gls{den2ne} para ajustar su funcionamiento al requerido para obtener el dataset final. La secuencia de acciones que se llevará a cabo se detallará en la Sección \ref{sec:cambiosden2ne}. Es importante indicar que es en este punto donde se introducirán las cargas netas resultantes de haber combinado los datos de consumo y de producción en la etapa de procesamiento (ver Sección \ref{sec:combinacion}). De la misma forma, se detallará el método de determinación de errores en las pruebas que servirá de base para después entrenar los modelos de \gls{ml}.
+No obstante, previamente a la ejecución del algoritmo, es imprescindible implementar una serie de modificaciones en el mismo para ajustar su funcionamiento para obtener resultados de utilidad para el presente \gls{tfm}. La secuencia de acciones que se llevará a cabo se detallará en la Sección \ref{sec:cambiosden2ne}. De la misma forma, se justificará el criterio escogido para determinar cúando se producen errores en el proceso de distribución energética. Esto servirá de base para después entrenar los modelos de \gls{ml} y \gls{dl}.
 
 \vspace{3mm}
 
-Por consiguiente, se añade la Sección \ref{sec:confden2ne} donde se especificará cómo se configurarán los parámetros de entrada requeridos para lanzar múltiples simulaciones. Además, se cuantificará el número total de pruebas posibles que se podrían llegar a realizar a partir de la información procesada y de las topologías generadas. 
-
-\vspace{3mm}
-
-Se comprobará a través de diferentes pruebas que los cambios introducidos en el algoritmo \gls{den2ne} producen una operativa acorde a las necesidades de este \gls{tfm}. Por último, a partir de los resultados obtenidos en las simulaciones, se concluirá con la Sección \ref{sec:datasetfinal} para exponer las características del dataset final que se utilizará para el entrenamiento de los modelos.
-
-
-
+Por consiguiente, se añade la Sección \ref{sec:confden2ne}, donde se especificará la configuración de los parámetros de entrada de \gls{den2ne} y se cuantificará el número total de pruebas posibles que se podrían llegar a realizar a partir de las topologías generadas y de los datos reales procesados anteriormente. Se comprobará a través de diferentes pruebas que las modificaciones introducidas en el algoritmo \gls{den2ne} producen una operativa acorde a las necesidades de este \gls{tfm}. De forma concluyente, a partir de los resultados obtenidos en las simulaciones, se añadirá la Sección \ref{sec:datasetfinal}, en referencia a las características del dataset final que se utilizará para el entrenamiento de los modelos.
 
 \subsection{Adaptación del algoritmo \acrshort{den2ne} a las pruebas}
 \label{sec:cambiosden2ne}
 
+Todas las modificaciones realizadas en el funcionamiento del algoritmo \acrshort{den2ne} han sido aplicadas a partir de los ficheros contenidos en el repositorio\footnote{https://github.com/NETSERV-UAH/den2ne-Alg} del equipo de investigación NetIS de la \gls{uah}.
 
+\subsubsection{Importación de los perfiles de carga reales}
 
+La primera modificación que se debe implementar en el funcionamiento de \gls{den2ne} consiste en la importación de los valores de carga reales, obtenidos como resultado de llevar a cabo la fase de procesamiento de los datos (ver Sección \ref{sec:combinacion}). La necesidad de aplicar este paso se debe a que el algoritmo, a partir de una topología dada a la entrada, establece una función de densidad de probabilidad para determinar de forma aleatoria un valor de carga para cada uno de los nodos de una topología. Para modificar este proceso se sigue la siguiente secuencia de pasos:
 
+\begin{enumerate}
+    \item Definición de función \textit{getLoads\_Config} en \textit{dataCollector.py}: Se añade una función de recolección de las configuraciones de carga reales, pasando como argumentos el directorio definido en \textit{path\_simtests} y el fichero de pruebas \textit{sim\_file}. Después, se inicializa una variable de diccionario y se almacenan los valores de potencia generada, consumida y la diferencia calculada de ambas. Estos valores se manejan en términos de kW, puesto que \gls{den2ne} está configurado para trabajar en esta unidad.
+    \item Definición de funciones \textit{cargas} y \textit{cargas\_con\_limite} en \textit{brite\_intf.py}: Ambas funciones se encargan de aplicar los valores de carga reales, extraídos de la función anterior, a cada uno de los nodos de una topología determinada. En el caso de las simulaciones que se realizan en este \gls{tfm}, se hará uso de la primera, debido a que no se configuran límites de los valores de carga (ver Sección \ref{sec:confden2ne}). Por tanto, poniendo el foco en la función \textit{cargas}, se pasa como argumento el diccionario resultante de la función \textit{getLoads\_Config} y se extrae a partir de las claves del mismo el número de perfiles de carga (23) a manejar. De la misma forma, se pasa también como argumento el fichero de nodos, anteriormente generado con \gls{brite} y el \textit{parser}, para conocer las dimensiones que tiene la topología en cuestión. Con este dato se determina la cantidad de iteraciones que son necesarias para aplicar el valor de carga real a todos los nodos de una topología y, para cada uno de ellos, se determina de forma aleatoria uno de los 23 perfiles reales de carga. A la salida, se obtiene un nuevo diccionario con tamaño igual al número de nodos que hay en la topología y que viene constituido por la información del identificador del perfil real seleccionado y del valor de carga neta aplicada.
+    \item Definición de la variable \textit{id\_orig} en \textit{node.py}: Se añade al constructor de la clase de nodo que tiene \gls{den2ne} un nuevo elemento, en relación al identificador del perfil de carga seleccionado para un nodo en cuestión.
+    \item Introducción de la variable \textit{id\_orig} en la función \textit{buildGraph} en \textit{graph.py}: La nueva variable de nodo se incluye en el proceso de generación del grafo para mantener el conocimiento del perfil de carga que se ha seleccionado para cada nodo durante la ejecución completa del algoritmo.
+    \item Modificaciones en \textit{test\_topo.py}: El fichero dedicado a las pruebas de \gls{den2ne} debe incluir las llamadas a las funciones creadas o modificadas anteriormente. También, requiere definir los nuevos parámetros \textit{path\_simtests} y \textit{sim\_file}, en referencia a los ficheros de prueba que contienen los valores de carga, extraídos del dataset para un instante temporal determinado (ver Sección \ref{sec:datasetfinal}).
+\end{enumerate} 
 
-\subsubsection{Cargas y simtest}
-\label{sec:simtest}
-%esto lo meto aqui temporalmente para poder poner la referencia abajo
+\subsubsection{Introducción de la etiqueta de error}
+Como se había introducido en el Capítulo \ref{ch:intro}, el objetivo de este \gls{tfm} viene dado por la necesidad de poder detectar y predecir los errores que se pueden producir durante el proceso de distribución energética que realiza \gls{den2ne}. Por ello, una vez que se aplican los pasos anteriores, se debe definir el criterio de error a partir del cual se van a etiquetar los resultados extraídos del algoritmo. 
 
-%aquí va loadsamples.ipynb
+\vspace{3mm}
 
-% En otros términos, a partir de la selección de un instante temporal determinado en las pruebas, se aplicará uno de los 23 perfiles de carga disponibles de forma aleatoria a cada uno de los nodos que constituyen cada una de las topologías a probar.
+Teniendo en cuenta que para las simulaciones se configura un escenario real con pérdidas y limitación de capacidad de los enlaces (ver Sección \ref{sec:confden2ne}), se toma la decisión de establecer la condición de fallo en base a la existencia de un exceso de capacidad en un intercambio energético entre dos nodos:
 
+\begin{enumerate}
+    \item Introducción de la variable \textit{link\_overflow} en la función \textit{globalBalance} en \textit{den2neALG.py}: Para cada intercambio energético que se realiza en el proceso de distribución, se comprueba que la carga direccionada desde el nodo de origen al nodo destino no sobrepasa la capacidad del enlace que los interconecta. En caso afirmativo, se activa la variable \textit{link\_overflow} y, por el contrario, se deja con valor nulo, indicando que el intercambio se ha producido sin fallos. 
+    \item Modificación de la función \textit{getLosses} en \textit{link.py}: \gls{den2ne}, en su funcionamiento original, calcula las pérdidas del enlace a partir del valor de carga intercambiado o de la propia capacidad, en función de sobrepasarla o no. A modo de depuración y de simplificar su funcionamiento, se incluye como argumento la etiqueta \textit{link\_overflow} y se modifica la estructura de la función.
+\end{enumerate} 
 
+\subsubsection{Extracción de resultados}
+Para extraer de la ejecución del algoritmo unos resultados que contengan toda la información útil sobre la que se pueda crear el dataset final, es preciso aplicar las siguientes modificaciones:
 
-\begin{figure}[H]
+\begin{enumerate}
+    \item Definición de la función \textit{getLinkDist} en \textit{graph.py}: Se incluye una función para obtener la distancia existente entre el nodo de origen y de destino.    
+    \item Introducción de la variable \textit{data\_topo} en la función \textit{globalBalance} en \textit{den2neALG.py}: Se define el diccionario \textit{data\_topo} y, para cada intercambio energético, se almacena en el mismo la información del nodo origen y destino (etiquetas jerárquicas y longitudes de las mismas), los datos del enlace (distancia y capacidad), el valor de la etiqueta de error y la carga que se intercambia. En el caso de las longitudes de las etiquetas jerárquicas, se añaden las líneas de código necesarias en \textit{globalBalance} para extraer las mismas.
+    Modificaciones en \textit{test\_topo.py}: Se cambia la llamada a la función \textit{globalBalance} para poder extraer el diccionario \textit{data\_topo} de la misma. También, se establece la nomenclatura que tendrán los ficheros de resultados. Como se expondrá más adelante en la Sección \ref{sec:datasetfinal}, esta nomenclatura se determina en base a la información dada por el instante temporal del fichero de test y por el resto de parámetros configurados en el script de automatización de pruebas \textit{auto\_run.sh}.
+    \item Modificaciones en \textit{auto\_run.sh}: Se añaden los parámetros que hacen referencia al directorio donde se ubican los ficheros de test y a cada uno de los mismos para automatizar las pruebas (ver Sección \ref{sec:datasetfinal}).
+\end{enumerate} 
+
+\subsubsection{Configuración de la capacidad de los enlaces}
+Como paso adicional, se modifican las capacidades de los enlaces que se proporcionan por defecto en el fichero \textit{links\_config.csv}. Esto se realiza con el objetivo de que el algoritmo configure enlaces de menor capacidad con la misma probabilidad que los de mayor, puesto que este proceso es aleatorio. A modo de simplificación, se establecen los tres tipos de enlaces definidos en la Tabla \ref{tab:links}
+
+\begin{table}[h!]
     \centering
-    \includegraphics[width=0.55\textwidth]{img/diseno/dirpruebas.png}
-    \caption{nomenclatura de los directorios y ficheros de resultados}
-    \label{fig:dirpruebas}
-\end{figure}
-
-
-
-
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[HTML]{AAAAAA}
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{AAAAAA}\textit{R (ohm/km)}} & \multicolumn{1}{c|}{\cellcolor[HTML]{AAAAAA}\textit{I max (A)}} & \textit{Sección (mm²)} \\ \hline
+    0,272 & 185 & 70 \\ \hline
+    0,78 & 100 & 25 \\ \hline
+    1,91 & 53 & 10 \\ \hline
+    \end{tabular}
+    \caption{Configuraciones de enlaces de \textit{links\_config.csv}}
+    \label{tab:links}
+\end{table}
 
 \subsection{Configuración de los parámetros de entrada}
 \label{sec:confden2ne}
 
-Para ejecutar \gls{den2ne}, es preciso definir la configuración de los parámetros de entrada en el script \textit{auto\_run.sh}. En la Sección \ref{sec:den2ne} se detallaba que este script se había diseñado con el objetivo de automatizar las simulaciones en el algoritmo y, como se ha expuesto en la Sección \ref{sec:cambiosden2ne}, ha sido necesario ajustar el mismo a los requerimientos de las pruebas de este \gls{tfm}. En este punto, se puede expresar que el cálculo de la cantidad total de configuraciones que se podrían llegar a realizar en \gls{den2ne} viene dado por el producto del siguiente conjunto de características:
+Para ejecutar \gls{den2ne}, es preciso definir la configuración de los parámetros de entrada en el script \textit{auto\_run.sh}. Este script se diseña con el objetivo de automatizar las simulaciones en el algoritmo y, como se ha expuesto en la Sección \ref{sec:cambiosden2ne}, ha sido necesario ajustar el mismo a los requerimientos de las pruebas de este \gls{tfm}. El cálculo de la cantidad total de simulaciones que se pueden ejecutar en \gls{den2ne} viene dado por el producto de todas los parámetros siguientes:
 
 \begin{itemize}
     \item El número total de topologías generadas: En la Sección \ref{sec:gentopo} se especifica una cantidad total de 180 topologías obtenidas a la salida de la herramienta \gls{brite}.
@@ -85,30 +106,52 @@ Por tanto, teniendo en cuenta la configuración implementada para los parámetro
     \[\textit{Nsim} = 180 \times 8760 \times 6 \times 1 \times 1 \times 5 = 47304000\] 
 
 
-
-
-
-
-
-
-
-
-
-
 \subsection{Creación del dataset final y conclusiones de las pruebas}
 \label{sec:datasetfinal}
 
-%AQUI INTRO, 
+Teniendo en cuenta el número total de simulaciones únicas posibles calculado en la Sección \ref{sec:confden2ne}, se debe decidir qué pruebas se van a realizar en el algoritmo, puesto que es ineficiente e inviable ejecutar todas las posibilidades. Por ello, se escogen 12 instantes temporales, haciendo referencia a una hora determinada de un día al mes. Por simplificar, como el rango temporal de las muestras (ver Sección \ref{sec:rango}) comienza el 28 de noviembre de 2010, se seleccionan todos los días 28 de cada mes. De la misma forma, para la hora se escogen las 11:00. Esta decisión es debido a que a esta hora es cuando se aprecia una mayor producción energética de media, como se exponía en la Figura \ref{fig:average}. Por tanto, en los resultados de la ejecución de \gls{den2ne} se obtendrá un mayor número de intercambios energéticos con fallos, debido al exceso de capacidad del enlace. Esto es necesario para conseguir un dataset sobre el que se pueda entrenar de forma más precisa los modelos.
+
+\vspace{3mm}
+
+Con el objetivo de extraer de los ficheros finales de cargas netas \textit{load\_x.csv} (ver Sección \ref{sec:combinacion}) las filas de datos de los instantes temporales especificados, se introduce un nuevo \textit{notebook}, denominado como \textit{loadsamples.ipynb}.
+
+
+%%%%%%%%
+\vspace{3mm}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/diseno/total2.png}
+    \caption{Diagrama completo de diseño del dataset final}
+    \label{fig:total2}
+\end{figure}
+
+
 
 %formato nomenclatura, comentar division de ficheros y directorios
 
-
+%aquí va loadsamples.ipynb
   
 
-%nombrar tabla final del procesamiento \ref{tab:datacombinacion} 
+
+
+Finalmente, se puede expresar que cada experimento o prueba realizada en \gls{den2ne}, derivará en la creación de un nuevo directorio con la fecha y hora seleccionadas (ej. \textit{dataset\_exp\_2011-04-28\_11}).
+
+
+
+Como se podía apreciar en la Figura \ref{fig:dirpruebas}, cada experimento creaba un directorio con la fecha y hora determinadas (ej. \textit{dataset\_exp\_2011-04-28\_11}) y, en su interior, se generaban los diferentes ficheros de resultados, organizados por carpetas en función del modelo y el grado de conectividad al que hacían referencia (ej. \textit{barabasi-200-6}). 
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/diseno/dirpruebas.png}
+    \caption{Nomenclatura de los directorios y ficheros de resultados}
+    \label{fig:dirpruebas}
+\end{figure}
+
+
 
 %agrupación de ficheros en datafinal.ipynb
-
 Teniendo en cuenta lo anterior, se decide crear un nuevo \textit{notebook}, \textit{datafinal.ipynb}, con el fin de conseguir a la salida un conjunto de datos final por cada instante temporal especificado en las pruebas. Como se podía apreciar en la Figura \ref{fig:dirpruebas}, cada experimento creaba un directorio con la fecha y hora determinadas (ej. \textit{dataset\_exp\_2011-04-28\_11}) y, en su interior, se generaban los diferentes ficheros de resultados, organizados por carpetas en función del modelo y el grado de conectividad al que hacían referencia (ej. \textit{barabasi-200-6}). 
 
 \vspace{3mm}
@@ -168,14 +211,16 @@ Finalmente, se almacena el \textit{dataframe} limpio en un fichero con formato .
     \label{tab:datafinal}
 \end{table}
 
-Con la obtención de este conjunto de datos se finaliza la etapa de diseño y, por ende, el presente Capítulo. A partir de los resultados obtenidos, se puede expresar de forma concluyente que se cumple el objetivo principal de generar el dataset final que suponga la base del entrenamiento y el desarrollo de los modelos de \gls{ml} que se plantearán en el Capítulo \ref{cha:desarrollo}. Adicionalmente, a modo de simplificar la compresión de la secuencia de acciones que se han llevado a cabo durante este Capítulo, se representa la Figura \ref{fig:total}. En el diagrama se exponen los ficheros creados en cada paso, el tratamiento de los datos y los procesos ejecutados.
+Con la obtención de este conjunto de datos se finaliza la etapa de diseño y, por ende, el presente Capítulo. A partir de los resultados obtenidos, se puede expresar de forma concluyente que se cumple el objetivo principal de generar el dataset final que suponga la base del entrenamiento y el desarrollo de los modelos de \gls{ml} que se plantearán en el Capítulo \ref{cha:desarrollo}. 
+
+%Adicionalmente, a modo de simplificar la compresión de la secuencia de acciones que se han llevado a cabo durante este Capítulo, se representa la Figura \ref{fig:total}. En el diagrama se exponen los ficheros creados en cada paso, el tratamiento de los datos y los procesos ejecutados.
   
 \pagebreak
 
-\begin{sidewaysfigure}
-    \centering
-    \includegraphics[width=1\textwidth]{img/diseno/total.png} 
-    \caption{Diagrama completo de diseño del dataset final}
-    \label{fig:total}
-\end{sidewaysfigure}
+% \begin{sidewaysfigure}
+%     \centering
+%     \includegraphics[width=1\textwidth]{img/diseno/total.png} 
+%     \caption{Diagrama completo de diseño del dataset final}
+%     \label{fig:total}
+% \end{sidewaysfigure}
 
