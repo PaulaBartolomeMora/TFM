@@ -17,6 +17,7 @@ Por consiguiente, se añade la Sección \ref{sec:confden2ne}, donde se especific
 Todas las modificaciones realizadas en el funcionamiento del algoritmo \acrshort{den2ne} han sido aplicadas a partir de los ficheros contenidos en el repositorio\footnote{https://github.com/NETSERV-UAH/den2ne-Alg} del equipo de investigación NetIS de la \gls{uah}.
 
 \subsubsection{Importación de los perfiles de carga reales}
+\label{sec:importcarga}
 
 La primera modificación que se debe implementar en el funcionamiento de \gls{den2ne} consiste en la importación de los valores de carga reales, obtenidos como resultado de llevar a cabo la fase de procesamiento de los datos (ver Sección \ref{sec:combinacion}). La necesidad de aplicar este paso se debe a que el algoritmo, a partir de una topología dada a la entrada, establece una función de densidad de probabilidad para determinar de forma aleatoria un valor de carga para cada uno de los nodos de una topología. Para modificar este proceso se sigue la siguiente secuencia de pasos:
 
@@ -29,11 +30,7 @@ La primera modificación que se debe implementar en el funcionamiento de \gls{de
 \end{enumerate} 
 
 \subsubsection{Introducción de la etiqueta de error}
-Como se había introducido en el Capítulo \ref{ch:intro}, el objetivo de este \gls{tfm} viene dado por la necesidad de poder detectar y predecir los errores que se pueden producir durante el proceso de distribución energética que realiza \gls{den2ne}. Por ello, una vez que se aplican los pasos anteriores, se debe definir el criterio de error a partir del cual se van a etiquetar los resultados extraídos del algoritmo. 
-
-\vspace{3mm}
-
-Teniendo en cuenta que para las simulaciones se configura un escenario real con pérdidas y limitación de capacidad de los enlaces (ver Sección \ref{sec:confden2ne}), se toma la decisión de establecer la condición de fallo en base a la existencia de un exceso de capacidad en un intercambio energético entre dos nodos:
+Como se había introducido en el Capítulo \ref{ch:intro}, el objetivo de este \gls{tfm} viene dado por la necesidad de poder detectar y predecir los errores que se pueden producir durante el proceso de distribución energética que realiza \gls{den2ne}. Por ello, una vez que se aplican los pasos anteriores, se debe definir el criterio de error a partir del cual se van a etiquetar los resultados extraídos del algoritmo. Teniendo en cuenta que para las simulaciones se configura un escenario real con pérdidas y limitación de capacidad de los enlaces (ver Sección \ref{sec:confden2ne}), se toma la decisión de establecer la condición de fallo en base a la existencia de un exceso de capacidad en un intercambio energético entre dos nodos:
 
 \begin{enumerate}
     \item Introducción de la variable \textit{link\_overflow} en la función \textit{globalBalance} en \textit{den2neALG.py}: Para cada intercambio energético que se realiza en el proceso de distribución, se comprueba que la carga direccionada desde el nodo de origen al nodo destino no sobrepasa la capacidad del enlace que los interconecta. En caso afirmativo, se activa la variable \textit{link\_overflow} y, por el contrario, se deja con valor nulo, indicando que el intercambio se ha producido sin fallos. 
@@ -52,6 +49,8 @@ Para extraer de la ejecución del algoritmo unos resultados que contengan toda l
 
 \subsubsection{Configuración de la capacidad de los enlaces}
 Como paso adicional, se modifican las capacidades de los enlaces que se proporcionan por defecto en el fichero \textit{links\_config.csv}. Esto se realiza con el objetivo de que el algoritmo configure enlaces de menor capacidad con la misma probabilidad que los de mayor, puesto que este proceso es aleatorio. A modo de simplificación, se establecen los tres tipos de enlaces definidos en la Tabla \ref{tab:links}
+
+\vspace{3mm}
 
 \begin{table}[h!]
     \centering
@@ -105,19 +104,16 @@ Por tanto, teniendo en cuenta la configuración implementada para los parámetro
     \times \textit{Nescenarios} \times \textit{NNlimit} \times \textit{Nsem\_ejec}\]
     \[\textit{Nsim} = 180 \times 8760 \times 6 \times 1 \times 1 \times 5 = 47304000\] 
 
+\pagebreak 
 
 \subsection{Creación del dataset final y conclusiones de las pruebas}
 \label{sec:datasetfinal}
 
-Teniendo en cuenta el número total de simulaciones únicas posibles calculado en la Sección \ref{sec:confden2ne}, se debe decidir qué pruebas se van a realizar en el algoritmo, puesto que es ineficiente e inviable ejecutar todas las posibilidades. Por ello, se escogen 12 instantes temporales, haciendo referencia a una hora determinada de un día al mes. Por simplificar, como el rango temporal de las muestras (ver Sección \ref{sec:rango}) comienza el 28 de noviembre de 2010, se seleccionan todos los días 28 de cada mes. De la misma forma, para la hora se escogen las 11:00. Esta decisión es debido a que a esta hora es cuando se aprecia una mayor producción energética de media, como se exponía en la Figura \ref{fig:average}. Por tanto, en los resultados de la ejecución de \gls{den2ne} se obtendrá un mayor número de intercambios energéticos con fallos, debido al exceso de capacidad del enlace. Esto es necesario para conseguir un dataset sobre el que se pueda entrenar de forma más precisa los modelos.
+Teniendo en cuenta el número total de simulaciones únicas posibles calculado en la Sección \ref{sec:confden2ne}, se debe decidir qué pruebas se van a realizar en el algoritmo para construir el dataset final, puesto que es ineficiente e inviable ejecutar todas las posibilidades. Por lo tanto, se opta por escoger 12 instantes temporales, haciendo referencia a una hora determinada de un día por cada mes. 
 
 \vspace{3mm}
 
-Con el objetivo de extraer de los ficheros finales de cargas netas \textit{load\_x.csv} (ver Sección \ref{sec:combinacion}) las filas de datos de los instantes temporales especificados, se introduce un nuevo \textit{notebook}, denominado como \textit{loadsamples.ipynb}.
-
-
-%%%%%%%%
-\vspace{3mm}
+Por simplificar, como el rango temporal de las muestras (ver Sección \ref{sec:rango}) comienza el 28 de noviembre de 2010, se decide seleccionar los días 28 de cada mes. De la misma forma, para la hora se escogen las 11:00, ya que este es el momento del día en el que se aprecia una mayor producción energética de media (ver Figura \ref{fig:average}). En consecuencia, en los resultados de la ejecución de \gls{den2ne} se obtendrá un mayor número de intercambios energéticos con fallos, al existir una mayor probabilidad de exceder la capacidad de los enlaces. Esta selección es importante para conseguir un dataset final sobre el que se pueda entrenar de una forma correcta los modelos del Capítulo \ref{cha:desarrollo}. No obstante, previamente a detallar la secuencia de acciones realizadas para construir este conjunto de datos final, se debe introducir el diagrama de la Figura \ref{fig:total2} para aportar una mayor comprensión de esta Sección. 
 
 \begin{figure}[H]
     \centering
@@ -126,53 +122,50 @@ Con el objetivo de extraer de los ficheros finales de cargas netas \textit{load\
     \label{fig:total2}
 \end{figure}
 
+\vspace{3mm}
 
+Como el objetivo se basa en extraer de los ficheros finales de cargas netas \textit{load\_x.csv} (ver Sección \ref{sec:combinacion}) los datos de los instantes temporales especificados, se introduce un nuevo \textit{notebook}, denominado como \textit{loadsamples.ipynb}. A partir del mismo, se filtran los 12 instantes seleccionados y se obtienen a la salida 12 ficheros de test (ej. \textit{test\_2010-11-28\_11.csv}), los cuales serán proporcionados a la entrada del algoritmo para importar los 23 perfiles reales de carga para cada prueba. Es en este paso cuando se proceden a ejecutar las simulaciones en \gls{den2ne}. La aplicación de cada fichero de test a la entrada proporciona a la salida un nuevo directorio nombrado con el instante temporal que especifica el fichero de test en cuestión (ej. \textit{dataset\_exp\_2010-11-28\_11}). En su interior, se impone una organización de los resultados en 18 carpetas, en función del modelo y del grado de conectividad al que hacen referencia (ej. \textit{barabasi\-200\-6}). Cada una de dichas carpetas consta de 60 ficheros de resultados, que incluyen en su nombre el número de semilla, el criterio del algoritmo, el instante temporal, el grado de conectividad y el modelo (ej. \textit{dataset\_seed\_1\_cr\_0\_t\_2010\-11\-28\_11\_dg\_2\_m\_barabasi.csv}). En la Figura \ref{fig:dirnombres} se expone la nomenclatura especificada para cada uno de los directorios y ficheros de resultados.
 
-%formato nomenclatura, comentar division de ficheros y directorios
+\vspace{3mm}
 
-%aquí va loadsamples.ipynb
-  
-
-
-
-Finalmente, se puede expresar que cada experimento o prueba realizada en \gls{den2ne}, derivará en la creación de un nuevo directorio con la fecha y hora seleccionadas (ej. \textit{dataset\_exp\_2011-04-28\_11}).
-
-
-
-Como se podía apreciar en la Figura \ref{fig:dirpruebas}, cada experimento creaba un directorio con la fecha y hora determinadas (ej. \textit{dataset\_exp\_2011-04-28\_11}) y, en su interior, se generaban los diferentes ficheros de resultados, organizados por carpetas en función del modelo y el grado de conectividad al que hacían referencia (ej. \textit{barabasi-200-6}). 
-
-
-\begin{figure}[H]
+\begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{img/diseno/dirpruebas.png}
+    \begin{minipage}{0.4\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{img/diseno/dirpruebas2.png}
+      \label{fig:dirpruebas2}
+    \end{minipage}\hfill
+    \begin{minipage}{0.6\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{img/diseno/dirpruebas.png}
+      \label{fig:dirpruebas}
+    \end{minipage}\hfill
     \caption{Nomenclatura de los directorios y ficheros de resultados}
-    \label{fig:dirpruebas}
+    \label{fig:dirnombres}
 \end{figure}
 
 
+\vspace{3mm}
 
-%agrupación de ficheros en datafinal.ipynb
-Teniendo en cuenta lo anterior, se decide crear un nuevo \textit{notebook}, \textit{datafinal.ipynb}, con el fin de conseguir a la salida un conjunto de datos final por cada instante temporal especificado en las pruebas. Como se podía apreciar en la Figura \ref{fig:dirpruebas}, cada experimento creaba un directorio con la fecha y hora determinadas (ej. \textit{dataset\_exp\_2011-04-28\_11}) y, en su interior, se generaban los diferentes ficheros de resultados, organizados por carpetas en función del modelo y el grado de conectividad al que hacían referencia (ej. \textit{barabasi-200-6}). 
+Por lo tanto, se puede expresar que para cada prueba ejecutada o fichero de test a la entrada de \gls{den2ne}, se obtienen a la salida un total de 1080 ficheros de resultados. Cada uno de ellos presenta un número de filas igual a la cantidad de nodos de la topología simulada y, en consecuencia, de los intercambios energéticos realizados (100, 150 o 200 filas). 
 
 \vspace{3mm}
 
-Por ello, a modo de simplificar el tratamiento de los resultados del algoritmo, el primer paso que se implementa en el \textit{notebook} se basa en el agrupamiento en un mismo \textit{dataframe} de todos los ficheros que se han generado para un instante determinado. Después, es importante comprobar que el porcentaje total de error u \textit{overflow} dado para el instante en cuestión no es nulo. Es decir, para cada instante temporal que se pruebe, se debe conseguir un conjunto de datos que contenga algunas filas el valor \textit{overflow} activo para después, entrenar de forma precisa los modelos de \gls{ml} y poder predecir cuándo se producirán estos errores.
+Con esto, ya es posible crear el dataset final mediante un nuevo \textit{notebook}, denominado como \textit{datafinal.ipynb}. A modo de simplificar el tratamiento de los resultados del algoritmo, se agrupa primero, en un mismo \textit{dataframe} el contenido de los 1080 ficheros resultantes de cada prueba. Después, se comprueba que el porcentaje total de intercambios erróneos o con exceso de capacidad de enlace no es nulo para la prueba en cuestión. Es decir, si no se obtiene ninguna fila con la etiqueta \textit{link\_overflow} activa, no se podrán predecir errores cuando se desarrollen y se entrenen los modelos y, por ello, se debería utilizar otro instante temporal para las simulaciones.
 
 \vspace{3mm}
 
-%%%%%REVISAR!!!!!!!!!!!!!!!!!!!!!!!!!!!
-El siguiente paso consiste en combinar los datos obtenidos de los resultados con la información de las viviendas aportada en el fichero de test. Es importante recordar que este fichero de test (ej. \textit{test\_2010-11-28\_11.csv}) se creaba a partir de filtrar en el dataset resultante del procesamiento las medidas de las viviendas para un instante temporal determinado y se aplicaba a la entrada de \gls{den2ne} para definir los valores de carga (ver Sección \ref{sec:simtest}). Por ello, en este punto es combinar cada fila del \textit{dataframe} de resultados con la información real de cada vivienda en función del identificador del nodo al que se hace referencia. 
+Una vez realizada esta comprobación, la siguiente acción se basa en combinar los ficheros de resultados con el resto de medidas que proporcionan los ficheros de test. Las filas de ambos se agrupan a partir del perfil de carga configurado en el nodo origen, especificado por el valor del identificador real. Tras esta operación, el nuevo \textit{dataframe} en \textit{datafinal.ipynb} se constituye por todas las columnas de datos. En este paso es importante revisar y eliminar aquellas que están replicadas, como ocurre en el caso del identificador y la fecha. 
 
 \vspace{3mm}
 
-\begin{lstlisting}[style=Python, caption={Combinación de resultados y test}]
-df_merged = pd.merge(df, df_sim, left_on='origen_id', right_on='iid', how='outer') # Operación de merge
+\begin{lstlisting}[style=Python, caption={Combinación de ficheros de resultados y de test}]
+    df_merged = pd.merge(df, df_sim, left_on='origen_id', right_on='iid', how='outer')
 \end{lstlisting}
 
 \vspace{3mm}
 
-Tras esta operación, el nuevo \textit{dataframe} se constituye por todas las columnas necesarias, aunque antes estas se deben revisar y eliminar si vienen replicadas, como ocurre en el caso del identificador y la fecha. 
-Finalmente, se almacena el \textit{dataframe} limpio en un fichero con formato .csv, tratándose del dataset final que se empleará en la etapa de desarrollo. Este fichero contiene los campos definidos en la Tabla \ref{tab:datafinal} y sigue una nomenclatura formada por la marca de tiempo a la que hace referencia (ej. \textit{2010-12-28\_11.csv}). %%tabla para cada fecha
+Finalmente, se almacena el \textit{dataframe} ya limpio en un fichero, cuyo nombre hace referencia al instante temporal de la prueba en cuestión (ej. \textit{2010-12-28\_11.csv}). Este fichero contiene un total de 160920 filas con un valor de etiqueta de error y con toda la información respectiva a cada intercambio energético simulado. Por ello, se define como el conjunto de datos final resultante de una prueba o instante temporal determinado. Como se han ejecutado 12 pruebas, si se agrupan los 12 conjuntos finales, se puede calcular una cantidad total de 1931040 intercambios etiquetados sobre los que entrenar los modelos. De forma adicional, se añade la Tabla \ref{tab:datafinal} para exponer los campos que contienen cada uno de los conjuntos finales.
 
 \vspace{3mm}
 
@@ -211,16 +204,7 @@ Finalmente, se almacena el \textit{dataframe} limpio en un fichero con formato .
     \label{tab:datafinal}
 \end{table}
 
-Con la obtención de este conjunto de datos se finaliza la etapa de diseño y, por ende, el presente Capítulo. A partir de los resultados obtenidos, se puede expresar de forma concluyente que se cumple el objetivo principal de generar el dataset final que suponga la base del entrenamiento y el desarrollo de los modelos de \gls{ml} que se plantearán en el Capítulo \ref{cha:desarrollo}. 
+\vspace{3mm}
 
-%Adicionalmente, a modo de simplificar la compresión de la secuencia de acciones que se han llevado a cabo durante este Capítulo, se representa la Figura \ref{fig:total}. En el diagrama se exponen los ficheros creados en cada paso, el tratamiento de los datos y los procesos ejecutados.
-  
-\pagebreak
-
-% \begin{sidewaysfigure}
-%     \centering
-%     \includegraphics[width=1\textwidth]{img/diseno/total.png} 
-%     \caption{Diagrama completo de diseño del dataset final}
-%     \label{fig:total}
-% \end{sidewaysfigure}
+Con la obtención de estos 12 ficheros finaliza la etapa de diseño y, por ende, el presente Capítulo. A partir de los resultados obtenidos, se puede expresar de forma concluyente que se cumple el objetivo principal de generar un dataset completo, sobre el cual se entrenarán y desarrollarán los modelos en el Capítulo \ref{cha:desarrollo}. 
 
