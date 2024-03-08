@@ -16,6 +16,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.decomposition import PCA
 from sklearn.feature_selection import RFE, SelectKBest, chi2
 from sklearn.inspection import permutation_importance
+from sklearn.metrics import confusion_matrix, accuracy_score
 
 import time
 
@@ -49,10 +50,12 @@ X_test = sc.transform(X_test)
 ##############################################################
 
 #APLICACIÓN PCA
-
-pca = PCA(n_components=3)
-X_train_pca = pca.fit_transform(X_train)
-X_test_pca = pca.transform(X_test)
+#pca2 = PCA(n_components=2)
+pca3 = PCA(n_components=3)
+#X_train_pca2 = pca2.fit_transform(X_train)
+#X_test_pca2 = pca2.transform(X_test)
+X_train_pca3 = pca3.fit_transform(X_train)
+X_test_pca3 = pca3.transform(X_test)
 
 ##############################################################
 
@@ -69,14 +72,12 @@ X_test_fs = select_feature.transform(X_test)"""
 
 ##############################################################
 
-print("Ejecutando Clasificador")
-
-inicl = time.time()
+#inicl = time.time()
 classifier = SVC(kernel = 'rbf', random_state = 0)
-classifier.fit(X_train, y_train)
-fincl = time.time()
+#classifier.fit(X_train, y_train)
+#fincl = time.time()
 
-print("Tiempo ejecución clasificador 1: " + str(fincl-inicl)) 
+#print("Tiempo ejecución clasificador 1: " + str(fincl-inicl))  """
 
 ##############################################################
 
@@ -113,9 +114,9 @@ plt.show() """
 
 ##############################################################
 
-# Feature importance based on feature permutation
+# Feature importance based on feature permutation --> ESTO YA SE HA EJECUTADO
 
-result = permutation_importance(
+""" result = permutation_importance(
     classifier, X_test, y_test, n_repeats=5, random_state=42, n_jobs=2
 )
 
@@ -127,37 +128,86 @@ plt.ylabel('Importancia')
 plt.title('Importancia de las características del RF a partir de la permutación')
 plt.xticks(rotation=45, ha='right')
 plt.savefig('importance4.png', bbox_inches='tight')
-plt.show()
+plt.show() """
 
 ##############################################################
 
-#APLICACIÓN RFE (RFECV NO SE PUEDE CON SVC, NO TIENE ATRIBUTO feature_importances_)
+#APLICACIÓN RFE Y RFECV NO SE PUEDE CON SVC, NO TIENE ATRIBUTO feature_importances_)
 
-print("Ejecutando RFE")
+""" print("Ejecutando RFE")
 
 rfe = RFE(estimator=classifier, n_features_to_select=5, step=1)  
 rfe = rfe.fit(X_train, y_train)
 
 print('Ranking de features :', rfe.ranking_)
-print('Mejores features :', X.columns[rfe.support_])
+print('Mejores features :', X.columns[rfe.support_]) """
+
+
+
+
+
+
 
 
 ##############################################################
+##############################################################
+##############################################################
+
+""" ##CM
+y_pred = classifier.predict(X_test)
+cm = confusion_matrix(y_test, y_pred)
+print(cm) 
+accuracy_score(y_test, y_pred)
 
 ##K-FOLD
-
 accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
-
 print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
-print("Standard Deviation: {:.2f} %".format(accuracies.std()*100)) 
-
-classifier.fit(X_train_pca, y_train) 
-accuracies = cross_val_score(estimator = classifier, X = X_train_pca, y = y_train, cv = 10)
-
-print("Accuracy PCA: {:.2f} %".format(accuracies.mean()*100))
-print("Standard Deviation PCA: {:.2f} %".format(accuracies.std()*100)) 
+print("Standard Deviation: {:.2f} %".format(accuracies.std()*100)) """
 
 ##############################################################
+
+""" ##CM
+y_pred = classifier.predict(X_test_pca2)
+cm = confusion_matrix(y_test, y_pred)
+print(cm) 
+accuracy_score(y_test, y_pred)
+
+inicl = time.time()
+classifier.fit(X_train_pca2, y_train) 
+fincl = time.time()
+print("Tiempo ejecución clasificador 2: " + str(fincl-inicl)) 
+
+##K-FOLD
+accuracies = cross_val_score(estimator = classifier, X = X_train_pca2, y = y_train, cv = 10)
+print("Accuracy PCA 2: {:.2f} %".format(accuracies.mean()*100))
+print("Standard Deviation PCA 2: {:.2f} %".format(accuracies.std()*100))  """
+
+##############################################################
+
+y_pred = classifier.predict(X_test_pca3)
+cm = confusion_matrix(y_test, y_pred)
+print(cm) 
+accuracy_score(y_test, y_pred)
+
+""" inicl = time.time()
+classifier.fit(X_train_pca3, y_train) 
+fincl = time.time()
+print("Tiempo ejecución clasificador 3: " + str(fincl-inicl)) 
+
+accuracies = cross_val_score(estimator = classifier, X = X_train_pca3, y = y_train, cv = 10)
+print("Accuracy PCA 3: {:.2f} %".format(accuracies.mean()*100))
+print("Standard Deviation PCA 3: {:.2f} %".format(accuracies.std()*100))  """
+
+##############################################################
+##############################################################
+##############################################################
+
+
+
+
+
+
+
 
 ##GRID SEARCH
 

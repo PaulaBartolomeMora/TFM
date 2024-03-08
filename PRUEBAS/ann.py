@@ -28,11 +28,16 @@ df = pd.concat(dfs, ignore_index=True)
 
 modelo = df.iloc[:, 8].values 
 modelo = LabelEncoder().fit_transform(modelo) #codificación del modelo
-df = df.drop(df.columns[8], axis=1) #se elimina la antigua con los strings del modelo
-df['modelo'] = modelo #se añade la nueva codificada al final
+datetime = df.iloc[:, 14].values 
+datetime = LabelEncoder().fit_transform(datetime) #codificación del datetime
+
+df = df.drop(df.columns[8], axis=1) 
+df['modelo'] = modelo 
+df = df.drop(df.columns[14], axis=1)
+df['datetime'] = datetime 
 
 X = df.iloc[:, 1:] 
-X = X.drop(['datetime', 'timestamp', 'load', 'DC Array Output (W)' , 'Pavg', 'dif'], axis=1)
+X = X.drop(['timestamp', 'load', 'DC Array Output (W)' , 'Pavg', 'dif'], axis=1)
 y = df.iloc[:, 0].values #valores de overflow
 
 ##############################################################
@@ -54,7 +59,7 @@ def ann():
         
         #Adding the second hidden layer
         #mismo valor que arriba
-        keras.layers.Dense(7, activation='tanh'),
+        keras.layers.Dense(7, activation='relu'),
         
         #Adding the output layer -> 1 salida: 0 o 1
         #*si no es salida binaria, se indica el número de posibles salidas y activation='softmax'
@@ -65,13 +70,13 @@ def ann():
     #los parámetros son los pesos
 
     inicl = time.time()
-    model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-    History = model.fit(X_train, y_train, batch_size = 50, epochs = 20)
+    model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'], verbose=0)
+    History = model.fit(X_train, y_train, batch_size, epochs)
     fincl = time.time()
 
 ##############################################################
 
-    plt.figure(figsize=(10, 4))
+    """plt.figure(figsize=(10, 6))
     plt.plot(History.history['loss'])
     plt.title('Evolución de la función de pérdidas')
     plt.ylabel('Pérdidas')
@@ -79,19 +84,20 @@ def ann():
     plt.savefig('loss.png', bbox_inches='tight')
     plt.show()
 
-    plt.figure(figsize=(10, 4))
+    plt.figure(figsize=(10, 6))
     plt.plot(History.history['accuracy'])
     plt.title('Evolución de la precisión')
     plt.ylabel('Precisión')
     plt.xlabel('Epochs')
     plt.savefig('accuracy.png', bbox_inches='tight')
-    plt.show()
+    plt.show() """
 
 ##############################################################
 
     test_loss, test_accuracy = model.evaluate(X_test, y_test)
 
     y_pred = model.predict(X_test)
+    y_pred = (y_pred > 0.5) #solución problema binario
     cm = confusion_matrix(y_test, y_pred)
     print(cm)
     accuracy_score(y_test, y_pred)
@@ -106,19 +112,22 @@ def ann():
 m,inicl,fincl = ann()
 model = KerasClassifier(build_fn=ann)
 
+"""
 parameters = {
     'hidden_layer_sizes': [(5,5,1), (6,6,1), (7,7,1), (8,8,1)],
     'batch_size': [20, 50, 80],
-    'epochs': [10, 30, 50],
+    'epochs': [10, 20, 30, 40, 50],
     'activation': ['sigmoid', 'tanh', 'relu'],
-}
+}"""
 
+
+"""
 processors = 32
 cv = 5 
 combos = 1
 
 for i in parameters:
-    for j in i.values():
+    for j in i:
         combos *= len(j)
 
 num_models = combos * cv / processors 
@@ -126,24 +135,33 @@ seconds = num_models * (fincl-inicl)
 minutes = seconds / 60
 hours = minutes / 60
 
-print("{:.6f}".format(hours), "| {:.6f}".format(minutes), "| {:.6f}".format(seconds))
+print("{:.6f}".format(hours), "| {:.6f}".format(minutes), "| {:.6f}".format(seconds))"""
 
 ##############################################################
 
 inigs = time.time()
 
+batch_size = [20, 50, 80]
+epochs = [10, 30, 50]
+parameters = dict(batch_size=batch_size, epochs=epochs)
+
 grid_search = GridSearchCV(estimator = model,
                            param_grid = parameters,
                            scoring = 'accuracy',
                            cv = 5,
-                           n_jobs = -1)
+                           n_jobs = 1)
 
 grid_search.fit(X_train, y_train)
 
 fings = time.time()
 
-best_accuracy = grid_search.best_score_
-best_parameters = grid_search.best_params_
-print("Best Accuracy: {:.2f} %".format(best_accuracy*100))
-print("Best Parameters:", best_parameters)
+print("Precisión: %f con parámetros %s" % (grid_search.best_score_, grid_search.best_params_))
 print("Tiempo ejecución grid search: " + str(fings-inigs))
+
+for mean, std, param in zip(grid_search.cv_results_['mean_test_score'], 
+                            grid_search.cv_results_['std_test_score'], 
+                            grid_search.cv_results_['params']):
+    print("%f || %f --- %r" % (mean, std, param)) 
+    
+    
+#activation = ['softmax', 'softplus', 'softsign', 'relu', 'tanh', 'sigmoid', 'hard_sigmoid', 'linear']
