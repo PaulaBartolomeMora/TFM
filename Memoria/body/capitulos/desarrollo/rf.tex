@@ -1,26 +1,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Random Forest (\acrshort{rf})}
+\subsection{Random Forest (\acrshort{rf})}
 \label{sec:rf}
 
+\subsubsection{Diseño y ejecución del modelo de prueba}
+\label{sec:rf1}
 
+En primera instancia, antes de proceder a desarrollar cualquier modelo a partir de la técnica \gls{rf}, se debe concatenar en un mismo \textit{dataframe} el contenido de los 12 ficheros resultantes del Capítulo \ref{cha:analisis}. Esta agrupación, como se indicaba en la Sección \ref{sec:datasetfinal}, se abarca una cantidad total de 1931040 filas o intercambios etiquetados sobre los que entrenar los modelos. 
 
-https://www.analyticsvidhya.com/blog/2021/10/an-introduction-to-random-forest-algorithm-for-beginners/
-%se podria indicar aqui que criterio y que modelo (bara,wax) da mas problemas
+\vspace{3mm}
 
+A partir de este conjunto de datos, se lleva a cabo un paso necesario de tratamiento de las características que contienen datos categóricos. Particularmente, se observa que la columna 'modelo' puede tomar dos valores en formato \textit{string}: 'barabasi' o 'waxman', en función del modelo de topología empleado. Ocurre de la misma forma para la fecha, la cual permite 12 posibles cadenas, al haberse probado 12 instantes temporales. Por ello, para poder manejar los datos proporcionados por ambas columnas, se requiere aplicar una transformación a valores numéricos mediante el método \textit{LabelEncoder}. Después, se añaden al \textit{dataframe} las nuevas columnas con los valores codificados y se desechan las originales.
 
-%dibujar topo link con errores
+\vspace{3mm}
 
-% Please find below these metrics formulas (TP = # True Positives, TN = # True Negatives, FP = # False Positives, FN = # False Negatives):
+\begin{lstlisting}[style=Python, caption={Codificación de la columna 'modelo'}]
+modelo = LabelEncoder().fit_transform(modelo) 
+\end{lstlisting}
 
-% Accuracy = (TP + TN) / (TP + TN + FP + FN)
+\vspace{3mm}
 
-% Precision = TP / (TP + FP)
-
-% Recall = TP / (TP + FN)
-
-% F1 Score = 2 * Precision * Recall / (Precision + Recall)
-
-
+Por consiguiente, se analiza el resto de características del conjunto de datos (ver Tabla \ref{tab:datafinal}).
 
 %%pasos
 
@@ -34,4 +33,49 @@ https://www.analyticsvidhya.com/blog/2021/10/an-introduction-to-random-forest-al
 
 % Predicción: Una vez que se han construido todos los árboles, para hacer una predicción para una nueva instancia (en el caso de clasificación) o una nueva observación (en el caso de regresión), se pasa a través de cada árbol en el bosque y se obtiene una predicción. En el caso de clasificación, la predicción final puede ser la clase más frecuente entre todos los árboles (votación) y, en el caso de regresión, la predicción final puede ser el promedio de todas las predicciones de los árboles.
 
+%aquí tree foto
+
+\subsubsection{Puntuación de características}
+
 % Importancia de las características: Además de hacer predicciones, Random Forest también proporciona una medida de la importancia de las características. Esta medida se calcula evaluando cuánto disminuye la precisión del modelo cuando se permutan los valores de una característica mientras se mantienen constantes todas las demás características. Las características que causan una mayor disminución en la precisión se consideran más importantes.
+
+\subsubsection{Optimización de hiperparámetros}
+
+%%gird search tiempo
+%https://datascience.stackexchange.com/questions/29495/how-to-estimate-gridsearchcv-computing-time
+
+\subsubsection{Selección de características}
+
+\subsubsection{Ejecución y validación de los modelos}
+
+% Please find below these metrics formulas (TP = # True Positives, TN = # True Negatives, FP = # False Positives, FN = # False Negatives):
+
+% Accuracy = (TP + TN) / (TP + TN + FP + FN)
+
+% Precision = TP / (TP + FP)
+
+% Recall = TP / (TP + FN)
+
+% F1 Score = 2 * Precision * Recall / (Precision + Recall)
+
+
+
+
+
+%%%%%%%
+
+
+%calcular correlacion
+%https://www.kaggle.com/code/saharnazhaji/solar-power-ml
+
+
+%https://www.analyticsvidhya.com/blog/2021/10/an-introduction-to-random-forest-algorithm-for-beginners/
+%se podria indicar aqui que criterio y que modelo (bara,wax) da mas problemas
+
+
+%dibujar topo link con errores
+
+
+
+
+

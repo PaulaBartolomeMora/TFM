@@ -1,22 +1,43 @@
 \chapter{Desarrollo y evaluación del modelo}
 \label{cha:desarrollo}
 
-% intro
-%En este capítulo, se abordará el desarrollo del protocolo en la plataforma seleccionada, destacando las partes más relevantes del proceso. Además, se realizará una evaluación para analizar su funcionamiento de manera funcional. El objetivo principal de este capítulo es presentar el resultado del desarrollo realizado, mostrando cómo se ha implementado el protocolo en el entorno seleccionado para el proyecto. Se destacarán aquellas etapas del desarrollo que se consideran de mayor importancia debido a su impacto en el rendimiento y la efectividad del protocolo.\\
-%\\
-%Se comenzará describiendo detalladamente la arquitectura y los componentes del protocolo, explicando su funcionamiento en el contexto de la plataforma elegida. Se hará especial hincapié en los aspectos clave que diferencian al protocolo y que lo hacen una solución innovadora en el ámbito del control in-band para entornos de IoT. A continuación, se presentará el proceso de implementación, resaltando los desafíos y decisiones clave que se han enfrentado durante el desarrollo. Se discutirán las técnicas y algoritmos utilizados para lograr la funcionalidad deseada, asegurando una comprensión clara de la implementación realizada. Posteriormente, se llevará a cabo una evaluación del protocolo desarrollado. Esta evaluación permitirá obtener una visión clara y objetiva del rendimiento del protocolo, proporcionando una base sólida para la toma de decisiones y posibles mejoras futuras. Se presentarán los resultados obtenidos y se discutirán las implicaciones y conclusiones derivadas de ellos.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{body/capitulos/desarrollo/selmodelos}
+En este capítulo, se abordará el desarrollo de los diferentes modelos de predicción de errores y el consecuente entrenamiento de los mismos. Para ello, se tomará como base el conjunto de datos resultante del Capítulo \ref{cha:analisis} y, específicamente, de la Sección \ref{sec:datasetfinal} (ver Tabla \ref{tab:datafinal}).
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{3mm}
+
+La organización del presente capítulo se compone de dos partes diferenciadas en función de la naturaleza del aprendizaje que caracteriza a los modelos. Por un lado, se expondrán las técnicas de \gls{ml} empleadas para resolver la clasificación y predicción de errores (ver Sección \ref{sec:tecnicasml}). En el caso de este \gls{tfm}, se pone el foco en las técnicas \gls{rf} y \gls{svm}, cuyo funciomaniento fue descrito en las Secciones \ref{sec:mlrf} y \ref{sec:mlsvm}. Por otro lado, se realizará de la misma forma para las técnicas de \gls{dl} (ver Sección \ref{sec:tecnicasdl}). En particular, se detallará la configuración y la implementación de varias \gls{ann}s.
+
+\vspace{3mm}
+
+Ambas Secciones comentadas se dividirán internamente, en base a la secuencia de pasos que se requieren para llevar a cabo el desarrollo completo de cada una de las técnicas. Finalmente, se obtendrán una serie de resultados, que serán analizados y contrastados. En función de su precisión, se podrá determinar de forma concluyente qué modelo aporta una mayor efectividad en el diagnóstico y predicción de errores en una \gls{sg}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Técnicas de \gls{ml}}
+\label{sec:tecnicasml}
+
+Teniendo en cuenta que los objetivos del presente \gls{tfm} se basan en la resolución de un problema de clasificación de errores, se toma la decisión de emplear \gls{rf} y \gls{svm}, como técnicas de aprendizaje supervisado. Para desarrollar diversos modelos en base a ambas, se requiere establecer la  secuencia de acciones a seguir: 
+
+\begin{enumerate}
+    \item Diseño y ejecución del modelo de prueba: Se desarrolla una primera versión por defecto de la técnica de clasificación para probar su funcionamiento. En este modelo de prueba se parte del conjunto de datos completo y de todas sus características, a excepción de las que hacen referencia a los valores de potencia, como se detallará más adelante (ver Sección \ref{sec:rf1}). 
+    \item Puntuación de características: A partir de la ejecución del modelo de prueba, se puede apreciar qué características presentan mayor importancia en el proceso de clasificación, en base a la aplicación de varios métodos. 
+    \item Optimización de hiperparámetros: Mediante la aplicación del método \textit{Grid Search}, se busca la mejor combinación de hiperparámetros de cada técnica para que los modelos resultantes proporcionen un rendimiento óptimo. 
+    \item Selección de características: Una vez conocidos los hiperparámetros óptimos, se utilizan varias metodologías de selección de características para diseñar los nuevos modelos a partir de un número reducido de las mismas.
+    \item Ejecución y validación de los modelos: Se extraen y se analizan los resultados de ejecución de todos los modelos anteriores. Se validan en base a la precisión obtenida mediante la creación de la matriz de confusión y de la aplicación de la técnica \textit{K-Fold Cross Validation}.
+\end{enumerate}
+
+Los pasos anteriores serán detallados posteriormente en las Secciones \ref{sec:rf} y \ref{sec:svm}. Es preciso indicar que se implementan dos nuevos \textit{notebooks}, \textit{rf.ipynb} y \textit{svm.ipynb}, para desarrollar los modelos de \gls{rf} y \gls{svm}, respectivamente. Principalmente, el diseño de los mismos tendrá como base el empleo de diferentes métodos proporcionados por la biblioteca de software de código abierto \textit{scikit-learn} o \textit{sklearn}, además de otras librerías imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{matplotlib} o \textit{seaborn}.
+
+
 \input{body/capitulos/desarrollo/rf}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{body/capitulos/desarrollo/svm}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Técnicas de \gls{dl}}
+\label{sec:tecnicasdl}
+
+De la misma forma que se ha realizado para las técnicas de \gls{ml}, se debe indicar la secuencia de acciones a seguir en esta Sección referente al \gls{dl}. No obstante, antes que nada, es necesario volver a la Figura \ref{fig:features}, expuesta en la Sección \ref{sec:dl}. En la misma, se podían apreciar las diferencias estructurales que presentan las técnicas de \gls{ml} y de \gls{dl} entre sí. Como estas radican principalmente en el tratamiento de las características del conjunto de datos, para proceder al desarrollo de los diferentes modelos que se exponen en esta Sección, se deben eliminar los pasos de puntuación y selección comentados en la Sección \ref{sec:tecnicasml} (pasos 2 y 4). En cuanto al resto de la secuencia de acciones, se mantiene en el mismo orden.
+
 \input{body/capitulos/desarrollo/ann}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

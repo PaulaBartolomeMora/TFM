@@ -144,14 +144,13 @@ Como el objetivo se basa en extraer de los ficheros finales de cargas netas \tex
     \label{fig:dirnombres}
 \end{figure}
 
+\vspace{3mm}
+
+Por lo tanto, se puede expresar que para cada prueba ejecutada o fichero de test a la entrada de \gls{den2ne}, se obtienen a la salida un total de 1080 ficheros de resultados. Cada uno de ellos presenta un número de filas igual a la cantidad de nodos de la topología simulada, o expresado de otra forma, igual al total de intercambios energéticos realizados (100, 150 o 200 filas). Con esto, ya es posible crear el dataset final mediante un nuevo \textit{notebook}, denominado como \textit{datafinal.ipynb}. A modo de simplificar el tratamiento de los resultados del algoritmo, se agrupa primero, en un mismo \textit{dataframe} el contenido de los 1080 ficheros resultantes de cada prueba. 
 
 \vspace{3mm}
 
-Por lo tanto, se puede expresar que para cada prueba ejecutada o fichero de test a la entrada de \gls{den2ne}, se obtienen a la salida un total de 1080 ficheros de resultados. Cada uno de ellos presenta un número de filas igual a la cantidad de nodos de la topología simulada y, en consecuencia, de los intercambios energéticos realizados (100, 150 o 200 filas). 
-
-\vspace{3mm}
-
-Con esto, ya es posible crear el dataset final mediante un nuevo \textit{notebook}, denominado como \textit{datafinal.ipynb}. A modo de simplificar el tratamiento de los resultados del algoritmo, se agrupa primero, en un mismo \textit{dataframe} el contenido de los 1080 ficheros resultantes de cada prueba. Después, se comprueba que el porcentaje total de intercambios erróneos o con exceso de capacidad de enlace no es nulo para la prueba en cuestión. Es decir, si no se obtiene ninguna fila con la etiqueta \textit{link\_overflow} activa, no se podrán predecir errores cuando se desarrollen y se entrenen los modelos y, por ello, se debería utilizar otro instante temporal para las simulaciones.
+Después, se comprueba que el porcentaje total de intercambios erróneos o con exceso de capacidad de enlace no es nulo para la prueba en cuestión. Es decir, si no se obtiene ninguna fila con la etiqueta \textit{link\_overflow} activa, no se podrán predecir errores cuando se desarrollen y se entrenen los modelos y, por ello, se debería utilizar otro instante temporal para las simulaciones. 
 
 \vspace{3mm}
 
@@ -168,6 +167,8 @@ Una vez realizada esta comprobación, la siguiente acción se basa en combinar l
 Finalmente, se almacena el \textit{dataframe} ya limpio en un fichero, cuyo nombre hace referencia al instante temporal de la prueba en cuestión (ej. \textit{2010-12-28\_11.csv}). Este fichero contiene un total de 160920 filas con un valor de etiqueta de error y con toda la información respectiva a cada intercambio energético simulado. Por ello, se define como el conjunto de datos final resultante de una prueba o instante temporal determinado. Como se han ejecutado 12 pruebas, si se agrupan los 12 conjuntos finales, se puede calcular una cantidad total de 1931040 intercambios etiquetados sobre los que entrenar los modelos. De forma adicional, se añade la Tabla \ref{tab:datafinal} para exponer los campos que contienen cada uno de los conjuntos finales.
 
 \vspace{3mm}
+
+Con la obtención de estos 12 ficheros finaliza la etapa de diseño y, por ende, el presente Capítulo. A partir de los resultados obtenidos, se puede expresar de forma concluyente que se cumple el objetivo principal de generar un dataset completo, sobre el cual se entrenarán y desarrollarán los modelos en el Capítulo \ref{cha:desarrollo}. 
 
 \begin{table}[h!]
     \centering
@@ -204,7 +205,4 @@ Finalmente, se almacena el \textit{dataframe} ya limpio en un fichero, cuyo nomb
     \label{tab:datafinal}
 \end{table}
 
-\vspace{3mm}
-
-Con la obtención de estos 12 ficheros finaliza la etapa de diseño y, por ende, el presente Capítulo. A partir de los resultados obtenidos, se puede expresar de forma concluyente que se cumple el objetivo principal de generar un dataset completo, sobre el cual se entrenarán y desarrollarán los modelos en el Capítulo \ref{cha:desarrollo}. 
 
