@@ -30,6 +30,7 @@ La primera modificación que se debe implementar en el funcionamiento de \gls{de
 \end{enumerate} 
 
 \subsubsection{Introducción de la etiqueta de error}
+\label{sec:etierror}
 Como se había introducido en el Capítulo \ref{ch:intro}, el objetivo de este \gls{tfm} viene dado por la necesidad de poder detectar y predecir los errores que se pueden producir durante el proceso de distribución energética que realiza \gls{den2ne}. Por ello, una vez que se aplican los pasos anteriores, se debe definir el criterio de error a partir del cual se van a etiquetar los resultados extraídos del algoritmo. Teniendo en cuenta que para las simulaciones se configura un escenario real con pérdidas y limitación de capacidad de los enlaces (ver Sección \ref{sec:confden2ne}), se toma la decisión de establecer la condición de fallo en base a la existencia de un exceso de capacidad en un intercambio energético entre dos nodos:
 
 \begin{enumerate}

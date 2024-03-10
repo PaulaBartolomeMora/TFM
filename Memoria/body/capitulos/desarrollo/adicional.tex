@@ -1,0 +1,46 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Preparación al desarrollo}
+\label{sec:adicional}
+
+En primera instancia, antes de proceder a desarrollar cualquier modelo, se debe concatenar en un mismo \textit{dataframe} el contenido de los 12 ficheros resultantes del Capítulo \ref{cha:analisis}. Esta agrupación, como se indicaba en la Sección \ref{sec:datasetfinal}, se abarca una cantidad total de 1931040 filas o intercambios etiquetados sobre los que entrenar los modelos. 
+
+\vspace{3mm}
+
+A partir de este conjunto de datos, como se pretende resolver un problema supervisado de clasificación, se deben seleccionar las características dependientes (\textit{X}), que suponen todas las columnas, exceptuando la referente a la etiqueta de error, 'overflow', que es la característica independiente (\textit{y}). Después, se lleva a cabo un paso necesario de tratamiento de aquellas características que contienen datos categóricos. Particularmente, se observa que la columna 'modelo' puede tomar dos valores en formato \textit{string}: 'barabasi' o 'waxman', en función del modelo de topología empleado. Ocurre de la misma forma para la fecha, la cual permite 12 posibles cadenas, al haberse probado 12 instantes temporales. Por ello, para poder manejar los datos proporcionados por ambas columnas, se requiere aplicar una transformación a valores numéricos mediante el método \textit{LabelEncoder}. Después, se añaden al \textit{dataframe} las nuevas columnas con los valores codificados y se desechan las originales.
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Codificación de los datos categóricos}]
+  modelo = LabelEncoder().fit_transform(modelo) 
+  datetime = LabelEncoder().fit_transform(datetime) 
+\end{lstlisting}
+
+\vspace{3mm}
+
+Por consiguiente, se procede a analizar el resto de características del conjunto de datos (ver Tabla \ref{tab:datafinal}) y se toma la decisión de eliminar las columnas que hacen referencia a los diferentes valores de potencia (consumida, producida, carga neta), además de la marca de tiempo. Se aplica este paso por el motivo de que la condición de etiquetado de error en cada intercambio energético viene dada por el exceso de capacidad del enlace. Es decir, como se exponía en la Sección \ref{sec:etierror}, en la ejecución de las simulaciones en \gls{den2ne} se comprueba si cada valor de potencia que se intercambia entre dos nodos supera la capacidad del enlace que los une para activar la etiqueta. Como consecuencia, no sería correcto entrenar los modelos que se desarrollen en este Capítulo con los datos de potencia, puesto que se estaría reduciendo el análisis a los mismos y, por tanto, la clasificación y la predicción de errores. Esto produciría un \textit{overfitting} o sobreajuste de los modelos y los volvería ineficientes para cumplir los objetivos de este \gls{tfm}.
+
+\vspace{3mm}
+
+Tras los pasos anteriores de tratamiento y limpieza, ya se puede configurar el conjunto de datos y dividirlo en dos subconjuntos: uno se toma como entrada para entrenar el modelo (\textit{X\_train}, \textit{y\_train}) y otro, se trata como subconjunto de test para evaluar su funcionamiento (\textit{X\_test}, \textit{y\_test}). Se establece un tamaño de este último del 20\% del total del conjunto de datos.
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Codificación de los datos categóricos}]
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+\end{lstlisting}
+
+\vspace{3mm}
+
+Es importante en este punto estandarizar los datos para asegurar que todas las características poseen la misma escala. Para ello, se aplica el método \textit{StandardScaler} y se llevan a cabo dos acciones dedicadas al ajuste y a la transformación de los datos. Aunque la transformación del escalado se produce sobre los dos subconjuntos, el ajuste viene dado únicamente por los valores de promedio y de desviación estándar del subconjunto de entrenamiento. No se utiliza el de test para ello, puesto que se debe mantener ambos subconjuntos totalmente separados en este proceso. En otros términos, realizar el ajuste a partir de los datos del subconjunto de test podría llevar al \textit{overfitting} o sobreajuste de los modelos. Además, no se produciría una evaluación imparcial porque se estaría operando sobre "predicciones futuras".
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Estandarización de los subconjuntos}]
+  sc = StandardScaler() 
+  X_train = sc.fit_transform(X_train)
+  X_test = sc.transform(X_test)
+\end{lstlisting}
+
+\vspace{3mm}
+
+Una vez se estandarizan los subconjuntos de entrenamiento y de test, se concluye esta etapa de procesamiento adicional para poder comenzar a diseñar los modelos derivados de las técnicas de \gls{ml} y \gls{dl}.

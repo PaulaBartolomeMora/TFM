@@ -5,12 +5,28 @@
 
 
 
-\subsubsection{Diseño y ejecución del modelo de prueba}
 
 
 \subsubsection{Puntuación de características}
 
 \subsubsection{Optimización de hiperparámetros}
+
+
+
+
+%%gird search tiempo
+%https://datascience.stackexchange.com/questions/29495/how-to-estimate-gridsearchcv-computing-time
+
+
+
+% The parameters of the estimator used to apply these methods are optimized by cross-validated grid-search over a parameter grid.
+
+%  Los hiperparámetros son configuraciones que no se aprenden directamente del proceso de entrenamiento del modelo y que afectan la estructura y el rendimiento del mismo. 
+
+% La optimización de hiperparámetros implica encontrar la combinación óptima de valores para estos hiperparámetros que maximice el rendimiento del modelo en un conjunto de datos dado. Esto puede lograrse mediante técnicas como búsqueda exhaustiva, búsqueda aleatoria, optimización bayesiana o algoritmos de aprendizaje automático basados en modelos (como Grid Search, Random Search, Bayesian Optimization, entre otros).
+
+% Optimizar los hiperparámetros de un Random Forest puede conducir a modelos más precisos, robustos y generalizables. Sin embargo, debido a la complejidad y dimensionalidad del espacio de búsqueda de hiperparámetros, es importante realizar esta optimización de manera eficiente para evitar el sobreajuste y el consumo excesivo de recursos computacionales.
+
 
 
 % C a fin de cuentas el hiperparámetro encargado de controlar el balance entre bias y varianza del modelo. En la práctica, su valor óptimo se identifica mediante validación cruzada. Esta es la razón por la que el parámetro  C controla el balance entre bias y varianza lo que permite un ajuste adecuado del modelo. 
@@ -25,5 +41,14 @@
 %https://datascience.stackexchange.com/questions/29495/how-to-estimate-gridsearchcv-computing-time
 
 \subsubsection{Selección de características}
+
+%hablar del coste computacional
+% Reducción de la dimensionalidad: En muchos casos, los conjuntos de datos contienen una gran cantidad de características, algunas de las cuales pueden no contribuir significativamente a la capacidad predictiva del modelo. La selección de características ayuda a reducir la dimensionalidad del espacio de características, lo que puede mejorar la eficiencia computacional y reducir el riesgo de sobreajuste.
+
+% Interpretación y comprensión del modelo: Al seleccionar un subconjunto relevante de características, el modelo resultante puede ser más interpretable y comprensible para los humanos. Esto es especialmente importante en aplicaciones donde se requiere transparencia y explicabilidad del modelo, como en la medicina o el derecho.
+
+% Menor riesgo de sobreajuste: La inclusión de características irrelevantes puede aumentar el riesgo de sobreajuste, donde el modelo se ajusta demasiado a los datos de entrenamiento y tiene un rendimiento deficiente en datos no vistos. La selección de características ayuda a mitigar este riesgo al eliminar características que no contribuyen significativamente a la generalización del modelo.
+
+% Mejora de la eficiencia computacional: Al reducir la dimensionalidad del conjunto de datos, la selección de características puede hacer que el proceso de entrenamiento y predicción sea más rápido y eficiente, lo que es especialmente importante en conjuntos de datos grandes o en entornos con recursos computacionales limitados.
 
 \subsubsection{Ejecución y validación de los modelos}
