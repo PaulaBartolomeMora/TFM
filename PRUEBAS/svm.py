@@ -245,7 +245,8 @@ best_accuracy = grid_search.best_score_
 best_parameters = grid_search.best_params_
 print("Best Accuracy: {:.2f} %".format(best_accuracy*100))
 print("Best Parameters:", best_parameters)
-print(grid_search.best_estimator_) 
+print(grid_search.best_estimator_)
+print(grid_search.cv_results_) 
 
 fings = time.time()
 

@@ -15,6 +15,7 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 
 import time
+import seaborn as sns
 
 ##############################################################
 
@@ -31,14 +32,22 @@ modelo = LabelEncoder().fit_transform(modelo) #codificación del modelo
 datetime = df.iloc[:, 14].values 
 datetime = LabelEncoder().fit_transform(datetime) #codificación del datetime
 
-df = df.drop(df.columns[8], axis=1) 
-df['modelo'] = modelo 
-df = df.drop(df.columns[14], axis=1)
-df['datetime'] = datetime 
+df = df.drop(df.columns[[8, 14]], axis=1) #se eliminan las antiguas con los strings del modelo y datetime
+df['modelo'] = modelo #se añade la nueva codificada al final
+df['datetime'] = datetime #se añade la nueva codificada al final
 
 X = df.iloc[:, 1:] 
 X = X.drop(['timestamp', 'load', 'DC Array Output (W)' , 'Pavg', 'dif'], axis=1)
 y = df.iloc[:, 0].values #valores de overflow
+
+##############################################################
+
+# ax = sns.countplot(y,label="Count")       
+# B, M = y.value_counts()
+# print('OK: ', B)
+# print('Error: ', M)
+# plt.savefig('count_errores.png')
+# plt.show()
 
 ##############################################################
 
@@ -70,8 +79,8 @@ def ann():
     #los parámetros son los pesos
 
     inicl = time.time()
-    model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'], verbose=0)
-    History = model.fit(X_train, y_train, batch_size, epochs)
+    model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+    History = model.fit(X_train, y_train, batch_size=50, epochs=50, verbose=2)
     fincl = time.time()
 
 ##############################################################
@@ -120,8 +129,10 @@ parameters = {
     'activation': ['sigmoid', 'tanh', 'relu'],
 }"""
 
+batch_size = [20, 50, 80]
+epochs = [10, 30, 50]
+parameters = dict(batch_size=batch_size, epochs=epochs)
 
-"""
 processors = 32
 cv = 5 
 combos = 1
@@ -135,16 +146,11 @@ seconds = num_models * (fincl-inicl)
 minutes = seconds / 60
 hours = minutes / 60
 
-print("{:.6f}".format(hours), "| {:.6f}".format(minutes), "| {:.6f}".format(seconds))"""
+print("{:.6f}".format(hours), "| {:.6f}".format(minutes), "| {:.6f}".format(seconds))
 
 ##############################################################
 
 inigs = time.time()
-
-batch_size = [20, 50, 80]
-epochs = [10, 30, 50]
-parameters = dict(batch_size=batch_size, epochs=epochs)
-
 grid_search = GridSearchCV(estimator = model,
                            param_grid = parameters,
                            scoring = 'accuracy',
@@ -157,6 +163,8 @@ fings = time.time()
 
 print("Precisión: %f con parámetros %s" % (grid_search.best_score_, grid_search.best_params_))
 print("Tiempo ejecución grid search: " + str(fings-inigs))
+print("\n--------------------------\n")
+print(grid_search.cv_results_)
 
 for mean, std, param in zip(grid_search.cv_results_['mean_test_score'], 
                             grid_search.cv_results_['std_test_score'], 
