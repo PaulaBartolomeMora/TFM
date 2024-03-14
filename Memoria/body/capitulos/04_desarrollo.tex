@@ -22,9 +22,9 @@ Teniendo en cuenta que los objetivos del presente \gls{tfm} se basan en la resol
 
 \begin{enumerate}
     \item Puntuación de características: Se diseña una primera versión o modelo por defecto de la técnica en cuestión para probar su funcionamiento. A partir del mismo, se aprecia las características que presentan mayor importancia en el proceso de clasificación, en base a la aplicación de varios métodos. 
-    \item Optimización de hiperparámetros: Mediante la aplicación del método \textit{Grid Search}, se busca la mejor combinación de hiperparámetros de cada técnica para que los modelos resultantes proporcionen un rendimiento óptimo. 
-    \item Selección de características: Una vez conocidos los hiperparámetros óptimos, se utilizan varias metodologías de selección de características para diseñar los nuevos modelos a partir de un número reducido de las mismas.
-    \item Ejecución y validación de los modelos: Se extraen y se analizan los resultados de ejecución de todos los modelos anteriores. Se validan en base a la precisión obtenida mediante la creación de la matriz de confusión y de la aplicación de la técnica \textit{K-Fold Cross Validation}.
+    \item Optimización de hiperparámetros: Mediante la aplicación del método \textit{Grid Search}, se busca la mejor combinación de hiperparámetros de cada técnica para que el modelo resultante proporcione un rendimiento óptimo. 
+    \item Selección de características: Una vez conocidos los hiperparámetros óptimos, se utilizan varias metodologías de reducción de la dimensionalidad para diseñar los nuevos modelos a partir de un volumen menor de datos.
+    \item Ejecución del modelo y evaluación de resultados: Se extraen y se analizan los resultados de ejecución. Se validan en base a la precisión obtenida mediante la creación de la matriz de confusión y de la aplicación de la técnica \textit{K-Fold Cross Validation}.
 \end{enumerate}
 
 En esta Sección se implementarán dos nuevos \textit{notebooks}, \textit{rf.ipynb} y \textit{svm.ipynb}, los cuales tendrán como base el empleo de diferentes clases y métodos proporcionados por la biblioteca de software de código abierto \textit{scikit-learn} o \textit{sklearn}, además de otras librerías imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{matplotlib} o \textit{seaborn}. 
