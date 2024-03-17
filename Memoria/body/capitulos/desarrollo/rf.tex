@@ -224,41 +224,32 @@ No obstante, en primera instancia, se procede a ejecutar el modelo de \gls{rf}, 
 
 \vspace{3mm}
 
-\begin{sidewaysfigure}
-  \centering
-  \includegraphics[width=1\textwidth]{img/desarrollo/rf/tree2.png}
-  \caption{Ejemplo gráfico de estimador o árbol del \gls{rf} \cite{graphviz}}
-  \label{fig:tree}
-\end{sidewaysfigure}
-
-\vspace{3mm}
-
 Por consiguiente, una vez ejecutado, se puede llevar a cabo el proceso de evauación, que consta del empleo de dos métodos: la matriz de confusión y el \textit{K-Fold Cross Validation}. La matriz de confusión \cite{cm} es un método de gran utilidad cuando se trabaja con técnicas de clasificación binaria, como se produce en este caso para detectar y predecir los intercambios energéticos con errores. Permite analizar la precisión del modelo mediante la organización de las predicciones en cuatro categorías diferentes (ver Figura \ref{fig:confusion}): 
 
 \begin{itemize}
-  \item Verdaderos positivos (TP): Predicciones correctas de intercambios sin errores (0 real clasificado como 0).
-  \item Falsos positivos (FP): Predicciones incorrectas de intercambios sin errores (0 real clasificado como 1).
-  \item Verdaderos negativos (TN): Predicciones correctas de intercambios con errores (1 real clasificado como 1).
-  \item Falsos negativos (FN): Predicciones incorrectas de intercambios con errores (1 real clasificado como 0).
+  \item Verdaderos positivos (TP): Predicciones correctas de intercambios sin errores.
+  \item Falsos positivos (FP): Predicciones incorrectas de intercambios sin errores.
+  \item Verdaderos negativos (TN): Predicciones correctas de intercambios con errores.
+  \item Falsos negativos (FN): Predicciones incorrectas de intercambios con errores.
 \end{itemize}
+
+\begin{sidewaysfigure}
+  \centering
+  \includegraphics[width=1\textwidth]{img/desarrollo/rf/tree2.png}
+  \caption{Ejemplo gráfico de un estimador o árbol del \gls{rf} \cite{graphviz}}
+  \label{fig:tree}
+\end{sidewaysfigure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.4\textwidth]{img/desarrollo/rf/confusion.png}
+  \includegraphics[width=0.45\textwidth]{img/desarrollo/rf/confusion.png}
   \caption{Matriz de confusión \cite{cm2}}
   \label{fig:confusion}
 \end{figure}
 
 \vspace{3mm}
 
-\begin{lstlisting}[style=Python, caption={Implementación de la matriz de confusión}]
-  cm = confusion_matrix(y_test, y_pred)
-  accuracy_score(y_test, y_pred)
-\end{lstlisting}
-
-\vspace{3mm}
-
-A través de la matriz, se pueden obtener cuatro métricas a evaluar: 
+A través de las categorías definidas en la matriz, se pueden obtener cuatro métricas de evaluación: 
 
 \vspace{3mm}
 
@@ -273,7 +264,18 @@ A través de la matriz, se pueden obtener cuatro métricas a evaluar:
   \[\text{F1 Score} = \frac{{2 \times \text{Precision} \times \text{Recall}}}{{\text{Precision} + \text{Recall}}}\]
 \end{itemize}
 
-Por tanto, con la aplicación de la matriz de confusión, se extraen los resultados expuestos en la Tabla \ref{tab:rfcm}. En la misma se puede visualizar la cantidad de predicciones, en función de cada una de las categorías de la matriz y los valores obtenidos del cálculo de las métricas anteriores.
+\begin{lstlisting}[style=Python, caption={Implementación de la matriz de confusión}]
+  cm = confusion_matrix(y_test, y_pred)
+  accuracy_score(y_test, y_pred)
+\end{lstlisting}
+
+\vspace{3mm}
+
+Por tanto, con la aplicación de la matriz de confusión, se extraen los resultados expuestos en la Tabla \ref{tab:rfcm}. En la misma se puede visualizar la cantidad de predicciones, en función de cada una de las categorías de la matriz y los valores obtenidos del cálculo de las métricas anteriores. A priori, si solo se pone el foco en la precisión global del modelo (\textit{Accuracy}), las opciones que proveen valores más altos son la que no aplica ningún método de reducción de dimensiones y que por tanto, opera con todas las características del conjunto, y la que emplea la técnica \gls{rfecv}. 
+
+\vspace{3mm}
+
+En el caso de la precisión de los valores positivos (\textit{Precision}) o, en otros términos, de las instancias que se predicen como erróneas, vuelve a ocurrir de la misma manera. A pesar de que para la métrica \textit{Accuracy} los valores de todas las opciones son relativamente parecidos, para \textit{Precision} se visualizan grandes diferencias. Por ejemplo, el empleo de un \gls{pca} con n=2 provee un buen valor de precisión global (0,9755), pero no tiene un buen rendimiento en la clasificación de los errores (0,1254). En consecuencia, el valor del \textit{Recall} también es muy pequeño en este caso (0,1254). El resto de opciones, exceptuando las dos primeras, ya mencionadas anteriormente, presentan también porcentajes bajos, suponiendo un coste alto de predicción de errores. 
 
 \vspace{3mm}
 
@@ -283,26 +285,24 @@ Por tanto, con la aplicación de la matriz de confusión, se extraen los resulta
   \hline
   \rowcolor[HTML]{EFEFEF} 
   \textit{\begin{tabular}[c]{@{}c@{}}Matriz\\ de confusión\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{TN} & \textit{FP} & \textit{FN} & \textit{TP} & \textit{Accuracy} & \textit{Precision} & \textit{Recall} & \textit{F1 Score} \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{Sin aplicar} & 376745 & 399 & 2332 & 6732 & 0.9929 &  &  &  \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{RFECV} &  &  &  &  &  &  &  &  \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{FS (n=5)} &  &  &  &  &  &  &  &  \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{FS (n=8)} &  &  &  &  &  &  &  &  \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=2)} & 376718 & 426 & 9003 & 61 & 0,9755 &  &  &  \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=4)} & 376684 & 460 & 7015 & 2049 & 0,9806 &  &  &  \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{Sin aplicar} & 376745 & 399 & 2332 & 6732 & 0,9929 & 0,9440 & 0,7427 & 0,8316 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{RFECV} & 376699 & 445 & 1717 & 7347 & 0,9944 & 0,9428 & 0,8105 & 0,8717 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{FS (n=5)} & 376555 & 589 & 7927 & 1137 & 0,9779 & 0,6597 & 0,1255 & 0,2108 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{FS (n=8)} & 375027 & 2117 & 6583 & 2481 & 0,9774 & 0,5395 & 0,2737 & 0,3632 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=2)} & 376718 & 426 & 9003 & 61 & 0,9755 & 0,1252 & 0,0067 & 0,0127 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=4)} & 376684 & 460 & 7015 & 2049 & 0,9806 & 0,8166 & 0,2260 & 0,3541 \\ \hline
   \end{tabular}
-  \caption{Resultados de aplicación del \textit{K-Fold Cross Validation} al \gls{rf}}
+  \caption{Resultados de aplicación de la matriz de confusión al \gls{rf}}
   \label{tab:rfcm}
 \end{table}
 
 \vspace{3mm}
 
-%aqui conclusiones cm
+De la misma forma, se puede visualizar que para la métrica \textit{F1 Score} se esperan resultados relativamente cercanos al \textit{Recall}. Al considerarse tanto los falsos positivos, como los falsos negativos, produce que la obtención de un porcentaje significativamente pequeño indique una baja \textit{Precision} y \textit{Recall} conjuntamente. 
 
 \vspace{3mm}
 
-En cuanto al método \textit{K-Fold Cross Validation} \cite{kfold}, se emplea la misma operativa que en el \textit{Grid SearchCV}. Como su nombre indica, se basa en un esquema de validación cruzada (\textit{cross validation}) y se divide el conjunto de datos en un total de 5 pliegues para evaluar el rendimiento del modelo. En la Tabla \ref{tab:rfk}, se de terminan los resultados de su aplicación.
-
-%aqui conclusiones kf
+Por otro lado, en cuanto al método \textit{K-Fold Cross Validation} \cite{kfold}, se emplea la misma operativa que en el \textit{Grid SearchCV}. Como su nombre indica, se basa en un esquema de validación cruzada (\textit{cross validation}) y se divide el conjunto de datos en un total de 5 pliegues para evaluar el rendimiento del modelo. En la Tabla \ref{tab:rfk}, se determinan los resultados de su aplicación y, como se puede visualizar, los valores de precisión global son prácticamente iguales a los obtenidos anteriormente en la matriz de confusión. Por tanto, mediante el empleo de las dos técnicas y el análisis expuesto, se confirma que las opciones con mejores resultados hacen referencia a la que no se aplica ningún método de reducción de dimensiones y a la que emplea \gls{rfecv}, proporcionando un rendimiento óptimo la segunda.
 
 \vspace{3mm}
 
@@ -318,19 +318,16 @@ accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, c
   \hline
   \rowcolor[HTML]{EFEFEF} 
   \textit{\begin{tabular}[c]{@{}c@{}}K-Fold\\ Cross Validation\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{Accuracy} & \textit{Standard Deviation} \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{Sin aplicar} &  &    \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{RFECV} &  &    \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{FS (n=5)} &  &    \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{FS (n=8)} &  &    \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=2)} &  &   \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=4)} &  &    \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{Sin aplicar} & 0,9930 & 0,02 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{RFECV} & 0,9947 & 0,02 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{FS (n=5)} & 0,9780 & 0,02 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{FS (n=8)} & 0,9779 & 0,01 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=2)} & 0,9735 & 0,01 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=4)} & 0,9804 & 0,00 \\ \hline
   \end{tabular}
-  \caption{Resultados de aplicación de la matriz de confusión al \gls{rf}}
-  \label{tab:rfcm}
+  \caption{Resultados de aplicación del \textit{K-Fold Cross Validation} al \gls{rf}}
+  \label{tab:rfk}
 \end{table}
-
-
-
 
 
 
