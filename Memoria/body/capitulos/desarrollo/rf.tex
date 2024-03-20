@@ -16,7 +16,7 @@ Se desarrolla una primera versión del clasificador basado en la técnica de \gl
   
 \vspace{3mm}
 
-Por un lado, se estima la importancia de las características del conjunto, a partir del atributo \textit{feature\_importances\_}, proporcionado por el clasificador \gls{rf}. En este caso, el cálculo se realiza a partir de la media y de la desviación estándar de la disminución de la impureza que se produce dentro de cada árbol. Como se representa en la Figura \ref{fig:imp1}, se devuelve un array con los valores de importancia relativa asignados a las características y cuyo sumatorio es igual a 1. En este caso, se visualiza una gran incidencia de la distancia, seguida de los parámetros resultantes de \gls{den2ne}, \textit{total\_balance} y \textit{abs\_flux}, que hacen referencia a la carga que presenta el nodo \textit{gateway} tras el balance y al flujo total de recursos intercambiados en el proceso de distribución energética.
+Por un lado, se estima la importancia de las características del conjunto, a partir del atributo \textit{feature\_importances\_}, proporcionado por el clasificador. En este caso, el cálculo se realiza a partir de la media y de la desviación estándar de la disminución de la impureza que se produce dentro de cada árbol. Como se representa en la Figura \ref{fig:imp1}, se devuelve un array con los valores de importancia relativa asignados a las características y cuyo sumatorio es igual a 1. En este caso, se visualiza una gran incidencia de la distancia, seguida de los parámetros resultantes de \gls{den2ne}, \textit{total\_balance} y \textit{abs\_flux}, que hacen referencia a la carga que presenta el nodo \textit{gateway} tras el balance y al flujo total de recursos intercambiados en el proceso de distribución energética.
 
 \vspace{3mm}
 
@@ -45,7 +45,7 @@ Los hiperparámetros de un modelo se tratan de los parámetros de configuración
 
 \vspace{3mm}
 
-\begin{lstlisting}[style=Python, caption={Cuadrícula de parámetros}]
+\begin{lstlisting}[style=Python, caption={Cuadrícula de parámetros RF}]
   param_grid = {
     'n_estimators': [10, 25, 50, 75, 100],
     'criterion': ['entropy', 'gini']
@@ -74,7 +74,7 @@ Una vez creado el objeto, se ajusta al conjunto de datos de entrenamiento. Este 
 
 \vspace{3mm}
 
-Sin embargo, para llevar a cabo un análisis en mayor profundidad de los resultados, se hace uso del atributo \textit{cv\_results\_}, que proporciona un diccionario con toda la información útil de la búsqueda. Principalmente, este análisis se centra en los valores de precisión obtenidos de todos los modelos y en los tiempos promedios que han sido necesarios para ajustar los mismos al conjunto de entrenamiento. Como se puede apreciar en la Tabla \ref{tab:rfgs}, se presentan variaciones muy pequeñas en los valores de precisión obtenida (\textit{mean\_test\_score})para las diferentes combinaciones de parámetros.
+Sin embargo, para llevar a cabo un análisis en mayor profundidad de los resultados, se hace uso del atributo \textit{cv\_results\_}, que proporciona un diccionario con toda la información útil de la búsqueda. Principalmente, este análisis se centra en los valores de precisión obtenidos de todos los modelos y en los tiempos promedios que han sido necesarios para ajustar los mismos al conjunto de entrenamiento. Como se puede apreciar en la Tabla \ref{tab:rfgs}, se presentan variaciones muy pequeñas en los valores de precisión obtenida (\textit{mean\_test\_score}) para las diferentes combinaciones de parámetros.
 
 \vspace{3mm}
 
@@ -115,11 +115,7 @@ Sin embargo, para llevar a cabo un análisis en mayor profundidad de los resulta
 
 \vspace{3mm}
 
-No obstante, en el caso de los tiempos (\textit{mean\_fit\_time}), como es coherente, sí que se observan grandes diferencias. En la Tabla \ref{tab:rfgs2} se visualiza cómo se incrementa la duración de la búsqueda proporcionalmente al número de estimadores que se emplea. Esta métrica es importante también tenerla en cuenta para determinar el modelo óptimo, ya que a partir de la aplicación de 25 estimadores, la precisión no mejora de forma considerable.
-
-\vspace{3mm}
-
-Por lo tanto, tras analizar los resultados, se puede expresar de forma concluyente que la mejor opción de modelo a emplear viene dada por un \gls{rf} basado en 25 estimadores o árboles y en el criterio de medición de la impureza a partir de la entropía.
+No obstante, en el caso de los tiempos (\textit{mean\_fit\_time}), como es coherente, sí que se observan grandes diferencias. En la Tabla \ref{tab:rfgs2} se visualiza cómo se incrementa la duración de la búsqueda proporcionalmente al número de estimadores que se emplea. Esta métrica es importante también tenerla en cuenta para determinar el modelo óptimo, ya que a partir de la aplicación de 25 estimadores, la precisión no mejora de forma considerable. Por lo tanto, tras analizar los resultados, se puede expresar de forma concluyente que la mejor opción de modelo a emplear viene dada por un \gls{rf} basado en 25 estimadores o árboles y en el criterio de medición de la impureza a partir de la entropía.
 
 \subsubsection{Selección de características}
 \label{sec:rf3}
@@ -302,7 +298,7 @@ De la misma forma, se puede visualizar que para la métrica \textit{F1 Score} se
 
 \vspace{3mm}
 
-Por otro lado, en cuanto al método \textit{K-Fold Cross Validation} \cite{kfold}, se emplea la misma operativa que en el \textit{Grid SearchCV}. Como su nombre indica, se basa en un esquema de validación cruzada (\textit{cross validation}) y se divide el conjunto de datos en un total de 5 pliegues para evaluar el rendimiento del modelo. En la Tabla \ref{tab:rfk}, se determinan los resultados de su aplicación y, como se puede visualizar, los valores de precisión global son prácticamente iguales a los obtenidos anteriormente en la matriz de confusión. Por tanto, mediante el empleo de las dos técnicas y el análisis expuesto, se confirma que las opciones con mejores resultados hacen referencia a la que no se aplica ningún método de reducción de dimensiones y a la que emplea \gls{rfecv}, proporcionando un rendimiento óptimo la segunda.
+Por otro lado, en cuanto al método \textit{K-Fold Cross Validation} \cite{kfold}, se emplea la misma operativa que en el \textit{Grid SearchCV}. Como su nombre indica, se basa en un esquema de validación cruzada (\textit{cross validation}) y se divide el conjunto de datos en un total de 5 pliegues para evaluar el rendimiento del modelo. En la Tabla \ref{tab:rfk}, se determinan los resultados de su aplicación y, como se puede visualizar, los valores de precisión global son prácticamente iguales a los obtenidos anteriormente en la matriz de confusión. Por tanto, mediante el empleo de las dos técnicas y el análisis expuesto, se confirma que las opciones con mejores resultados hacen referencia a la que no se aplica ningún método de reducción de dimensiones y a la que emplea \gls{rfecv}, siendo esta última la que proporciona un rendimiento óptimo.
 
 \vspace{3mm}
 
