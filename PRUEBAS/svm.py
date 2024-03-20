@@ -50,16 +50,17 @@ X_test = sc.transform(X_test)
 ##############################################################
 
 #APLICACIÓN PCA
-#pca2 = PCA(n_components=2)
-pca3 = PCA(n_components=3)
-#X_train_pca2 = pca2.fit_transform(X_train)
-#X_test_pca2 = pca2.transform(X_test)
-X_train_pca3 = pca3.fit_transform(X_train)
-X_test_pca3 = pca3.transform(X_test)
+"""
+pca = PCA(n_components=2)
+pca2 = PCA(n_components=4)
+X_train_pca = pca.fit_transform(X_train)
+X_test_pca = pca.transform(X_test)
+X_train_pca2 = pca2.fit_transform(X_train)
+X_test_pca2 = pca2.transform(X_test)"""
 
 ##############################################################
 
-""" #APLICACIÓN FEATURE SELECTION, ESTO YA ESTÁ EJECUTADO
+""" #APLICACIÓN FEATURE SELECTION, 
 
 scaler = MinMaxScaler() # Escalar las características al rango [0, 1]
 
@@ -72,16 +73,15 @@ X_test_fs = select_feature.transform(X_test)"""
 
 ##############################################################
 
-#inicl = time.time()
+inicl = time.time()
 classifier = SVC(kernel = 'rbf', random_state = 0)
-#classifier.fit(X_train, y_train)
-#fincl = time.time()
+classifier.fit(X_train, y_train)
+fincl = time.time()
 
-#print("Tiempo ejecución clasificador 1: " + str(fincl-inicl))  """
+print("Tiempo ejecución clasificador: " + str(fincl-inicl))  
 
 ##############################################################
 
-""" ESTO YA ESTÁ EJECUTADO
 # Importancia de las características basada en la distancia a los vectores de soporte
 
 support_vectors = classifier.support_vectors_ #vectores de soporte
@@ -92,127 +92,53 @@ print(dual_coef)
 
 importances = np.abs(np.dot(dual_coef, support_vectors)).flatten()
 importances_series = pd.Series(importances, index=X.columns)
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(12, 6))
 importances_series.plot(kind='bar')
 plt.ylabel('Importancia')
 plt.title('Importancia de las características del SVC con kernel RBF')
 plt.xticks(rotation=45, ha='right')
-plt.show() """
+plt.savefig('importance3.png', bbox_inches='tight')
+plt.show() 
 
 ##############################################################
 
-""" 
-# Feature importance based on mean decrease in impurity --> #ESTO DA ERROR, SVC NO DEJA OBTENERLO ASÍ
-features_ranking = pd.Series(classifier.feature_importances_, index=X.columns)
+# Feature importance based on feature permutation -
 
-plt.figure(figsize=(10, 6))  
-features_ranking.plot(kind='bar')
-plt.ylabel('Importancia')
-plt.title('Importancia de las características del RF a partir de la Disminución Media de la Impureza (MDI)')
-plt.xticks(rotation=45, ha='right')
-plt.show() """
-
-##############################################################
-
-# Feature importance based on feature permutation --> ESTO YA SE HA EJECUTADO
-
-""" result = permutation_importance(
+result = permutation_importance(
     classifier, X_test, y_test, n_repeats=5, random_state=42, n_jobs=2
 )
 
 importances_mean_series = pd.Series(result.importances_mean, index=X.columns)
 
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(12, 6))
 importances_mean_series.plot(kind='bar')
 plt.ylabel('Importancia')
 plt.title('Importancia de las características del RF a partir de la permutación')
 plt.xticks(rotation=45, ha='right')
 plt.savefig('importance4.png', bbox_inches='tight')
-plt.show() """
+plt.show() 
 
 ##############################################################
 
-#APLICACIÓN RFE Y RFECV NO SE PUEDE CON SVC, NO TIENE ATRIBUTO feature_importances_)
-
-""" print("Ejecutando RFE")
-
-rfe = RFE(estimator=classifier, n_features_to_select=5, step=1)  
-rfe = rfe.fit(X_train, y_train)
-
-print('Ranking de features :', rfe.ranking_)
-print('Mejores features :', X.columns[rfe.support_]) """
-
-
-
-
-
-
-
-
-##############################################################
-##############################################################
-##############################################################
-
-""" ##CM
+#CM
+"""
 y_pred = classifier.predict(X_test)
 cm = confusion_matrix(y_test, y_pred)
 print(cm) 
 accuracy_score(y_test, y_pred)
 
-##K-FOLD
+#K-FOLD
 accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
 print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
 print("Standard Deviation: {:.2f} %".format(accuracies.std()*100)) """
 
 ##############################################################
 
-""" ##CM
-y_pred = classifier.predict(X_test_pca2)
-cm = confusion_matrix(y_test, y_pred)
-print(cm) 
-accuracy_score(y_test, y_pred)
-
-inicl = time.time()
-classifier.fit(X_train_pca2, y_train) 
-fincl = time.time()
-print("Tiempo ejecución clasificador 2: " + str(fincl-inicl)) 
-
-##K-FOLD
-accuracies = cross_val_score(estimator = classifier, X = X_train_pca2, y = y_train, cv = 10)
-print("Accuracy PCA 2: {:.2f} %".format(accuracies.mean()*100))
-print("Standard Deviation PCA 2: {:.2f} %".format(accuracies.std()*100))  """
-
-##############################################################
-
-y_pred = classifier.predict(X_test_pca3)
-cm = confusion_matrix(y_test, y_pred)
-print(cm) 
-accuracy_score(y_test, y_pred)
-
-""" inicl = time.time()
-classifier.fit(X_train_pca3, y_train) 
-fincl = time.time()
-print("Tiempo ejecución clasificador 3: " + str(fincl-inicl)) 
-
-accuracies = cross_val_score(estimator = classifier, X = X_train_pca3, y = y_train, cv = 10)
-print("Accuracy PCA 3: {:.2f} %".format(accuracies.mean()*100))
-print("Standard Deviation PCA 3: {:.2f} %".format(accuracies.std()*100))  """
-
-##############################################################
-##############################################################
-##############################################################
-
-
-
-
-
-
-
-
 ##GRID SEARCH
 
-""" parameters = [{'C': [0.25, 0.5, 0.75, 1], 'kernel': ['linear']},
-              {'C': [0.25, 0.5, 0.75, 1], 'kernel': ['rbf']}]
+parameters = [{'C': [0.25, 0.5, 0.75, 1], 'kernel': ['poly']},
+              {'C': [0.25, 0.5, 0.75, 1], 'kernel': ['rbf']},
+              {'C': [0.25, 0.5, 0.75, 1], 'kernel': ['sigmoid']}]
 
 processors = 32
 cv = 5 
@@ -255,4 +181,5 @@ print("Tiempo ejecución grid search: " + str(fings-inigs))
 print("Imprimiendo reporte")
 
 y_pred_gs = grid_search.predict(X_test) 
-print(classification_report(y_test, y_pred_gs))  """
+print(classification_report(y_test, y_pred_gs)) 
+print(grid_search.cv_results_) 

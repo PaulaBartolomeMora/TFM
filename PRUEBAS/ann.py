@@ -42,15 +42,6 @@ y = df.iloc[:, 0].values #valores de overflow
 
 ##############################################################
 
-# ax = sns.countplot(y,label="Count")       
-# B, M = y.value_counts()
-# print('OK: ', B)
-# print('Error: ', M)
-# plt.savefig('count_errores.png')
-# plt.show()
-
-##############################################################
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
 sc = StandardScaler() #escalado de datos
@@ -59,7 +50,8 @@ X_test = sc.transform(X_test)
 
 ##############################################################
 
-def ann():
+def ann(): 
+ 
     model = keras.Sequential([
         
         #Adding the input layer and the first hidden layer
@@ -75,13 +67,14 @@ def ann():
         keras.layers.Dense(1, activation='sigmoid')
     ]) 
 
-    model.summary() #resumen de la estructura de la red neuronal
+    #model.summary() #resumen de la estructura de la red neuronal
     #los parámetros son los pesos
 
-    inicl = time.time()
+    #inicl = time.time()
+
     model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-    History = model.fit(X_train, y_train, batch_size=50, epochs=50, verbose=2)
-    fincl = time.time()
+    #History = model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs, verbose=2) 
+    #fincl = time.time()
 
 ##############################################################
 
@@ -103,23 +96,23 @@ def ann():
 
 ##############################################################
 
-    test_loss, test_accuracy = model.evaluate(X_test, y_test)
+    """test_loss, test_accuracy = model.evaluate(X_test, y_test)
 
     y_pred = model.predict(X_test)
     y_pred = (y_pred > 0.5) #solución problema binario
     cm = confusion_matrix(y_test, y_pred)
     print(cm)
-    accuracy_score(y_test, y_pred)
+    accuracy_score(y_test, y_pred) """
 
-    return model,inicl,fincl
+    return model #,inicl,fincl
 
 
 ##############################################################
 ##############################################################
 ##############################################################
 
-m,inicl,fincl = ann()
-model = KerasClassifier(build_fn=ann)
+#m,inicl,fincl = ann()
+#model = KerasClassifier(build_fn=ann)
 
 """
 parameters = {
@@ -129,11 +122,16 @@ parameters = {
     'activation': ['sigmoid', 'tanh', 'relu'],
 }"""
 
-batch_size = [20, 50, 80]
+""" batch_size = [20, 50, 80]
 epochs = [10, 30, 50]
-parameters = dict(batch_size=batch_size, epochs=epochs)
+parameters = dict(batch_size=batch_size, epochs=epochs) """
 
-processors = 32
+parameters = {
+    'batch_size': [20, 50, 80],
+    'epochs': [10, 30, 50],
+}
+
+""" processors = 32
 cv = 5 
 combos = 1
 
@@ -146,12 +144,16 @@ seconds = num_models * (fincl-inicl)
 minutes = seconds / 60
 hours = minutes / 60
 
-print("{:.6f}".format(hours), "| {:.6f}".format(minutes), "| {:.6f}".format(seconds))
+print("{:.6f}".format(hours), "| {:.6f}".format(minutes), "| {:.6f}".format(seconds)) """
 
 ##############################################################
 
+model = KerasClassifier(model=ann)
+
+#param_grid = dict(batch_size=[20, 50, 80], epochs=[10, 30, 50])
+
 inigs = time.time()
-grid_search = GridSearchCV(estimator = model,
+grid_search = GridSearchCV(estimator=model,
                            param_grid = parameters,
                            scoring = 'accuracy',
                            cv = 5,
