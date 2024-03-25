@@ -47,9 +47,10 @@ Para modelar un \gls{svm} óptimo se centra el estudio en dos hiperparámetros: 
 \vspace{3mm}
 
 \begin{lstlisting}[style=Python, caption={Cuadrícula de parámetros SVM}]
-  param_grid = [{'C': [0.25, 0.5, 0.75, 1], 'kernel': ['poly']},
-                  {'C': [0.25, 0.5, 0.75, 1], 'kernel': ['rbf']},
-                  {'C': [0.25, 0.5, 0.75, 1], 'kernel': ['sigmoid']}]
+  param_grid = {
+    'C': [0.25, 0.5, 0.75, 1], 
+    'kernel': ['poly', 'rbf', 'sigmoid']
+  }
 \end{lstlisting}
 
 \vspace{3mm}

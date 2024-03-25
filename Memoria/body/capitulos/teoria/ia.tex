@@ -226,10 +226,10 @@ Una vez presentada la rama de aprendizaje profundo, se introduce una Sección de
     \label{fig:features}
 \end{figure}
 
-\subsubsection{Red Neuronal Artificial (\acrshort{ann})}
+\subsubsection{Red Neuronal Artificial (\acrshort{ann}) y Perceptrón Multicapa (\acrshort{mlp})}
 \label{sec:dlann}
 
-Las redes neuronales artificiales (\gls{ann}) se construyen a partir de distintas capas de nodos y conexiones que replican la estructura neuronal que tiene el cerebro humano. Como se representa en la Figura \ref{fig:ann}, se define una capa de entrada (\textit{input layer}), una o múltiples capas ocultas (\textit{hidden layer}) y una capa de salida (\textit{output layer}). El entrenamiento de la arquitectura de neuronas viene dado por las conexiones que se van estableciendo entre los nodos de las capas y los pesos y los valores de umbral que se van especificando durante el proceso. \cite{ibmann}
+Las redes neuronales artificiales (\gls{ann}) y, en particular, los perceptrones multicapa (del inglés \gls{mlp}), se construyen a partir de distintas capas de nodos y conexiones que replican la estructura neuronal que tiene el cerebro humano. Como se representa en la Figura \ref{fig:ann}, se define una capa de entrada (\textit{input layer}), una o múltiples capas ocultas (\textit{hidden layer}) y una capa de salida (\textit{output layer}). El entrenamiento de la arquitectura de neuronas viene dado por las conexiones que se van estableciendo entre los nodos de las capas y los pesos y los valores de umbral que se van especificando durante el proceso. \cite{ibmann}
 
 \vspace{3mm}
 
@@ -251,7 +251,7 @@ Donde:
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{img/teoria/ann.jpg}
-    \caption{Arquitectura de una \acrshort{ann} \cite{ann}}
+    \caption{Arquitectura de un \acrshort{mlp} \cite{ann}}
     \label{fig:ann}
 \end{figure}
 
@@ -266,6 +266,8 @@ De la misma forma, en cada capa oculta se aplica una función de activación o d
     \text{Función Softmax:} & \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_{j}^{ } e^{x_j}}\\
 \end{array}\]
 
+Teniendo todo el procedimiento anterior en cuenta, se puede expresar que, a partir de una serie de características, el objetivo es escoger aquellas que contribuyan a obtener una mayor precisión en la clasificación de datos de entrada futuros, puesto que se van estableciendo las conexiones óptimas entre los nodos de las capas ocultas con un entrenamiento progresivo. Es preciso indicar que el funcionamiento del modelo se basa en una red de propagación hacia delante, lo que supone que se defina un flujo unidireccional, desde la entrada a la salida. 
+
 \vspace{3mm}
 
 \begin{figure}[h!]
@@ -277,5 +279,5 @@ De la misma forma, en cada capa oculta se aplica una función de activación o d
 
 \vspace{3mm}
 
-Teniendo todo el procedimiento anterior en cuenta, se puede expresar que, a partir de una serie de características, el objetivo es escoger aquellas que contribuyan a obtener una mayor precisión en la clasificación de datos de entrada futuros. Mediante el entrenamiento progresivo de la \gls{ann}, se podrán seleccionar las más importantes y establecer las conexiones óptimas entre los nodos de las capas ocultas. Es preciso indicar que el funcionamiento del modelo se basa en una red de propagación hacia delante, lo que supone que se defina un flujo unidireccional, desde la entrada a la salida. No obstante, para ajustar las ponderaciones se aporta una retroalimentación, que depende directamente de la función de coste y de la salida del modelo en cada ejecución o \textit{epoch}. Generalmente, se aplica el método del gradiente descendiente para encontrar la configuración de pesos que minimice la función de coste. \cite{ibmann}
+No obstante, para ajustar las ponderaciones se aporta una retroalimentación, que depende directamente de la función de coste y de la salida del modelo en cada ejecución o \textit{epoch}. Principalmente, se pueden utilizar dos métodos para minimizar la función de coste: el algoritmo adaptativo \textit{adam} (del inglés \textit{Adaptive Moment Estimation}), que presenta una tasa de aprendizaje adaptativa para cada parámetro, y el gradiente descendiente (del inglés \gls{sgd}), que actualiza los pesos de la red en función del gradiente de la función de pérdida con respecto a los pesos. \cite{ibmann}
 

@@ -2,33 +2,185 @@
 \subsection{Redes Neuronales Artificiales (\acrshort{ann})}
 \label{sec:ann}
 
-
-
-
-\subsubsection{Diseño y ejecución del modelo de prueba}
-
-%ciclo
-%https://machinelearningmastery.com/5-step-life-cycle-neural-network-models-keras/
-
 \subsubsection{Optimización de hiperparámetros}
 
-%loss functions -> solo el binary, los demás [-1,1]
-%https://machinelearningmastery.com/how-to-choose-loss-functions-when-training-deep-learning-neural-networks/
-%https://www.tensorflow.org/api_docs/python/tf/keras/metrics/binary_crossentropy
+Antes de entrar en detalle en la optimización de hiperparámetros de la \gls{ann}, es preciso indicar que esta Sección se divide en dos fases: primero, se centra la aplicación del método \textit{Grid Search} sobre el modelo de \gls{mlp} proporcionado por la librería \textit{sklearn} y, después, los resultados obtenidos de la búsqueda anterior se utilizan para configurar una nueva \gls{ann} óptima, basada en el módulo \textit{keras}. Esta secuencia de pasos se establece a modo de simplificar la comprensión y de justificar y comparar los resultados que se obtienen para ambas versiones de \gls{ann}s.
 
-%FUNCIONES DE ACTIV
-%https://www.diegocalvo.es/funcion-de-activacion-redes-neuronales/
+\vspace{3mm}
 
-%%gird search tiempo
-%https://datascience.stackexchange.com/questions/29495/how-to-estimate-gridsearchcv-computing-time
+Por ello, en primera instancia, se determinan los hiperparámetros que se van a estudiar del \gls{mlp}. Estos hacen referencia a la configuración de capas ocultas y al número de neuronas que puede tener cada capa (\textit{hidden\_layer\_sizes}), a la función de activación que se aplica (\textit{activation}) y al algoritmo de optimización de los pesos de la red durante el proceso de entrenamiento (\textit{solver}). \cite{mlp}
 
-%grid search
-%https://machinelearningmastery.com/grid-search-hyperparameters-deep-learning-models-python-keras/
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Cuadrícula de parámetros MLP}]
+  param_grid = {
+    'hidden_layer_sizes': [(5,), (8,), (10,), (50,), (100,), (5, 5), (8, 8), (10, 10), (50, 50)],  
+    'activation': ['relu', 'tanh'],
+    'solver': ['sgd', 'adam']
+  }
+\end{lstlisting}
+
+\vspace{3mm}
+
+En este caso, se configura para la búsqueda un modelo por defecto de \gls{mlp}, en el que se aplican un máximo de 100 iteraciones por cada combinación a probar. De la misma forma, para no introducir latencias innecesarias ni un sobreentrenamiento que perjudique a los resultados de clasificación, se determina una finalización temprana del entrenamiento, en el caso de que se se prooduzcan una cantidad de iteraciones seguidas sin mejoras significativas. En este caso, se deja el valor por defecto, que es 10 iteraciones y se modifica la tolerancia a un valor de 0.00001.
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Clasificador MLP por defecto}]
+  mlp = MLPClassifier(max_iter=100, verbose=True, early_stopping=True, tol=0.00001)
+\end{lstlisting}
+
+\vspace{3mm}
+
+La creación del objeto de la clase \textit{GridSearchCV()} con una configuración de 5 pliegues (\textit{cv=5}) y su entrenamiento sobre el \gls{mlp} anterior en un equipo de 32 procesadores, se estima en una duración de 2,34 horas. Cuando se lleva a cabo este proceso, se puede comprobar en el diccionario de resultados (\textit{cv\_results\_}) y, en particular, en los valores de precisión de la variable \textit{mean\_test\_score}, que se encuentran varias combinaciones de hiperparámetros que optimizan el rendimiento. En la Tabla \ref{tab:mlpaccuracy} se expone que el empleo del algoritmo de optimización del gradiente descendiente estocástico (\gls{sgd}) aporta mejores resultados que el \textit{adam} y que se consigue un valor de precisión máximo igual al 97,6\%. 
+
+\vspace{3mm}
+
+Teniendo esto en cuenta, se podría tomar cualquiera de las configuraciones de capas que proporcionan esta precisión. Sin embargo, también es importante poner el foco en los valores de desviación típica que se consiguen y en la duración del entrenamiento que supone cada opción para determinar cuál es la combinación de hiperparámetros más adecuada para el \gls{mlp}. 
+
+\vspace{3mm}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|
+    >{\columncolor[HTML]{EFEFEF}}c |cc|cc|}
+    \hline
+    \textit{Solver} & \multicolumn{2}{c|}{\cellcolor[HTML]{EFEFEF}\textit{adam}} & \multicolumn{2}{c|}{\cellcolor[HTML]{EFEFEF}\textit{sgd}} \\ \hline
+    \textit{\begin{tabular}[c]{@{}c@{}}Función de activación /\\ Capas ocultas\end{tabular}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{relu}} & \cellcolor[HTML]{EFEFEF}\textit{tanh} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{relu}} & \cellcolor[HTML]{EFEFEF}\textit{tanh} \\ \hline
+    (5,) & \multicolumn{1}{c|}{0,9017} & \multicolumn{1}{c|}{0,9761} & \multicolumn{1}{c|}{0,9766} & \multicolumn{1}{c|}{0,9754} \\ \hline
+    (8,) & \multicolumn{1}{c|}{0,9203} & \multicolumn{1}{c|}{0,8973} & \multicolumn{1}{c|}{0,9765} & \multicolumn{1}{c|}{0,9765} \\ \hline
+    (10,) & \multicolumn{1}{c|}{0,8700} & \multicolumn{1}{c|}{0,8990} & \multicolumn{1}{c|}{0,9748} & \multicolumn{1}{c|}{0,8976} \\ \hline
+    (50,) & \multicolumn{1}{c|}{0,8689} & \multicolumn{1}{c|}{0,8982} & \multicolumn{1}{c|}{0,8953} & \multicolumn{1}{c|}{0,9765} \\ \hline
+    (100,) & \multicolumn{1}{c|}{0,9095} & \multicolumn{1}{c|}{0,8971} & \multicolumn{1}{c|}{0,8456} & \multicolumn{1}{c|}{0,8972} \\ \hline
+    (5, 5) & \multicolumn{1}{c|}{0,8980} & \multicolumn{1}{c|}{0,8972} & \multicolumn{1}{c|}{0,9766} & \multicolumn{1}{c|}{0,9765} \\ \hline
+    (8, 8) & \multicolumn{1}{c|}{0,8849} & \multicolumn{1}{c|}{0,8972} & \multicolumn{1}{c|}{0,8989} & \multicolumn{1}{c|}{0,9765} \\ \hline
+    (10, 10) & \multicolumn{1}{c|}{0,8168} & \multicolumn{1}{c|}{0,8970} & \multicolumn{1}{c|}{0,9030} & \multicolumn{1}{c|}{0,9765} \\ \hline
+    (50, 50) & \multicolumn{1}{c|}{0,8191} & \multicolumn{1}{c|}{0,8204} & \multicolumn{1}{c|}{0,9766} & \multicolumn{1}{c|}{0,8973} \\ \hline
+    \end{tabular}
+    \caption{Resultados de precisión (\%) (\textit{mean\_test\_score}) extraídos del atributo \textit{cv\_results\_} del \acrshort{mlp}}
+    \label{tab:mlpaccuracy}
+\end{table}
+
+\vspace{3mm}
+
+En el caso de la desviación típica, como se observa en la Tabla \ref{tab:mlpstd}, no se producen grandes diferencias de valores entre las configuraciones en cuestión, por lo que, a priori, no es un factor determinante y que se deba tener en cuenta en la selección. No obstante, en el caso de los tiempos sí existen variaciones y esto se debe pricipalmente, al número de iteraciones que son necesarias para alcanzar la convergencia para cada versión de \gls{mlp} y a la duración que supone cada iteración. En la Tabla \ref{tab:mlptiempo}, se puede visualizar que, cuanto mayor sea el número de neuronas especificado, mayor será la latencia introducida. Esto presenta también, cierta correlación con los valores de la Tabla \ref{tab:mlpaccuracy}, ya que cuando el proceso de entrenamiento es relativamente largo, es posible que se produzca un sobreentrenamiento o \textit{overfitting} del modelo de \gls{mlp} y que la precisión obtenida sea más baja. Por ello, es importante configurar la tolerancia de optimización de forma correcta y parar el proceso cuando se detecte la convergencia del modelo (\textit{early stopping}).
+
+\vspace{3mm}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|
+    >{\columncolor[HTML]{EFEFEF}}c |cc|cc|}
+    \hline
+    \textit{Solver} & \multicolumn{2}{c|}{\cellcolor[HTML]{EFEFEF}\textit{adam}} & \multicolumn{2}{c|}{\cellcolor[HTML]{EFEFEF}\textit{sgd}} \\ \hline
+    \textit{\begin{tabular}[c]{@{}c@{}}Función de activación /\\ Capas ocultas\end{tabular}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{relu}} & \cellcolor[HTML]{EFEFEF}\textit{tanh} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{relu}} & \cellcolor[HTML]{EFEFEF}\textit{tanh} \\ \hline
+    (5,) & \multicolumn{1}{c|}{0,1475} & \multicolumn{1}{c|}{0,0010} & \multicolumn{1}{c|}{0,0001} & \multicolumn{1}{c|}{0,0022} \\ \hline
+    (8,) & \multicolumn{1}{c|}{0,1133} & \multicolumn{1}{c|}{0,1584} & \multicolumn{1}{c|}{0,0000} & \multicolumn{1}{c|}{0,0000} \\ \hline
+    (10,) & \multicolumn{1}{c|}{0,1554} & \multicolumn{1}{c|}{0,1551} & \multicolumn{1}{c|}{0,0033} & \multicolumn{1}{c|}{0,1578} \\ \hline
+    (50,) & \multicolumn{1}{c|}{0,1558} & \multicolumn{1}{c|}{0,1574} & \multicolumn{1}{c|}{0,1109} & \multicolumn{1}{c|}{0,0000} \\ \hline
+    (100,) & \multicolumn{1}{c|}{0,0940} & \multicolumn{1}{c|}{0,1590} & \multicolumn{1}{c|}{0,1665} & \multicolumn{1}{c|}{0,1587} \\ \hline
+    (5, 5) & \multicolumn{1}{c|}{0,1583} & \multicolumn{1}{c|}{0,1587} & \multicolumn{1}{c|}{0,0001} & \multicolumn{1}{c|}{0,0000} \\ \hline
+    (8, 8) & \multicolumn{1}{c|}{0,1219} & \multicolumn{1}{c|}{0,1587} & \multicolumn{1}{c|}{0,1552} & \multicolumn{1}{c|}{0,0000} \\ \hline
+    (10, 10) & \multicolumn{1}{c|}{0,1977} & \multicolumn{1}{c|}{0,1589} & \multicolumn{1}{c|}{0,1471} & \multicolumn{1}{c|}{0,0000} \\ \hline
+    (50, 50) & \multicolumn{1}{c|}{0,1952} & \multicolumn{1}{c|}{0,1920} & \multicolumn{1}{c|}{0,0001} & \multicolumn{1}{c|}{0,1585} \\ \hline
+    \end{tabular}
+    \caption{Resultados de desviación típica (\%) (\textit{std\_test\_score}) extraídos del atributo \textit{cv\_results\_} del \acrshort{mlp}}
+    \label{tab:mlpstd}
+\end{table}
+
+\vspace{3mm}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|
+    >{\columncolor[HTML]{EFEFEF}}c |cc|cc|}
+    \hline
+    \textit{Solver} & \multicolumn{2}{c|}{\cellcolor[HTML]{EFEFEF}\textit{adam}} & \multicolumn{2}{c|}{\cellcolor[HTML]{EFEFEF}\textit{sgd}} \\ \hline
+    \textit{\begin{tabular}[c]{@{}c@{}}Función de activación /\\ Capas ocultas\end{tabular}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{relu}} & \cellcolor[HTML]{EFEFEF}\textit{tanh} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{relu}} & \cellcolor[HTML]{EFEFEF}\textit{tanh} \\ \hline
+    (5,) & \multicolumn{1}{c|}{88} & \multicolumn{1}{c|}{37} & \multicolumn{1}{c|}{63} & \multicolumn{1}{c|}{35} \\ \hline
+    (8,) & \multicolumn{1}{c|}{96} & \multicolumn{1}{c|}{43} & \multicolumn{1}{c|}{35} & \multicolumn{1}{c|}{36} \\ \hline
+    (10,) & \multicolumn{1}{c|}{94} & \multicolumn{1}{c|}{40} & \multicolumn{1}{c|}{56} & \multicolumn{1}{c|}{43} \\ \hline
+    (50,) & \multicolumn{1}{c|}{157} & \multicolumn{1}{c|}{168} & \multicolumn{1}{c|}{143} & \multicolumn{1}{c|}{70} \\ \hline
+    (100,) & \multicolumn{1}{c|}{236} & \multicolumn{1}{c|}{223} & \multicolumn{1}{c|}{170} & \multicolumn{1}{c|}{131} \\ \hline
+    (5, 5) & \multicolumn{1}{c|}{136} & \multicolumn{1}{c|}{50} & \multicolumn{1}{c|}{52} & \multicolumn{1}{c|}{44} \\ \hline
+    (8, 8) & \multicolumn{1}{c|}{159} & \multicolumn{1}{c|}{54} & \multicolumn{1}{c|}{69} & \multicolumn{1}{c|}{46} \\ \hline
+    (10, 10) & \multicolumn{1}{c|}{149} & \multicolumn{1}{c|}{55} & \multicolumn{1}{c|}{54} & \multicolumn{1}{c|}{48} \\ \hline
+    (50, 50) & \multicolumn{1}{c|}{333} & \multicolumn{1}{c|}{319} & \multicolumn{1}{c|}{166} & \multicolumn{1}{c|}{155} \\ \hline
+    \end{tabular}
+    \caption{Resultados de tiempo (s) (\textit{mean\_fit\_time}) extraídos del atributo \textit{cv\_results\_} del \acrshort{mlp}}
+    \label{tab:mlptiempo}
+\end{table}
+
+\vspace{3mm}
+
+Tras analizar los resultados, se expone de forma concluyente que la combinación de hiperparámetros más adecuada y, que por tanto, debería ser la configurada en el modelo de \gls{mlp}, es la que determina una estructura de dos capas ocultas de 5 neuronas, una función de activación \textit{relu} y el algoritmo de optimización \gls{sgd}. En este caso, como se puede apreciar en las Figuras \ref{fig:1mlpbestacc} y \ref{fig:1mlpbestloss} el proceso de entrenamiento converge en la iteración 41 con una precisión del 97,66\% y una función de pérdidas con valor 0,0712.
+
+\vspace{3mm}
+
+\begin{lstlisting}[style=Python, caption={Clasificador MLP óptimo}]
+  mlp = MLPClassifier(max_iter=100, verbose=True, early_stopping=True, tol=0.00001, hidden_layer_sizes=(5, 5), activation='relu', solver='sgd')
+\end{lstlisting}
+
+\vspace{3mm}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/desarrollo/ann/1mlpbestacc.png}
+  \caption{Representación del valor de precisión en función de las iteraciones para el modelo \acrshort{mlp} escogido}
+  \label{fig:1mlpbestacc}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/desarrollo/ann/1mlpbestloss.png}
+  \caption{Representación del valor de la función de pérdidas en función de las iteraciones para el modelo \acrshort{mlp} escogido}
+  \label{fig:1mlpbestloss}
+\end{figure}
+
+\vspace{3mm}
+
+Como se introducía en esta Sección, una vez seleccionada la combinación de hiperparámetros que produce un rendimiento óptimo del \gls{mlp}, el siguiente paso consiste en aplicar la configuración en cuestión a una nuevo modelo de \gls{ann}. El objetivo es realizar una comparativa entre dos \gls{ann}s proporcionadas por distintas librerías, como son en este caso \textit{sklearn} y el módulo \textit{keras} de \textit{tensorflow}, y comprobar que los resultados obtenidos anteriormente de aplicar el método \textit{Grid Search} son coherentes. 
+
+\vspace{3mm}
+
+Por ello, se define la estructura del modelo de \gls{ann} de \textit{keras} con las dos capas ocultas de 5 neuronas y una capa de una neurona a la salida, puesto que se trabaja con un conjunto de datos con etiquetas binarias. Además, es necesario especificar a la entrada el número de características (\textit{input\_shape}), ya que será igual al número de entradas de la red neuronal. La estructura del modelo definido se representa gráficamente en la Figura \ref{fig:neuronas}
+
+\vspace{3mm}
+
+
+%FIGURA NEURONAS
+
+\begin{lstlisting}[style=Python, caption={Definición del modelo de ANN de Keras}]
+  model = keras.Sequential([
+    keras.layers.Dense(5, input_shape=(X.shape[1],), activation='relu'), 
+    keras.layers.Dense(5, activation='relu'),
+    keras.layers.Dense(1, activation='sigmoid') 
+  ]) 
+\end{lstlisting}
+
+\vspace{3mm}
+
+
+
+Por consiguiente, se 
+
+\begin{lstlisting}[style=Python, caption={Entrenamiento del modelo de ANN de Keras}]
+  model.compile(optimizer = 'sgd', loss = 'binary_crossentropy', metrics = ['accuracy'])
+  History = model.fit(X_train, y_train, epochs = 100)
+\end{lstlisting}
+
+
+
+%History = model.fit(X_train, y_train, epochs=100, verbose=1, 
+                            %callbacks=[keras.callbacks.EarlyStopping(monitor='val_loss', patience=5, verbose=1)])
+
+
 
 \subsubsection{Ejecución del modelo y evaluación de resultados}
 
-
-
+%loss functions -> solo el binary, los demás [-1,1]
+%ciclo
+%https://machinelearningmastery.com/5-step-life-cycle-neural-network-models-keras/
 
 
 
