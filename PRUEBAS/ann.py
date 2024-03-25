@@ -10,7 +10,6 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import cross_val_score, GridSearchCV
-from sklearn.neural_network import MLPClassifier
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 
