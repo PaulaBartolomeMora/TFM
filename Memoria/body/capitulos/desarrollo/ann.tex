@@ -2,13 +2,11 @@
 \subsection{Redes Neuronales Artificiales (\acrshort{ann})}
 \label{sec:ann}
 
-\subsubsection{Optimización de hiperparámetros}
+Antes de entrar en detalle en la optimización de hiperparámetros de la \gls{ann}, se debe indicar que esta Sección se divide en dos fases diferenciadas: primero, se centra la aplicación del método \textit{Grid Search} sobre el modelo de \gls{mlp} proporcionado por la librería \textit{sklearn} y, después, los resultados obtenidos de la búsqueda  se utilizan para configurar una nueva \gls{ann} optimizada, basada en el módulo \textit{keras}. Esta secuencia de pasos se establece a modo de simplificar la comprensión y de justificar y comparar los resultados que se obtienen para ambas versiones de \gls{ann}s.
 
-Antes de entrar en detalle en la optimización de hiperparámetros de la \gls{ann}, es preciso indicar que esta Sección se divide en dos fases: primero, se centra la aplicación del método \textit{Grid Search} sobre el modelo de \gls{mlp} proporcionado por la librería \textit{sklearn} y, después, los resultados obtenidos de la búsqueda anterior se utilizan para configurar una nueva \gls{ann} óptima, basada en el módulo \textit{keras}. Esta secuencia de pasos se establece a modo de simplificar la comprensión y de justificar y comparar los resultados que se obtienen para ambas versiones de \gls{ann}s.
+\subsubsection{Optimización de hiperparámetros y ejecución del modelo de \acrshort{ann} de \textit{sklearn}}
 
-\vspace{3mm}
-
-Por ello, en primera instancia, se determinan los hiperparámetros que se van a estudiar del \gls{mlp}. Estos hacen referencia a la configuración de capas ocultas y al número de neuronas que puede tener cada capa (\textit{hidden\_layer\_sizes}), a la función de activación que se aplica (\textit{activation}) y al algoritmo de optimización de los pesos de la red durante el proceso de entrenamiento (\textit{solver}). \cite{mlp}
+En primera instancia, se determinan los hiperparámetros que se van a estudiar del \gls{mlp}. Estos hacen referencia a la configuración de capas ocultas y al número de neuronas que puede tener cada capa (\textit{hidden\_layer\_sizes}), a la función de activación que se aplica (\textit{activation}) y al algoritmo de optimización de los pesos de la red durante el proceso de entrenamiento (\textit{solver}). \cite{mlp}
 
 \vspace{3mm}
 
@@ -22,7 +20,7 @@ Por ello, en primera instancia, se determinan los hiperparámetros que se van a 
 
 \vspace{3mm}
 
-En este caso, se configura para la búsqueda un modelo por defecto de \gls{mlp}, en el que se aplican un máximo de 100 iteraciones por cada combinación a probar. De la misma forma, para no introducir latencias innecesarias ni un sobreentrenamiento que perjudique a los resultados de clasificación, se determina una finalización temprana del entrenamiento, en el caso de que se se prooduzcan una cantidad de iteraciones seguidas sin mejoras significativas. En este caso, se deja el valor por defecto, que es 10 iteraciones y se modifica la tolerancia a un valor de 0.00001.
+En este caso, se configura para la búsqueda un modelo por defecto de \gls{mlp}, en el que se aplican un máximo de 100 iteraciones por cada combinación a probar. De la misma forma, para no introducir latencias innecesarias ni un sobreentrenamiento que perjudique a los resultados de clasificación, se determina una finalización temprana del entrenamiento cuando se produzcan una cantidad de iteraciones seguidas sin mejoras significativas. En este caso, se deja el valor por defecto, que es 10 iteraciones y se modifica la tolerancia a un valor de 0.00001.
 
 \vspace{3mm}
 
@@ -32,11 +30,11 @@ En este caso, se configura para la búsqueda un modelo por defecto de \gls{mlp},
 
 \vspace{3mm}
 
-La creación del objeto de la clase \textit{GridSearchCV()} con una configuración de 5 pliegues (\textit{cv=5}) y su entrenamiento sobre el \gls{mlp} anterior en un equipo de 32 procesadores, se estima en una duración de 2,34 horas. Cuando se lleva a cabo este proceso, se puede comprobar en el diccionario de resultados (\textit{cv\_results\_}) y, en particular, en los valores de precisión de la variable \textit{mean\_test\_score}, que se encuentran varias combinaciones de hiperparámetros que optimizan el rendimiento. En la Tabla \ref{tab:mlpaccuracy} se expone que el empleo del algoritmo de optimización del gradiente descendiente estocástico (\gls{sgd}) aporta mejores resultados que el \textit{adam} y que se consigue un valor de precisión máximo igual al 97,6\%. 
+La creación del objeto de la clase \textit{GridSearchCV()}, con una configuración de 5 pliegues (\textit{cv=5}), y su entrenamiento sobre el \gls{mlp} anterior en un equipo de 32 procesadores, se estima en una duración de 2,34 horas. Cuando se lleva a cabo este proceso, se puede comprobar en el diccionario de resultados (\textit{cv\_results\_}) y, en particular, en los valores de precisión de la variable \textit{mean\_test\_score}, que el empleo del algoritmo de optimización del gradiente descendiente estocástico (\gls{sgd}) aporta mejores resultados que el \textit{adam}. 
 
 \vspace{3mm}
 
-Teniendo esto en cuenta, se podría tomar cualquiera de las configuraciones de capas que proporcionan esta precisión. Sin embargo, también es importante poner el foco en los valores de desviación típica que se consiguen y en la duración del entrenamiento que supone cada opción para determinar cuál es la combinación de hiperparámetros más adecuada para el \gls{mlp}. 
+En la Tabla \ref{tab:mlpaccuracy} se pueden encontrar varias combinaciones de hiperparámetros que optimizan el rendimiento, con un valor de precisión del 97,6\%. Sin embargo, también es importante poner el foco en los valores de desviación típica que se consiguen y en la duración del entrenamiento que supone cada opción para determinar cuál es la combinación de hiperparámetros más adecuada para el \gls{mlp}. 
 
 \vspace{3mm}
 
@@ -63,7 +61,7 @@ Teniendo esto en cuenta, se podría tomar cualquiera de las configuraciones de c
 
 \vspace{3mm}
 
-En el caso de la desviación típica, como se observa en la Tabla \ref{tab:mlpstd}, no se producen grandes diferencias de valores entre las configuraciones en cuestión, por lo que, a priori, no es un factor determinante y que se deba tener en cuenta en la selección. No obstante, en el caso de los tiempos sí existen variaciones y esto se debe pricipalmente, al número de iteraciones que son necesarias para alcanzar la convergencia para cada versión de \gls{mlp} y a la duración que supone cada iteración. En la Tabla \ref{tab:mlptiempo}, se puede visualizar que, cuanto mayor sea el número de neuronas especificado, mayor será la latencia introducida. Esto presenta también, cierta correlación con los valores de la Tabla \ref{tab:mlpaccuracy}, ya que cuando el proceso de entrenamiento es relativamente largo, es posible que se produzca un sobreentrenamiento o \textit{overfitting} del modelo de \gls{mlp} y que la precisión obtenida sea más baja. Por ello, es importante configurar la tolerancia de optimización de forma correcta y parar el proceso cuando se detecte la convergencia del modelo (\textit{early stopping}).
+En el caso de la desviación típica, como se observa en la Tabla \ref{tab:mlpstd}, no se producen grandes diferencias de valores entre las configuraciones en cuestión, por lo que, a priori, no es un factor determinante a tener en cuenta en la selección. No obstante, en el caso de los tiempos sí existen variaciones, las cuales se deben al número de iteraciones que son necesarias para alcanzar la convergencia para cada versión de \gls{mlp} y a la duración que supone cada iteración. En la Tabla \ref{tab:mlptiempo}, se puede visualizar que, cuanto mayor sea el número de neuronas especificado, mayor será la latencia introducida. Esto presenta también, cierta correlación con los valores de la Tabla \ref{tab:mlpaccuracy}, ya que cuando el proceso de entrenamiento es relativamente largo, es posible que se produzca un sobreentrenamiento o \textit{overfitting} del modelo de \gls{mlp} y que la precisión obtenida sea más baja. Por ello, es importante configurar la tolerancia de optimización de forma correcta y detener el entrenamiento cuando se detecte la convergencia del modelo (\textit{early stopping}).
 
 \vspace{3mm}
 
@@ -113,7 +111,7 @@ En el caso de la desviación típica, como se observa en la Tabla \ref{tab:mlpst
 
 \vspace{3mm}
 
-Tras analizar los resultados, se expone de forma concluyente que la combinación de hiperparámetros más adecuada y, que por tanto, debería ser la configurada en el modelo de \gls{mlp}, es la que determina una estructura de dos capas ocultas de 5 neuronas, una función de activación \textit{relu} y el algoritmo de optimización \gls{sgd}. En este caso, como se puede apreciar en las Figuras \ref{fig:1mlpbestacc} y \ref{fig:1mlpbestloss} el proceso de entrenamiento converge en la iteración 41 con una precisión del 97,66\% y una función de pérdidas con valor 0,0712.
+Por lo tanto, tras analizar los resultados, se expone de forma concluyente que la combinación de hiperparámetros más adecuada y que debería ser la configurada en el modelo de \gls{mlp}, es la que determina una estructura de dos capas ocultas de 5 neuronas, una función de activación \textit{relu} y el algoritmo de optimización \gls{sgd}. En este caso, como se puede apreciar en las Figuras \ref{fig:1mlpbestacc} y \ref{fig:1mlpbestloss} el proceso de entrenamiento converge en la iteración 41 con una precisión del 97,66\% y una función de pérdidas con valor 0,0712.
 
 \vspace{3mm}
 
@@ -126,29 +124,26 @@ Tras analizar los resultados, se expone de forma concluyente que la combinación
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{img/desarrollo/ann/1mlpbestacc.png}
-  \caption{Representación del valor de precisión en función de las iteraciones para el modelo \acrshort{mlp} escogido}
+  \caption{Representación del valor de precisión en función de las iteraciones para el modelo de \acrshort{mlp} escogido}
   \label{fig:1mlpbestacc}
 \end{figure}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{img/desarrollo/ann/1mlpbestloss.png}
-  \caption{Representación del valor de la función de pérdidas en función de las iteraciones para el modelo \acrshort{mlp} escogido}
+  \caption{Representación del valor de la función de pérdidas en función de las iteraciones para el modelo de \acrshort{mlp} escogido}
   \label{fig:1mlpbestloss}
 \end{figure}
 
-\vspace{3mm}
+\subsubsection{Ejecución del modelo de \acrshort{ann} de \textit{keras} y evaluación de resultados}
 
-Como se introducía en esta Sección, una vez seleccionada la combinación de hiperparámetros que produce un rendimiento óptimo del \gls{mlp}, el siguiente paso consiste en aplicar la configuración en cuestión a una nuevo modelo de \gls{ann}. El objetivo es realizar una comparativa entre dos \gls{ann}s proporcionadas por distintas librerías, como son en este caso \textit{sklearn} y el módulo \textit{keras} de \textit{tensorflow}, y comprobar que los resultados obtenidos anteriormente de aplicar el método \textit{Grid Search} son coherentes. 
-
-\vspace{3mm}
-
-Por ello, se define la estructura del modelo de \gls{ann} de \textit{keras} con las dos capas ocultas de 5 neuronas y una capa de una neurona a la salida, puesto que se trabaja con un conjunto de datos con etiquetas binarias. Además, es necesario especificar a la entrada el número de características (\textit{input\_shape}), ya que será igual al número de entradas de la red neuronal. La estructura del modelo definido se representa gráficamente en la Figura \ref{fig:neuronas}
+Una vez seleccionada la combinación de hiperparámetros que produce un rendimiento óptimo del \gls{mlp}, el siguiente paso consiste en aplicar la configuración en cuestión a un nuevo modelo de \gls{ann}. El objetivo es realizar una comparativa entre dos \gls{ann}s proporcionadas por distintas librerías, como son en este caso \textit{sklearn} y el módulo \textit{keras} de \textit{tensorflow}, y comprobar que los resultados obtenidos de aplicar el método \textit{Grid Search} anteriormente son coherentes. 
 
 \vspace{3mm}
 
+Por ello, se define la estructura del modelo de \gls{ann} de \textit{keras} con las dos capas ocultas de 5 neuronas y una capa de una neurona a la salida, puesto que se trabaja con un conjunto de datos con etiquetas binarias. Además, es necesario especificar a la entrada el número de características (\textit{input\_shape}), ya que será igual al número de entradas de la red neuronal. La estructura del modelo definido se representa gráficamente en la Figura \ref{fig:neuronas} mediante el uso de la herramienta online proporcionada por \textit{TensorFlow}. \cite{seq}
 
-%FIGURA NEURONAS
+\vspace{3mm}
 
 \begin{lstlisting}[style=Python, caption={Definición del modelo de ANN de Keras}]
   model = keras.Sequential([
@@ -160,40 +155,80 @@ Por ello, se define la estructura del modelo de \gls{ann} de \textit{keras} con 
 
 \vspace{3mm}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/desarrollo/ann/neuronas.png}
+  \caption{Representación de la estructura de capas de la \gls{ann} \cite{tensorflow}}
+  \label{fig:neuronas}
+\end{figure}
 
+\vspace{3mm}
 
-Por consiguiente, se 
+Por consiguiente, se compila la red, configurando el algoritmo de optimización \gls{sgd} y la función de pérdidas binaria (\textit{binary\_crossentropy}). También, se inicia el entrenamiento para un total de 100 iteraciones y se activa la finalización temprana del proceso, en el caso de acontecer 10 iteraciones seguidas sin mejoras significativas (0.00001) en la función de pérdidas. \cite{early}
+
+\vspace{3mm}
 
 \begin{lstlisting}[style=Python, caption={Entrenamiento del modelo de ANN de Keras}]
   model.compile(optimizer = 'sgd', loss = 'binary_crossentropy', metrics = ['accuracy'])
-  History = model.fit(X_train, y_train, epochs = 100)
+  History = model.fit(X_train, y_train, epochs=100, verbose=1, callbacks=[keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, verbose=1, min_delta=0.00001)])
 \end{lstlisting}
 
+\vspace{3mm}
 
+De la misma forma que en el modelo anterior, se almacenan los valores de precisión y de pérdidas de cada iteración y se representan en forma de histograma en las Figuras \ref{fig:3annacc} y \ref{fig:3annloss}. Como se puede ver, en este caso el entrenamiento del modelo de \gls{ann} de \textit{keras} no finaliza antes de llegar a las 100 iteraciones como ocurría con el \gls{mlp}. Sin embargo, los valores de la función de pérdidas y de precisión que se adquieren son muy similares respecto al modelo anterior, siendo de 0,068 y del 97,87\%, respectivamente. 
 
-%History = model.fit(X_train, y_train, epochs=100, verbose=1, 
-                            %callbacks=[keras.callbacks.EarlyStopping(monitor='val_loss', patience=5, verbose=1)])
+\vspace{3mm}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/desarrollo/ann/3annacc.png}
+  \caption{Representación del valor de precisión en función de las iteraciones para el modelo de \acrshort{ann}}
+  \label{fig:3annacc}
+\end{figure}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{img/desarrollo/ann/3annloss.png}
+  \caption{Representación del valor de la función de pérdidas en función de las iteraciones para el modelo de \acrshort{ann}}
+  \label{fig:3annloss}
+\end{figure}
 
-\subsubsection{Ejecución del modelo y evaluación de resultados}
+\vspace{3mm}
 
-%loss functions -> solo el binary, los demás [-1,1]
-%ciclo
-%https://machinelearningmastery.com/5-step-life-cycle-neural-network-models-keras/
+Una vez se han definido y entrenado los dos modelos de \gls{ann} anteriores, se introduce una etapa final de evaluación y validación mediante dos técnicas. Por un lado, se aplica la matriz de confusión, al igual que se realizaba para los modelos de \gls{ml} y, por otro lado, se hace empleo de los propios métodos de evaluación que ofrecen ambas \gls{ann}s. Como en esta Sección enfocada al \gls{dl} no se lleva a cabo una etapa de selección de características, la evaluación se ciñe a la comparación de resultados de ambos modelos de \gls{ann}s. En la Tabla \ref{tab:anncm}, se puede apreciar la similitud de los resultados, obteniéndose un mismo valor de precisión global (\textit{Accuracy}) para los dos modelos implementados (0,9784). No obstante, si se pone el foco en el resto de métricas, se percibe una efectividad en la detección de errores (\textit{Recall}) ligeramente mayor para la \gls{ann} de \textit{sklearn} (0,1498), mientras que
+la \gls{ann} de \textit{keras} produce una mayor confiabilidad (\textit{Precision}) y, por tanto, una menor probabilidad de falsos positivos (0,7217).
 
+\vspace{3mm}
 
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \rowcolor[HTML]{EFEFEF} 
+  \textit{\begin{tabular}[c]{@{}c@{}}Matriz\\ de confusión\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{TN} & \textit{FP} & \textit{FN} & \textit{TP} & \textit{Accuracy} & \textit{Precision} & \textit{Recall} & \textit{F1 Score} \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{sklearn} & 376535 & 609 & 7706 & 1358 & 0,9784 & 0,6903 & 0,1498 & 0,2466 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{keras} & 376674 & 470 & 7842 & 1222 & 0,9784 & 0,7217 & 0,1349 & 0,2274 \\ \hline
+  \end{tabular}
+  \caption{Resultados de aplicación de la matriz de confusión a las \gls{ann}s}
+  \label{tab:anncm}
+\end{table}
 
+\vspace{3mm}
 
+De la misma forma, en la Tabla \ref{tab:anneval} se exponen los resultados de aplicar los métodos \textit{score} y \textit{evaluate}, proporcionados por \textit{sklearn} y \textit{keras}, respectivamente. En el primer caso, solo se puede obtener el valor de precisión del modelo, mientras que en el segundo se aportan también las pérdidas. Como es de esperar, los resultados siguen siendo similares para ambas \gls{ann}s y, por tanto, se puede expresar de forma concluyente que el estudio realizado en esta Sección es coherente.
 
+\vspace{3mm}
 
-%%%%5
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \rowcolor[HTML]{EFEFEF} 
+  \textit{\begin{tabular}[c]{@{}c@{}}Métodos propios de evaluación\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{Accuracy} & \textit{Loss} \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{sklearn (score)} & 0,9783 & - \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{keras (evaluate)} & 0,9785 & 0,0690 \\ \hline
+  \end{tabular}
+  \caption{Resultados de aplicación de los métodos \textit{score} y \textit{evaluate} a las \gls{ann}s}
+  \label{tab:anneval}
+\end{table}
 
-%diapo 36 + (batch)
-%https://elvex.ugr.es/decsai/computational-intelligence/slides/N2%20Backpropagation.pdf
-
-
-
-
-%overfitting
-%https://machinelearningmastery.com/introduction-to-regularization-to-reduce-overfitting-and-improve-generalization-error/
