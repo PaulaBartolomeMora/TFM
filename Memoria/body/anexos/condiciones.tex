@@ -1,17 +1,13 @@
 \chapter{Anexo I - Pliego de condiciones}
 \label{ch:anexoPliegoCondiciones}
-%Este anexo se ha añadido siguiendo la recomendación oficial de la \gls{uah} sobre \gls{tfg}s. En él se indicarán las condiciones materiales de las distintas máquinas donde se ha desarrollado el proyecto. Por último, se resumirán tanto las limitaciones de \textit{hardware}, como las especificaciones del \textit{software} instalado en las máquinas virtuales donde se llevó a cabo los distintos casos de uso. 
 
-% En este anexo se podrán encontrar las condiciones materiales de las distintas máquinas donde se ha llevado a cabo el desarrollo y evaluación del proyecto. De forma adicional, se han indicado las limitaciones \textit{hardware} así como las especificaciones \textit{software} para poder replicar el proyecto de manera íntegra en otro sistema.
+Siguiendo la recomendación oficial de la \gls{uah} sobre \gls{tfm}s, se añade el presente anexo para establecer las condiciones materiales de los diferentes equipos que han sido necesarios para desarrollar el proyecto. Se pretende garantizar que se obtengan los mismos resultados en el caso de querer replicar las diferentes pruebas realizadas en el proyecto.
 
+\section{Condiciones materiales y equipos}
 
-% \section{Condiciones materiales y equipos}
+A continuación, se indican todos los equipos empleados en el desarrollo de este \gls{tfm} y sus especificaciones de \textit{software}. 
 
-% %En el siguiente listado se presentan todos los materiales empleados en el proyecto, detallando únicamente las características esenciales de aquellos que fueron cruciales para el desarrollo del \gls{tfm}. De esta manera, se garantiza que todas las especificaciones técnicas utilizadas en las pruebas y validaciones del proyecto queden debidamente registradas.
-
-% A continuación, se presentan todas las máquinas empleadas en el desarrollo del proyecto, indicando únicamente aquellas características relevantes para la ejecución del \gls{tfm}. De esta forma, se quiere garantizar que en caso de que se replique las pruebas y validaciones del proyecto se obtengan los mismos resultados, siendo el entorno completamente replicable.
-
-% \subsection{Especificaciones Máquina A}
+\subsection{Especificaciones Máquina A} %MI ORDENADOR
 % \label{maquina_A}
 % \begin{itemize}
 %     \item Procesador: i7-8700K (12) @ 4.700GHz
@@ -27,7 +23,7 @@
 % \end{figure}
 
 
-% \subsection{Especificaciones Máquina B}
+\subsection{Especificaciones Máquina B}
 % \label{maquina_B}
 % \begin{itemize}
 %     \item Procesador: Intel i5-7500 (4) @ 3.800GHz
@@ -43,7 +39,7 @@
 % \end{figure}
 
 
-% \subsection{Especificaciones Máquina C}
+\subsection{Especificaciones Máquina C}
 % \label{maquina_C}
 % \begin{itemize}
 %     \item Procesador: Intel(R) Core(TM) 12th Gen i7-1260P (16) CPU @ 4.70Ghz
@@ -57,3 +53,19 @@
 %     \caption{Especificaciones de la máquina C}
 %     \label{fig:maquinaC}
 % \end{figure}
+
+\subsection{Especificaciones Máquina D}
+
+
+
+
+
+\section{Virtualización del sistema operativo Linux}
+Adicionalmente, es preciso indicar que se ha empleado una máquina virtual con un sistema operativo Linux para ejecutar la herramienta \gls{brite} en la máquina A. En este caso, se ha utilizado como plataforma VMWare\footnote{https://www.vmware.com/es/products.html} y una versión del sistema operativo Ubuntu 20.04.1 LTS como se puede visualizar en la Figura \ref{fig:ubuntu}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{img/anexos/ubuntu.PNG}
+    \caption{Características del sistema operativo}
+    \label{fig:ubuntu}
+\end{figure}

@@ -5,11 +5,7 @@
 \subsubsection{Puntuación de características}
 \label{sec:svm1}
 
-Para la técnica de \gls{svm}, también se procede a desarrollar una primera versión de clasificador para poder visualizar la importancia que toman las características en el mismo. En este caso, se trata de la clase \textit{SVC()} \cite{svc} y se inicializa un objeto de la misma con la definición por defecto de un kernel radial o gaussiano (\gls{rbf}), ya que se trabaja con un conjunto de datos no linearmente separables y que resulta complejo de operar si no se aumenta la dimensionalidad del espacio (ver Sección \ref{sec:mlsvm}). 
-
-\vspace{3mm}
-
-Adicionalmente, \textit{SVC()} determina valores por defecto de los hiperparámetros \textit{C} y \textit{gamma}, que hacen referencia respectivamente, a la regularización del modelo y al impacto que produce cada instancia de entrenamiento en el proceso de clasificación. El clasificador se ejecuta, se entrena con el conjunto de datos y, por consiguiente, se le aplican dos métodos de puntuación de características. Cabe destacar que, en esta primera versión del clasificador del \gls{svm}, el proceso de entrenamiento se caracteriza por presentar una duración mucho mayor que con el \gls{rf} --------------.
+Para la técnica de \gls{svm}, también se procede a desarrollar una primera versión del clasificador para poder visualizar la importancia que toman cada una de las características en el mismo. En este caso, se trata de la clase \textit{SVC()} \cite{svc} y se inicializa un objeto de la misma con la definición por defecto de un kernel radial o gaussiano (\gls{rbf}), ya que se trabaja con un conjunto de datos no linearmente separables y que resulta complejo de operar si no se aumenta la dimensionalidad del espacio (ver Sección \ref{sec:mlsvm}). De la misma forma, \textit{SVC()} determina valores por defecto de los hiperparámetros \textit{C} y \textit{gamma}, que hacen referencia respectivamente, a la regularización del modelo y al impacto que produce cada instancia de entrenamiento en el proceso de clasificación. 
 
 \vspace{3mm}
 
@@ -20,11 +16,9 @@ Adicionalmente, \textit{SVC()} determina valores por defecto de los hiperparáme
   
 \vspace{3mm}
 
-Por un lado, se estima la importancia de las características a partir de la distancia que tienen hacia los vectores de soporte. En este caso es preciso basarse en los atributos \textit{support\_vectors\_} y \textit{dual\_coef\_}, que proporcionan la información sobre los vectores soporte que se han definido en el \gls{svm} y los multiplicadores de \textit{Lagrange} asociados. El resultado se expone en la Figura \ref{fig:imp3}, en la cual se visualiza cómo las longitudes de las etiquetas origen y destino inciden en la clasificación significativamente, ya que el resto de características tienen puntuaciones mucho más bajas.
+Cabe destacar que el proceso de ejecución y entrenamiento del clasificador del \gls{svm} a partir del conjunto de datos presenta una duración mucho mayor que el \gls{rf}. No obstante, una vez finaliza, se le aplican dos métodos de puntuación de características. Por un lado, se estima la importancia de las características a partir de la distancia que tienen hacia los vectores de soporte. En este caso es preciso basarse en los atributos \textit{support\_vectors\_} y \textit{dual\_coef\_}, que proporcionan la información sobre los vectores soporte que se han definido en el \gls{svm} y los multiplicadores de \textit{Lagrange} asociados. El resultado se expone en la Figura \ref{fig:imp3}, en la cual se visualiza cómo las longitudes de las etiquetas origen y destino inciden en la clasificación significativamente, ya que el resto de características tienen puntuaciones mucho más bajas.
 
 \vspace{3mm}
-
-Por otro lado, al igual que se ha expuesto para el \gls{rf} (ver Sección \ref{sec:rf1}), se incluye el análisis a partir del método de la permutación (\textit{permutation\_importance}). En este caso, las longitudes de las etiquetas siguen siendo predominantes, pero las características que hacen referencia a la capacidad y al flujo total de energía resultante de \gls{den2ne} (\textit{abs\_flux}) también presentan valores de puntuaciones a considerar.
 
 \begin{figure}[H]
     \centering
@@ -32,7 +26,11 @@ Por otro lado, al igual que se ha expuesto para el \gls{rf} (ver Sección \ref{s
     \caption{Puntuación de características del \acrshort{svm} mediante los atributos \textit{support\_vectors\_} y \textit{dual\_coef\_}}
     \label{fig:imp3}
 \end{figure}
-  
+
+\vspace{3mm}
+
+Por otro lado, al igual que se ha expuesto para el \gls{rf} (ver Sección \ref{sec:rf1}), se incluye el análisis a partir del método de la permutación (\textit{permutation\_importance}). En este caso, las longitudes de las etiquetas siguen siendo predominantes, pero las características que hacen referencia a la capacidad y al flujo total de energía resultante de \gls{den2ne} (\textit{abs\_flux}) también presentan valores de puntuaciones a considerar.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{img/desarrollo/svm/importance4.png}
@@ -42,7 +40,7 @@ Por otro lado, al igual que se ha expuesto para el \gls{rf} (ver Sección \ref{s
 
 \subsubsection{Optimización de hiperparámetros}
 
-Para modelar un \gls{svm} óptimo se centra el estudio en dos hiperparámetros: el tipo de kernel a aplicar y el parámetro de regularización \textit{C}. En el caso de \textit{gamma}, mencionada anteriormente, es indiferente su configuración, puesto que los datos del conjunto han sido previamente escalados (ver Sección \ref{sec:adicional}) y las dos opciones posibles de \textit{gamma} ('scale' o 'auto') solo se diferencian en si se aplica o no la varianza de los datos en el cálculo del parámetro. Por lo tanto, desechando el análisis de \textit{gamma}, se aplica el método \textit{Grid Search} para realizar la búsqueda de la combinación óptima de hiperparámetros.
+Para modelar un \gls{svm} óptimo se centra el estudio en dos hiperparámetros: el tipo de kernel a aplicar y el parámetro de regularización \textit{C}. En el caso de \textit{gamma}, mencionada anteriormente, es indiferente su configuración, puesto que los datos del conjunto han sido previamente escalados (ver Sección \ref{sec:adicional}) y las dos opciones posibles de \textit{gamma} ('scale' o 'auto') únicamente se diferencian entre sí en la aplicación o no de la varianza de los datos en el cálculo del parámetro. 
 
 \vspace{3mm}
 
@@ -55,17 +53,15 @@ Para modelar un \gls{svm} óptimo se centra el estudio en dos hiperparámetros: 
 
 \vspace{3mm}
 
-Después, se inicializa un objeto de la clase \textit{GridSearchCV()} y se configura de la misma forma que se detallaba en la Sección \ref{rf2} para el \gls{rf}. No obstante, antes que nada, es importante considerar la duración del entrenamiento de un modelo \gls{svm} a partir del conjunto de datos (ver Sección \ref{sec:svm1}), puesto que es relativamente grande. Por ello, hay que cuantificar cuánto tiempo supone ejecutar todas las combinaciones de hiperaparámetros definidas en el método \textit{Grid Search}, en función del número de procesadores y de los pliegues configurados (\textit{cv=5}). Por tanto, el tiempo total de búsqueda de la combinación óptima se estima en ------------------------.
+Después, se inicializa un objeto de la clase \textit{GridSearchCV()} y se configura de la misma forma que se detallaba en la Sección \ref{rf2} para el \gls{rf}. No obstante, teniendo en cuenta la gran duración del entrenamiento del modelo \gls{svm} en el paso anterior (ver Sección \ref{sec:svm1}), se debe cuantificar primero cuánto tiempo supone ejecutar todas las combinaciones de hiperaparámetros definidas en el método \textit{Grid Search}. Este cálculo se realiza en función de los pliegues configurados (\textit{cv=5}) y del número de procesadores, por lo que se estima el tiempo total de búsqueda de la combinación óptima en 349,4 horas.
 
 \vspace{3mm}
 
-La ejecución indica en los atributos \textit{best\_score\_} y \textit{best\_params\_} que el caso óptimo es ------------------------------ con una precisión del ----------------. El análisis detallado de los resultados de rendimiento de todas las combinaciones probadas se proporciona en el atributo \textit{cv\_results\_}, especialmente en el elemento que hace referencia al promedio de precisión obtenida (\textit{mean\_test\_score}) y a los tiempos de entrenamiento (\textit{mean\_fit\_time}). 
+La ejecución indica en los atributos \textit{best\_score\_} y \textit{best\_params\_} que el caso óptimo es un \gls{svm} basado en kernel radial o gaussiano (\gls{rbf}) con un parámetro de regularización \textit{C} igual a la unidad, con el que se alcanza una precisión del 97,78\%. No obstante, se debe llevar a cabo un análisis más detallado de los resultados de rendimiento de las combinaciones probadas a partir del atributo \textit{cv\_results\_}. Este diccionario aporta los valores promedio de precisión obtenida (\textit{mean\_test\_score}) como se muestra en la Tabla \ref{tab:svmgs}. Se pueden destacar variaciones en la precisión al aplicar los distintos tipos de kernel al clasificador, siendo el kernel sigmoide el que peores resultados proporciona. Sin embargo, el empleo de diferentes parámetros de regularización \textit{C} no implica grandes cambios en la precisión y, en el caso del kernel polinomial, es indiferente y se obtienen siempre los mismos valores. 
 
-%aqui explicar resultados
+\vspace{3mm}
 
-En la Tabla \ref{tab:svmgs} --------------------------
-
-En la Tabla \ref{tab:svmgs2}  ----------------------
+De la misma forma, se extrae también de \textit{cv\_results\_} el tiempo de entrenamiento (\textit{mean\_fit\_time}) que se ha dedicado para probar cada una de las combinaciones. Como se puede ver en la Tabla \ref{tab:svmgs2}, ahora el valor que toma el parámetro de regularización \textit{C} sí que incide de forma notable en los valores y aumenta de forma proporcional en el caso del kernel polinomial. Por ello, se puede expresar que si se desea emplear este tipo de kernel no sería adecuado configurar un parámetro de regularización alto, ya que el rendimiento empeora. 
 
 \vspace{3mm}
 
@@ -76,10 +72,10 @@ En la Tabla \ref{tab:svmgs2}  ----------------------
     \begin{tabular}{|>{\columncolor[HTML]{EFEFEF}}c |c|c|c|}
       \hline
       \textit{\begin{tabular}[c]{@{}c@{}}Kernel /\\C\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{poly} & \cellcolor[HTML]{EFEFEF}\textit{rbf} & \cellcolor[HTML]{EFEFEF}\textit{sigmoid}\\ \hline
-      0,25 &  &  & \\ \hline
-      0,5 &  &  & \\ \hline
-      0,75 &  &  & \\ \hline
-      1 &  &  & \\ \hline
+      0,25 & 97,65 & 97,66 & 95,96 \\ \hline
+      0,5 & 97,65 & 97,71 & 95,94 \\ \hline
+      0,75 & 97,65 & 97,75 & 95,82 \\ \hline
+      1 & 97,65 & 97,78 & 95,81 \\ \hline
     \end{tabular}
     \caption{Precisión (\%) (\textit{mean\_test\_score})}
     \label{tab:svmgs}
@@ -90,10 +86,10 @@ En la Tabla \ref{tab:svmgs2}  ----------------------
     \begin{tabular}{|>{\columncolor[HTML]{EFEFEF}}c |c|c|c|}
       \hline
       \textit{\begin{tabular}[c]{@{}c@{}}Kernel /\\C\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{poly} & \cellcolor[HTML]{EFEFEF}\textit{rbf} & \cellcolor[HTML]{EFEFEF}\textit{sigmoid}\\ \hline
-      0,25 &  &  & \\ \hline
-      0,5 &  &  & \\ \hline
-      0,75 &  &  & \\ \hline
-      1 &  &  & \\ \hline
+      0,25 & 21030 & 13876 & 14659 \\ \hline
+      0,5 & 28807 & 10277 & 18695 \\ \hline
+      0,75 & 42183 & 9328 & 12235 \\ \hline
+      1 & 47460 & 9446 & 12869 \\ \hline
     \end{tabular}
     \caption{Tiempo (s) (\textit{mean\_fit\_time})}
     \label{tab:svmgs2}
@@ -104,30 +100,7 @@ En la Tabla \ref{tab:svmgs2}  ----------------------
 
 \vspace{3mm}
 
-
-
-% The parameters of the estimator used to apply these methods are optimized by cross-validated grid-search over a parameter grid.
-
-%  Los hiperparámetros son configuraciones que no se aprenden directamente del proceso de entrenamiento del modelo y que afectan la estructura y el rendimiento del mismo. 
-
-% La optimización de hiperparámetros implica encontrar la combinación óptima de valores para estos hiperparámetros que maximice el rendimiento del modelo en un conjunto de datos dado. Esto puede lograrse mediante técnicas como búsqueda exhaustiva, búsqueda aleatoria, optimización bayesiana o algoritmos de aprendizaje automático basados en modelos (como Grid Search, Random Search, Bayesian Optimization, entre otros).
-
-% Optimizar los hiperparámetros de un Random Forest puede conducir a modelos más precisos, robustos y generalizables. Sin embargo, debido a la complejidad y dimensionalidad del espacio de búsqueda de hiperparámetros, es importante realizar esta optimización de manera eficiente para evitar el sobreajuste y el consumo excesivo de recursos computacionales.
-
-
-
-% C a fin de cuentas el hiperparámetro encargado de controlar el balance entre bias y varianza del modelo. En la práctica, su valor óptimo se identifica mediante validación cruzada. Esta es la razón por la que el parámetro  C controla el balance entre bias y varianza lo que permite un ajuste adecuado del modelo. 
-
-%Cuando el valor de  Ces pequeño, el margen es más ancho, y más observaciones violan el margen, convirtiéndose en vectores soporte. El hiperplano está, por lo tanto, sustentado por más observaciones, lo que aumenta el bias pero reduce la varianza. 
-
-%Cuando mayor es el valor de  C , menor el margen, menos observaciones son vectores soporte y el clasificador resultante tiene menor bias pero mayor varianza.
-
-%Otra propiedad importante que deriva de que el hiperplano dependa únicamente de una pequeña proporción de observaciones (vectores soporte), es su robustez frente a observaciones muy alejadas del hiperplano. Esto hace al método de clasificación vector soporte distinto a otros métodos tales como Linear Discrimiant Analysis (LDA), donde la regla de clasificación depende de la media de todas las observaciones.
-
-%%gird search tiempo
-%https://datascience.stackexchange.com/questions/29495/how-to-estimate-gridsearchcv-computing-time
-
-
+No obstante, mediante el análisis de los tiempos se confirma que la opción más adecuada a emplear es el caso óptimo descrito a priori por el atributo \textit{best\_params\_}, ya que proporciona un tiempo de entrenamiento relativamente bajo respecto al resto de combinaciones.
 
 \subsubsection{Selección de características}
 
