@@ -50,31 +50,35 @@ X_test = sc.transform(X_test)
 ##############################################################
 
 #APLICACIÓN PCA
-"""
+
 pca = PCA(n_components=2)
 pca2 = PCA(n_components=4)
 X_train_pca = pca.fit_transform(X_train)
 X_test_pca = pca.transform(X_test)
 X_train_pca2 = pca2.fit_transform(X_train)
-X_test_pca2 = pca2.transform(X_test)"""
+X_test_pca2 = pca2.transform(X_test)
 
 ##############################################################
 
-""" #APLICACIÓN FEATURE SELECTION, 
+#APLICACIÓN FEATURE SELECTION
 
 scaler = MinMaxScaler() # Escalar las características al rango [0, 1]
 
-select_feature = SelectKBest(chi2, k=8).fit(scaler.fit_transform(X_train), y_train) 
-selected_features = X.columns[select_feature.get_support(indices=True)]
+select_feature = SelectKBest(chi2, k=5).fit(scaler.fit_transform(X_train), y_train) 
+select_feature2 = SelectKBest(chi2, k=8).fit(scaler.fit_transform(X_train), y_train) 
+selected_features = X.columns[select_feature2.get_support(indices=True)]
 print('Selected features:', selected_features)
 
 X_train_fs = select_feature.transform(X_train)
-X_test_fs = select_feature.transform(X_test)"""
+X_test_fs = select_feature.transform(X_test)
+
+X_train_fs2 = select_feature2.transform(X_train)
+X_test_fs2 = select_feature2.transform(X_test)
 
 ##############################################################
 
 inicl = time.time()
-classifier = SVC(kernel = 'rbf', random_state = 0)
+classifier = SVC(kernel = 'rbf', C = 1, random_state = 0)
 classifier.fit(X_train, y_train)
 fincl = time.time()
 
@@ -83,7 +87,7 @@ print("Tiempo ejecución clasificador: " + str(fincl-inicl))
 ##############################################################
 
 # Importancia de las características basada en la distancia a los vectores de soporte
-
+"""
 support_vectors = classifier.support_vectors_ #vectores de soporte
 dual_coef = classifier.dual_coef_ #multiplicadores de Lagrange asociados
 print("Vectores soporte y coeficientes: ")
@@ -99,11 +103,11 @@ plt.title('Importancia de las características del SVC con kernel RBF')
 plt.xticks(rotation=45, ha='right')
 plt.savefig('importance3.png', bbox_inches='tight')
 plt.show() 
-
+"""
 ##############################################################
 
 # Feature importance based on feature permutation -
-
+"""
 result = permutation_importance(
     classifier, X_test, y_test, n_repeats=5, random_state=42, n_jobs=2
 )
@@ -117,25 +121,89 @@ plt.title('Importancia de las características del RF a partir de la permutació
 plt.xticks(rotation=45, ha='right')
 plt.savefig('importance4.png', bbox_inches='tight')
 plt.show() 
-
+"""
 ##############################################################
 
-#CM
-"""
+
+
+print("MATRIZ DE CONFUSION SVM")
+##NORMAL
 y_pred = classifier.predict(X_test)
 cm = confusion_matrix(y_test, y_pred)
 print(cm) 
 accuracy_score(y_test, y_pred)
 
-#K-FOLD
+print("K-FOLD SVM")
 accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
 print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
-print("Standard Deviation: {:.2f} %".format(accuracies.std()*100)) """
+print("Standard Deviation: {:.2f} %".format(accuracies.std()*100)) 
+
+
+
+
+print("MATRIZ DE CONFUSION SVM PCA(2)")
+##PCA (2)
+classifier.fit(X_train_pca, y_train)
+y_pred = classifier.predict(X_test_pca)
+cm = confusion_matrix(y_test, y_pred)
+print(cm) 
+accuracy_score(y_test, y_pred)
+
+print("K-FOLD SVM PCA(2)")
+accuracies = cross_val_score(estimator = classifier, X = X_train_pca, y = y_train, cv = 10)
+print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
+print("Standard Deviation: {:.2f} %".format(accuracies.std()*100)) 
+
+
+
+print("MATRIZ DE CONFUSION SVM PCA(4)")
+##PCA (4)
+classifier.fit(X_train_pca2, y_train) 
+y_pred = classifier.predict(X_test_pca2)
+cm = confusion_matrix(y_test, y_pred)
+print(cm) 
+accuracy_score(y_test, y_pred)
+
+print("K-FOLD SVM PCA(4)")
+accuracies = cross_val_score(estimator = classifier, X = X_train_pca2, y = y_train, cv = 10)
+print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
+print("Standard Deviation: {:.2f} %".format(accuracies.std()*100)) 
+
+
+print("MATRIZ DE CONFUSION SVM FS(5)")
+##FS (5)
+classifier.fit(X_train_fs, y_train) 
+y_pred = classifier.predict(X_test_fs)
+cm = confusion_matrix(y_test, y_pred)
+print(cm) 
+accuracy_score(y_test, y_pred)
+
+print("K-FOLD SVM FS(5)")
+accuracies = cross_val_score(estimator = classifier, X = X_train_fs, y = y_train, cv = 10)
+print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
+print("Standard Deviation: {:.2f} %".format(accuracies.std()*100)) 
+
+
+print("MATRIZ DE CONFUSION SVM FS(8)")
+##FS (8)
+classifier.fit(X_train_fs2, y_train) 
+y_pred = classifier.predict(X_test_fs2)
+cm = confusion_matrix(y_test, y_pred)
+print(cm) 
+accuracy_score(y_test, y_pred)
+
+print("K-FOLD SVM FS(8)")
+accuracies = cross_val_score(estimator = classifier, X = X_train_fs2, y = y_train, cv = 10)
+print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
+print("Standard Deviation: {:.2f} %".format(accuracies.std()*100)) 
+
+
+
 
 ##############################################################
 
 ##GRID SEARCH
-
+"""
 parameters = [{'C': [0.25, 0.5, 0.75, 1], 'kernel': ['poly']},
               {'C': [0.25, 0.5, 0.75, 1], 'kernel': ['rbf']},
               {'C': [0.25, 0.5, 0.75, 1], 'kernel': ['sigmoid']}]
@@ -164,7 +232,7 @@ grid_search = GridSearchCV(estimator = classifier,
                            param_grid = parameters,
                            scoring = 'accuracy',
                            cv = 5,
-                           n_jobs = -1)
+                           n_jobs = 1)
 
 grid_search.fit(X_train, y_train)
 best_accuracy = grid_search.best_score_
@@ -182,4 +250,4 @@ print("Imprimiendo reporte")
 
 y_pred_gs = grid_search.predict(X_test) 
 print(classification_report(y_test, y_pred_gs)) 
-print(grid_search.cv_results_) 
+print(grid_search.cv_results_) """
