@@ -179,7 +179,7 @@ Una vez que se extraen, a partir del atributo \textit{feature\_names\_in}, aquel
 
 \vspace{3mm}
 
-Por último, se introduce una técnica, que no es estrictamente de selección de características, pero que se incluye en esta Sección, puesto que el objetivo que se persigue viene dado por la reducción de la dimensionalidad del conjunto de datos. Se denomina como Análisis de Componentes Pricipales (del inglés \gls{pca}) \cite{pca} y se basa en la aplicación de la técnica matemática de Descomposición en Valores Singulares (del inglés \gls{svd}). Es decir, su funcionamiento consiste en la búsqueda de las direcciones principales de variación (k vectores) del conjunto de datos para construir una matriz de proyección, que establezca un nuevo espacio de características de k dimensiones.
+Por último, se introduce una técnica, que no es estrictamente de selección de características, pero que se incluye en esta Sección, puesto que el objetivo que se persigue viene dado por la reducción de la dimensionalidad del conjunto de datos. Se denomina como Análisis de Componentes Principales (del inglés \gls{pca}) \cite{pca} y se basa en la aplicación de la técnica matemática de Descomposición en Valores Singulares (del inglés \gls{svd}). Es decir, su funcionamiento consiste en la búsqueda de las direcciones principales de variación (k vectores) del conjunto de datos para construir una matriz de proyección, que establezca un nuevo espacio de características de k dimensiones.
 
 \vspace{3mm}
 
@@ -220,7 +220,7 @@ No obstante, en primera instancia, se procede a ejecutar el modelo de \gls{rf}, 
 
 \vspace{3mm}
 
-Por consiguiente, una vez ejecutado, se puede llevar a cabo el proceso de evauación, que consta del empleo de dos métodos: la matriz de confusión y el \textit{K-Fold Cross Validation}. La matriz de confusión \cite{cm} es un método de gran utilidad cuando se trabaja con técnicas de clasificación binaria, como se produce en este caso para detectar y predecir los intercambios energéticos con errores. Permite analizar la precisión del modelo mediante la organización de las predicciones en cuatro categorías diferentes (ver Figura \ref{fig:confusion}): 
+Por consiguiente, una vez ejecutado, se puede llevar a cabo el proceso de evaluación, que consta del empleo de dos métodos: la matriz de confusión y el \textit{K-Fold Cross Validation}. La matriz de confusión \cite{cm} es un método de gran utilidad cuando se trabaja con técnicas de clasificación binaria, como se produce en este caso para detectar y predecir los intercambios energéticos con errores. Permite analizar la precisión del modelo mediante la organización de las predicciones en cuatro categorías diferentes (ver Figura \ref{fig:confusion}): 
 
 \begin{itemize}
   \item Verdaderos positivos (TP): Predicciones correctas de intercambios sin errores.
@@ -271,7 +271,7 @@ Por tanto, con la aplicación de la matriz de confusión, se extraen los resulta
 
 \vspace{3mm}
 
-En el caso de la precisión de los valores positivos (\textit{Precision}) o, en otros términos, de las instancias que se predicen como erróneas, vuelve a ocurrir de la misma manera. A pesar de que para la métrica \textit{Accuracy} los valores de todas las opciones son relativamente parecidos, para \textit{Precision} se visualizan grandes diferencias. Por ejemplo, el empleo de un \gls{pca} con n=2 provee un buen valor de precisión global (0,9755), pero no tiene un buen rendimiento en la clasificación de los errores (0,1252). En consecuencia, el valor del \textit{Recall} también es muy pequeño en este caso (0,0067). El resto de opciones, exceptuando las dos primeras, ya mencionadas anteriormente, presentan también porcentajes bajos, suponiendo un coste alto de predicción de errores. 
+En el caso de la precisión de los valores positivos (\textit{Precision}) o, en otros términos, de las instancias que se predicen como erróneas, vuelve a ocurrir de la misma manera. A pesar de que para la métrica \textit{Accuracy} los valores de todas las opciones son relativamente parecidos, para \textit{Precision} se visualizan grandes diferencias. Por ejemplo, el empleo de un \gls{pca} con n=2 provee un buen valor de precisión global (97,55\%), pero no tiene un buen rendimiento en la clasificación de los errores (12,52\%). En consecuencia, el valor del \textit{Recall} también es muy pequeño en este caso (0,67\%). El resto de opciones, exceptuando las dos primeras, ya mencionadas anteriormente, presentan también porcentajes bajos, suponiendo un coste alto de predicción de errores. 
 
 \vspace{3mm}
 
@@ -281,12 +281,12 @@ En el caso de la precisión de los valores positivos (\textit{Precision}) o, en 
   \hline
   \rowcolor[HTML]{EFEFEF} 
   \textit{\begin{tabular}[c]{@{}c@{}}Matriz\\ de confusión\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{TN} & \textit{FP} & \textit{FN} & \textit{TP} & \textit{Accuracy} & \textit{Precision} & \textit{Recall} & \textit{F1 Score} \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{Sin aplicar} & 376745 & 399 & 2332 & 6732 & 0,9929 & 0,9440 & 0,7427 & 0,8316 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{RFECV} & 376699 & 445 & 1717 & 7347 & 0,9944 & 0,9428 & 0,8105 & 0,8717 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{FS (n=5)} & 376555 & 589 & 7927 & 1137 & 0,9779 & 0,6597 & 0,1255 & 0,2108 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{FS (n=8)} & 375027 & 2117 & 6583 & 2481 & 0,9774 & 0,5395 & 0,2737 & 0,3632 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=2)} & 376718 & 426 & 9003 & 61 & 0,9755 & 0,1252 & 0,0067 & 0,0127 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=4)} & 376684 & 460 & 7015 & 2049 & 0,9806 & 0,8166 & 0,2260 & 0,3541 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{Sin aplicar} & 376745 & 399 & 2332 & 6732 & 99,29 & 94,40 & 74,27 & 83,16 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{RFECV} & 376699 & 445 & 1717 & 7347 & 99,44 & 04,28 & 81,05 & 87,17 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{kbest (n=5)} & 376555 & 589 & 7927 & 1137 & 97,79 & 65,97 & 12,55 & 21,08 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{kbest (n=8)} & 375027 & 2117 & 6583 & 2481 & 97,74 & 53,95 & 27,37 & 36,32 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=2)} & 376718 & 426 & 9003 & 61 & 97,55 & 12,52 & 00,67 & 01,27 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=4)} & 376684 & 460 & 7015 & 2049 & 98,06 & 81,66 & 22,60 & 35,41 \\ \hline
   \end{tabular}
   \caption{Resultados de aplicación de la matriz de confusión al \gls{rf}}
   \label{tab:rfcm}
@@ -313,13 +313,13 @@ accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, c
   \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
   \hline
   \rowcolor[HTML]{EFEFEF} 
-  \textit{\begin{tabular}[c]{@{}c@{}}K-Fold\\ Cross Validation\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{Accuracy} & \textit{Standard Deviation} \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{Sin aplicar} & 0,9930 & 0,02 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{RFECV} & 0,9947 & 0,02 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{FS (n=5)} & 0,9780 & 0,02 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{FS (n=8)} & 0,9779 & 0,01 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=2)} & 0,9735 & 0,01 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=4)} & 0,9804 & 0,00 \\ \hline
+  \textit{\begin{tabular}[c]{@{}c@{}}K-Fold\\ Cross Validation\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{Accuracy (\%)} & \textit{Standard Deviation (\%)} \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{Sin aplicar} & 99,30 & 0,02 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{RFECV} & 99,47 & 0,02 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{kbest (n=5)} & 97,80 & 0,02 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{kbest (n=8)} & 97,79 & 0,01 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=2)} & 97,35 & 0,01 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{PCA (n=4)} & 98,04 & 0,00 \\ \hline
   \end{tabular}
   \caption{Resultados de aplicación del \textit{K-Fold Cross Validation} al \gls{rf}}
   \label{tab:rfk}
