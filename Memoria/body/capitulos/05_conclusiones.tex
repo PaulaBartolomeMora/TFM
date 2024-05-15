@@ -1,13 +1,42 @@
 \chapter{Conclusiones y trabajo futuro}
 \label{conclusiones}
 
-% En este capítulo, se concluirá la memoria presentando las conclusiones del trabajo realizado y evaluando tanto el trabajo en sí como los resultados obtenidos durante el desarrollo. Además, se explorarán las posibles vías de trabajo futuro que surgieron a medida que se llevaba a cabo el TFM. Se presentarán estas vías y se cerrará la memoria con una visión general y reflexiva sobre el proyecto realizado.
+En este Capítulo final, se establecerán las conclusiones principales que han surgido de la realización de este proyecto realizado y se valorará el cumplimiento de los objetivos expuestos inicialmente en el Capítulo \ref{ch:intro}. De la misma forma, se explorarán las posibles vías de trabajo futuro que se presentan como opciones de continuación de este \gls{tfm}.
 
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \section{Conclusiones del \glsentryshort{tfm}}
+\section{Conclusiones del \glsentryshort{tfm}}
 
-% En este \gls{tfm}, se ha llevado a cabo el diseño e implementación de un protocolo de control escalable para redes \gls{iot} en entornos SDN de la nueva generación de redes móviles, \gls{6g}. El protocolo se ha basado en un enfoque de control in-band, estableciendo la conectividad entre los nodos de la red y el controlador a través del plano de datos para transmitir información de control.\\
+En este \gls{tfm}, se han desarrollado diferentes modelos de \gls{ml} y \gls{dl} para la detección y predicción precisa de errores en \gls{sg}s durante el proceso de distribución energética que lleva a cabo el algoritmo \gls{den2ne}. 
+
+\vspace{3mm}
+
+Este proceso se ha estructurado en seis etapas, comenzando por el estudio del estado del arte y la investigación de las posibles fuentes de datos de implementaciones \gls{sg}s reales a emplear. Por consiguiente, ha sido necesario analizar y evaluar el volumen de información útil aplicando un procesamiento exhaustivo sobre los datos reales. Este paso ha sido fundamental y, aunque ha supuesto un análisis más extenso y detallado de lo estimado inicialmente, se ha logrado un conjunto de datos reales coherente, riguroso y simplificado que abarque muestras tomadas por hora durante un intervalo de un año.
+
+\vspace{3mm}
+
+No obstante, después de este procesamiento, se han requerido dos pasos adicionales para extraer el conjunto de datos final sobre el que desarrollar y entrenar los modelos. Por un lado, se ha aplicado la herramienta BRITE para el planteamiento y generación de topologías de red, lo que ha derivado en la creación de 180 en total. Estas topologías se han importado a un simulador propietario realizado en python y han supuesto la base de las simulaciones de distribución energética en \gls{den2ne}. 
+
+\vspace{3mm}
+
+De la misma forma, también ha sido necesario modelar y realizar una serie de modificaciones en la estructura y en el funcionamiento del algoritmo. Este proceso ha sido imprescindible para permitir la importación al mismo de los datos reales, ejecutar múltiples simulaciones de las topologías generadas en el paso anterior y exportar el conjunto de datos final con las instancias ya etiquetadas. Cabe destacar que, para obtener suficientes muestras útiles o, en otros términos, un número significante de simulaciones a ejecutar en el algoritmo, se han seleccionado una serie de instantes temporales sobre los que trabajar. Entonces, en base a la configuración propuesta, se han realizado un total de 47.304.000 simulaciones en \gls{den2ne}.
+
+\vspace{3mm}
+
+El siguiente paso se ha correspondido con el desarrollo y entrenamiento de los diferentes modelos de \gls{ml} y \gls{dl} a partir de los patrones de error etiquetados y exportados del algoritmo. En este caso, se han planteado, diseñado y probado tres técnicas diferentes: \gls{rf}, \gls{svm} y \gls{ann}s. En este caso, el proceso de optimización de los hiperparámetros característicos de cada una de ellas y la aplicación de diferentes métodos de reducción de las dimensiones del conjunto de datos han derivado en el desarrollo de múltiples opciones a probar. Además, la evaluación del rendimiento de las mismas ha sido crucial para llevar a cabo un análisis completo del rendimiento de los modelos y para definir el caso óptimo que permita detectar los errores de forma precisa. En este caso, se puede expresar que el modelo que ha proporcionado el mejor rendimiento en términos globales es el \gls{rf} con la aplicación del método \gls{rfecv}.
+
+\vspace{3mm}
+
+Como síntesis, los resultados obtenidos del desarrollo de este \gls{tfm} han sido fruto de realizar un trabajo amplio y riguroso, tanto en el estudio, análisis y procesamiento de los datos, como en la creación de modelos de detección y predicción de errores con una alta efectividad. Este trabajo contribuye significativamente a la mejora del funcionamiento del algoritmo \gls{den2ne} y a la eficiencia y la fiabilidad de las \gls{sg}s en el contexto de la distribución energética. Adicionalmente, la adaptabilidad de los modelos se extiende al contexto de implementación en entornos de redes de dispositivos \gls{iot}, lo que destaca la notable flexibilidad e importancia que aporta este proyecto.
+
+\vspace{3mm}
+
+%Personalmente, este \gls{tfm} ha sido un reto, por su complejidad a nivel técnico, y por lo transversal que es. Se ha estudiado las bondades y las tecnologías habilitantes del \gls{6g}, el entorno radio, las nuevas configuraciones de \textit{arrays} de antenas, las arquitecturas propuestas en la nueva generación. Asimismo, se ha ido trabajando herramienta por herramienta del mundo \gls{sdn}, se ha programado desde alto nivel (Python) a bajo nivel (BOFUSS), se ha trabajado desde el espacio de usuario a espacio de kernel, incluso se ha tenido que diseñar una plataforma de emulación inalámbrica. Por todo ello, por el carácter polímata y transversal del proyecto, creo que este \gls{tfm} ilustra bastante bien las competencias y habilidades que un Ingeniero de Telecomunicación debería tener, que es por ello, por lo que somos reconocidos tanto en la industria, como en la sociedad.
+
+
+
+
+%----
+
 % \\
 % En la primera fase del proyecto, se realizó un exhaustivo estudio y documentación de las principales herramientas y tecnologías relacionadas, sentando así una sólida base teórica antes de abordar el diseño y prototipado del protocolo de control in-band. Posteriormente, se analizaron las necesidades y características de las distintas tecnologías para seleccionar las herramientas más adecuadas para la implementación del protocolo de control. Se llevó a cabo un estudio de estas herramientas con el objetivo de lograr una implementación optimizada en la medida de lo posible.  El proyecto se completó mediante la validación del protocolo desarrollado a través de la emulación, lo que permitió realizar pruebas de funcionamiento del protocolo implementado en el entorno \gls{bofus} sobre interfaces inalámbricas emuladas. De este modo, se pudo comprobar el correcto desempeño del protocolo en diferentes casos de uso. Esta validación resulta fundamental para asegurar que el protocolo cumple con los requisitos de escalabilidad y control en entornos \gls{iot} y \gls{sdn}. De forma adicional, se ha estudiado como validarlo en un entorno real, no siendo posible, dado que hay problemas en la traducción de símbolos a la arquitectura ARM.\\
 % \\
@@ -21,9 +50,9 @@
 
 % \newpage
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \section{Líneas de trabajo futuro}
-% \label{trabajoFuturo}
+
+\section{Líneas de trabajo futuro}
+\label{trabajoFuturo}
 
 
 %extender el estudio hacia otros algoritmos de encaminamiento tipo den2ne o a otras ubicaciones (aqui madeira) para estudiar comportamientos de consumo

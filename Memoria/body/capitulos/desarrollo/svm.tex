@@ -122,7 +122,7 @@ De la misma forma, en el caso del \gls{pca}, se repite el proceso descrito en la
 \subsubsection{Ejecución del modelo y evaluación de resultados}
 \label{sec:svm4}
 
-Tras desarrollar el proceso de optimización de hiperparámetros del clasificador, se procede a evaluar el rendimiento del modelo \gls{svm} utilizando las diferentes técnicas de reducción de las dimensiones del conjunto de datos. Sin embargo, es importante volver a recalcar, antes de analizar los resultados, el significativo coste computacional y tiempo asociado con el entrenamiento del clasificador. En este caso, se ejecutan 5 pruebas aplicando en cada una el método de la matriz de confusión y del \textit{K-Fold Cross Validation}, lo que resulta en una duración total de ----."
+Tras desarrollar el proceso de optimización de hiperparámetros del clasificador, se procede a evaluar el rendimiento del modelo \gls{svm} utilizando las diferentes técnicas de reducción de las dimensiones del conjunto de datos. Sin embargo, es importante volver a recalcar, antes de analizar los resultados, el significativo coste computacional y tiempo asociado con el entrenamiento del clasificador. En este caso, se ejecutan 5 pruebas aplicando en cada una el método de la matriz de confusión y del \textit{K-Fold Cross Validation}, lo que resulta en una duración total de 325 horas."
 
 \vspace{3mm}
 
@@ -152,7 +152,7 @@ Por otro lado, la métrica \textit{Recall} presenta en todas las opciones valore
 
 \vspace{3mm}
 
-En cuanto a los resultados de aplicación del método \textit{K-Fold Cross Validation}, se puede que comprobar en la Tabla \ref{tab:svmk} que se obtienen valores de precisión parecidos a los dados anteriormente. En este caso, con escasas diferencias, se presenta como mejor opción la aplicación de la técnica \textit{kbest} con 8 características con un ---\%.
+En cuanto a los resultados de aplicación del método \textit{K-Fold Cross Validation}, se puede que comprobar en la Tabla \ref{tab:svmk} que se obtienen valores de precisión parecidos a los dados anteriormente. En este caso, con mínimas diferencias, se presenta como mejor opción la aplicación de la técnica \textit{kbest} con 5 características con un 97,8\%.
 
 \vspace{3mm}
 
@@ -168,7 +168,7 @@ Por tanto, tras completar el proceso de evaluación del modelo mediante ambos m�
   \textit{\begin{tabular}[c]{@{}c@{}}K-Fold\\ Cross Validation\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{Accuracy(\%)} & \textit{Standard Deviation (\%)} \\ \hline
   \cellcolor[HTML]{EFEFEF}\textit{Sin aplicar} & 97,79 & 0,01 \\ \hline
   \cellcolor[HTML]{EFEFEF}\textit{kbest (n=5)} & 97,80 & 0,01 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{kbest (n=8)} &  &  \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{kbest (n=8)} & 97,79 & 0,01 \\ \hline
   \cellcolor[HTML]{EFEFEF}\textit{PCA (n=2)} & 97,76 & 0,00 \\ \hline
   \cellcolor[HTML]{EFEFEF}\textit{PCA (n=4)} & 97,76 & 0,00 \\ \hline
   \end{tabular}
