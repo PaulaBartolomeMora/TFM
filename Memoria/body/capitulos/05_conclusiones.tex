@@ -1,7 +1,7 @@
 \chapter{Conclusiones y trabajo futuro}
 \label{conclusiones}
 
-En este Capítulo final, se establecerán las conclusiones principales que han surgido de la realización de este proyecto realizado y se valorará el cumplimiento de los objetivos expuestos inicialmente en el Capítulo \ref{ch:intro}. De la misma forma, se explorarán las posibles vías de trabajo futuro que se presentan como opciones de continuación de este \gls{tfm}.
+En este Capítulo final, se establecerán las conclusiones principales que han surgido de la realización de este proyecto de investigación y se valorará el cumplimiento de los objetivos expuestos inicialmente en el Capítulo \ref{ch:intro}. De la misma forma, se explorarán las posibles vías de trabajo futuro que se presentan como opciones de continuación de este \gls{tfm}.
 
 
 \section{Conclusiones del \glsentryshort{tfm}}
@@ -10,7 +10,7 @@ En este \gls{tfm}, se han desarrollado diferentes modelos de \gls{ml} y \gls{dl}
 
 \vspace{3mm}
 
-Este proceso se ha estructurado en seis etapas, comenzando por el estudio del estado del arte y la investigación de las posibles fuentes de datos de implementaciones \gls{sg}s reales a emplear. Por consiguiente, ha sido necesario analizar y evaluar el volumen de información útil aplicando un procesamiento exhaustivo sobre los datos reales. Este paso ha sido fundamental y, aunque ha supuesto un análisis más extenso y detallado de lo estimado inicialmente, se ha logrado un conjunto de datos reales coherente, riguroso y simplificado que abarque muestras tomadas por hora durante un intervalo de un año.
+Este proceso se ha estructurado en seis etapas, comenzando por el estudio del estado del arte y la investigación de las posibles fuentes de datos de implementaciones \gls{sg}s reales a emplear. Por consiguiente, ha sido necesario evaluar el volumen de información útil de los datos reales, provenientes de la implementación de una \gls{sg} en la ciudad de Funchal, Madeira. Cabe destacar que se ha aplicado un procesamiento exhaustivo, además de que ha sido necesario incorporar un análisis en profundidad de dos herramientas (\textit{Global Solar Atlas} y \textit{PVWatts}) para simular los datos de producción. Este paso de tratamiento de datos ha sido fundamental y, aunque ha supuesto una mayor extensión en el tiempo de lo estimado inicialmente, se ha logrado un conjunto de datos reales coherente, riguroso y simplificado que abarque muestras tomadas por hora durante un intervalo de un año.
 
 \vspace{3mm}
 
@@ -26,57 +26,19 @@ El siguiente paso se ha correspondido con el desarrollo y entrenamiento de los d
 
 \vspace{3mm}
 
-Como síntesis, los resultados obtenidos del desarrollo de este \gls{tfm} han sido fruto de realizar un trabajo amplio y riguroso, tanto en el estudio, análisis y procesamiento de los datos, como en la creación de modelos de detección y predicción de errores con una alta efectividad. Este trabajo contribuye significativamente a la mejora del funcionamiento del algoritmo \gls{den2ne} y a la eficiencia y la fiabilidad de las \gls{sg}s en el contexto de la distribución energética. Adicionalmente, la adaptabilidad de los modelos se extiende al contexto de implementación en entornos de redes de dispositivos \gls{iot}, lo que destaca la notable flexibilidad e importancia que aporta este proyecto.
-
-\vspace{3mm}
-
-%Personalmente, este \gls{tfm} ha sido un reto, por su complejidad a nivel técnico, y por lo transversal que es. Se ha estudiado las bondades y las tecnologías habilitantes del \gls{6g}, el entorno radio, las nuevas configuraciones de \textit{arrays} de antenas, las arquitecturas propuestas en la nueva generación. Asimismo, se ha ido trabajando herramienta por herramienta del mundo \gls{sdn}, se ha programado desde alto nivel (Python) a bajo nivel (BOFUSS), se ha trabajado desde el espacio de usuario a espacio de kernel, incluso se ha tenido que diseñar una plataforma de emulación inalámbrica. Por todo ello, por el carácter polímata y transversal del proyecto, creo que este \gls{tfm} ilustra bastante bien las competencias y habilidades que un Ingeniero de Telecomunicación debería tener, que es por ello, por lo que somos reconocidos tanto en la industria, como en la sociedad.
-
-
-
-
-%----
-
-% \\
-% En la primera fase del proyecto, se realizó un exhaustivo estudio y documentación de las principales herramientas y tecnologías relacionadas, sentando así una sólida base teórica antes de abordar el diseño y prototipado del protocolo de control in-band. Posteriormente, se analizaron las necesidades y características de las distintas tecnologías para seleccionar las herramientas más adecuadas para la implementación del protocolo de control. Se llevó a cabo un estudio de estas herramientas con el objetivo de lograr una implementación optimizada en la medida de lo posible.  El proyecto se completó mediante la validación del protocolo desarrollado a través de la emulación, lo que permitió realizar pruebas de funcionamiento del protocolo implementado en el entorno \gls{bofus} sobre interfaces inalámbricas emuladas. De este modo, se pudo comprobar el correcto desempeño del protocolo en diferentes casos de uso. Esta validación resulta fundamental para asegurar que el protocolo cumple con los requisitos de escalabilidad y control en entornos \gls{iot} y \gls{sdn}. De forma adicional, se ha estudiado como validarlo en un entorno real, no siendo posible, dado que hay problemas en la traducción de símbolos a la arquitectura ARM.\\
-% \\
-% Durante todo el proceso de ejecución del proyecto, se generaron diversas contribuciones no asociadas directamente a los objetivos del proyecto, pero sí a la comunidad \gls{sdn}. Se aportó claridad al documentar el funcionamiento interno de herramientas como ``dpctl" y su interfaz de comandos, lo que permitió resolver problemas relacionados con ellas. Se exploró a fondo el funcionamiento de Mininet-WiFi, documentando su jerarquía de clases y los módulos que utiliza en el kernel de Linux para emular el entorno de radio, lo que facilitó la identificación de posibles fuentes de errores debido a desvíos en las interfaces inalámbricas emuladas. También se profundizó en el funcionamiento interno de \gls{bofus}, solucionando problemas de compilación para las últimas versiones de distribuciones Linux y actualizando documentación incorrecta sobre su funcionamiento.\\
-% \\
-% Además, se crearon escenarios replicables mediante Vagrant, que incluyen todas las herramientas relacionadas con entornos \gls{sdn} (Mininet, Mininet-WiFi, Ryu, \gls{onos}, \gls{bofus}) en la última versión de Ubuntu 22.04. Esto ha permitido mantener actualizadas estas herramientas y proyectos que habían sido abandonados. Por ejemplo, el proyecto \gls{bofus} fue retomado después de casi cuatro años sin recibir ninguna contribución (\textit{commit}), gracias a la colaboración entre el autor y el autor de este \gls{tfm}, quien asumió un rol de mantenedor en el proyecto.\\
-% \\
-% En conclusión, este \gls{tfm} ha logrado desarrollar un mecanismo de control in-band para dispositivos \gls{iot} en entornos \gls{6g}. Además, se ha generado una cadena de valor al aportar conocimiento y mejoras a herramientas y proyectos previamente abandonados, lo que ha contribuido a revitalizarlos.\\
-% \\
-% Personalmente, este proyecto ha sido un reto, por su complejidad a nivel técnico, y por lo transversal que es. Se ha estudiado las bondades y las tecnologías habilitantes del \gls{6g}, el entorno radio, las nuevas configuraciones de \textit{arrays} de antenas, las arquitecturas propuestas en la nueva generación. Asimismo, se ha ido trabajando herramienta por herramienta del mundo \gls{sdn}, se ha programado desde alto nivel (Python) a bajo nivel (BOFUSS), se ha trabajado desde el espacio de usuario a espacio de kernel, incluso se ha tenido que diseñar una plataforma de emulación inalámbrica. Por todo ello, por el carácter polímata y transversal del proyecto, creo que este \gls{tfm} ilustra bastante bien las competencias y habilidades que un Ingeniero de Telecomunicación debería tener, que es por ello, por lo que somos reconocidos tanto en la industria, como en la sociedad.
-
-% \newpage
-
+Como síntesis, este \gls{tfm} ha supuesto un gran reto por su complejidad a nivel técnico y por su extensión temporal requerida. Los resultados obtenidos del desarrollo de este \gls{tfm} han sido fruto de realizar un trabajo amplio y riguroso, tanto en el estudio, análisis y procesamiento de los datos, como en la creación de modelos de detección y predicción de errores con una alta efectividad. Por ello, este trabajo contribuye significativamente a la mejora del funcionamiento del algoritmo \gls{den2ne} y a la eficiencia y la fiabilidad de las \gls{sg}s en el contexto de la distribución energética. Adicionalmente, la adaptabilidad de los modelos se extiende al contexto de implementación en entornos de redes de dispositivos \gls{iot}, lo que incrementa la importancia de este proyecto y destaca su notable flexibilidad.
 
 \section{Líneas de trabajo futuro}
 \label{trabajoFuturo}
 
+Tras exponer el alcance logrado de los objetivos del presente \gls{tfm}, se introducen las posibles vías de trabajo futuro para la continuación de este proyecto de investigación.
 
-%extender el estudio hacia otros algoritmos de encaminamiento tipo den2ne o a otras ubicaciones (aqui madeira) para estudiar comportamientos de consumo
-%extender el analisis a otros ml o ann
-%extender a estudio de balance energetico o comportamiento de consumo
+\begin{itemize}
+    \item Ampliar el estudio del comportamiento del algoritmo \gls{den2ne} y de los patrones de error a partir de otros conjuntos de datos reales. De esta forma, se podrían evaluar otras fuentes provenientes de medidas de implementaciones de \gls{sg}s en ubicaciones diferentes.
+    \item Desarrollar técnicas adicionales de \gls{ml} y \gls{dl} y evaluar el rendimiento de los nuevos modelos. En este caso, se podría plantear el empleo de Máquinas de Refuerzo de Gradiente (del inglés \gls{gbm}), como \textit{XGBoost}, ya que permiten manejar grandes cantidades de datos y sería de interés comprobar si mejoran los resultados de precisión obtenidos en este proyecto.
+    \item Profundizar el empleo de los modelos para estudiar y predecir otros parámetros relativos al comportamiento de la distribución energética que simula \gls{den2ne}. Se podría plantear un estudio de la predicción del balance de cargas, lo que seguiría mejorando las funcionalidades del algoritmo y proporcionaría una visión más amplia de su funcionamiento.
+    \item Simular en \gls{den2ne} otros instantes temporales del conjunto de datos. En este proyecto se han seleccionado 12 instantes temporales para comprender un día por cada mes del año, suponiendo datos suficientes para entrenar los modelos desarrollados de forma rigurosa. Como línea futura, se podrían seleccionar y probar otras muestras temporales.
+    \item Extender el desarrollo realizado en este \gls{tfm} en el contexto de redes de dispositivos \gls{iot}. Por su caracter flexible, sería posible implementar la detección y predicción de errores o sobrecargas también en estos entornos.
+\end{itemize}
 
-
-
-% Tras concluir y revisar el alcance conseguido de los objetivos propuestos para la ejecución del proyecto, podemos apuntar a próximas líneas de trabajo futuro basadas en los siguientes puntos:
-% \begin{itemize}
-%     \item Realizar un despliegue en real utilizando Raspberry Pi (RPi) que tienen una interfaz WiFi nativa para evaluar el funcionamiento del win-BOFUSS con varias RPis. Esto permitirá verificar si el rendimiento es similar al observado durante el proyecto.
-
-%     \item Realizar la integración del switch BOFUSS en la jerarquía de clases de Mininet-WiFi. Esto facilitará la realización de pruebas y evaluaciones más consistentes al combinar las funcionalidades de ambos proyectos.
-
-%     \item Añadir seguridad mediante el uso de TLS en las conexiones OpenFlow in-band desde el UserAP hacia el controlador. Esto garantizará la confidencialidad y la integridad de las comunicaciones, protegiendo la información transmitida entre el UserAP y el controlador.
-
-%     \item Realizar simulaciones de pérdida utilizando el protocolo desarrollado y evaluar cómo afecta al funcionamiento intrínseco de la operativa programada. Esto ayudará a comprender el impacto de la pérdida de paquetes en el rendimiento del sistema y permitirá optimizar el protocolo en función de los resultados obtenidos.
-
-%     \item Modificar la interfaz del \gls{bofus} con la herramienta de gestión ``dpctl'' para que implemente una interfaz estándar como JSON.
-
-%     \item Arreglar el trazado de símbolos a la arquitectura ARM. Este punto tiene que ver con el primero a líneas a futuro, porque si no se porta correctamente a ARM según se ha explicado, será imposible desplegarlo en una RPi, o en dispositivos ARM que porten Openwrt, por ejemplo.
-% \end{itemize}
-
-% Estas líneas de trabajo futuro proporcionan oportunidades para mejorar y ampliar el proyecto, explorando nuevas funcionalidades, mejorando la seguridad y evaluando su rendimiento en diferentes escenarios y condiciones. Como se ha indicado en las conclusiones, aparte de apuntar a las posibles líneas de trabajo a futuro, también hay que mencionar la realidad inmediata, que después de estar trabajando con el \textit{software switch} BOFUSS, conseguir hacerlo funcionar en las últimas versiones se tomará el relevo a Eder como mantenedor del proyecto en una nueva organización agnóstica.
-
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+En definitiva, las líneas de trabajo futuro presentadas proporcionan diversas oportunidades de ampliación del proyecto de investigación realizado, lo que indica el gran alcance que permitiría su continuación.
