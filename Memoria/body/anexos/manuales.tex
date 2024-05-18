@@ -11,14 +11,20 @@ El objetivo de incluir esta sección es exponer al lector la información de ins
 
 Para proceder a instalar la herramienta, se accede al repositorio del equipo de investigación NetIS de la \gls{uah}\footnote{https://github.com/NETSERV-UAH/BRITE} y se descarga y se descomprime el fichero .zip con todos los contenidos necesarios. Después, se realiza un \textit{make} desde el directorio raíz de la herramienta. Se pueden producir errores por la falta de paquetes \textit{g++} o \textit{openjdk++}, que se soluciona con los comandos dados en el Código \ref{paquetes}.
 
+\vspace{3mm}
+
 \begin{lstlisting}[language=bash, style=Consola, caption={Instalación de paquetes}, label={paquetes}]
   sudo apt install g++
   sudo apt install openjdk-11-jdk
 \end{lstlisting}
 
+\newpage 
+
 \subsection{Ejecución de \acrshort{brite}}
 
 Se puede ejecutar \gls{brite} mediante la interfaz gráfica (GUI) (ver Código \ref{lst:britegui}) o por comandos. En el caso de los comandos se da la posibilidad de utilizar los ejecutables programados en C++ o en Java (ver Código \ref{lst:ejecutar}), obteniéndose los mismos resultados a partir de una misma entrada.
+
+\vspace{3mm}
 
 \begin{lstlisting}[language=bash, style=Consola, caption={Ejecución de la interfaz gráfica de \gls{brite}}, label={lst:britegui}]
   $./britegui &
@@ -31,7 +37,7 @@ Se puede ejecutar \gls{brite} mediante la interfaz gráfica (GUI) (ver Código \
   $C++/cppgen <archivo de entrada .conf> <archivo de salida .brite> <seed_file>
 \end{lstlisting}
 
-\vspace{3mm}
+\vspace{4mm}
 
 Como se especifica en el Código \ref{lst:ejecutar}, se requiere un archivo de configuración de entrada (.conf), en el cual se determinen los parámetros de la topología, y otro de salida, especificado en formato .brite. Como se ha expuesto en el Capítulo referente al Estado del Arte (ver Sección \ref{sec:brite_eje}), para facilitar el uso de \gls{brite} se aportan en el repositorio una serie de ficheros de Python y scripts dedicados a la automatización del proceso de creación de los ficheros de configuración y del tratamiento de la salida.
 
