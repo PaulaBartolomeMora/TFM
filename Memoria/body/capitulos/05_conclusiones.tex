@@ -1,7 +1,7 @@
 \chapter{Conclusiones y trabajo futuro}
 \label{conclusiones}
 
-En este Capítulo final, se establecerán las conclusiones principales que han surgido de la realización de este proyecto de investigación y se valorará el cumplimiento de los objetivos expuestos inicialmente en el Capítulo \ref{ch:intro}. De la misma forma, se explorarán las posibles vías de trabajo futuro que se presentan como opciones de continuación de este \gls{tfm}.
+En este Capítulo final, se establecerán las conclusiones principales a las que se ha llegado con la realización de este proyecto de investigación y se valorará el cumplimiento de los objetivos expuestos inicialmente en el Capítulo \ref{ch:intro}. De la misma forma, se explorarán las posibles vías de trabajo futuro que se presentan como opciones de continuación de este \gls{tfm}.
 
 
 \section{Conclusiones del \glsentryshort{tfm}}
@@ -18,11 +18,11 @@ No obstante, después de este procesamiento, se han requerido dos pasos adiciona
 
 \vspace{3mm}
 
-De la misma forma, también ha sido necesario modelar y realizar una serie de modificaciones en la estructura y en el funcionamiento del algoritmo. Este proceso ha sido imprescindible para permitir la importación al mismo de los datos reales, ejecutar múltiples simulaciones de las topologías generadas en el paso anterior y exportar el conjunto de datos final con las instancias ya etiquetadas. Cabe destacar que, para obtener suficientes muestras útiles o, en otros términos, un número significante de simulaciones a ejecutar en el algoritmo, se han seleccionado una serie de instantes temporales sobre los que trabajar. Entonces, en base a la configuración propuesta, se han realizado un total de 47.304.000 simulaciones en \gls{den2ne}.
+Por otro lado, también ha sido necesario modelar y realizar una serie de modificaciones en la estructura y en el funcionamiento del algoritmo. Este proceso ha sido imprescindible para permitir la importación al mismo de los datos reales, ejecutar múltiples simulaciones de las topologías generadas en el paso anterior y exportar el conjunto de datos final con las instancias ya etiquetadas. Cabe destacar que, para obtener suficientes muestras útiles o, en otros términos, un número significante de simulaciones a ejecutar en el algoritmo, se han seleccionado una serie de instantes temporales sobre los que trabajar. Entonces, en base a la configuración propuesta, se han realizado un total de 47.304.000 simulaciones en \gls{den2ne}.
 
 \vspace{3mm}
 
-El siguiente paso se ha correspondido con el desarrollo y entrenamiento de los diferentes modelos de \gls{ml} y \gls{dl} a partir de los patrones de error etiquetados y exportados del algoritmo. En este caso, se han planteado, diseñado y probado tres técnicas diferentes: \gls{rf}, \gls{svm} y \gls{ann}s. En este caso, el proceso de optimización de los hiperparámetros característicos de cada una de ellas y la aplicación de diferentes métodos de reducción de las dimensiones del conjunto de datos han derivado en el desarrollo de múltiples opciones a probar. Además, la evaluación del rendimiento de las mismas ha sido crucial para llevar a cabo un análisis completo del rendimiento de los modelos y para definir el caso óptimo que permita detectar los errores de forma precisa. En este caso, se puede expresar que el modelo que ha proporcionado el mejor rendimiento en términos globales es el \gls{rf} con la aplicación del método \gls{rfecv}.
+El siguiente paso ha consistido en el desarrollo y entrenamiento de los diferentes modelos de \gls{ml} y \gls{dl} a partir de los patrones de error etiquetados y exportados del algoritmo. En este caso, se han planteado, diseñado y probado tres técnicas diferentes: \gls{rf}, \gls{svm} y \gls{ann}s. En este caso, el proceso de optimización de los hiperparámetros característicos de cada una de ellas y la aplicación de diferentes métodos de reducción de las dimensiones del conjunto de datos han derivado en el desarrollo de múltiples opciones a probar. Además, la evaluación del rendimiento de las mismas ha sido crucial para llevar a cabo un análisis completo del rendimiento de los modelos y para definir el caso óptimo que permita detectar los errores de forma precisa. En este caso, se puede expresar que el modelo que ha proporcionado el mejor rendimiento en términos globales es el \gls{rf} con la aplicación del método \gls{rfecv}.
 
 \vspace{3mm}
 

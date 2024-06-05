@@ -5,7 +5,7 @@
 \subsection{\acrshort{brite}}
 \label{sec:brite}
 
-\gls{brite} \cite{brite} se presenta como una plataforma dedicada a la generación de topologías de red. Fue desarrollada en la Universidad de Boston y se caracteriza por su gran flexibilidad, ya que enfoca su arquitectura en el concepto de modelo topológico. Es decir, soporta varios modelos diferentes y cada uno de ellos viene determinado por los parámetros de entrada que se definen. Es por ello que \gls{brite} sigue la siguiente secuencia de acciones para diseñar las topologías:
+\gls{brite} \cite{brite} se presenta como una plataforma dedicada a la generación de topologías aleatorias de red. Fue desarrollada en la Universidad de Boston y se caracteriza por su gran flexibilidad, ya que enfoca su arquitectura en el concepto de modelo topológico. Es decir, soporta varios modelos diferentes y cada uno de ellos viene determinado por los parámetros de entrada que se definen. Es por ello que \gls{brite} sigue la siguiente secuencia de acciones para diseñar las topologías:
 
 \vspace{3mm}
 
@@ -39,7 +39,7 @@ La herramienta \gls{brite} basa el proceso de creación de topologías en la def
 \subsubsection{Modelos de topologías}
 \label{sec:modelostopos}
 
-Como se ha introducido, con \gls{brite} se posibilita el uso de múltiples modelos para crear topologías. En la Figura \ref{fig:brite} se representan todos los que soporta la herramienta. No obstante, este \gls{tfm} se va a enfocar en la generación de topologías a nivel de router, como son los modelos Router Waxman y Router Barabasi-Albert. 
+Como se ha introducido, con \gls{brite} se posibilita el uso de múltiples modelos para crear topologías. En la Figura \ref{fig:brite} se representan todos los que soporta la herramienta. No obstante, este \gls{tfm} se va a enfocar en la generación de topologías a nivel de router, como son los modelos Router Waxman \cite{waxman} y Router Barabasi-Albert \cite{barabasi}. 
 
 \vspace{3mm}
 
@@ -54,8 +54,12 @@ Como se ha introducido, con \gls{brite} se posibilita el uso de múltiples model
 
 En el caso del Router Waxman, como su nombre indica, emplea un modelo de probabilidad Waxman para establecer la Interconexión de los nodos en la topología \cite{brite_zegura}:
 
-\[P_{\text{Waxman}}(u,v) = \alpha \cdot e^{-\frac{d}{\beta \cdot L}}\]
-    
+\begin{equation}
+    \begin{aligned}
+        P_{\text{Waxman}}(u,v) = \alpha \cdot e^{-\frac{d}{\beta \cdot L}}
+    \end{aligned}
+\end{equation} 
+
     Donde:
 \begin{itemize}
     \renewcommand{\labelitemi}{}
@@ -67,9 +71,13 @@ En el caso del Router Waxman, como su nombre indica, emplea un modelo de probabi
 
 \vspace{3mm}
 
-Por otro lado, el modelo Router Barabasi-Albert está basado en la generación de topologías con un incremento exponencial del número de nodos a lo largo del tiempo. Además, se permite una conexión preferencial, suponiendo que cuanto mayor grado de conectividad abarque un nodo, mayor será la probabilidad de que este añada nuevos enlaces. Por lo tanto, el plano de la topología comienza con un número de nodos inicial \textit{N0} y se van añadiendo los demás uno a uno. Cada uno de estos nuevos nodos se conectará a \textit{N} nodos ya añadidos a la topología con una probabilidad \cite{brite_zegura}:
+Por otro lado, el modelo Router Barabasi-Albert está basado en la generación de topologías con un incremento exponencial del número de nodos a lo largo del tiempo, conocidas como \textit{scale-free} o de tipo \textit{hub-and-spoke}. Además, se permite una conexión preferencial, suponiendo que cuanto mayor grado de conectividad abarque un nodo, mayor será la probabilidad de que este añada nuevos enlaces. Por lo tanto, el plano de la topología comienza con un número de nodos inicial \textit{N0} y se van añadiendo los demás uno a uno. Cada uno de estos nuevos nodos se conectará a \textit{N} nodos ya añadidos a la topología con una probabilidad \cite{brite_zegura}:
 
-\[P_{\text{Barabási-Albert}}(k_i) = \frac{k_i}{\sum_{j}^{}k_j}\]
+\begin{equation}
+    \begin{aligned}
+        P_{\text{Barabási-Albert}}(k_i) = \frac{k_i}{\sum_{j}^{}k_j}
+    \end{aligned}
+\end{equation} 
     
     Donde:
 \begin{itemize}

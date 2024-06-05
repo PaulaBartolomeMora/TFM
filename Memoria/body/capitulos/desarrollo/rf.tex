@@ -124,7 +124,7 @@ El proceso de selección de características viene dado por la necesidad de redu
 
 \vspace{3mm}
 
-En primer lugar, se introduce la técnica de eliminación recursiva de características con validación cruzada (del inglés \gls{rfecv}) \cite{rfecv}. Esta se basa en la ejecución de un proceso iterativo para ir desechando las características que tienen menor influencia en los resultados de precisión, hasta que el rendimiento del modelo deja de mejorar significativamente. 
+En primer lugar, se introduce la técnica de eliminación recursiva de características con validación cruzada (del inglés \gls{rfecv}) \cite{rfecv}. Esta técnica se basa en la ejecución de un proceso iterativo para ir desechando las características que tienen menor influencia en los resultados de precisión, hasta que el rendimiento del modelo deja de mejorar significativamente. 
 
 \vspace{3mm}
 
@@ -169,7 +169,7 @@ Por consiguiente, se entra en el funcionamiento de la segunda técnica a emplear
 
 \vspace{3mm}
 
-Una vez que se extraen, a partir del atributo \textit{feature\_names\_in}, aquellas características con mayor puntuación, se procede a transformar los conjuntos de entrenamiento y de test. Si se compara la lista proporcionada por el atributo anterior con las puntuaciones de las Figuras \ref{fig:imp1} y \ref{fig:imp2}, se puede comprobar que esta técnica no estan precisa como en el caso del \gls{rfecv}, puesto que se seleccionan algunas características que no presentan tan buenas puntuaciones. Por ello, se estima a priori, que la implementación de la selección invariante no mejorará los resultados de precisión que se esperan con \gls{rfecv}.
+Una vez que se extraen, a partir del atributo \textit{feature\_names\_in}, aquellas características con mayor puntuación, se procede a transformar los conjuntos de entrenamiento y de test. Si se compara la lista proporcionada por el atributo anterior con las puntuaciones de las Figuras \ref{fig:imp1} y \ref{fig:imp2}, se puede comprobar que esta técnica no es tan precisa como en el caso del \gls{rfecv}, puesto que se seleccionan algunas características que no presentan tan buenas puntuaciones. Por ello, se estima a priori, que la implementación de la selección invariante no mejorará los resultados de precisión que se esperan con \gls{rfecv}.
 
 \vspace{3mm}
 
@@ -183,7 +183,7 @@ Por último, se introduce una técnica, que no es estrictamente de selección de
 
 \vspace{3mm}
 
-No obstante, antes de aplicar el ajuste y la transformación al conjunto de datos a partir del \gls{pca}, se debe configurar el número de componentes a emplear. Para ello, se utiliza el "método del codo" (del inglés \textit{Elbow Method}) para identificar el punto o "codo" en el que el aumento del número de componentes no aporta mejoras significativas en el valor de la varianza. 
+No obstante, antes de aplicar el ajuste y la transformación al conjunto de datos a partir del \gls{pca}, se debe configurar el número de componentes a emplear. Para ello, se utiliza el ``método del codo" (del inglés \textit{Elbow Method}) para identificar el punto o ``codo" en el que el aumento del número de componentes no aporta mejoras significativas en el valor de la varianza. 
 
 \vspace{3mm}
 
@@ -216,11 +216,11 @@ Por otro lado, en la Sección \ref{sec:rf3} se han expuesto varias propuestas de
 
 \vspace{3mm}
 
-No obstante, en primera instancia, se procede a ejecutar el modelo de \gls{rf}, tanto empleando las diferentes opciones de reducción de dimensiones del conjunto de datos, como sin aplicar ninguna de ellas para realizar la comparativa. A modo de proveer una mayor comprensión del entrenamiento que se produce, se incluye la lógica de representación de los estimadores o árboles de decisión del \gls{rf}, mediante el empleo del método de conversión \textit{export\_graphviz} \cite{graphviz2} y la herramienta de generación de grafos, \textit{WebGraphViz}. En la Figura \ref{fig:tree} se expone uno de los árboles que se construyen en este proceso.
+No obstante, en primera instancia, se va a proceder a ejecutar el modelo de \gls{rf}, tanto empleando las diferentes opciones de reducción de dimensiones del conjunto de datos, como sin aplicar ninguna de ellas para realizar la comparativa. A modo de proveer una mayor comprensión del entrenamiento que se produce, se incluye la lógica de representación de los estimadores o árboles de decisión del \gls{rf}, mediante el empleo del método de conversión \textit{export\_graphviz} \cite{graphviz2} y la herramienta de generación de grafos, \textit{WebGraphViz}. En la Figura \ref{fig:tree} se expone uno de los árboles que se construyen en este proceso.
 
 \vspace{3mm}
 
-Por consiguiente, una vez ejecutado, se puede llevar a cabo el proceso de evaluación, que consta del empleo de dos métodos: la matriz de confusión y el \textit{K-Fold Cross Validation}. La matriz de confusión \cite{cm} es un método de gran utilidad cuando se trabaja con técnicas de clasificación binaria, como se produce en este caso para detectar y predecir los intercambios energéticos con errores. Permite analizar la precisión del modelo mediante la organización de las predicciones en cuatro categorías diferentes (ver Figura \ref{fig:confusion}): 
+Por consiguiente, una vez ejecutado, se puede llevar a cabo el proceso de evaluación, que consta de dos métodos: la matriz de confusión y el \textit{K-Fold Cross Validation}. La matriz de confusión \cite{cm} es un método de gran utilidad cuando se trabaja con técnicas de clasificación binaria, como se produce en este caso para detectar y predecir los intercambios energéticos con errores. Permite analizar la precisión del modelo mediante la organización de las predicciones en cuatro categorías diferentes (ver Figura \ref{fig:confusion}): 
 
 \begin{itemize}
   \item Verdaderos positivos (TP): Predicciones correctas de intercambios sin errores.
@@ -251,13 +251,37 @@ A través de las categorías definidas en la matriz, se pueden obtener cuatro m�
 
 \begin{itemize}
   \item \textit{Accuracy}: Mide la proporción de predicciones correctas en relación con el total y evalúa el rendimiento general de un modelo de clasificación.
-  \[\textit{Accuracy} = \frac{{TP + TN}}{{TP + TN + FP + FN}}\]
+  
+  \begin{equation}
+    \begin{aligned}
+      \textit{Accuracy} = \frac{{TP + TN}}{{TP + TN + FP + FN}}
+    \end{aligned}
+  \end{equation}
+
   \item \textit{Precision}: Mide la proporción de verdaderos positivos entre todas las instancias clasificadas como positivas.
-  \[\text{Precision} = \frac{{TP}}{{TP + FP}}\]
+  
+  \begin{equation}
+    \begin{aligned}
+      \text{Precision} = \frac{{TP}}{{TP + FP}}
+    \end{aligned}
+  \end{equation}
+
   \item \textit{Recall}: Mide la proporción de verdaderos positivos identificados correctamente entre todas las instancias que son realmente positivas. 
-  \[\text{Recall} = \frac{{TP}}{{TP + FN}}\]
+  
+  \begin{equation}
+    \begin{aligned}
+      \text{Recall} = \frac{{TP}}{{TP + FN}}
+    \end{aligned}
+  \end{equation}
+
   \item \textit{F1 Score}: Combina las dos métricas anteriores, tomando en cuenta tanto los falsos positivos como los falsos negativos.
-  \[\text{F1 Score} = \frac{{2 \times \text{Precision} \times \text{Recall}}}{{\text{Precision} + \text{Recall}}}\]
+  
+  \begin{equation}
+    \begin{aligned}
+      \text{F1 Score} = \frac{{2 \times \text{Precision} \times \text{Recall}}}{{\text{Precision} + \text{Recall}}}
+    \end{aligned}
+  \end{equation}
+  
 \end{itemize}
 
 \begin{lstlisting}[style=Python, caption={Implementación de la matriz de confusión}]

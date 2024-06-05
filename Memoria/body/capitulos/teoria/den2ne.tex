@@ -6,17 +6,17 @@
 
 \vspace{3mm} 
 
-Se puede expresar que el algoritmo se fundamenta en dos principios: escalabilidad y versatilidad. En el caso del primero, por un lado, \gls{den2ne} minimiza los tiempos de convergencia para posibilitar la aplicación del mismo en topologías que cuenten con una gran cantidad de nodos y, por otro lado, toma importancia del consumo de recursos de memoria, minimizando el número de mensajes transmitidos. 
+El algoritmo se enfoca en la búsqueda de nodos vecinos para llevar a cabo la distribución energética. En este proceso de intercambio de recursos se asumen conexiones bidireccionales entre los nodos para representar la oferta y la demanda existente. Es preciso indicar que \gls{den2ne} se fundamenta en los siguientes principios: escalabilidad, versatilidad, flexibilidad y resiliencia. En el caso de la escalabilidad, el algoritmo minimiza los tiempos de convergencia para posibilitar la aplicación del mismo en topologías densas, tomando importancia del consumo de recursos de memoria y minimizando el número de mensajes transmitidos. 
 
 \vspace{3mm}
 
-El algoritmo se enfoca en la búsqueda de nodos vecinos para llevar a cabo la distribución energética. En este proceso de intercambio de recursos se asumen conexiones bidireccionales entre los nodos para representar la oferta y la demanda existente. Además, se toma siempre en consideración la existencia en la red de un nodo raíz o \textit{gateway}, que está conectado a recursos infinitos. Este nodo toma la responsabilidad de funcionar como balanceador, puesto que el principal objetivo de \gls{den2ne} viene dado por la compensación de los recursos de la red a nivel global. A modo de visualizar de una forma gráfica este proceso, se muestra en la Figura \ref{fig:balance} un ejemplo de una red compuesta por seis nodos y un \textit{gateway}. Como se puede apreciar, se representa tanto la conectividad que existe entre los nodos (color negro), como el sentido del intercambio de los recursos hacia el \textit{gateway} (color naranja). 
+En cuanto a la resiliencia, se obtienen rutas de espaldo de cada prosumidor al un nodo raíz o \textit{gateway}, que, en el caso de uso de las \gls{sg}s, daría acceso a la red de distribución eléctrica y se asumiría que está conectado a recursos infinitos. Este nodo toma la responsabilidad de funcionar como balanceador, puesto que el principal objetivo de \gls{den2ne} viene dado por la compensación de los recursos de la red a nivel global. A modo de visualizar de una forma gráfica este proceso, se muestra en la Figura \ref{fig:balance} un ejemplo de una red compuesta por seis nodos y un \textit{gateway}. Como se puede apreciar, se representa tanto la conectividad que existe entre los nodos (color negro), como el sentido del intercambio de los recursos hacia el \textit{gateway} (color naranja). 
 
 \vspace{3mm}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.45\textwidth]{img/teoria/balance.png}
+  \includegraphics[width=0.4\textwidth]{img/teoria/fig2.eps}
   \caption{Ejemplo del proceso de balance de recursos \cite{den2ne}}
   \label{fig:balance}
 \end{figure}
@@ -29,7 +29,7 @@ Teniendo esto en cuenta, el primer paso que lleva a cabo \gls{den2ne} se basa en
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.35\textwidth]{img/teoria/bucle.png}
+  \includegraphics[width=0.35\textwidth]{img/teoria/fig4.eps}
   \caption{Proceso de asignación de etiquetas \cite{den2ne}}
   \label{fig:bucle}
 \end{figure}

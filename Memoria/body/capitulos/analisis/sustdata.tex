@@ -53,7 +53,7 @@ Como se ha introducido en el Capítulo \ref{ch:intro}, el objetivo principal que
 
 \vspace{3mm}
 
-De igual manera, es importante que las muestras tengan una buena resolución y que proporcione información en cada instante sobre las condiciones climáticas de la ubicación donde se encuentran las viviendas. Bajo las premisas anteriores, se ha finalizado el proceso de estudio y análisis de los diferentes conjuntos de datos llegando a la conclusión de que el dataset más adecuado a emplear en este \gls{tfm} es \textit{SustDataED}.
+De igual manera, es importante que las muestras tengan una buena resolución y que proporcione información en cada instante sobre las condiciones climáticas de la ubicación donde se encuentran las viviendas. Bajo las premisas anteriores, se ha finalizado el proceso de estudio y análisis de los diferentes conjuntos de datos llegando a la conclusión de que el dataset más adecuado a emplear en este \gls{tfm} es \textit{\textbf{SustDataED}}.
 
 \subsection{\textit{SustDataED}}
 \label{sec:sustdataed}
@@ -62,7 +62,7 @@ El dataset \textit{SustDataED} \cite{sustdata} es creado a partir del proyecto d
 
 \vspace{3mm}
 
-El dataset \textit{SustDataED} engloba cinco años de datos de consumo y producción energética de 50 hogares de la ciudad de Funchal (Madeira, Portugal)con una resolución o frecuencia de adquisición de nuevas muestras por minuto. Debido a esto, se caracteriza por comprender una gran cantidad de información eléctrica que tendrá que ser posteriormente procesada de forma exhaustiva (ver Sección~\ref{sec:preprocesado}).
+El dataset \textit{SustDataED} engloba cinco años de datos de consumo y producción energética de 50 hogares de la ciudad de Funchal (Madeira, Portugal) con una resolución o frecuencia de adquisición de nuevas muestras por minuto. Debido a esto, se caracteriza por comprender una gran cantidad de información eléctrica que tendrá que ser posteriormente procesada de forma exhaustiva (ver Sección~\ref{sec:preprocesado}).
 
 \vspace{3mm}
 
@@ -81,7 +81,7 @@ El proceso de adquisición y recolección de los datos de los 50 hogares que con
     \item El despliegue 4 es el último que se realiza y consta de la agrupación de medidas de 10 hogares, comenzando la recolección de datos de los mismos en el mes de julio de 2013 y finalizando en marzo de 2014.
 \end{itemize}
 
-En la Figura \ref{fig:despliegues} se representan gráficamente los períodos temporales que abarcan los despliegues expuestos anteriormente mediante el empleo de la librería de \textit{Python}, \textit{matplotlib}. Además, como se puede apreciar, cada uno de los 50 hogares participantes supone un identificador único (\textit{id}). 
+En la Figura \ref{fig:despliegues} se representan gráficamente los períodos temporales que abarcan los despliegues expuestos anteriormente mediante el empleo de la librería de \textit{Python}, \textit{matplotlib}. Además, como se puede apreciar, cada uno de los 50 hogares participantes es representado por un identificador único (\textit{id}). 
 
 \vspace{3mm}
 
@@ -143,11 +143,15 @@ Por otro lado, se almacena para cada medida una marca de tiempo con la fecha, ho
 
 \pagebreak
 
-Los parámetros de tensión (V) y corriente (I) se muestrean continuamente a una frecuencia de 8KHz y las medidas de potencia activa (P), reactiva (Q) y aparente (S) se cuantifican a un ratio de 50 muestras por segundo a partir de las siguientes expresiones~\cite{sustdata}:
+Los parámetros de tensión (V) y corriente (I) se muestrean continuamente a una frecuencia de 8KHz y las medidas de potencia activa (P(W)), reactiva (Q(VAR)) y aparente (S(VA)) se cuantifican a un ratio de 50 muestras por segundo a partir de las siguientes expresiones~\cite{sustdata}:
 
-\[ S = I_{\text{RMS}} \cdot V_{\text{RMS}} \]
-\[ P = S \cdot \cos(\phi) \]
-\[ Q = S \cdot \sin(\phi) \]
+\begin{equation}
+    \begin{aligned}
+        S &= I_{\text{RMS}} \cdot V_{\text{RMS}} \\
+        P &= S \cdot \cos(\phi) \\
+        Q &= S \cdot \sin(\phi)
+    \end{aligned}
+\end{equation}
 
     Donde:
 \begin{itemize}

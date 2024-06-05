@@ -101,9 +101,9 @@ TOPO_SEEDS=(1 2 3 4 5 6 7 8 9 10) # Seeds de generación de BRITE
 
 Por tanto, teniendo en cuenta la configuración implementada para los parámetros de entrada, se puede determinar el número total de simulaciones únicas posibles a partir de la siguiente expresión:
 
-    \[\textit{Nsim} = \textit{Ntopos} \times \textit{Ninstantes} \times \textit{Ncriterios} 
+    \[\textit{N\_sim} = \textit{Ntopos} \times \textit{Ninstantes} \times \textit{Ncriterios} 
     \times \textit{Nescenarios} \times \textit{NNlimit} \times \textit{Nsem\_ejec}\]
-    \[\textit{Nsim} = 180 \times 8760 \times 6 \times 1 \times 1 \times 5 = 47304000\] 
+    \[\textit{N\_sim} = 180 \times 8760 \times 6 \times 1 \times 1 \times 5 = 47304000\] 
 
 \pagebreak 
 
@@ -125,7 +125,7 @@ Por simplificar, como el rango temporal de las muestras (ver Sección \ref{sec:r
 
 \vspace{3mm}
 
-Como el objetivo se basa en extraer de los ficheros finales de cargas netas \textit{load\_x.csv} (ver Sección \ref{sec:combinacion}) los datos de los instantes temporales especificados, se introduce un nuevo \textit{notebook}, denominado como \textit{loadsamples.ipynb}. A partir del mismo, se filtran los 12 instantes seleccionados y se obtienen a la salida 12 ficheros de test (ej. \textit{test\_2010-11-28\_11.csv}), los cuales serán proporcionados a la entrada del algoritmo para importar los 23 perfiles reales de carga para cada prueba. Es en este paso cuando se proceden a ejecutar las simulaciones en \gls{den2ne}. La aplicación de cada fichero de test a la entrada proporciona a la salida un nuevo directorio nombrado con el instante temporal que especifica el fichero de test en cuestión (ej. \textit{dataset\_exp\_2010-11-28\_11}). En su interior, se impone una organización de los resultados en 18 carpetas, en función del modelo y del grado de conectividad al que hacen referencia (ej. \textit{barabasi\-200\-6}). Cada una de dichas carpetas consta de 60 ficheros de resultados, que incluyen en su nombre el número de semilla, el criterio del algoritmo, el instante temporal, el grado de conectividad y el modelo (ej. \textit{dataset\_seed\_1\_cr\_0\_t\_2010\-11\-28\_11\_dg\_2\_m\_barabasi.csv}). En la Figura \ref{fig:dirnombres} se expone la nomenclatura especificada para cada uno de los directorios y ficheros de resultados.
+Como el objetivo se basa en extraer de los ficheros finales de cargas netas \textit{load\_x.csv} (ver Sección \ref{sec:combinacion}) los datos de los instantes temporales especificados, se introduce un nuevo \textit{notebook}, denominado como \textit{loadsamples.ipynb}. A partir del mismo, se filtran los 12 instantes seleccionados y se obtienen a la salida 12 ficheros de test (ej. \textit{test\_2010-11-28\_11.csv}), los cuales serán proporcionados a la entrada del algoritmo para importar los 23 perfiles reales de carga para cada prueba. Es en este paso cuando se proceden a ejecutar las simulaciones en \gls{den2ne}. La aplicación de cada fichero de test a la entrada proporciona a la salida un nuevo directorio nombrado con el instante temporal que especifica el fichero de test en cuestión (ej. \textit{dataset\_exp\_2010-11-28\_11}). En su interior, se impone una organización de los resultados en 18 carpetas, en función del modelo y del grado de conectividad al que hacen referencia (ej. \textit{barabasi-200-6}). Cada una de dichas carpetas consta de 60 ficheros de resultados, que incluyen en su nombre el número de semilla, el criterio del algoritmo, el instante temporal, el grado de conectividad y el modelo (ej. \textit{dataset\_seed\_1\_cr\_0\_t\_2010-11-28\_11\_dg\_2\_m\_barabasi.csv}). En la Figura \ref{fig:dirnombres} se expone la nomenclatura especificada para cada uno de los directorios y ficheros de resultados.
 
 \vspace{3mm}
 

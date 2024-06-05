@@ -10,11 +10,11 @@ También, se ha llevado a cabo una investigación enfocada en dos herramientas d
 
 \vspace{3mm}
 
-Entonces, se puede expresar que la ejecución de los procesos anteriores proporcionará múltiples ficheros de datos que soporten extensas cantidades de información. En consecuencia, estos ficheros se caracterizarán por su gran tamaño y su dificultad de manejo y empleo. Por ello, se introduce esta Sección con el fin principal de realizar un procesamiento exhaustivo y reducir los conjuntos de datos únicamente a las muestras que aporten información de utilidad para llevar a cabo el desarrollo posterior. Teniendo en cuenta el objetivo definido, se va a estructurar esta Sección en diferentes fases, en función de cada uno de los pasos que se deberán realizar para procesar los datos.
+Entonces, se puede expresar que la ejecución de los procesos anteriores proporcionará múltiples ficheros de datos que soporten extensas cantidades de información. En consecuencia, estos ficheros se caracterizarán por su gran tamaño y su dificultad de manejo y empleo. Por ello, se introduce esta Sección con el fin principal de realizar un procesamiento exhaustivo y reducir los conjuntos de datos únicamente a las muestras que aporten información de utilidad para llevar a cabo el desarrollo. Teniendo en cuenta el objetivo definido, se va a estructurar esta Sección en diferentes fases, en función de cada uno de los pasos que se deberán realizar para procesar los datos.
 
 \vspace{3mm}
 
-Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. Su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento. Cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras. Adicionalmente, para la representación de las diferentes gráficas de la Sección se hará uso de los módulos \textit{matplotlib} y \textit{seaborn}.
+Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. El conjunto de ficheros realizados se encuentran disponibles en el repositorio\footnote{https://github.com/PaulaBartolomeMora/TFM/tree/main/SustData} de GitHub dedicado a este proyecto y su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento. Cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras. Adicionalmente, para la representación de las diferentes gráficas de la Sección se hará uso de los módulos \textit{matplotlib} y \textit{seaborn}. Los ficheros dedicad en el contexto de este \gls{tfm} estarán 
 
 \subsection{Procesado de datos de consumo}
 
@@ -34,22 +34,28 @@ Por lo tanto, en este paso, enfocado al análisis de la situación inicial del c
 \vspace{3mm}
 
 \begin{table}[h!]
-    \centering
-    \begin{tabular}{c|c|c|cc}
-    \hline
-    \rowcolor[HTML]{C0C0C0} 
-    \multicolumn{1}{|l|}{\cellcolor[HTML]{C0C0C0}Despliegue} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Muestras} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Días} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Fecha de inicio} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Fecha de fin} \\ \hline
-    \multicolumn{1}{|c|}{1} & 3.474.557 & 123 & \multicolumn{1}{c|}{10/07/2010} & \multicolumn{1}{c|}{10/11/2010} \\ \hline
-    \multicolumn{1}{|c|}{2} & 12.481.536 & 504 & \multicolumn{1}{c|}{25/11/2010} & \multicolumn{1}{c|}{20/04/2012} \\ \hline
-    \multicolumn{1}{|c|}{3} & 5.671.576 & 298 & \multicolumn{1}{c|}{01/08/2012} & \multicolumn{1}{c|}{25/05/2013} \\ \hline
-    \multicolumn{1}{|c|}{4} & 2.884.512 & 219 & \multicolumn{1}{c|}{31/07/2013} & \multicolumn{1}{c|}{10/03/2014} \\ \hline
-    \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF}24.512.181} & \multicolumn{1}{l|}{\cellcolor[HTML]{EFEFEF}1144} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{2-3}
-    \end{tabular}
-    \caption{Resumen de los datos de consumo del dataset \textit{SustDataED} \cite{sustdata}}
-    \label{tab:resumen}
+  \centering
+  \begin{tabular}{c|c|c|cc}
+  \hline
+  \rowcolor[HTML]{C0C0C0} 
+  \multicolumn{1}{|l|}{\cellcolor[HTML]{C0C0C0}Despliegue} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Muestras} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Días} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Fecha de inicio} & \multicolumn{1}{l|}{\cellcolor[HTML]{C0C0C0}Fecha de fin} \\ \hline
+  \multicolumn{1}{|c|}{1} & 3.474.557 & 123 & \multicolumn{1}{c|}{10/07/2010} & \multicolumn{1}{c|}{10/11/2010} \\ \hline
+  \multicolumn{1}{|c|}{2} & 12.481.536 & 504 & \multicolumn{1}{c|}{25/11/2010} & \multicolumn{1}{c|}{20/04/2012} \\ \hline
+  \multicolumn{1}{|c|}{3} & 5.671.576 & 298 & \multicolumn{1}{c|}{01/08/2012} & \multicolumn{1}{c|}{25/05/2013} \\ \hline
+  \multicolumn{1}{|c|}{4} & 2.884.512 & 219 & \multicolumn{1}{c|}{31/07/2013} & \multicolumn{1}{c|}{10/03/2014} \\ \hline
+  \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}TOTAL} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{24.512.181}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}1144} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ \cline{1-3}
+  \end{tabular}
+  \caption{Resumen de los datos de consumo del dataset \textit{SustDataED} \cite{sustdata}}
+  \label{tab:resumen}
 \end{table}
 
 \vspace{3mm}
+
+Como se puede comprobar, a priori la mayoría no precisan de un volumen manejable, por lo que la primera acción a realizar será dividir los mismos en nuevos ficheros que supongan un tamaño menor del dado. Esto sobre todo será importante a la hora de trabajar con el repositorio de GitHub, puesto que existe el factor limitante de que el tamaño máximo permitido por archivo es de 100MB.
+
+\vspace{3mm}
+
+No obstante, antes de dividir los ficheros, se debe volver a la Tabla que hace referencia a las medidas de consumo energético (ver Tabla \ref{tab:consumo}) para observar que estos ficheros contienen una columna dedicada a la marca de tiempo (\textit{timestamp}) del instante en el que se adquirió la medida. 
 
 \begin{table}[h!]
     \centering
@@ -77,14 +83,6 @@ Por lo tanto, en este paso, enfocado al análisis de la situación inicial del c
     \caption{Resumen de las características de los ficheros de los despliegues de \textit{SustDataED}}
     \label{tab:fichconsumo}
 \end{table}
-
-\pagebreak
-
-Como se puede comprobar, a priori la mayoría no precisan de un volumen manejable, por lo que la primera acción a realizar será dividir los mismos en nuevos ficheros que supongan un tamaño menor del dado. Esto sobre todo será importante a la hora de trabajar con el repositorio de GitHub, puesto que existe el factor limitante de que el tamaño máximo permitido por archivo es de 100MB. 
-
-\vspace{3mm}
-
-No obstante, antes de dividir los ficheros, se debe volver a la Tabla que hace referencia a las medidas de consumo energético (ver Tabla \ref{tab:consumo}) para observar que estos ficheros contienen una columna dedicada a la marca de tiempo (\textit{timestamp}) del instante en el que se adquirió la medida. 
 
 \vspace{3mm}
 
@@ -187,7 +185,7 @@ Esta característica supone que, si se desea aplicar el promedio a los valores d
 
 \vspace{3mm}
 
-En primer lugar, \textit{datasamples\_process.py} describe una función de lectura que extrae como argumento el \textit{path} donde se ubican los ficheros .csv a leer y, después, aplica un bucle para concatenar todos ellos en un mismo \textit{dataframe}. Por consiguiente, se comprueba qué tipo de datos contienen los ficheros (ficheros de consumo o de producción) y se almacenan las columnas de los parámetros eléctricos con los que se va a operar en una variable X. En el caso de los ficheros de consumo, se selecciona la columna \textit{Pavg}, que hace referencia a los valores de potencia activa media adquirida en cada instante. Esto es porque se trata de la información que se requiere conocer para poder establecer más adelante las cargas en el algoritmo \gls{den2ne}. Este proceso en cuestión será detallado en la Sección \ref{sec:cambiosden2ne}.
+En primer lugar, \textit{datasamples\_process.py} describe una función de lectura que extrae como argumento el \textit{path} donde se ubican los ficheros .csv a leer y, después, aplica un bucle para concatenar todos ellos en un mismo \textit{dataframe}. Por consiguiente, se comprueba qué tipo de datos contienen los ficheros (ficheros de consumo o de producción) y se almacenan las columnas de los parámetros eléctricos con los que se va a operar en una variable X. En el caso de los ficheros de consumo, se selecciona la columna \textit{Pavg}, que hace referencia a los valores de potencia activa media adquirida en cada instante. Esto se debe a que se trata de la información que se requiere conocer para poder establecer más adelante las cargas en el algoritmo \gls{den2ne}. Este proceso en cuestión será detallado en la Sección \ref{sec:cambiosden2ne}.
 
 \vspace{3mm}
 
@@ -353,7 +351,7 @@ Se plantea en primera instancia, establecer una ejecución multihilo. Cuando se 
 
 \vspace{3mm}
 
-Esto se debe a que los hilos no son procesos y están principalmente enfocados a la concurrencia. Es decir, el planificador del kernel establece en qué core se va a ejecutar cada una de las tareas y se producen cambios de contexto, que tienen como consecuencia, la introducción de latencias y una pérdida de eficiencia en la ejecución de las pruebas. Teniendo esto en cuenta, se toma la decisión de operar con procesos independientes. En este caso, no se van a producir desalojos, dado que la tarea sí es un proceso. Además, se establece uno para cada identificador, suponiendo que cada uno de ellos se ejecute completamente en un core. En la Figura \ref{fig:multiprocess}, se muestran los cambios comentados. \cite{thread}
+Esto se debe a que los hilos no son procesos y están principalmente enfocados a la concurrencia. Es decir, el planificador del kernel establece en qué core se va a ejecutar cada una de las tareas y se producen cambios de contexto, que tienen como consecuencia, la introducción de latencias y una pérdida de eficiencia en la ejecución de las pruebas. Teniendo esto en cuenta, se toma la decisión de operar con la librería de \textit{multiprocessing}. En este caso, no se van a producir desalojos, dado que la tarea sí es un proceso. Además, se establece uno para cada identificador, suponiendo que cada uno de ellos se ejecute completamente en un core. En la Figura \ref{fig:multiprocess}, se muestran los cambios comentados. \cite{thread}
 
 \vspace{3mm}
 
@@ -458,7 +456,7 @@ Como se puede ver en la Figura \ref{fig:despliegue2}, aunque las 23 viviendas pe
 
 \vspace{3mm}
 
-Como se ha indicado anteriormente en esta misma Sección, los datos de producción energética se comienzan a medir desde el mes de octubre de 2010, por lo que es necesario como mínimo establecer el inicio del rango temporal en estas fechas. Por otro lado, entrando en el contenido de los ficheros, la fecha mínima en la que se visualiza que las 23 viviendas adquieren y almacenan medidas es el 28 de noviembre de 2010, lo que lleva a tomar la decisión de establecer la misma como inicio del rango temporal a considerar. En cuanto a la fecha final, a partir de la información dada en la Figura \ref{fig:despliegue2}, se considera que la opción más eficiente es abarcar un año completo de muestras, siendo la fecha final el 28 de noviembre de 2011. 
+Como se ha indicado anteriormente, los datos de producción energética se comienzan a medir desde el mes de octubre de 2010, por lo que es necesario como mínimo establecer el inicio del rango temporal en estas fechas. Por otro lado, entrando en el contenido de los ficheros, la fecha mínima en la que se visualiza que las 23 viviendas adquieren y almacenan medidas es el 28 de noviembre de 2010, lo que lleva a tomar la decisión de establecer la misma como inicio del rango temporal a considerar. En cuanto a la fecha final, a partir de la información dada en la Figura \ref{fig:despliegue2}, se considera que la opción más eficiente es abarcar un año completo de muestras, siendo la fecha final el 28 de noviembre de 2011. 
 
 \vspace{3mm}
 
@@ -575,7 +573,7 @@ De la misma forma, teniendo en cuenta el rango temporal que se ha ajustado anter
 
 \vspace{3mm}
 
-A priori, se podría apreciar que los valores reflejados de generación energética presentan cierta correlación con la temperatura a partir del mes de enero de 2011 y se encuentran diferencias entre los rangos de valores que se manejan en los meses de invierno y los de verano, a medida que se incrementa la temperatura. El análisis se fija a partir de este mes porque es en este momento cuando crecen las dimensiones del sistema fotovoltaico y se produce un salto en los valores medidos, conllevando un incremento de la potencia que se puede generar. 
+A priori, se podría apreciar que los valores reflejados de generación energética presentan cierta correlación con la temperatura a partir del mes de enero de 2011 y se encuentran diferencias entre los rangos de valores que se manejan en los meses de invierno y los de verano, a medida que se incrementa la temperatura. El análisis se fija a partir de este mes porque es en este momento cuando crecen las dimensiones del sistema fotovoltaico y se produce un salto en los valores medidos, suponiendo un incremento de la potencia que se puede generar. 
 
 \vspace{3mm}
 
@@ -682,7 +680,7 @@ Por otro lado, en la Figura \ref{fig:energiavsrad} se representan los valores de
 \subsubsection{Selección de datos de producción}
 \label{sec:select}
 
-Como se había introducido en la Sección \ref{sec:procprod}, se requería aplicar un preprocesamiento en relación con los datos de producción energética dados, tanto por el dataset \textit{SustDataED}, como por la herramienta \textit{PVWatts}, para poder llevar a cabo un análisis comparativo de ambos de una forma correcta. Una vez implementados estos pasos, se puede tomar la decisión de seleccionar la fuente de datos más adecuada para el desarrollo de este \gls{tfm} a partir de las características observadas y las representaciones gráficas expuestas en este documento. Añadiendo también a este análisis, el estudio realizado en las Secciones \ref{sec:sustdataed} y \ref{sec:pvw}, se determina finalmente, la elección de \textit{PVWatts} como fuente de datos de producción energética. 
+Como se había introducido en la Sección \ref{sec:procprod}, se requería aplicar un preprocesamiento en relación con los datos de producción energética dados, tanto por el dataset \textit{SustDataED}, como por la herramienta \textit{PVWatts}, para poder llevar a cabo un análisis comparativo de ambos de una forma correcta. Una vez implementados estos pasos, se puede tomar la decisión de seleccionar la fuente de datos más adecuada para el desarrollo de este \gls{tfm} a partir de las características observadas y las representaciones gráficas expuestas en este documento. Añadiendo también a este análisis, el estudio realizado en las Secciones \ref{sec:sustdataed} y \ref{sec:pvw}, se determina finalmente, la elección de \textbf{\textit{PVWatts}} como fuente de datos de producción energética. 
 
 \vspace{3mm}
 

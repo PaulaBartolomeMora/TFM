@@ -11,7 +11,7 @@ Sin embargo, una red eléctrica no se puede definir como una entidad única e in
 
 \vspace{3mm}
 
-La iniciativa sobre redes inteligentes del \gls{ieee}, califica a las \textit{smart grids} \cite{ieee} como "imperativas y revolucionarias que implican nuevas capacidades de comunicación y control, fuentes de energía, modelos de generación y adherencia a estructuras regulatorias transjurisdiccionales". Por otro lado, en el año 2009, el Departamento de Energía de Estados Unidos \cite{us} determinó en su reporte anual sobre \textit{smart grids} los siguientes objetivos principales que se perseguían con el desarrollo de este tipo de redes: 
+La iniciativa sobre redes inteligentes del \gls{ieee}, califica a las \textit{smart grids} \cite{ieee} como ``imperativas y revolucionarias que implican nuevas capacidades de comunicación y control, fuentes de energía, modelos de generación y adherencia a estructuras regulatorias transjurisdiccionales''. Por otro lado, en el año 2009, el Departamento de Energía de Estados Unidos \cite{us} determinó en su reporte anual sobre \textit{smart grids} los siguientes objetivos principales que se perseguían con el desarrollo de este tipo de redes: 
 
 \begin{itemize}
   \item Permitir una participación activa de los clientes en el sistema.
@@ -104,7 +104,7 @@ Por otro lado, se encuentra también la figura del centro de servicios auxiliare
 
 \subsubsection{Mercado energético}
 
-En la Figura \ref{fig:market} se ilustra la estructura del modelo que presenta el mercado energético. Por un lado, las agregaciones de prosumidores posibilitan el autoconsumo y la compartición de los recursos generados por sí mismos con los demás participantes de la microrred, además de con el resto de la \gls{sg}. La mayoría de los prosumidores, sobre todo en entornos residenciales son de pequeño tamaño y tienen mayores complicaciones para participar en los mercados eléctricos por sí mismos. 
+En la Figura \ref{fig:market} se ilustra la estructura del modelo que presenta el mercado energético. Por un lado, las agregaciones de prosumidores posibilitan el autoconsumo y la compartición de los recursos generados por sí mismos con los demás participantes de la microrred, además de con el resto de la \gls{sg}. La mayoría de los prosumidores, sobre todo en entornos residenciales son de menor tamaño y tienen mayores complicaciones para participar en los mercados eléctricos por sí mismos. 
 
 \vspace{3mm}
 
@@ -115,7 +115,7 @@ En la Figura \ref{fig:market} se ilustra la estructura del modelo que presenta e
   \label{fig:market}
 \end{figure}
 
-Por ello, los agregadores \cite{bidding} \cite{transactive} se encargan de facilitar esta tarea para que una cantidad de prosumidores locales puedan actuar en conjunto como fijadores de precios de compra/venta en el mercado eléctrico global. Es decir, cada agregador se encarga de representar a los prosumidores que lo componen y actúa como intermediarios entre los mismos y el conjunto de mercados energéticos. Cada prosumidor debe pagar a cambio un plan mensual a la compañía para cubrir los costes eléctricos y así, dejar la responsabilidad de las transacciones a los agregadores para que operen de forma flexible.
+Por ello, los agregadores \cite{bidding} \cite{transactive} se encargan de facilitar esta tarea para que una cantidad de prosumidores locales puedan actuar en conjunto como fijadores de precios de compra/venta en el mercado eléctrico global. Es decir, cada agregador se encarga de representar a un conjunto determinado de prosumidores y opera como entidad intermediaria entre los mismos y el conjunto de mercados energéticos. Cada prosumidor debe pagar a cambio un plan mensual a la compañía para cubrir los costes eléctricos y así, dejar la responsabilidad de las transacciones a los agregadores para que operen de forma flexible.
 
 \vspace{3mm}
 
@@ -340,7 +340,7 @@ Entrando en detalle en las ubicaciones finales del sistema y por tanto, en el pr
 
 \vspace{3mm}
 
-Como se había introducido en el Apartado \ref{sec:smartgrids} el proceso de adquisición de datos por parte de los usuarios se trata de uno de los pilares más relevantes de cara a la optimización energética del sistema. Los objetivos principales que se pretenden con este proceso se engloban en la reducción del consumo, la optimización de la distribución y la maximización del beneficio. Respecto a este último, las compañías energéticas a partir de su base de clientes estudian las estrategias de categorización de los mismos para definir el sistema de fijación de precios dinámicos. \cite{stab}
+Como se había introducido en el Apartado \ref{sec:smartgrids} el proceso de adquisición de datos por parte de los usuarios se trata de uno de los pilares más relevantes de cara a la optimización energética del sistema. Los objetivos principales que se pretenden con este proceso se engloban en la reducción del consumo, la optimización de la distribución y el beneficio. Respecto a este último, las compañías energéticas a partir de su base de clientes estudian las estrategias de categorización de los mismos para definir el sistema de fijación de precios dinámicos. \cite{stab}
 
 \vspace{3mm}
 
@@ -355,20 +355,20 @@ Como se ha introducido en la Sección referente a la figura del prosumidor (ver 
 
 \vspace{3mm}
 
-Uno de los ataques más peligrosos en este ámbito es el de Inyección de Datos Falsos (del inglés \gls{fdi}) \cite{baddata} y, como su nombre determina, se basa en la inyección de paquetes maliciosos en la red con el fin de bloquear los servicios de la misma y conseguir la autorización para realizar operaciones restringidas. El proceso se puede realizar actuando directamente a través de los sensores finales (\textit{smart meters}) o secuestrando el canal de comunicación. Algunas técnicas empleadas por los atacantes son las siguientes \cite{baddata}:
+Uno de los ataques más peligrosos en este ámbito es el de Inyección de Datos Falsos (del inglés \gls{fdi}) \cite{baddata} y, como su nombre indica, se basa en la inyección de paquetes maliciosos en la red con el fin de bloquear los servicios de la misma y conseguir la autorización para realizar operaciones restringidas. El proceso se puede realizar actuando directamente a través de los sensores finales (\textit{smart meters}) o secuestrando el canal de comunicación. Algunas técnicas empleadas por los atacantes son las siguientes \cite{baddata}:
 
 \begin{itemize}
-  \item Fallo del dispositivo: Se aplica un ataque de Denegación de Servicio (del inglés \gls{ddos}) a los sensores. Cabe destacar que generalmente los sensores que se encuentran en las ubicaciones finales tienen una capacidad limitada de conexión que derivaría en grandes latencias en la comunicación de datos con el resto de entidades de la red. En este momento el atacante se encarga de suplantar al host en cuestión para enviar los paquetes falsos en su nombre.
+  \item Fallo del dispositivo: Se aplica un ataque de Denegación de Servicio (del inglés \gls{dos}) a los sensores. Cabe destacar que generalmente los sensores que se encuentran en las ubicaciones finales tienen una capacidad limitada de conexión que derivaría en grandes latencias en la comunicación de datos con el resto de entidades de la red. En este momento el atacante se encarga de suplantar al host en cuestión para enviar los paquetes falsos en su nombre.
   \item \textit{Cracking}: Se descifran las contraseñas para obtener acceso a los equipos mediante ingeniería social o fuerza bruta. De la misma forma que el anterior, la limitación de los recursos computacionales de los sensores provoca que no existan mecanismos de contraseñas lo suficientemente seguros. Además, la mayoría de ellos emplean como protocolos de comunicación Modbus/TCP o DNP 3.0/TCP, los cuales implementan una transmisión de texto en formato plano y sin cifrado. Por ello, un atacante puede tener la posibilidad de monitorear y capturar el tráfico si consigue acceso.
-  \item Envenenamiento de tablas \gls{arp} o \textit{\gls{arp} Spoofing} \cite{arp}: Consiste en enviar mensajes falsos \gls{arp} para monitorizar el tráfico y capturar o alterar los paquetes que se están transmitiendo por la red. 
+  \item Envenenamiento de tablas \gls{arp} (del inglés \textit{\gls{arp} Spoofing}) \cite{arp}: Consiste en enviar mensajes falsos \gls{arp} para posibilitar la captura y la alteración de los paquetes que se están transmitiendo por la red a través de un ataque \gls{mitm}. 
 \end{itemize}
 
 Teniendo esto en cuenta, es imprescindible definir los mecanismos de detección y mitigación a emplear para evitar que se produzcan ataques \gls{fdi} \cite{baddata}:
 
 \begin{itemize}
-  \item Mecanismo de autenticación estrictos: Los datos que se suministran al \gls{dso} o a otras entidades de control de la \gls{sg} deben de ser autenticados para comprobar su confiabilidad. Para ello, se emplean por ejemplo, marcas de tiempo para evitar ataques de repetición y protocolos de seguridad como \gls{tls} o \gls{ssl}, además de \gls{sha} y \gls{hmac}.
-  \item Gestión dinámica de claves: Se actualizan las claves con una determinada frecuencia para incrementar la seguridad de los estándares \gls{ieee} 802.11s y evitar ataques \gls{ddos}.
-  \item Empleo del protocolo \gls{send} \cite{send}: Para evitar los ataques de \textit{\gls{arp} Spoofing} se emplean pares de claves \gls{rsa} para poder garantizar en el proceso de enrutamiento que los mensajes que tienen como origen un determinado host pertenecen al mismo.
+  \item Mecanismo de autenticación estrictos: Los datos que se suministran al \gls{dso} o a otras entidades de control de la \gls{sg} deben de ser autenticados para comprobar su procedencia. Para ello, se emplean por ejemplo, marcas de tiempo para evitar ataques de repetición y protocolos de seguridad como \gls{tls} o \gls{ssl}, además de \gls{sha} y \gls{hmac}.
+  \item Gestión dinámica de claves: Se actualizan las claves con una determinada frecuencia para incrementar la seguridad de los estándares \gls{ieee} 802.11s y evitar ataques \gls{dos}.
+  \item Empleo del protocolo \gls{send} \cite{send}: Para evitar los ataques de \textit{\gls{arp} Spoofing} se emplean pares de claves \gls{rsa} para poder garantizar en el proceso de enrutamiento que los mensajes que tienen como origen un determinado host pertenecen al mismo y evitar ataques \gls{mitm}.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -404,14 +404,14 @@ Teniendo esto en cuenta, es imprescindible definir los mecanismos de detección 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Desafíos futuros de las smart grids}
 
-Las \gls{sg}s, a pesar del progreso tecnológico que han proporcionado en el ámbito de la gestión energética en la última década, no están exentas de de desafíos importantes que deben de abordarse para seguir potenciando su crecimiento a futuro. La segunda generación de \gls{sg}s viene dada por la necesidad de implementar las siguientes mejoras: \cite{overview} \cite{ioe}
+Las \gls{sg}s, a pesar del progreso tecnológico que han proporcionado en el ámbito de la gestión energética en la última década, no están exentas de desafíos importantes que deben de abordarse para seguir potenciando su crecimiento a futuro. La segunda generación de \gls{sg}s viene dada por la necesidad de implementar las siguientes mejoras: \cite{smartgrid_overview} \cite{ioe}
 
 \begin{itemize}
   \item Inteligencia mejorada: Será preciso poner el foco en el desarrollo de nuevas infraestructuras avanzadas de medición inteligente para afrontar cada vez una mayor demanda y globalizar el mercado energético.
   \item Fortalecimiento de la red: Se debe garantizar una suficiente capacidad de transmisión para favorecer la transmisión de larga distancia y el empleo de fuentes energéticas aisladas, como pueden ser los parques eólicos en el mar.
   \item Adaptación de la red al empleo de vehículos eléctricos: Se requiere preparar la arquitectura de las \gls{sg}s para el creciente uso de vehículos eléctricos que se espera en la próxima década.
   \item Gestión de la generación intermitente y del almacenamiento: Es importante potenciar el empleo de los recursos de generación a pequeña escala, sobre todo en el caso de los entornos residenciales, para conseguir cada vez una mayor descentralización de la red. De la misma manera, se deben abordar las limitaciones actuales que presentan los sistemas de almacenamiento energético para permitir una mayor acumulación de recursos provenientes de fuentes de generación intermitente, como es la solar y la eólica. Esto es imprescindible para garantizar la disponibilidad energética y poder afrontar los posibles picos de demanda que se produzcan a lo largo del tiempo.
-  \item Regulación favorable e incentivos económicos: Se puede potenciar la transformación de las redes energéticas mediante el establecimiento de políticas regulatorias que fomenten la inversión en \gls{sg}s y mediante colaboraciones entre el sector público y el privado. De la misma forma, implementar estructuras de tarifas de precios dinámicos motivará a un número mayor de usuarios finales a adoptar tecnologías inteligentes para obtener beneficios económicos. 
+  \item Regulación favorable e incentivos económicos: Se puede potenciar la transformación de las redes energéticas mediante el establecimiento de políticas regulatorias que fomenten la inversión \cite{inversion} en \gls{sg}s y mediante colaboraciones entre el sector público y el privado. De la misma forma, implementar estructuras de tarifas de precios dinámicos motivará a un número mayor de usuarios finales a adoptar tecnologías inteligentes para obtener beneficios económicos. 
 \end{itemize}
 
 

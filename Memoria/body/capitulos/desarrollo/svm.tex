@@ -16,11 +16,11 @@ Para la técnica de \gls{svm}, también se procede a desarrollar una primera ver
   
 \vspace{3mm}
 
-Cabe destacar que el proceso de ejecución y entrenamiento del clasificador del \gls{svm} a partir del conjunto de datos presenta una duración mucho mayor que el \gls{rf}. No obstante, una vez finaliza, se le aplican dos métodos de puntuación de características. Por un lado, se estima la importancia de las características a partir de la distancia que tienen hacia los vectores de soporte. 
+Cabe destacar que el proceso de ejecución y entrenamiento del clasificador del \gls{svm} a partir del conjunto de datos presenta una duración mucho mayor que el \gls{rf}. No obstante, una vez finaliza, se le aplican dos métodos de puntuación de características. 
 
 \vspace{3mm}
 
-En este caso es preciso basarse en los atributos \textit{support\_vectors\_} y \textit{dual\_coef\_}, que proporcionan la información sobre los vectores soporte que se han definido en el \gls{svm} y los multiplicadores de \textit{Lagrange} asociados. El resultado se expone en la Figura \ref{fig:imp3}, en la cual se visualiza cómo las longitudes de las etiquetas origen y destino inciden en la clasificación significativamente, ya que el resto de características tienen puntuaciones mucho más bajas.
+Por un lado, se estima la importancia de las características a partir de la distancia que tienen hacia los vectores de soporte. En este caso es preciso basarse en los atributos \textit{support\_vectors\_} y \textit{dual\_coef\_}, que proporcionan la información sobre los vectores soporte que se han definido en el \gls{svm} y los multiplicadores de \textit{Lagrange} asociados. El resultado se expone en la Figura \ref{fig:imp3}, en la cual se visualiza cómo las longitudes de las etiquetas origen y destino inciden en la clasificación significativamente, ya que el resto de características tienen puntuaciones mucho más bajas.
 
 \vspace{3mm}
 
@@ -45,7 +45,7 @@ Por otro lado, al igual que se ha expuesto para el \gls{rf} (ver Sección \ref{s
 \subsubsection{Optimización de hiperparámetros}
 \label{sec:svm2}
 
-Para modelar un \gls{svm} óptimo se centra el estudio en dos hiperparámetros: el tipo de kernel a aplicar y el parámetro de regularización \textit{C}. En el caso de \textit{gamma}, mencionada anteriormente, es indiferente su configuración, puesto que los datos del conjunto han sido previamente escalados (ver Sección \ref{sec:adicional}) y las dos opciones posibles de \textit{gamma} ('scale' o 'auto') únicamente se diferencian entre sí en la aplicación o no de la varianza de los datos en el cálculo del parámetro. 
+Para modelar un \gls{svm} óptimo se centra el estudio en dos hiperparámetros: el tipo de kernel a aplicar y el parámetro de regularización \textit{C}. En el caso de \textit{gamma}, mencionada anteriormente, es indiferente su configuración, puesto que los datos del conjunto han sido previamente escalados (ver Sección \ref{sec:adicional}) y las dos opciones posibles de \textit{gamma} (`scale' o `auto') únicamente se diferencian entre sí en la aplicación del valor de la varianza de los datos en el cálculo del parámetro. 
 
 \vspace{3mm}
 
@@ -57,7 +57,7 @@ Para modelar un \gls{svm} óptimo se centra el estudio en dos hiperparámetros: 
 
 \vspace{3mm}
 
-Después, se inicializa un objeto de la clase \textit{GridSearchCV()} y se configura de la misma forma que se detallaba en la Sección \ref{rf2} para el \gls{rf}. No obstante, teniendo en cuenta la gran duración del entrenamiento del modelo \gls{svm} en el paso anterior (ver Sección \ref{sec:svm1}), se debe cuantificar primero cuánto tiempo supone ejecutar todas las combinaciones de hiperaparámetros definidas en el método \textit{Grid Search}. Este cálculo se realiza en función de los pliegues configurados (\textit{cv=5}) y del número de procesadores, por lo que se estima el tiempo total de búsqueda de la combinación óptima en 349,4 horas.
+Después, se inicializa un objeto de la clase \textit{GridSearchCV()} y se configura de la misma forma que se detallaba en la Sección \ref{rf2} para el \gls{rf}. No obstante, teniendo en cuenta la gran duración del entrenamiento del modelo \gls{svm} en el paso anterior (ver Sección \ref{sec:svm1}), se debe cuantificar primero cuánto tiempo supone ejecutar todas las combinaciones de hiperaparámetros definidas en el método \textit{Grid Search}. Este cálculo se realiza en función de los pliegues configurados (\textit{cv=5}) y del número de \textit{cores}, por lo que se estima el tiempo total de búsqueda de la combinación óptima en 349,4 horas.
 
 \vspace{3mm}
 
@@ -122,7 +122,7 @@ De la misma forma, en el caso del \gls{pca}, se repite el proceso descrito en la
 \subsubsection{Ejecución del modelo y evaluación de resultados}
 \label{sec:svm4}
 
-Tras desarrollar el proceso de optimización de hiperparámetros del clasificador, se procede a evaluar el rendimiento del modelo \gls{svm} utilizando las diferentes técnicas de reducción de las dimensiones del conjunto de datos. Sin embargo, es importante volver a recalcar, antes de analizar los resultados, el significativo coste computacional y tiempo asociado con el entrenamiento del clasificador. En este caso, se ejecutan 5 pruebas aplicando en cada una el método de la matriz de confusión y del \textit{K-Fold Cross Validation}, lo que resulta en una duración total de 325 horas."
+Tras desarrollar el proceso de optimización de hiperparámetros del clasificador, se procede a evaluar el rendimiento del modelo \gls{svm} utilizando las diferentes técnicas de reducción de las dimensiones del conjunto de datos. Sin embargo, es importante volver a recalcar, antes de analizar los resultados, el significativo coste computacional y tiempo asociado con el entrenamiento del clasificador. En este caso, se ejecutan 5 pruebas aplicando en cada una el método de la matriz de confusión y del \textit{K-Fold Cross Validation}, lo que resulta en una duración total de 325 horas.
 
 \vspace{3mm}
 
