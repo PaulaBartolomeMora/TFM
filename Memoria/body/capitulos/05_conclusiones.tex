@@ -3,7 +3,6 @@
 
 En este Capítulo final, se establecerán las conclusiones principales a las que se ha llegado con la realización de este proyecto de investigación y se valorará el cumplimiento de los objetivos expuestos inicialmente en el Capítulo \ref{ch:intro}. De la misma forma, se explorarán las posibles vías de trabajo futuro que se presentan como opciones de continuación de este \gls{tfm}.
 
-
 \section{Conclusiones del \glsentryshort{tfm}}
 
 En este \gls{tfm}, se han desarrollado diferentes modelos de \gls{ml} y \gls{dl} para la detección y predicción precisa de errores en \gls{sg}s durante el proceso de distribución energética que lleva a cabo el algoritmo \gls{den2ne}. 
@@ -16,17 +15,52 @@ Este proceso se ha estructurado en seis etapas, comenzando por el estudio del es
 
 No obstante, después de este procesamiento, se han requerido dos pasos adicionales para extraer el conjunto de datos final sobre el que desarrollar y entrenar los modelos. Por un lado, se ha aplicado la herramienta BRITE para el planteamiento y generación de topologías de red, lo que ha derivado en la creación de 180 en total. Estas topologías se han importado a un simulador propietario realizado en python y han supuesto la base de las simulaciones de distribución energética en \gls{den2ne}. 
 
-\vspace{3mm}
+\pagebreak
 
-Por otro lado, también ha sido necesario modelar y realizar una serie de modificaciones en la estructura y en el funcionamiento del algoritmo. Este proceso ha sido imprescindible para permitir la importación al mismo de los datos reales, ejecutar múltiples simulaciones de las topologías generadas en el paso anterior y exportar el conjunto de datos final con las instancias ya etiquetadas. Cabe destacar que, para obtener suficientes muestras útiles o, en otros términos, un número significante de simulaciones a ejecutar en el algoritmo, se han seleccionado una serie de instantes temporales sobre los que trabajar. Entonces, en base a la configuración propuesta, se han realizado un total de 47.304.000 simulaciones en \gls{den2ne}.
-
-\vspace{3mm}
-
-El siguiente paso ha consistido en el desarrollo y entrenamiento de los diferentes modelos de \gls{ml} y \gls{dl} a partir de los patrones de error etiquetados y exportados del algoritmo. En este caso, se han planteado, diseñado y probado tres técnicas diferentes: \gls{rf}, \gls{svm} y \gls{ann}s. En este caso, el proceso de optimización de los hiperparámetros característicos de cada una de ellas y la aplicación de diferentes métodos de reducción de las dimensiones del conjunto de datos han derivado en el desarrollo de múltiples opciones a probar. Además, la evaluación del rendimiento de las mismas ha sido crucial para llevar a cabo un análisis completo del rendimiento de los modelos y para definir el caso óptimo que permita detectar los errores de forma precisa. En este caso, se puede expresar que el modelo que ha proporcionado el mejor rendimiento en términos globales es el \gls{rf} con la aplicación del método \gls{rfecv}.
+Por otro lado, también ha sido necesario modelar y realizar una serie de modificaciones en la estructura y en el funcionamiento del algoritmo. Este proceso ha sido imprescindible para permitir la importación al mismo de los datos reales, ejecutar múltiples simulaciones de las topologías generadas en el paso anterior y exportar el conjunto de datos final con las instancias ya etiquetadas. Es importante indicar que, para obtener suficientes muestras útiles o, en otros términos, un número significante de simulaciones a ejecutar en el algoritmo, se han seleccionado una serie de instantes temporales sobre los que trabajar. Entonces, en base a la configuración propuesta, se han realizado un total de 47.304.000 simulaciones en \gls{den2ne}.
 
 \vspace{3mm}
 
-Como síntesis, este \gls{tfm} ha supuesto un gran reto por su complejidad a nivel técnico y por su extensión temporal requerida. Los resultados obtenidos del desarrollo de este \gls{tfm} han sido fruto de realizar un trabajo amplio y riguroso, tanto en el estudio, análisis y procesamiento de los datos, como en la creación de modelos de detección y predicción de errores con una alta efectividad. Por ello, este trabajo contribuye significativamente a la mejora del funcionamiento del algoritmo \gls{den2ne} y a la eficiencia y la fiabilidad de las \gls{sg}s en el contexto de la distribución energética. Adicionalmente, la adaptabilidad de los modelos se extiende al contexto de implementación en entornos de redes de dispositivos \gls{iot}, lo que incrementa la importancia de este proyecto y destaca su notable flexibilidad.
+El siguiente paso ha consistido en el desarrollo y entrenamiento de los diferentes modelos de \gls{ml} y \gls{dl} a partir de los patrones de error etiquetados y exportados del algoritmo. En este caso, se han planteado, diseñado y probado tres técnicas diferentes: \gls{rf}, \gls{svm} y \gls{ann}s. El proceso de optimización de los hiperparámetros característicos de cada una de ellas y la aplicación de diferentes métodos de reducción de las dimensiones del conjunto de datos han derivado en el desarrollo de múltiples opciones a probar. 
+
+\vspace{3mm}
+
+De la misma forma, la evaluación del desempeño de los modelos ha sido fundamental para realizar un análisis exhaustivo de su rendimiento y para definir el caso óptimo que permita detectar los errores de forma precisa. A modo de sintetizar los resultados finales del desarrollo de este \gls{tfm} y de observar las métiricas obtenidas, se representa la Tabla \ref{tab:resumen}. A partir de la misma, se puede expresar de forma concluyente que el modelo que ha proporcionado el mejor rendimiento en términos globales es el \gls{rf} con la aplicación del método \gls{rfecv}.
+
+\vspace{3mm}
+
+Finalmente, tomando en consideración todo el trabajo realizado, se puede expresar como conclusión que este \gls{tfm} ha supuesto un gran reto por su complejidad a nivel técnico y por su extensión temporal requerida. Los resultados obtenidos del desarrollo de este \gls{tfm} han sido fruto de realizar un trabajo amplio y riguroso, tanto en el estudio, análisis y procesamiento de los datos, como en la creación de modelos de detección y predicción de errores con una alta efectividad. 
+
+\vspace{3mm}
+
+Por ello, este trabajo contribuye significativamente a la mejora del funcionamiento del algoritmo \gls{den2ne} y a la eficiencia y la fiabilidad de las \gls{sg}s en el contexto de la distribución energética. Adicionalmente, la adaptabilidad de los modelos se extiende al contexto de implementación en entornos de redes de dispositivos \gls{iot}, lo que incrementa la importancia de este proyecto y destaca su notable flexibilidad.
+
+\begin{sidewaystable}
+    \centering
+    \begin{tabular}{
+    >{\columncolor[HTML]{EFEFEF}}c 
+    >{\columncolor[HTML]{EFEFEF}}c |llll|ll|}
+    \cline{3-8}
+    \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}\textit{}} & \multicolumn{4}{c|}{\cellcolor[HTML]{EFEFEF}\textit{Matriz de confusión}} & \multicolumn{2}{c|}{\cellcolor[HTML]{EFEFEF}\textit{\begin{tabular}[c]{@{}c@{}}K-Fold Cross Validation \\ *score() / **evaluate()\end{tabular}}} \\ \cline{3-8} 
+    \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}\textit{}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{Accuracy}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{Precision}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{Recall}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{F1 Score}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{Accuracy}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{Standard Deviation / (*,**)Loss}} \\ \hline
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}} & \textit{Sin aplicar} & \multicolumn{1}{c|}{99,29} & \multicolumn{1}{c|}{94,40} & \multicolumn{1}{c|}{74,27} & \multicolumn{1}{c|}{83,16} & \multicolumn{1}{c|}{99,30} & \multicolumn{1}{c|}{0,02} \\ \cline{2-8} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}} & \textit{RFECV} & \multicolumn{1}{c|}{99,44} & \multicolumn{1}{c|}{94,28} & \multicolumn{1}{c|}{81,05} & \multicolumn{1}{c|}{87,17} & \multicolumn{1}{c|}{99,47} & \multicolumn{1}{c|}{0,02} \\ \cline{2-8} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}} & \textit{kbest (n=5)} & \multicolumn{1}{c|}{97,79} & \multicolumn{1}{c|}{65,97} & \multicolumn{1}{c|}{12,55} & \multicolumn{1}{c|}{21,08} & \multicolumn{1}{c|}{97,80} & \multicolumn{1}{c|}{0,02} \\ \cline{2-8} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}} & \textit{kbest (n=8)} & \multicolumn{1}{c|}{97,74} & \multicolumn{1}{c|}{53,95} & \multicolumn{1}{c|}{27,37} & \multicolumn{1}{c|}{36,32} & \multicolumn{1}{c|}{97,79} & \multicolumn{1}{c|}{0,01} \\ \cline{2-8} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}} & \textit{PCA (n=2)} & \multicolumn{1}{c|}{97,55} & \multicolumn{1}{c|}{12,52} & \multicolumn{1}{c|}{00,67} & \multicolumn{1}{c|}{01,27} & \multicolumn{1}{c|}{97,35} & \multicolumn{1}{c|}{0,01} \\ \cline{2-8} 
+    \multicolumn{1}{|c|}{\multirow{-6}{*}{\cellcolor[HTML]{EFEFEF}\textit{\begin{tabular}[c]{@{}c@{}}Random Forest \\ {[}25 estimadores, \\ criterio de entropia{]}\end{tabular}}}} & \textit{PCA (n=4)} & \multicolumn{1}{c|}{98,06} & \multicolumn{1}{c|}{81,66} & \multicolumn{1}{c|}{22,60} & \multicolumn{1}{c|}{35,41} & \multicolumn{1}{c|}{98,04} & \multicolumn{1}{c|}{0,00} \\ \hline
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}} & \textit{Sin aplicar} & \multicolumn{1}{c|}{97,23} & \multicolumn{1}{c|}{89,32} & \multicolumn{1}{c|}{06,95} & \multicolumn{1}{c|}{12,83} & \multicolumn{1}{c|}{97,79} & \multicolumn{1}{c|}{0,01} \\ \cline{2-8} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}} & \textit{kbest (n=5)} & \multicolumn{1}{c|}{97,11} & \multicolumn{1}{c|}{65,25} & \multicolumn{1}{c|}{12,29} & \multicolumn{1}{c|}{20,73} & \multicolumn{1}{c|}{97,80} & \multicolumn{1}{c|}{0,01} \\ \cline{2-8} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}} & \textit{kbest (n=8)} & \multicolumn{1}{c|}{97,05} & \multicolumn{1}{c|}{71,19} & \multicolumn{1}{c|}{09,30} & \multicolumn{1}{c|}{16,46} & \multicolumn{1}{c|}{97,79} & \multicolumn{1}{c|}{0,01} \\ \cline{2-8} 
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}} & \textit{PCA (n=2)} & \multicolumn{1}{c|}{97,61} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{97,76} & \multicolumn{1}{c|}{0,00} \\ \cline{2-8} 
+    \multicolumn{1}{|c|}{\multirow{-5}{*}{\cellcolor[HTML]{EFEFEF}\textit{\begin{tabular}[c]{@{}c@{}}SVM \\ {[}C=1, kernel=rbf{]}\end{tabular}}}} & \textit{PCA (n=4)} & \multicolumn{1}{c|}{97,61} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{-} & \multicolumn{1}{c|}{97,76} & \multicolumn{1}{c|}{0,00} \\ \hline
+    \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{sklearn}} & \multicolumn{1}{c|}{97,84} & \multicolumn{1}{c|}{69,03} & \multicolumn{1}{c|}{14,98} & \multicolumn{1}{c|}{24,66} & \multicolumn{1}{c|}{97,83} & \multicolumn{1}{c|}{*-} \\ \cline{2-8} 
+    \multicolumn{1}{|c|}{\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}\textit{\begin{tabular}[c]{@{}c@{}}ANN\\ {[}(5, 5), relu, sgd{]}\end{tabular}}}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{keras}} & \multicolumn{1}{c|}{97,84} & \multicolumn{1}{c|}{72,17} & \multicolumn{1}{c|}{13,49} & \multicolumn{1}{c|}{22,74} & \multicolumn{1}{c|}{97,85} & \multicolumn{1}{c|}{**0,0690} \\ \hline
+    \end{tabular}
+    \caption{Síntesis de resultados obtenidos del desarrollo de los modelos de \acrshort{ml} y \acrshort{dl}}
+    \label{tab:resumen}
+\end{sidewaystable}
+
 
 \section{Líneas de trabajo futuro}
 \label{trabajoFuturo}

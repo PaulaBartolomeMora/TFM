@@ -18,9 +18,11 @@ Se desarrolla una primera versión del clasificador basado en la técnica de \gl
 
 Por un lado, se estima la importancia de las características del conjunto, a partir del atributo \textit{feature\_importances\_}, proporcionado por el clasificador. En este caso, el cálculo se realiza a partir de la media y de la desviación estándar de la disminución de la impureza que se produce dentro de cada árbol. Como se representa en la Figura \ref{fig:imp1}, se devuelve un array con los valores de importancia relativa asignados a las características y cuyo sumatorio es igual a 1. En este caso, se visualiza una gran incidencia de la distancia, seguida de los parámetros resultantes de \gls{den2ne}, \textit{total\_balance} y \textit{abs\_flux}, que hacen referencia a la carga que presenta el nodo \textit{gateway} tras el balance y al flujo total de recursos intercambiados en el proceso de distribución energética.
 
-\vspace{3mm}
+\pagebreak
 
-Sin embargo, con este método surgen cierto sesgo hacia las características que presentan alta cardinalidad, o en otros términos, una gran cantidad de valores únicos. Esto se debe a que generan nodos de división con mayor profundidad en los árboles, puesto que existen más opciones de separación del conjunto de datos. Por lo tanto, este tipo de características pueden recibir una puntuación más inflada. Teniendo esto en cuenta, se decide cuantificar la importancia también por el método de permutación (\textit{permutation\_importance}). Como se puede ver en la Figura \ref{fig:imp2}, en este caso, los parámetros resultantes de \gls{den2ne}, \textit{total\_balance} y \textit{abs\_flux}, siguen presentando puntuaciones altas, pero ahora también, las longitudes de las etiquetas de los nodos y la capacidad del enlace. \cite{importance}
+Sin embargo, con este método surgen cierto sesgo hacia las características que presentan alta cardinalidad, o en otros términos, una gran cantidad de valores únicos. Esto se debe a que generan nodos de división con mayor profundidad en los árboles, puesto que existen más opciones de separación del conjunto de datos. Por lo tanto, este tipo de características pueden recibir una puntuación más inflada.
+
+\vspace{3mm}
 
 \begin{figure}[H]
   \centering
@@ -29,6 +31,16 @@ Sin embargo, con este método surgen cierto sesgo hacia las características que
   \label{fig:imp1}
 \end{figure}
 
+\vspace{3mm}
+
+Teniendo esto en cuenta, se decide cuantificar la importancia también por el método de permutación (\textit{permutation\_importance}). Como se puede ver en la Figura \ref{fig:imp2}, en este caso, los parámetros resultantes de \gls{den2ne}, \textit{total\_balance} y \textit{abs\_flux}, siguen presentando puntuaciones altas, pero ahora también, las longitudes de las etiquetas de los nodos y la capacidad del enlace. \cite{importance}
+
+\vspace{4mm}
+
+En este segundo método los valores de las características se permutan una a una aleatoriamente y se evalúa en cada iteración los resultados del clasificador. Por tanto, cuando la variación de valores de una característica decrementa de forma considerable la precisión del modelo, puntúa una mayor importancia. Esta técnica es útil porque proporciona una evaluación imparcial de la importancia de las características. 
+
+\newpage
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{img/desarrollo/rf/importance2.png}
@@ -36,14 +48,10 @@ Sin embargo, con este método surgen cierto sesgo hacia las características que
   \label{fig:imp2}
 \end{figure}
 
-En este segundo método los valores de las características se permutan una a una aleatoriamente y se evalúa en cada iteración los resultados del clasificador. Por tanto, cuando la variación de valores de una característica decrementa de forma considerable la precisión del modelo, puntúa una mayor importancia. Esta técnica es útil porque proporciona una evaluación imparcial de la importancia de las características. 
-
 \subsubsection{Optimización de hiperparámetros}
 \label{rf2}
 
 Los hiperparámetros de un modelo se tratan de los parámetros de configuración o argumentos que son incluidos en el constructor de la clase del estimador o clasificador. En el caso del \gls{rf}, como ya se había introducido en el diseño del modelo por defecto, se pone el foco en dos hiperparámetros principales: el número de estimadores o árboles y el criterio de medición de la impureza. Para encontrar los valores que construyen el modelo óptimo de \gls{rf}, es preciso emplear la técnica \textit{Grid Search} \cite{gridsearch} y, específicamente, la clase \textit{GridSearchCV()} \cite{gridsearch2}. Esta realiza una búsqueda exhaustiva a partir de la definición de una cuadrícula de hiperparámetros para el estimador y extrae la combinación de valores que aporta una mayor precisión. Por ello, es necesario primero, definir en un diccionario una serie de valores para los dos hiperparámetros que se pretenden optimizar en el nuevo clasificador.
-
-\vspace{3mm}
 
 \begin{lstlisting}[style=Python, caption={Cuadrícula de parámetros RF}]
   param_grid = {
@@ -75,6 +83,10 @@ Una vez creado el objeto, se ajusta al conjunto de datos de entrenamiento. Este 
 \vspace{3mm}
 
 Sin embargo, para llevar a cabo un análisis en mayor profundidad de los resultados, se hace uso del atributo \textit{cv\_results\_}, que proporciona un diccionario con toda la información útil de la búsqueda. Principalmente, este análisis se centra en los valores de precisión obtenidos de todos los modelos y en los tiempos promedios que han sido necesarios para ajustar los mismos al conjunto de entrenamiento. Como se puede apreciar en la Tabla \ref{tab:rfgs}, se presentan variaciones muy pequeñas en los valores de precisión obtenida (\textit{mean\_test\_score}) para las diferentes combinaciones de parámetros.
+
+\vspace{3mm}
+
+No obstante, en el caso de los tiempos (\textit{mean\_fit\_time}), como es coherente, sí que se observan grandes diferencias. En la Tabla \ref{tab:rfgs2} se visualiza cómo se incrementa la duración de la búsqueda proporcionalmente al número de estimadores que se emplea. Esta métrica es importante también tenerla en cuenta para determinar el modelo óptimo, ya que a partir de la aplicación de 25 estimadores, la precisión no mejora de forma considerable. Por lo tanto, tras analizar los resultados, se puede expresar de forma concluyente que la mejor opción de modelo a emplear viene dada por un \gls{rf} basado en 25 estimadores o árboles y en el criterio de medición de la impureza a partir de la entropía.
 
 \vspace{3mm}
 
@@ -113,10 +125,6 @@ Sin embargo, para llevar a cabo un análisis en mayor profundidad de los resulta
   \label{tab:rfgs_combined}
 \end{table}
 
-\vspace{3mm}
-
-No obstante, en el caso de los tiempos (\textit{mean\_fit\_time}), como es coherente, sí que se observan grandes diferencias. En la Tabla \ref{tab:rfgs2} se visualiza cómo se incrementa la duración de la búsqueda proporcionalmente al número de estimadores que se emplea. Esta métrica es importante también tenerla en cuenta para determinar el modelo óptimo, ya que a partir de la aplicación de 25 estimadores, la precisión no mejora de forma considerable. Por lo tanto, tras analizar los resultados, se puede expresar de forma concluyente que la mejor opción de modelo a emplear viene dada por un \gls{rf} basado en 25 estimadores o árboles y en el criterio de medición de la impureza a partir de la entropía.
-
 \subsubsection{Selección de características}
 \label{sec:rf3}
 
@@ -152,12 +160,16 @@ Se puede visualizar el proceso de evaluación del número de características gr
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth]{img/desarrollo/rf/rfecv.png}
+  \includegraphics[width=0.9\textwidth]{img/desarrollo/rf/rfecv.png}
   \caption{Análisis de la precisión del modelo en función del número de características empleadas}
   \label{fig:rfecv}
 \end{figure}
 
-Por consiguiente, se entra en el funcionamiento de la segunda técnica a emplear, denominada como Selección Invariante de Características (del inglés \textit{Univariate feature selection}) o, también denominado, \textit{kBest} \cite{kbest}. En este caso, la operativa incluye un escalado previo de las características, para que sus valores se sitúen en un rango [0, 1]. Después, se declara el objeto de la clase especificada para la técnica en cuestión, \textit{SelectKBest()}, y se determina cuántas características se pretenden seleccionar del total que provee el conjunto. A diferencia del \gls{rfecv}, para conocer cuál es el número óptimo en la selección invariante de características, es preciso basarse en la prueba y error, puesto que no se proporciona este dato a la salida. Por ello, a modo comparativo, se produce el entrenamiento del conjunto de datos en base a k=5 y a k=8 características. 
+Por consiguiente, se entra en el funcionamiento de la segunda técnica a emplear, denominada como Selección Invariante de Características (del inglés \textit{Univariate feature selection}) o, también denominado, \textit{kBest} \cite{kbest}. En este caso, la operativa incluye un escalado previo de las características, para que sus valores se sitúen en un rango [0, 1]. 
+
+\vspace{3mm}
+
+Después, se declara el objeto de la clase especificada para la técnica en cuestión, \textit{SelectKBest()}, y se determina cuántas características se pretenden seleccionar del total que provee el conjunto. A diferencia del \gls{rfecv}, para conocer cuál es el número óptimo en la selección invariante de características, es preciso basarse en la prueba y error, puesto que no se proporciona este dato a la salida. Por ello, a modo comparativo, se produce el entrenamiento del conjunto de datos en base a k=5 y a k=8 características. 
 
 \vspace{3mm}
 
@@ -183,20 +195,17 @@ Por último, se introduce una técnica, que no es estrictamente de selección de
 
 \vspace{3mm}
 
-No obstante, antes de aplicar el ajuste y la transformación al conjunto de datos a partir del \gls{pca}, se debe configurar el número de componentes a emplear. Para ello, se utiliza el ``método del codo" (del inglés \textit{Elbow Method}) para identificar el punto o ``codo" en el que el aumento del número de componentes no aporta mejoras significativas en el valor de la varianza. 
+No obstante, antes de aplicar el ajuste y la transformación al conjunto de datos a partir del \gls{pca}, se debe configurar el número de componentes a emplear. Para ello, se utiliza el ``método del codo" (del inglés \textit{Elbow Method}) para identificar el punto o ``codo" en el que el aumento del número de componentes no aporta mejoras significativas en el valor de la varianza. Como se representa en la Figura \ref{fig:pca}, en n=4 componentes, se produce el estancamiento más considerable de la varianza, en un valor del 6\% aproximadamente. Se puede visualizar que, para el caso de n=2 componentes, también ocurre pero en menor medida. Por ello, para comparar los resultados posteriormente, se considera aplicar el \gls{pca} en función de ambos números.
 
 \vspace{3mm}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth]{img/desarrollo/pca.png}
+  \includegraphics[width=0.9\textwidth]{img/desarrollo/pca.png}
   \caption{Análisis de la varianza en función del número de componentes empleadas en el \gls{pca}}
   \label{fig:pca}
 \end{figure}
 
-\vspace{3mm}
-
-Como se representa en la Figura \ref{fig:pca}, en n=4 componentes, se produce el estancamiento más considerable de la varianza, en un valor del 6\% aproximadamente. Se puede visualizar que, para el caso de n=2 componentes, también ocurre pero en menor medida. Por ello, para comparar los resultados posteriormente, se considera aplicar el \gls{pca} en función de ambos números.
 
 \subsubsection{Ejecución del modelo y evaluación de resultados}
 \label{sec:rf4}
@@ -257,6 +266,8 @@ A través de las categorías definidas en la matriz, se pueden obtener cuatro m�
       \textit{Accuracy} = \frac{{TP + TN}}{{TP + TN + FP + FN}}
     \end{aligned}
   \end{equation}
+
+\pagebreak 
 
   \item \textit{Precision}: Mide la proporción de verdaderos positivos entre todas las instancias clasificadas como positivas.
   
@@ -322,7 +333,11 @@ De la misma forma, se puede visualizar que para la métrica \textit{F1 Score} se
 
 \vspace{3mm}
 
-Por otro lado, en cuanto al método \textit{K-Fold Cross Validation} \cite{kfold}, se emplea la misma operativa que en el \textit{Grid SearchCV}. Como su nombre indica, se basa en un esquema de validación cruzada (\textit{cross validation}) y se divide el conjunto de datos en un total de 5 pliegues para evaluar el rendimiento del modelo. En la Tabla \ref{tab:rfk}, se determinan los resultados de su aplicación y, como se puede visualizar, los valores de precisión global son prácticamente iguales a los obtenidos anteriormente en la matriz de confusión. Por tanto, mediante el empleo de las dos técnicas y el análisis expuesto, se confirma que las opciones con mejores resultados hacen referencia a la que no se aplica ningún método de reducción de dimensiones y a la que emplea \gls{rfecv}, siendo esta última la que proporciona un rendimiento óptimo.
+Por otro lado, en cuanto al método \textit{K-Fold Cross Validation} \cite{kfold}, se emplea la misma operativa que en el \textit{Grid SearchCV}. Como su nombre indica, se basa en un esquema de validación cruzada (\textit{cross validation}) y se divide el conjunto de datos en un total de 5 pliegues para evaluar el rendimiento del modelo. En la Tabla \ref{tab:rfk}, se determinan los resultados de su aplicación y, como se puede visualizar, los valores de precisión global son prácticamente iguales a los obtenidos anteriormente en la matriz de confusión. 
+
+\vspace{3mm}
+
+Por tanto, mediante el empleo de las dos técnicas y el análisis expuesto, se puede confirmar definitivamente que las opciones con mejores resultados hacen referencia a la que no se aplica ningún método de reducción de dimensiones y a la que emplea \gls{rfecv}, siendo esta última la que proporciona un rendimiento óptimo.
 
 \vspace{3mm}
 
@@ -331,6 +346,7 @@ accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, c
 \end{lstlisting}
 
 \vspace{3mm}
+\clearpage
 
 \begin{table}[H]
   \centering

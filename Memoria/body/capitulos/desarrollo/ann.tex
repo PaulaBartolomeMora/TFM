@@ -168,7 +168,7 @@ Por ello, se define la estructura del modelo de \gls{ann} de \textit{keras} con 
 
 \vspace{3mm}
 
-Por consiguiente, se compila la red, configurando el algoritmo de optimización \gls{sgd} y la función de pérdidas binaria (\textit{binary\_crossentropy}). También, se inicia el entrenamiento para un total de 100 iteraciones y se activa la finalización temprana del proceso, en el caso de acontecer 10 iteraciones seguidas sin mejoras significativas (0.00001) en la función de pérdidas. \cite{early}
+Por consiguiente, se compila la red configurando el algoritmo de optimización \gls{sgd}. También, la función de pérdidas binaria (\textit{binary\_crossentropy}), cuyo valor vendrá dado por la entropía cruzada media entre los positivos que se predicen y los que realmente lo son. Después, se inicia el entrenamiento para un total de 100 iteraciones y se activa la finalización temprana del proceso, en el caso de acontecer 10 iteraciones seguidas sin mejoras significativas (0.00001) en la función de pérdidas. \cite{early}
 
 \vspace{3mm}
 
@@ -188,11 +188,11 @@ Una vez se han definido y entrenado los dos modelos de \gls{ann} anteriores, se 
 \vspace{3mm}
 
 En la Tabla \ref{tab:anncm}, se puede apreciar la similitud de los resultados, obteniéndose un mismo valor de precisión global (\textit{Accuracy}) para los dos modelos implementados (97,84\%). No obstante, si se pone el foco en el resto de métricas, se percibe una efectividad en la detección de errores (\textit{Recall}) ligeramente mayor para la \gls{ann} de \textit{sklearn} (14,98\%), mientras que
-la \gls{ann} de \textit{keras} produce una mayor confiabilidad (\textit{Precision}) y, por tanto, una menor probabilidad de falsos positivos (72,17\%).
+la \gls{ann} de \textit{keras} produce una mayor confiabilidad (\textit{Precision}) y, por tanto, una menor probabilidad de falsos positivos (72,17\%). 
 
 \vspace{3mm}
 
-De la misma forma, en la Tabla \ref{tab:anneval} se exponen los resultados de aplicar los métodos \textit{score} y \textit{evaluate}, proporcionados por \textit{sklearn} y \textit{keras}, respectivamente. En el primer caso, solo se puede obtener el valor de precisión del modelo, mientras que en el segundo se aportan también las pérdidas. Como es de esperar, los resultados siguen siendo similares para ambas \gls{ann}s y, por tanto, se puede expresar de forma concluyente que el estudio realizado en esta Sección es coherente.
+Por consiguiente, en la Tabla \ref{tab:anneval} se exponen los resultados de aplicar los métodos \textit{score} y \textit{evaluate}, proporcionados por \textit{sklearn} y \textit{keras}, respectivamente. En el primer caso, solo se puede obtener el valor de precisión del modelo, mientras que en el segundo se aportan también las pérdidas. Como es de esperar, los resultados siguen siendo similares para ambas \gls{ann}s y, por tanto, se puede expresar que el estudio realizado en esta Sección es coherente. De forma concluyente, aunque las diferencias entre ambos modelos son mínimas, como se prioriza la efectividad en la detección de positivos, se escogería el modelo desarrollado con la librería \textit{keras}.
 
 \vspace{3mm}
 
@@ -218,14 +218,14 @@ De la misma forma, en la Tabla \ref{tab:anneval} se exponen los resultados de ap
   \hline
   \rowcolor[HTML]{EFEFEF} 
   \textit{\begin{tabular}[c]{@{}c@{}}Matriz\\ de confusión\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{TN} & \textit{FP} & \textit{FN} & \textit{TP} & \textit{Accuracy} & \textit{Precision} & \textit{Recall} & \textit{F1 Score} \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{sklearn} & 376535 & 609 & 7706 & 1358 & 0,9784 & 0,6903 & 0,1498 & 0,2466 \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{keras} & 376674 & 470 & 7842 & 1222 & 0,9784 & 0,7217 & 0,1349 & 0,2274 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{sklearn} & 376535 & 609 & 7706 & 1358 & 97,84 & 69,03 & 14,98 & 24,66 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{keras} & 376674 & 470 & 7842 & 1222 & 97,84 & 72,17 & 13,49 & 22,74 \\ \hline
   \end{tabular}
   \caption{Resultados de aplicación de la matriz de confusión a las \gls{ann}s}
   \label{tab:anncm}
 \end{table}
 
-
+\vspace{3mm}
 
 \begin{table}[H]
   \centering
@@ -233,8 +233,8 @@ De la misma forma, en la Tabla \ref{tab:anneval} se exponen los resultados de ap
   \hline
   \rowcolor[HTML]{EFEFEF} 
   \textit{\begin{tabular}[c]{@{}c@{}}Métodos propios de evaluación\end{tabular}} & \cellcolor[HTML]{EFEFEF}\textit{Accuracy} & \textit{Loss} \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{sklearn (score)} & 0,9783 & - \\ \hline
-  \cellcolor[HTML]{EFEFEF}\textit{keras (evaluate)} & 0,9785 & 0,0690 \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{sklearn (score)} & 97,83 & - \\ \hline
+  \cellcolor[HTML]{EFEFEF}\textit{keras (evaluate)} & 97,85 & 0,0690 \\ \hline
   \end{tabular}
   \caption{Resultados de aplicación de los métodos \textit{score} y \textit{evaluate} a las \gls{ann}s}
   \label{tab:anneval}

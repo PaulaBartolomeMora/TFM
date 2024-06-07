@@ -10,7 +10,7 @@ El algoritmo se enfoca en la búsqueda de nodos vecinos para llevar a cabo la di
 
 \vspace{3mm}
 
-En cuanto a la resiliencia, se obtienen rutas de espaldo de cada prosumidor al un nodo raíz o \textit{gateway}, que, en el caso de uso de las \gls{sg}s, daría acceso a la red de distribución eléctrica y se asumiría que está conectado a recursos infinitos. Este nodo toma la responsabilidad de funcionar como balanceador, puesto que el principal objetivo de \gls{den2ne} viene dado por la compensación de los recursos de la red a nivel global. A modo de visualizar de una forma gráfica este proceso, se muestra en la Figura \ref{fig:balance} un ejemplo de una red compuesta por seis nodos y un \textit{gateway}. Como se puede apreciar, se representa tanto la conectividad que existe entre los nodos (color negro), como el sentido del intercambio de los recursos hacia el \textit{gateway} (color naranja). 
+En cuanto a la resiliencia, se obtienen rutas de espaldo de cada prosumidor a un nodo raíz o \textit{gateway}, que, en el caso de uso de las \gls{sg}s, daría acceso a la red de distribución eléctrica y se asumiría que está conectado a recursos infinitos. Este nodo toma la responsabilidad de funcionar como balanceador, puesto que el principal objetivo de \gls{den2ne} viene dado por la compensación de los recursos de la red a nivel global. A modo de visualizar de una forma gráfica este proceso, se muestra en la Figura \ref{fig:balance} un ejemplo de una red compuesta por seis nodos y un \textit{gateway}. Como se puede apreciar, se representa tanto la conectividad que existe entre los nodos (color negro), como el sentido del intercambio de los recursos hacia el \textit{gateway} (color naranja). 
 
 \vspace{3mm}
 
@@ -23,7 +23,7 @@ En cuanto a la resiliencia, se obtienen rutas de espaldo de cada prosumidor al u
 
 \vspace{3mm}
 
-Teniendo esto en cuenta, el primer paso que lleva a cabo \gls{den2ne} se basa en una asignación jerárquica de etiquetas. Mediante este proceso, cada nodo obtendrá uno o varios identificadores numéricos, a partir de los que podrá definir su posición relativa en la topología. Al aplicar este paso, se calculan todos los caminos que existen desde cada nodo hacia el \textit{gateway} y se tratan los posibles bucles que puedan producirse al asignar las etiquetas como se representa en la Figura \ref{fig:bucle}.
+Teniendo esto en cuenta, el primer paso que lleva a cabo \gls{den2ne} se basa en una asignación jerárquica de etiquetas. Mediante este proceso, cada nodo obtendrá uno o varios identificadores numéricos (IDs), a partir de los que podrá definir su posición relativa en la topología respecto al nodo raíz. Al aplicar este paso, se calculan todos los caminos que existen desde cada nodo hacia el \textit{gateway} y se tratan los posibles bucles que puedan producirse al asignar las etiquetas como se representa en la Figura \ref{fig:bucle}.
 
 \vspace{3mm}
 
@@ -36,11 +36,11 @@ Teniendo esto en cuenta, el primer paso que lleva a cabo \gls{den2ne} se basa en
 
 \vspace{3mm}
 
-En el caso de que \gls{den2ne} sea configurado para asignar varias etiquetas a cada nodo, se añade un paso de selección, en el que se escogerá una única etiqueta de las asignadas anteriormente. Es decir, para cada nodo se comprobará qué identificador es el más apropiado y se activará, tomando en consideración alguno de los seis criterios establecidos por el algoritmo. Estos criterios vienen determinados por el número de saltos o distancia (física o lógica) al nodo raíz, las pérdidas de enlace, el balance de potencia o las combinaciones de algunos de los anteriores. Con el proceso de selección, se establecerá la topología lógica y, por tanto, los caminos finales desde cada nodo al \textit{gateway}. No obstante, las etiquetas no seleccionadas pueden ser útiles ante la necesidad de caminos opcionales, en el caso de que alguno de los nodos falle.
+En el caso de que \gls{den2ne} sea configurado para asignar varias etiquetas a cada nodo, se añade un paso de selección, en el que se escogerá una única etiqueta de las asignadas anteriormente. Es decir, para cada nodo se comprobará qué identificador (ID) es el más apropiado y se activará, tomando en consideración alguno de los seis criterios establecidos por el algoritmo. Estos criterios vienen determinados por el número de saltos o distancia (física o lógica) al nodo raíz, las pérdidas de enlace, el balance de potencia o las combinaciones de algunos de los anteriores. Con el proceso de selección, se establecerá la topología lógica y, por tanto, los caminos finales desde cada nodo al \textit{gateway}. No obstante, las etiquetas no seleccionadas pueden ser útiles ante la necesidad de caminos opcionales, en el caso de que alguno de los nodos falle.
 
 \vspace{3mm}
 
-Como se introducía al comienzo de la presente Sección, el objetivo del algoritmo es alcanzar una situación final de balance global energético en la red. Para que este proceso sea eficiente, se debe seguir un orden de distribución basado en la longitud de la etiqueta que caracteriza a cada nodo. \gls{den2ne}, al ser centralizado, puede recolectar la lista de etiquetas de la topología completa y comenzar el proceso por los nodos más lejanos al \textit{gateway}. 
+Como se introducía al comienzo de la presente Sección, el objetivo del algoritmo es alcanzar una situación final de balance global energético en la red. Para que este proceso sea eficiente, se debe seguir un orden de distribución basado en la longitud del identificador que caracteriza a cada nodo. \gls{den2ne}, al ser centralizado, puede recolectar la lista de etiquetas de la topología completa y comenzar el proceso por los nodos más lejanos al \textit{gateway}. 
 
 \vspace{3mm}
 

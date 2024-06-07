@@ -173,7 +173,7 @@ Esto tiene como consecuencia que existan una serie de vectores clasificados de f
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.6\textwidth]{img/teoria/svm2.png}
+    \includegraphics[width=0.65\textwidth]{img/teoria/svm2.png}
     \caption{Representación de vectores clasificados erróneamente dentro de los márgenes establecidos en el \acrshort{svm} \cite{svmmedium}}
     \label{fig:svmerror}
 \end{figure}
@@ -190,7 +190,7 @@ Estas variables determinan si un vector está correctamente clasificado o si se 
     \end{aligned}
 \end{equation} 
 
-\vspace{3mm}
+\pagebreak
 
 El sumatorio de todas las variables de holgura que existen en el plano vienen incluidas en el objetivo de la función de pérdida del modelo para que el error de clasificación sea mínimo, a la vez que el margen es máximo. Como es preciso encontrar un cierto equilibrio entre ambos, el \gls{svm} se determina como una técnica de optimización convexa que se fundamenta en el hiperparámetro \textit{C}. En la Figura \ref{fig:parametroc} se representa de forma gráfica cómo su valor establece el control de forma inversamente proporcional de la cantidad de muestras clasificadas erróneamente, por lo que se define como el parámetro de regularización del modelo. Es decir, cuanto más alto sea su valor, menores violaciones del margen y del hiperplano serán permitidas y más se enfocará el modelo en un \textit{Maximal Margin Classifier}.~\cite{svmciencia}
 
@@ -233,15 +233,15 @@ Para obtener una mayor compresión, se representa de forma adicional la Figura \
 \subsection{Deep Learning (\acrshort{dl})}
 \label{sec:dl}
 
-El campo del aprendizaje profundo (\acrfull{dl}) se enfoca principalmente en la creación de redes neuronales que imiten el comportamiento y la estructura lógica que tiene el cerebro humano para buscar patrones en los datos. A diferencia de las técnicas de \gls{ml}, el \gls{dl} se vuelve más eficiente en el análisis de grandes volúmenes de datos, puesto que el \gls{ml} presenta ciertas limitaciones en este aspecto. \cite{metal} 
+El campo del aprendizaje profundo (\acrfull{dl}) se enfoca principalmente en la creación de redes neuronales que imiten el comportamiento y la estructura lógica que tiene el cerebro humano para buscar patrones en los datos. A diferencia de las técnicas de \gls{ml}, el \gls{dl} se vuelve mucho más eficiente en el análisis de grandes volúmenes de datos, puesto que generalmente el \gls{ml} presenta ciertas limitaciones en este aspecto. \cite{metal} 
 
 \vspace{3mm}
 
-De la misma forma, el \gls{dl} presenta un mejor funcionamiento en la identificación de patrones cuando se manejan características complejas, aportando resultados con una mayor precisión que el \gls{ml}. Es por ello que las técnicas de \gls{dl} cobran una gran importancia en entornos donde los datos no son estructurados, como se produce en el caso de las imágenes, texto y audio. En este caso se pueden introducir en aplicaciones de reconocimiento de voz, procesado de lenguaje natural (del inglés \gls{nlp}) o visión artificial para la detección de objetos y clasificación de imágenes. \cite{iageeks}
+De la misma forma, el \gls{dl} presenta un mejor funcionamiento en la identificación de patrones cuando se manejan características complejas o un gran número de ellas, aportando resultados con una mayor precisión que el \gls{ml}. Es por ello que las técnicas de \gls{dl} cobran una gran importancia en entornos donde los datos no son estructurados, como se produce en el caso de las imágenes, texto y audio. En este caso se pueden introducir en aplicaciones de reconocimiento de voz, procesado de lenguaje natural (del inglés \gls{nlp}) o visión artificial para la detección de objetos y clasificación de imágenes. \cite{iageeks}
 
 \vspace{3mm}
 
-Por otro lado, a nivel estructural las diferencias entre las técnicas de \gls{ml} y las de \gls{dl} radican principalmente en el tratamiento de las características o variables de los datos. En el caso de emplear \gls{ml}, si se manejan conjuntos con un gran número de características, sería necesario introducir un paso previo de diseño y selección de las más relevantes. Esto, como se puede apreciar en la Figura \ref{fig:features}, no ocurre en el desarrollo de un modelo de \gls{dl}, ya que el tratamiento se produce internamente dentro de la red reuronal. \cite{valohai}
+De la misma forma, a nivel estructural, las diferencias entre las técnicas de \gls{ml} y las de \gls{dl} radican principalmente en el tratamiento de las características o variables de los datos. En el caso de emplear \gls{ml}, si se manejan conjuntos con un gran número de características, sería necesario introducir un paso previo de diseño y selección de las más relevantes. Esto, como se puede apreciar en la Figura \ref{fig:features}, no ocurre en el desarrollo de un modelo de \gls{dl}, ya que el tratamiento se produce internamente dentro de la red reuronal. \cite{valohai}
 
 \vspace{3mm}
 
@@ -284,7 +284,7 @@ Donde:
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{img/teoria/ann.jpg}
+    \includegraphics[width=0.75\textwidth]{img/teoria/ann.jpg}
     \caption{Arquitectura de un \acrshort{mlp} \cite{ann}}
     \label{fig:ann}
 \end{figure}
@@ -302,13 +302,15 @@ De la misma forma, en cada capa oculta se aplica una función de activación o d
     \end{aligned}
 \end{equation}
 
+\pagebreak
+
 Teniendo todo el procedimiento anterior en cuenta, se puede expresar que, a partir de una serie de características, el objetivo es escoger aquellas que contribuyan a obtener una mayor precisión en la clasificación de datos de entrada futuros, puesto que se van estableciendo las conexiones óptimas entre los nodos de las capas ocultas con un entrenamiento progresivo. Es preciso indicar que el funcionamiento del modelo se basa en una red de propagación hacia delante, lo que supone que se defina un flujo unidireccional, desde la entrada a la salida. 
 
 \vspace{3mm}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.7\textwidth]{img/teoria/functions.png}
+    \includegraphics[width=0.75\textwidth]{img/teoria/functions.png}
     \caption{Funciones de activación \cite{functions}}
     \label{fig:functions}
 \end{figure}
@@ -317,3 +319,4 @@ Teniendo todo el procedimiento anterior en cuenta, se puede expresar que, a part
 
 No obstante, para ajustar las ponderaciones se aporta una retroalimentación, que depende directamente de la función de coste y de la salida del modelo en cada ejecución o \textit{epoch}. Principalmente, se pueden utilizar dos métodos para minimizar la función de coste: el algoritmo adaptativo \textit{adam} (del inglés \textit{Adaptive Moment Estimation}), que presenta una tasa de aprendizaje adaptativa para cada parámetro, y el gradiente descendiente (del inglés \gls{sgd}), que actualiza los pesos de la red en función del gradiente de la función de pérdida con respecto a los pesos. \cite{ibmann}
 
+\pagebreak

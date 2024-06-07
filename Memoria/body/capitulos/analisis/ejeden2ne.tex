@@ -14,7 +14,7 @@ Por consiguiente, se añade la Sección \ref{sec:confden2ne}, donde se especific
 \subsection{Adaptación del algoritmo \acrshort{den2ne} a las pruebas}
 \label{sec:cambiosden2ne}
 
-Todas las modificaciones realizadas en el funcionamiento del algoritmo \acrshort{den2ne} han sido aplicadas a partir de los ficheros contenidos en el repositorio\footnote{https://github.com/NETSERV-UAH/den2ne-Alg} del equipo de investigación NetIS de la \gls{uah}.
+Todas las modificaciones realizadas en el funcionamiento del algoritmo \acrshort{den2ne} han sido aplicadas a partir de los ficheros contenidos en el repositorio\footnote{https://github.com/NETSERV-UAH/den2ne-Alg} del equipo de investigación NetIS de la \gls{uah} y recopiladas en el directorio de ficheros fuente del repositorio\footnote{https://github.com/PaulaBartolomeMora/TFM/tree/main/den2ne/src} dedicado a este \gls{tfm}.
 
 \subsubsection{Importación de los perfiles de carga reales}
 \label{sec:importcarga}
@@ -103,7 +103,7 @@ Por tanto, teniendo en cuenta la configuración implementada para los parámetro
 
     \[\textit{N\_sim} = \textit{Ntopos} \times \textit{Ninstantes} \times \textit{Ncriterios} 
     \times \textit{Nescenarios} \times \textit{NNlimit} \times \textit{Nsem\_ejec}\]
-    \[\textit{N\_sim} = 180 \times 8760 \times 6 \times 1 \times 1 \times 5 = 47304000\] 
+    \[\textit{N\_sim} = 180 \times 8760 \times 6 \times 1 \times 1 \times 5 = 47.304.000\] 
 
 \pagebreak 
 
@@ -125,7 +125,11 @@ Por simplificar, como el rango temporal de las muestras (ver Sección \ref{sec:r
 
 \vspace{3mm}
 
-Como el objetivo se basa en extraer de los ficheros finales de cargas netas \textit{load\_x.csv} (ver Sección \ref{sec:combinacion}) los datos de los instantes temporales especificados, se introduce un nuevo \textit{notebook}, denominado como \textit{loadsamples.ipynb}. A partir del mismo, se filtran los 12 instantes seleccionados y se obtienen a la salida 12 ficheros de test (ej. \textit{test\_2010-11-28\_11.csv}), los cuales serán proporcionados a la entrada del algoritmo para importar los 23 perfiles reales de carga para cada prueba. Es en este paso cuando se proceden a ejecutar las simulaciones en \gls{den2ne}. La aplicación de cada fichero de test a la entrada proporciona a la salida un nuevo directorio nombrado con el instante temporal que especifica el fichero de test en cuestión (ej. \textit{dataset\_exp\_2010-11-28\_11}). En su interior, se impone una organización de los resultados en 18 carpetas, en función del modelo y del grado de conectividad al que hacen referencia (ej. \textit{barabasi-200-6}). Cada una de dichas carpetas consta de 60 ficheros de resultados, que incluyen en su nombre el número de semilla, el criterio del algoritmo, el instante temporal, el grado de conectividad y el modelo (ej. \textit{dataset\_seed\_1\_cr\_0\_t\_2010-11-28\_11\_dg\_2\_m\_barabasi.csv}). En la Figura \ref{fig:dirnombres} se expone la nomenclatura especificada para cada uno de los directorios y ficheros de resultados.
+Como el objetivo se basa en extraer de los ficheros finales de cargas netas \textit{load\_x.csv} (ver Sección \ref{sec:combinacion}) los datos de los instantes temporales especificados, se introduce un nuevo \textit{notebook}, denominado como \textit{loadsamples.ipynb} en el repositorio\footnote{https://github.com/PaulaBartolomeMora/TFM/tree/main/SustData}. A partir del mismo, se filtran los 12 instantes seleccionados y se obtienen a la salida 12 ficheros de test (ej. \textit{test\_2010-11-28\_11.csv}), los cuales serán proporcionados a la entrada del algoritmo para importar los 23 perfiles reales de carga para cada prueba. Es en este paso cuando se proceden a ejecutar las simulaciones en \gls{den2ne}. 
+
+\vspace{3mm}
+
+La aplicación de cada fichero de test a la entrada proporciona a la salida un nuevo directorio nombrado con el instante temporal que especifica el fichero de test en cuestión (ej. \textit{dataset\_exp\_2010-11-28\_11}). En su interior, se impone una organización de los resultados en 18 carpetas, en función del modelo y del grado de conectividad al que hacen referencia (ej. \textit{barabasi-200-6}). Cada una de dichas carpetas consta de 60 ficheros de resultados, que incluyen en su nombre el número de semilla, el criterio del algoritmo, el instante temporal, el grado de conectividad y el modelo (ej. \textit{dataset\_seed\_1\_cr\_0\_t\_2010-11-28\_11\_dg\_2\_m\_barabasi.csv}). En la Figura \ref{fig:dirnombres} se expone la nomenclatura especificada para cada uno de los directorios y ficheros de resultados recopilados en el directorio de resultados del repositorio\footnote{https://github.com/PaulaBartolomeMora/TFM/tree/main/den2ne/src/results}.
 
 \vspace{3mm}
 
@@ -145,7 +149,7 @@ Como el objetivo se basa en extraer de los ficheros finales de cargas netas \tex
     \label{fig:dirnombres}
 \end{figure}
 
-\vspace{3mm}
+\pagebreak
 
 Por lo tanto, se puede expresar que para cada prueba ejecutada o fichero de test a la entrada de \gls{den2ne}, se obtienen a la salida un total de 1080 ficheros de resultados. Cada uno de ellos presenta un número de filas igual a la cantidad de nodos de la topología simulada, o expresado de otra forma, igual al total de intercambios energéticos realizados (100, 150 o 200 filas). Con esto, ya es posible crear el dataset final mediante un nuevo \textit{notebook}, denominado como \textit{datafinal.ipynb}. A modo de simplificar el tratamiento de los resultados del algoritmo, se agrupa primero, en un mismo \textit{dataframe} el contenido de los 1080 ficheros resultantes de cada prueba. 
 
@@ -165,7 +169,7 @@ Una vez realizada esta comprobación, la siguiente acción se basa en combinar l
 
 \vspace{3mm}
 
-Finalmente, se almacena el \textit{dataframe} ya limpio en un fichero, cuyo nombre hace referencia al instante temporal de la prueba en cuestión (ej. \textit{2010-12-28\_11.csv}). Este fichero contiene un total de 160920 filas con un valor de etiqueta de error y con toda la información respectiva a cada intercambio energético simulado. Por ello, se define como el conjunto de datos final resultante de una prueba o instante temporal determinado. Como se han ejecutado 12 pruebas, si se agrupan los 12 conjuntos finales, se puede calcular una cantidad total de 1931040 intercambios etiquetados sobre los que entrenar los modelos. De forma adicional, se añade la Tabla \ref{tab:datafinal} para exponer los campos que contienen cada uno de los conjuntos finales.
+Finalmente, se almacena el \textit{dataframe} ya limpio en un fichero, cuyo nombre hace referencia al instante temporal de la prueba en cuestión (ej. \textit{2010-12-28\_11.csv}). Este fichero contiene un total de 160.920 filas con un valor de etiqueta de error y con toda la información respectiva a cada intercambio energético simulado. Por ello, se define como el conjunto de datos final resultante de una prueba o instante temporal determinado. Como se han ejecutado 12 pruebas, si se agrupan los 12 conjuntos finales, se puede calcular una cantidad total de 1.931.040 intercambios etiquetados sobre los que entrenar los modelos. De forma adicional, se añade la Tabla \ref{tab:datafinal} para exponer los campos que contienen cada uno de los conjuntos finales.
 
 \vspace{3mm}
 

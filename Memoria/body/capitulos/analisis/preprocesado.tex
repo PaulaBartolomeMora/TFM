@@ -14,7 +14,7 @@ Entonces, se puede expresar que la ejecución de los procesos anteriores proporc
 
 \vspace{3mm}
 
-Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. El conjunto de ficheros realizados se encuentran disponibles en el repositorio\footnote{https://github.com/PaulaBartolomeMora/TFM/tree/main/SustData} de GitHub dedicado a este proyecto y su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento. Cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras. Adicionalmente, para la representación de las diferentes gráficas de la Sección se hará uso de los módulos \textit{matplotlib} y \textit{seaborn}. Los ficheros dedicad en el contexto de este \gls{tfm} estarán 
+Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. El conjunto de ficheros realizados se encuentran disponibles en el repositorio\footnote{https://github.com/PaulaBartolomeMora/TFM/tree/main/SustData} de GitHub dedicado a este proyecto y su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento. Cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras. Adicionalmente, para la representación de las diferentes gráficas de la Sección se hará uso de los módulos \textit{matplotlib} y \textit{seaborn}. 
 
 \subsection{Procesado de datos de consumo}
 
@@ -53,7 +53,7 @@ Por lo tanto, en este paso, enfocado al análisis de la situación inicial del c
 
 Como se puede comprobar, a priori la mayoría no precisan de un volumen manejable, por lo que la primera acción a realizar será dividir los mismos en nuevos ficheros que supongan un tamaño menor del dado. Esto sobre todo será importante a la hora de trabajar con el repositorio de GitHub, puesto que existe el factor limitante de que el tamaño máximo permitido por archivo es de 100MB.
 
-\vspace{3mm}
+\pagebreak
 
 No obstante, antes de dividir los ficheros, se debe volver a la Tabla que hace referencia a las medidas de consumo energético (ver Tabla \ref{tab:consumo}) para observar que estos ficheros contienen una columna dedicada a la marca de tiempo (\textit{timestamp}) del instante en el que se adquirió la medida. 
 
@@ -111,8 +111,6 @@ De forma adicional, en este \textit{notebook} se comprueba también, si existen 
 \end{lstlisting}
 
 \vspace{3mm}
-
-\pagebreak
 
 A modo de resumen, se puede determinar entonces, que se seguirá la siguiente secuencia de pasos en esta primera fase: crear las nuevas columnas temporales, eliminar las filas que estén completamente vacías y dividir los ficheros iniciales para ajustar su tamaño a un máximo de 100MB. Es obligatorio seguir este orden, puesto que no sería eficiente extraer los fragmentos del conjunto de datos y, después, añadir información nueva. En otros términos, de esta forma se estaría superando el tamaño máximo ajustado en los nuevos ficheros de salida.
 
@@ -369,8 +367,6 @@ Por lo tanto, volviendo al código, en el archivo se debe importar la librería 
 \vspace{3mm}
 
 Para obtener a la salida los nuevos ficheros, se debe esperar a que todos los procesos finalicen. Se consigue un fichero de datos de consumo energético por vivienda definida en \textit{SustDataED}, suponiendo en total 50. A modo organizativo, se sigue la nomenclatura \textit{consum\_x.csv}, donde x hace referencia al identificador de la vivienda a la que pertenecen las medidas promediadas. En la Tabla \ref{tab:consum} se muestran los campos que contienen estos ficheros. 
-
-\pagebreak
 
 \begin{lstlisting}[style=Python, caption={Creación de procesos}]
   if __name__ == "__main__":
@@ -637,7 +633,7 @@ En otros términos, se tienen en cuenta los cuatro despliegues para obtener el r
 
 \vspace{3mm}
 
-Por otro lado, a modo de simplificar la información y de visualizar de una forma gráfica la correlación existente entre cada uno de los parámetros, se introduce la Figura \ref{fig:corr} para representar la matriz de valores mediante un mapa de calor. Un valor igual a 1 indica una correlación positiva perfecta y, como se puede apreciar, la radiación en cada instante incide de una manera directa en la cantidad de potencia generada. Coherentemente, la más destacable a observar es la radiación en el plano del array \gls{poa} con un valor 0.999. Se pueden observar estas correlaciones también, en las gráficas expuestas en la Figura \ref{fig:corrgraficas}.
+Por otro lado, a modo de simplificar la información y de visualizar de una forma gráfica la correlación existente entre cada uno de los parámetros, se introduce la Figura \ref{fig:corr} para representar la matriz de valores mediante un mapa de calor. Un valor igual a 1 indica una correlación positiva perfecta y, como se puede apreciar, la radiación en cada instante incide de una manera directa en la cantidad de potencia que se genera. Coherentemente, la más destacable a observar es la radiación en el plano del array \gls{poa}, que alcanza un valor de 0,999. Se pueden observar estas correlaciones también, en las gráficas expuestas en la Figura \ref{fig:corrgraficas}.
 
 \vspace{3mm}
 
@@ -755,7 +751,7 @@ Por otro lado, en cuanto a la nomenclatura, cada fichero se nombra como \textit{
 
 \vspace{3mm}
 
-Adicionalmente, a modo de simplificar la compresión de toda la secuencia de acciones que se han llevado a cabo durante la Sección \ref{sec:preprocesado}, se representa en la Figura \ref{fig:total1} el diagrama completo. En el mismo se detallan los datos de origen empleados, los \textit{notebooks} de \textit{Jupyter} creados y ejecutados en cada paso de procesamiento y los resultados en forma de nuevos ficheros .csv que derivan hasta obtener finalmente, los 23 ficheros \textit{load\_x.csv}.
+Adicionalmente, a modo de simplificar la compresión de toda la secuencia de acciones que se han llevado a cabo durante la Sección \ref{sec:preprocesado}, se representa en la Figura \ref{fig:total1} el diagrama completo. En el mismo se detallan los datos de origen empleados, los \textit{notebooks} de \textit{Jupyter} creados y ejecutados en cada paso de procesamiento y los resultados en forma de nuevos ficheros .csv que derivan hasta obtener finalmente, los 23 ficheros \textit{load\_x.csv}\footnote{https://github.com/PaulaBartolomeMora/TFM/tree/main/SustData/dataset/nodes/loads}.
 
 \vspace{8mm}
 

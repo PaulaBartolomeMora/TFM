@@ -227,7 +227,7 @@ De la misma forma que se ha operado con la plataforma \textit{Global Solar Atlas
 
 \vspace{3mm}
 
-En cuanto a la primera, la herramienta \textit{PVWatts}, a diferencia de \textit{Global Solar Atlas}, provee un mapa mundial que se rige por celdas, en función de la localización de las bases de datos del \gls{nrel}. En el caso de este \gls{tfm} se cuenta con la fortuna de que se dispone de una de estas bases en la misma ciudad de Funchal, concretamente en las coordenadas 32.65°N, 16.92°W. En este contexto es preciso comentar que esta característica se tuvo en cuenta para definir la localización exacta de instalación del sistema fotovoltaico en la plataforma \textit{Global Solar Atlas} (ver Sección \ref{sec:global}). Por lo tanto, no se requieren ajustes adicionales en estos términos.  
+En cuanto a la primera, la herramienta \textit{PVWatts}, a diferencia de \textit{Global Solar Atlas}, provee un mapa mundial que se rige por celdas, en función de la localización de las bases de datos del \gls{nrel}. En el caso de este \gls{tfm} se cuenta con la fortuna de que se dispone de una de estas bases en la misma ciudad de Funchal, concretamente en las coordenadas 32,65°N, 16,92°W. En este contexto es preciso comentar que esta característica se tuvo en cuenta para definir la localización exacta de instalación del sistema fotovoltaico en la plataforma \textit{Global Solar Atlas} (ver Sección \ref{sec:global}). Por lo tanto, no se requieren ajustes adicionales en estos términos.  
 
 \subsubsection{Configuración de los parámetros de entrada}
 
@@ -237,10 +237,10 @@ Con el objetivo de conseguir a la salida de la simulación unos datos que sean c
 
 \begin{itemize}
     \item Tamaño del sistema fotovoltaico y capacidad de instalación: Por defecto, \textit{PVWatts} determina una capacidad de 4kWp, por lo que coincide directamente con la definida en \textit{Global Solar Atlas}. Además, se especifica la relación existente entre este valor y el tamaño del sistema de la siguiente manera:
-    \[\frac{4 \, \text{kW}}{1 \, \text{kW/m}^2 \times 0.16} = 25 \, \text{m}^2\]
+    \[\frac{4 \, \text{kW}}{1 \, \text{kW/m}^2 \times 0,16} = 25 \, \text{m}^2\]
     Donde se representa que, para obtener una eficiencia del 16\% del sistema (eficiencia por defecto), se requiere un área de 25 m² para los módulos solares. Es decir, este valor no representa el área total del sistema fotovoltaico, ya que para ello habría que añadir el cálculo del espacio que se necesita establecer entre cada uno de los paneles DC o el tamaño de los inversores AC que se instalarían.
-    \item Índice de cobertura del suelo: Se define como la relación entre el área de superficie del módulo y el área del suelo (tejado en el caso de una vivienda) ocupado en total. El valor predeterminado es de 0.4, lo que supone que, teniendo un área efectiva de 25 m², se necesitará un área total de 62,5 m².
-    \item Ratio DC/AC: Haciendo referencia al tamaño de los inversores AC, es preciso exponer que estos limitan la salida de la energía del conjunto para que haya un correcto funcionamiento. La herramienta cuantifica por defecto para la localización, una relación 1.2 entre el tamaño de array de paneles y los inversores de corriente alterna. Por lo tanto, en este caso, estos contarían con una capacidad teórica de 3.33kW. Si se pretendiera realizar una instalación a gran escala se necesitarían ratios de hasta 1.5.
+    \item Índice de cobertura del suelo: Se define como la relación entre el área de superficie del módulo y el área del suelo (tejado en el caso de una vivienda) ocupado en total. El valor predeterminado es de 0,4, lo que supone que, teniendo un área efectiva de 25 m², se necesitará un área total de 62,5 m².
+    \item Ratio DC/AC: Haciendo referencia al tamaño de los inversores AC, es preciso exponer que estos limitan la salida de la energía del conjunto para que haya un correcto funcionamiento. La herramienta cuantifica por defecto para la localización, una relación 1,2 entre el tamaño de array de paneles y los inversores de corriente alterna. Por lo tanto, en este caso, estos contarían con una capacidad teórica de 3,33kW. Si se pretendiera realizar una instalación a gran escala se necesitarían ratios de hasta 1,5.
     \item Azimut: De la misma forma que en la configuración en la plataforma \textit{Global Solar Atlas}, se define un azimut de 180º, orientando los paneles hacia el sur.
     \item Inclinación: \textit{Global Solar Atlas}, en el caso de localizar el sistema fotovoltaico en la ciudad de Funchal, establecía como ángulo óptimo de inclinación, un valor de 26º.
     \item Tipo de módulos: Se selecciona el tipo estándar, basado en silicio cristalino y con una cobertura de vidrio con revestimiento antireflectante. Aproximadamente, cuenta con una eficiencia nominal del 19\%.
@@ -261,19 +261,19 @@ Una de las ventajas de uso que permite la herramienta \textit{PVWatts} es la pos
 
 \begin{itemize}
     \item Suciedad: Debido a la escasez de precipitaciones y a la presencia de calima que se experimenta en la isla, se determina un valor de un 2\%.
-    \item Sombreado: Se reduce la radiación solar que incide en los paneles si se producen sombras por objetos cercanos o por la propia de los módulos si se colocan en fila. Es decir, estos crean sombras sobre los de la fila adyacente. El cálculo se realiza a partir de la gráfica expuesta en la Figura \ref{fig:sombra}. Por lo tanto, como se ha definido un tipo de array fijo con una inclinación de 26º y un valor de índice de cobertura del suelo de 0.4, se determina aproximadamente un valor de pérdidas por sombra igual a un 3\%.
+    \item Sombreado: Se reduce la radiación solar que incide en los paneles si se producen sombras por objetos cercanos o por la propia de los módulos si se colocan en fila. Es decir, estos crean sombras sobre los de la fila adyacente. El cálculo se realiza a partir de la gráfica expuesta en la Figura \ref{fig:sombra}. Por lo tanto, como se ha definido un tipo de array fijo con una inclinación de 26º y un valor de índice de cobertura del suelo de 0,4, se determina aproximadamente un valor de pérdidas por sombra igual a un 3\%.
     \item Nieve: Teniendo en cuenta las características climáticas de la ciudad de Funchal debido a su localización en una zona subtropical, se determinan pérdidas del 0\%.
     \item Discordancia: Son pérdidas eléctricas debido a las diferencias que se producen por imperfecciones en la fabricación de los módulos. Esto tiene como consecuencia que cada uno de ellos presente características I-V que varíen ligeramente entre sí. La herramienta proporciona un valor predeterminado del 2\%.
     \pagebreak
-    \item Cableado y conexiones: Pérdidas resistivas en el cableado y en las conexiones entre módulos, inversores y otros elementos del sistema con un valor por defecto del 2\% y del 0.5\%, respectivamente.
+    \item Cableado y conexiones: Pérdidas resistivas en el cableado y en las conexiones entre módulos, inversores y otros elementos del sistema con un valor por defecto del 2\% y del 0,5\%, respectivamente.
     \item Degradación inducida por la luz: Se trata del efecto de reducción de potencia que se produce durante los primeros meses de funcionamiento del sistema fotovoltaico. El valor predeterminado es 1,5\%.
     \item Precisión del fabricante: Son pérdidas, generalmente bajas, que vienen definidas por la precisión del fabricante en el proceso de estudio de eficiencia de los paneles. Se determina un 1\%.
     \item Disponibilidad: Se añaden las pérdidas que se producen a partir de los mantenimientos que se requieren a lo largo del tiempo y que causan paradas en el funcionamiento del sistema. Se provee un valor por defecto del 3\%.
 \end{itemize}
 
 Finalmente, las pérdidas totales del sistema se pueden cuantificar a partir de la siguiente expresión:
-    \[\textit{Losses} = (1-0.02) \times (1-0.03) \times (1-0.02) \times (1-0.02) 
-    \times (1-0.005) \times (1-0.015) \times (1-0.01) \times (1-0.03)\]
+    \[\textit{Losses} = (1-0,02) \times (1-0,03) \times (1-0,02) \times (1-0,02) 
+    \times (1-0,005) \times (1-0,015) \times (1-0,01) \times (1-0,03)\]
     \[100\% \times (1-\textit{Losses}) = 14,08\%\]
 
 \begin{figure}[H]
@@ -354,7 +354,7 @@ Por ello, en primera instancia, se va a proceder a poner el foco en los valores 
 
 \vspace{3mm}
 
-Por lo tanto, se pueden calcular los valores de \gls{dni} a partir de los de \gls{poa} dados por el dataset. Mediante la librería \textit{matplotlib} de \textit{Python} se representa la Figura \ref{fig:averagereal} para visualizar los valores totales mensuales, tanto de producción energética, como de radiación directa normal \gls{dni}. El valor máximo energético se alcanza en el mes de julio, con un valor de 517,8kWh, ocurriendo de la misma forma para el valor promedio máximo de radiación, cuyo alcance es de 181.1kWh/m² para este mes. Por tanto, volviendo a la Sección \ref{sec:analisisglobal} y, específicamente a la \ref{fig:average}, se puede determinar que los valores obtenidos en la simulación son muy precisos respecto al estudio previo.
+Por lo tanto, se pueden calcular los valores de \gls{dni} a partir de los de \gls{poa} dados por el dataset. Mediante la librería \textit{matplotlib} de \textit{Python} se representa la Figura \ref{fig:averagereal} para visualizar los valores totales mensuales, tanto de producción energética, como de radiación directa normal \gls{dni}. El valor máximo energético se alcanza en el mes de julio, con un valor de 517,8kWh, ocurriendo de la misma forma para el valor promedio máximo de radiación, cuyo alcance es de 181,1kWh/m² para este mes. Por tanto, volviendo a la Sección \ref{sec:analisisglobal} y, específicamente a la \ref{fig:average}, se puede determinar que los valores obtenidos en la simulación son muy precisos respecto al estudio previo.
 
 \vspace{3mm}
 
@@ -389,13 +389,13 @@ Aparte de las gráficas realizadas, se expone la Tabla \ref{tab:globalvspvwatts}
         \textit{Enero} & \multicolumn{1}{c|}{350,2} & \multicolumn{1}{c|}{247,1} & \multicolumn{1}{c|}{83,7} & \multicolumn{1}{c|}{81,1} \\ \hline
         \textit{Febrero} & \multicolumn{1}{c|}{374,0} & \multicolumn{1}{c|}{291,4} & \multicolumn{1}{c|}{85,5} & \multicolumn{1}{c|}{105,7} \\ \hline
         \textit{Marzo} & \multicolumn{1}{c|}{500,8} & \multicolumn{1}{c|}{401,9} & \multicolumn{1}{c|}{117,9} & \multicolumn{1}{c|}{132,8} \\ \hline
-        \textit{Abril} & \multicolumn{1}{c|}{497,9} & \multicolumn{1}{c|}{441,3} & \multicolumn{1}{c|}{117,9} & \multicolumn{1}{c|}{155.0} \\ \hline
-        \textit{Mayo} & \multicolumn{1}{c|}{526,5} & \multicolumn{1}{c|}{505,9} & \multicolumn{1}{c|}{137,3} & \multicolumn{1}{c|}{172.7} \\ \hline
-        \textit{Junio} & \multicolumn{1}{c|}{502,5} & \multicolumn{1}{c|}{449,6} & \multicolumn{1}{c|}{135,6} & \multicolumn{1}{c|}{157.4} \\ \hline
-        \textit{Julio} & \multicolumn{1}{c|}{565,5} & \multicolumn{1}{c|}{517,8} & \multicolumn{1}{c|}{163,7} & \multicolumn{1}{c|}{181.1} \\ \hline
-        \textit{Agosto} & \multicolumn{1}{c|}{558,6} & \multicolumn{1}{c|}{505,5} & \multicolumn{1}{c|}{151,6} & \multicolumn{1}{c|}{176.1} \\ \hline
-        \textit{Septiembre} & \multicolumn{1}{c|}{465,3} & \multicolumn{1}{c|}{417,4} & \multicolumn{1}{c|}{109,3} & \multicolumn{1}{c|}{148.7} \\ \hline
-        \textit{Octubre} & \multicolumn{1}{c|}{429,0} & \multicolumn{1}{c|}{356,3} & \multicolumn{1}{c|}{100,2} & \multicolumn{1}{c|}{119.5} \\ \hline
+        \textit{Abril} & \multicolumn{1}{c|}{497,9} & \multicolumn{1}{c|}{441,3} & \multicolumn{1}{c|}{117,9} & \multicolumn{1}{c|}{155,0} \\ \hline
+        \textit{Mayo} & \multicolumn{1}{c|}{526,5} & \multicolumn{1}{c|}{505,9} & \multicolumn{1}{c|}{137,3} & \multicolumn{1}{c|}{172,7} \\ \hline
+        \textit{Junio} & \multicolumn{1}{c|}{502,5} & \multicolumn{1}{c|}{449,6} & \multicolumn{1}{c|}{135,6} & \multicolumn{1}{c|}{157,4} \\ \hline
+        \textit{Julio} & \multicolumn{1}{c|}{565,5} & \multicolumn{1}{c|}{517,8} & \multicolumn{1}{c|}{163,7} & \multicolumn{1}{c|}{181,1} \\ \hline
+        \textit{Agosto} & \multicolumn{1}{c|}{558,6} & \multicolumn{1}{c|}{505,5} & \multicolumn{1}{c|}{151,6} & \multicolumn{1}{c|}{176,1} \\ \hline
+        \textit{Septiembre} & \multicolumn{1}{c|}{465,3} & \multicolumn{1}{c|}{417,4} & \multicolumn{1}{c|}{109,3} & \multicolumn{1}{c|}{148,7} \\ \hline
+        \textit{Octubre} & \multicolumn{1}{c|}{429,0} & \multicolumn{1}{c|}{356,3} & \multicolumn{1}{c|}{100,2} & \multicolumn{1}{c|}{119,5} \\ \hline
         \textit{Noviembre} & \multicolumn{1}{c|}{343,7} & \multicolumn{1}{c|}{268,8} & \multicolumn{1}{c|}{80,2} & \multicolumn{1}{c|}{90,1} \\ \hline
         \textit{Diciembre} & \multicolumn{1}{c|}{318,6} & \multicolumn{1}{c|}{243,4} & \multicolumn{1}{c|}{76,9} & \multicolumn{1}{c|}{78,6} \\ \hline
     \end{tabularx}
@@ -406,7 +406,7 @@ Aparte de las gráficas realizadas, se expone la Tabla \ref{tab:globalvspvwatts}
 
 \vspace{3mm}
 
-Por lo tanto, a través del sumatorio de todos los valores mensuales de producción energética, se puede cuantificar finalmente, que un sistema fotovoltaico real localizado en la ciudad de Funchal, proveería aproximadamente un total de 4417kWh al año. Este valor representa un 81,3\% del obtenido teóricamente (5433kWh) en la Sección \ref{sec:analisisglobal} y viene justificado en gran parte por las pérdidas introducidas. Por otro lado, en el caso del \gls{dni}, con la herramienta \textit{PVWatts} se obtiene un total anual equivalente a 1598,8 kWh/m², suponiendo un 92,9\% del valor teórico (1719.4 kWh/m²).
+Por lo tanto, a través del sumatorio de todos los valores mensuales de producción energética, se puede cuantificar finalmente, que un sistema fotovoltaico real localizado en la ciudad de Funchal, proveería aproximadamente un total de 4417kWh al año. Este valor representa un 81,3\% del obtenido teóricamente (5433kWh) en la Sección \ref{sec:analisisglobal} y viene justificado en gran parte por las pérdidas introducidas. Por otro lado, en el caso del \gls{dni}, con la herramienta \textit{PVWatts} se obtiene un total anual equivalente a 1598,8 kWh/m², suponiendo un 92,9\% del valor teórico (1719,4 kWh/m²).
 
 \vspace{3mm}
 
