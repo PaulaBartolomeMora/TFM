@@ -15,7 +15,7 @@ Por lo tanto, en primera instancia, se deberá llevar a cabo un estudio y un an�
 \subsection{Estudio y análisis de la ubicación (\textit{Global Solar Atlas})}
 \label{sec:global}
 
-En cuanto a la ubicación, en este caso será preciso basarse concretamente en Funchal, capital de la isla de Madeira (Portugal), ya que el análisis a realizar tiene que ser acorde a los datos recogidos en el dataset \textit{SustDataED}. 
+En cuanto a la ubicación, en este caso, será preciso basarse concretamente en Funchal, capital de la isla de Madeira (Portugal), ya que el análisis a realizar tiene que ser acorde a los datos recogidos en el dataset \textit{SustDataED}. 
 
 \vspace{3mm}
 
@@ -45,7 +45,7 @@ Es necesario indicar que todos los parámetros anteriores se proporcionan para c
 
 \vspace{3mm}
 
-En las Figuras \ref{fig:dni} y \ref{fig:ghi}, se visualizan en formato GeoTIFF los resultados de aplicar las capas de los índices de radiación \gls{dni} y \gls{ghi} al mapa mundial a través de la plataforma \textit{Global Solar Atlas}. Por otro lado, en la Figura \ref{fig:photo} se representa el potencial fotovoltaico dado por el parámetro \gls{pvout}. Como es de esperar, se puede verificar que existe una gran correlación entre los niveles de radiación recibidos con respecto a la cantidad de energía que se puede generar con una planta solar en una ubicación determinada. 
+En las Figuras \ref{fig:dni} y \ref{fig:ghi}, se visualizan en formato GeoTIFF los resultados de aplicar las capas de los índices de radiación \gls{dni} y \gls{ghi} al mapa mundial a través de la plataforma \textit{Global Solar Atlas}. Por otro lado, en la Figura \ref{fig:photo}, se representa el potencial fotovoltaico dado por el parámetro \gls{pvout}. Como es de esperar, se puede verificar que existe una gran correlación entre los niveles de radiación recibidos con respecto a la cantidad de energía que se puede generar con una planta solar en una ubicación determinada. 
 
 \vspace{3mm}
 
@@ -78,7 +78,7 @@ En las Figuras \ref{fig:dni} y \ref{fig:ghi}, se visualizan en formato GeoTIFF l
 
 \subsubsection{Análisis de resultados de radiación}
 
-De la misma forma, lo anterior se hace patente para el caso de la isla de Madeira como se puede visualizar en las Figuras \ref{fig:madeiradni}, \ref{fig:madeiraghi} y \ref{fig:madeirapvout}. Desde la plataforma \textit{Global Solar Atlas} también, se extraen y se recogen en la Tabla \ref{tab:global} los valores de los índices de radiación configurados específicamente para la localización de la ciudad de Funchal. 
+De la misma forma, lo anterior se hace patente para el caso de la isla de Madeira, como se puede visualizar en las Figuras \ref{fig:madeiradni}, \ref{fig:madeiraghi} y \ref{fig:madeirapvout}. Desde la plataforma \textit{Global Solar Atlas} también se extraen y se recogen en la Tabla \ref{tab:global} los valores de los índices de radiación, configurados específicamente para la localización de la ciudad de Funchal. 
 
 \vspace{5mm}
 
@@ -99,7 +99,7 @@ De la misma forma, lo anterior se hace patente para el caso de la isla de Madeir
 
 \vspace{3mm}
 
-Por tanto, se puede comprobar a través de estos valores y de la leyenda proporcionada en las figuras anteriores, que Funchal se percibe como una ciudad con un potencial de recursos solares medio alto. Esto es coherente con su localización subtropical y con la elevación del terreno. Es decir, al encontrarse en una zona de costa ronda en valores cercanos a los 100 metros (concretamente 137 metros en la ubicación seleccionada) y se reduce ligeramente el nivel de energía solar captable respecto a otras zonas de la isla más montañosas.
+Por tanto, se puede comprobar a través de estos valores y de la leyenda proporcionada en las figuras anteriores, que Funchal se percibe como una ciudad con un potencial de recursos solares medio alto. Esto es coherente con su localización subtropical y con la elevación del terreno. Es decir, al encontrarse en una zona de costa, ronda en valores cercanos a los 100 metros (concretamente 137 metros en la ubicación seleccionada) y se reduce ligeramente el nivel de energía solar captable respecto a otras zonas de la isla más montañosas.
 
 \pagebreak
 
@@ -131,7 +131,7 @@ Por tanto, se puede comprobar a través de estos valores y de la leyenda proporc
 Para calcular de forma aproximada la cantidad de energía que supondría la instalación de un sistema fotovoltaico en la ciudad de Funchal, es preciso configurar primero los siguientes parámetros a través de la plataforma:
 
 \begin{itemize}
-    \item Tipo y tamaño de sistema fotovoltaico: Se permite seleccionar entre un sistema enfocado a una vivienda, a un edificio comercial o a una planta solar de grandes dimensiones. En este caso se toma como base el estudio de producción energética en un entorno residencial. Es preciso indicar que en la plataforma la configuración de un sistema fotovoltaico para un entorno residencial no considera la opción de almacenamiento de electricidad.
+    \item Tipo y tamaño de sistema fotovoltaico: Se permite seleccionar entre un sistema enfocado a una vivienda, a un edificio comercial o a una planta solar de grandes dimensiones. En este caso, se toma como base el estudio de producción energética en un entorno residencial. Es preciso indicar que en la plataforma la configuración de un sistema fotovoltaico para un entorno residencial no considera la opción de almacenamiento de electricidad.
     \item Capacidad de instalación: Se toma una capacidad máxima de generación de 4kWp (kilovatios pico) para el sistema. En otros términos, este valor determina la cantidad de energía que producirían los paneles en condiciones óptimas.
     \item Azimut \cite{azimut}: Se determina como el ángulo de orientación horizontal y, en función de su valor, define la proyección de los paneles solares en dirección norte, sur, este u oeste. Se indica un valor de 180º para establecer una orientación hacia el sur. 
     \item Inclinación: La plataforma establece como ángulo óptimo para la localización de Funchal un ángulo de 26º, por lo que se configura la instalación de los paneles solares sobre rieles sujetos a un tejado con esta misma inclinación.
@@ -144,7 +144,7 @@ Una vez configurados los parámetros expuestos, se obtienen como resultados la t
 
 \vspace{3mm}
 
-Por otro lado, en la Figura \ref{fig:average} se modelan gráficamente los valores totales mensuales, tanto de producción energética, como de radiación directa normal \gls{dni} para visualizar la correlación existente entre los mismos en los distintos meses del año. El valor promedio máximo energético se alcanza en el mes de julio, con un valor de 565kWh, ocurriendo de la misma forma para el valor máximo de radiación, cuyo alcance es de 163,7kWh/m² para este mes.
+Por otro lado, en la Figura \ref{fig:average}, se modelan gráficamente los valores totales mensuales, tanto de producción energética, como de radiación directa normal \gls{dni} para visualizar la correlación existente entre los mismos en los distintos meses del año. El valor promedio máximo energético se alcanza en el mes de julio, con un valor de 565kWh, ocurriendo de la misma forma para el valor máximo de radiación, cuyo alcance es de 163,7kWh/m² para este mes.
 
 \begin{figure}[H]
     \centering
@@ -227,7 +227,7 @@ De la misma forma que se ha operado con la plataforma \textit{Global Solar Atlas
 
 \vspace{3mm}
 
-En cuanto a la primera, la herramienta \textit{PVWatts}, a diferencia de \textit{Global Solar Atlas}, provee un mapa mundial que se rige por celdas, en función de la localización de las bases de datos del \gls{nrel}. En el caso de este \gls{tfm} se cuenta con la fortuna de que se dispone de una de estas bases en la misma ciudad de Funchal, concretamente en las coordenadas 32,65°N, 16,92°W. En este contexto es preciso comentar que esta característica se tuvo en cuenta para definir la localización exacta de instalación del sistema fotovoltaico en la plataforma \textit{Global Solar Atlas} (ver Sección \ref{sec:global}). Por lo tanto, no se requieren ajustes adicionales en estos términos.  
+En cuanto a la primera, la herramienta \textit{PVWatts}, a diferencia de \textit{Global Solar Atlas}, provee un mapa mundial que se rige por celdas, en función de la localización de las bases de datos del \gls{nrel}. En el caso de este \gls{tfm}, se cuenta con la fortuna de que se dispone de una de estas bases en la misma ciudad de Funchal, concretamente en las coordenadas 32,65°N, 16,92°W. En este contexto, es preciso comentar que esta característica se tuvo en cuenta para definir la localización exacta de instalación del sistema fotovoltaico en la plataforma \textit{Global Solar Atlas} (ver Sección \ref{sec:global}). Por lo tanto, no se requieren ajustes adicionales en estos términos.  
 
 \subsubsection{Configuración de los parámetros de entrada}
 
@@ -242,7 +242,7 @@ Con el objetivo de conseguir a la salida de la simulación unos datos que sean c
     \item Índice de cobertura del suelo: Se define como la relación entre el área de superficie del módulo y el área del suelo (tejado en el caso de una vivienda) ocupado en total. El valor predeterminado es de 0,4, lo que supone que, teniendo un área efectiva de 25 m², se necesitará un área total de 62,5 m².
     \item Ratio DC/AC: Haciendo referencia al tamaño de los inversores AC, es preciso exponer que estos limitan la salida de la energía del conjunto para que haya un correcto funcionamiento. La herramienta cuantifica por defecto para la localización, una relación 1,2 entre el tamaño de array de paneles y los inversores de corriente alterna. Por lo tanto, en este caso, estos contarían con una capacidad teórica de 3,33kW. Si se pretendiera realizar una instalación a gran escala se necesitarían ratios de hasta 1,5.
     \item Azimut: De la misma forma que en la configuración en la plataforma \textit{Global Solar Atlas}, se define un azimut de 180º, orientando los paneles hacia el sur.
-    \item Inclinación: \textit{Global Solar Atlas}, en el caso de localizar el sistema fotovoltaico en la ciudad de Funchal, establecía como ángulo óptimo de inclinación, un valor de 26º.
+    \item Inclinación: \textit{Global Solar Atlas}, en el caso de localizar el sistema fotovoltaico en la ciudad de Funchal, establecía como ángulo óptimo de inclinación un valor de 26º.
     \item Tipo de módulos: Se selecciona el tipo estándar, basado en silicio cristalino y con una cobertura de vidrio con revestimiento antireflectante. Aproximadamente, cuenta con una eficiencia nominal del 19\%.
     \item Tipo de array: Se especifica de forma simplificada un tipo de array fijo, que no siga el movimiento del sol mediante ejes de rotación, sino que mantenga sus valores de inclinación y de azimut configurados. En la Figura \ref{fig:array}, se describe el funcionamiento de cada tipo de array.
 \end{itemize}
@@ -262,7 +262,7 @@ Una de las ventajas de uso que permite la herramienta \textit{PVWatts} es la pos
 \begin{itemize}
     \item Suciedad: Debido a la escasez de precipitaciones y a la presencia de calima que se experimenta en la isla, se determina un valor de un 2\%.
     \item Sombreado: Se reduce la radiación solar que incide en los paneles si se producen sombras por objetos cercanos o por la propia de los módulos si se colocan en fila. Es decir, estos crean sombras sobre los de la fila adyacente. El cálculo se realiza a partir de la gráfica expuesta en la Figura \ref{fig:sombra}. Por lo tanto, como se ha definido un tipo de array fijo con una inclinación de 26º y un valor de índice de cobertura del suelo de 0,4, se determina aproximadamente un valor de pérdidas por sombra igual a un 3\%.
-    \item Nieve: Teniendo en cuenta las características climáticas de la ciudad de Funchal debido a su localización en una zona subtropical, se determinan pérdidas del 0\%.
+    \item Nieve: Teniendo en cuenta las características climáticas de la ciudad de Funchal, debido a su localización en una zona subtropical, se determinan pérdidas del 0\%.
     \item Discordancia: Son pérdidas eléctricas debido a las diferencias que se producen por imperfecciones en la fabricación de los módulos. Esto tiene como consecuencia que cada uno de ellos presente características I-V que varíen ligeramente entre sí. La herramienta proporciona un valor predeterminado del 2\%.
     \pagebreak
     \item Cableado y conexiones: Pérdidas resistivas en el cableado y en las conexiones entre módulos, inversores y otros elementos del sistema con un valor por defecto del 2\% y del 0,5\%, respectivamente.
@@ -354,7 +354,7 @@ Por ello, en primera instancia, se va a proceder a poner el foco en los valores 
 
 \vspace{3mm}
 
-Por lo tanto, se pueden calcular los valores de \gls{dni} a partir de los de \gls{poa} dados por el dataset. Mediante la librería \textit{matplotlib} de \textit{Python} se representa la Figura \ref{fig:averagereal} para visualizar los valores totales mensuales, tanto de producción energética, como de radiación directa normal \gls{dni}. El valor máximo energético se alcanza en el mes de julio, con un valor de 517,8kWh, ocurriendo de la misma forma para el valor promedio máximo de radiación, cuyo alcance es de 181,1kWh/m² para este mes. Por tanto, volviendo a la Sección \ref{sec:analisisglobal} y, específicamente a la \ref{fig:average}, se puede determinar que los valores obtenidos en la simulación son muy precisos respecto al estudio previo.
+Por lo tanto, se pueden calcular los valores de \gls{dni} a partir de los de \gls{poa} dados por el dataset. Mediante la librería \textit{matplotlib} de \textit{Python}, se representa la Figura \ref{fig:averagereal} para visualizar los valores totales mensuales, tanto de producción energética, como de radiación directa normal \gls{dni}. El valor máximo energético se alcanza en el mes de julio, con un valor de 517,8kWh, ocurriendo de la misma forma para el valor promedio máximo de radiación, cuyo alcance es de 181,1kWh/m² para este mes. Por tanto, volviendo a la Sección \ref{sec:analisisglobal} y, específicamente a la \ref{fig:average}, se puede determinar que los valores obtenidos en la simulación son muy precisos respecto al estudio previo.
 
 \vspace{3mm}
 
@@ -410,6 +410,6 @@ Por lo tanto, a través del sumatorio de todos los valores mensuales de producci
 
 \vspace{3mm}
 
-Es preciso tener en cuenta las diferencias que presentan las herramientas \textit{Global Solar Atlas} y \textit{PVWatts} en sus algoritmos de cálculo, ya que cada una de ellas asignará pesos diferentes a los parámetros de entrada, incidiendo en los resultados. No obstante, a partir de los valores anteriores y de la Tabla \ref{tab:globalvspvwatts}, se puede determinar de forma concluyente que la simulación realizada es coherente con el estudio previo, cumpliendo así el objetivo principal de esta Sección.
+Es preciso tener en cuenta las diferencias que presentan las herramientas \textit{Global Solar Atlas} y \textit{PVWatts} en sus algoritmos de cálculo, ya que cada una de ellas asignará pesos diferentes a los parámetros de entrada, incidiendo parcialmente en los resultados. No obstante, a partir de los valores anteriores y de la Tabla \ref{tab:globalvspvwatts}, se puede determinar de forma concluyente que la simulación realizada es coherente con el estudio previo, cumpliendo así el objetivo principal de esta Sección.
 
 \clearpage

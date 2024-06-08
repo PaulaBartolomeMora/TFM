@@ -2,7 +2,7 @@
 \chapter{Introducción}
 \label{ch:intro}
 
-En este primer capítulo, se presentarán a modo de introducción los aspectos más relevantes del \acrlong{tfm} desarrollado, como son la transformación de las redes energéticas en nuevas redes inteligentes de energía (del inglés \acrlong{sg}) y su consecuente necesidad de monitorización, además del creciente auge de la \gls{ia} y de las técnicas de aprendizaje automático y profundo (del inglés \acrlong{ml} y \acrlong{dl}).
+En este primer capítulo, se presentarán a modo de introducción los aspectos más relevantes del \acrlong{tfm} desarrollado, como son la transformación de las redes energéticas en nuevas redes inteligentes de energía (del inglés \gls{sgs}) y su consecuente necesidad de monitorización, además del creciente auge de la \gls{ia} y de las técnicas de aprendizaje automático y profundo (del inglés \acrlong{ml} y \acrlong{dl}).
 
 \vspace{3mm}
 
@@ -12,7 +12,7 @@ De la misma manera, se hará hincapié en los objetivos que se establecen para e
 \section{Presentación}
 \label{sec:presentacion}
 
-En los últimos años, el concepto de red eléctrica convencional está siendo completamente transformado como resultado del creciente desarrollo de las \gls{sg}s \cite{repsol} \cite{impact}. La posibilidad de brindar a tiempo real una monitorización del proceso de distribución eléctrica y a su vez, integrar una participación activa del consumidor convierte a estas redes en uno de los pilares de la transición hacia la descarbonización. 
+En los últimos años, el concepto de red eléctrica convencional está siendo completamente transformado como resultado del creciente desarrollo de las \gls{sg}s \cite{repsol} \cite{impact}. La posibilidad de brindar a tiempo real una monitorización del proceso de distribución eléctrica y a su vez, integrar una participación activa del consumidor, convierte a estas redes en uno de los pilares de la transición hacia la descarbonización. 
 
 \vspace{3mm}
 
@@ -31,11 +31,11 @@ Tomando en consideración el apartado anterior, se define como objetivo principa
 
 \vspace{3mm}
 
-En otros términos, la identificación de patrones se apoyará en el análisis de grandes volúmenes de datos provenientes de implementaciones de \gls{sg}s reales. Estos serán previamente procesados de una forma exhaustiva para reducir su tamaño y seleccionar la información verdaderamente necesaria para el posterior desarrollo de los modelos. En la Figura \ref{fig:intro} se determina el diagrama de flujo que define la secuencia de acciones a realizar. Es preciso indicar que los ficheros desarrollados en el contexto de este \gls{tfm} estarán disponibles en el repositorio\footnote{https://github.com/PaulaBartolomeMora/TFM} de GitHub dedicado a este proyecto.
+En otros términos, la identificación de patrones se apoyará en el análisis de grandes volúmenes de datos provenientes de implementaciones de \gls{sg}s reales. Estos serán previamente procesados de una forma exhaustiva para reducir su tamaño y seleccionar la información verdaderamente necesaria para el posterior desarrollo de los modelos, a partir de los que se podrá  determinar un modelo final de predicción de fallos para entornos de \gls{sg}s. Es preciso indicar que los ficheros desarrollados en el contexto de este \gls{tfm} estarán disponibles en el repositorio\footnote{https://github.com/PaulaBartolomeMora/TFM} de GitHub dedicado a este proyecto. 
 
 \vspace{3mm}
 
-Por tanto, el presente \gls{tfm} permitirá determinar un modelo final de predicción de fallos para entornos de \gls{sg}s. Entrando en detalle, se pueden definir los diferentes objetivos en los siguientes puntos:
+A modo gráfico, en la Figura \ref{fig:intro} se representa el diagrama de flujo que define la secuencia de acciones a realizar. Entrando en detalle, se pueden definir los diferentes objetivos en los siguientes puntos:
 
 \begin{itemize}
     \item \textbf{Estudio del estado del arte y análisis de las diferentes fuentes de datos reales disponibles}. Se realizará un estudio en profundidad del contexto en el que se engloban las \gls{sg}s y los protocolos de distribución de recursos, poniendo el enfoque en \gls{den2ne}. Será necesaria una investigación sobre la disponibilidad de fuentes de datos reales y una evaluación de su viabilidad para este \gls{tfm}. De forma adicional, se precisará del estudio y análisis de herramientas de simulación de datos.
@@ -62,9 +62,9 @@ En esta sección se expone de forma general la estructura de capítulos que tend
 
     \item\textbf{Capítulo 2: Estado del arte}. Se establecerá el marco teórico en el que se sitúa este \gls{tfm} y se documentarán los conceptos principales para introducir en un contexto lo suficientemente consistente el diseño y desarrollo práctico posterior. Además, se expondrá de forma detallada el funcionamiento del algoritmo \gls{den2ne}.
 
-    \item\textbf{Capítulo 3: Diseño y análisis de datos}. Se llevará a cabo un análisis sobre las posibilidades de diseño a través de una investigación exhaustiva sobre las fuentes de datos de implementaciones reales existentes, además de estudiar y ejecutar algunas herramientas de simulación para extraer información adicional. Después, se definirá todo el procesamiento que deberá llevarse a cabo sobre los datos para sintetizar los mismos y seleccionar únicamente la información útil. Las siguientes etapas vendrán definidas por el planteamiento de diferentes escenarios de red y la generación de topologías mediante la herramienta \gls{brite} y el algoritmo \gls{den2ne}, respectivamente. Finalmente, se obtendrá el conjunto de datos final sobre el que se entrenarán los modelos de \gls{ml} y \gls{dl} a desarrollar  
+    \item\textbf{Capítulo 3: Diseño y análisis de datos}. Se llevará a cabo un análisis sobre las posibilidades de diseño, realizando una investigación exhaustiva sobre las fuentes de datos de implementaciones reales existentes y estudiando y ejecutando algunas herramientas de simulación para extraer información adicional. Después, se definirá todo el procesamiento que deberá llevarse a cabo sobre los datos para sintetizar los mismos y seleccionar únicamente la información útil. Las siguientes etapas vendrán definidas por el planteamiento de diferentes escenarios de red y la generación de topologías mediante la herramienta \gls{brite} y el algoritmo \gls{den2ne}, respectivamente. Finalmente, se obtendrá el conjunto de datos final sobre el que se entrenarán los modelos de \gls{ml} y \gls{dl} a desarrollar  
 
-    \item\textbf{Capítulo 4: Desarrollo y evaluación de los modelos}. Se describirá en detalle el desarrollo de las técnicas de \gls{ml} y \gls{dl} que han sido seleccionadas según el contexto en el que se engloba este \gls{tfm}. Los modelos obtenidos serán entrenados, analizados y por consiguiente, evaluados. Los resultados definirán finalmente el modelo más apropiado para diagnosticar con alta precisión los errores que se pueden producir en el entorno de una \gls{sg}.
+    \item\textbf{Capítulo 4: Desarrollo y evaluación de los modelos}. Se describirá en detalle el desarrollo de las técnicas de \gls{ml} y \gls{dl} que han sido seleccionadas según el contexto en el que se engloba este \gls{tfm}. Los modelos obtenidos serán entrenados, analizados y, por consiguiente, evaluados. Los resultados definirán finalmente el modelo más apropiado para diagnosticar con alta precisión los errores que se pueden producir en el entorno de una \gls{sg}.
     
     \item\textbf{Capítulo 5: Conclusiones y trabajo futuro}. Se finalizará la memoria con un capítulo enfocado a las conclusiones obtenidas tras la realización de este \gls{tfm}. Además, se indicarán las posibles vías de trabajo a futuro.
 
@@ -77,7 +77,7 @@ En esta sección se expone de forma general la estructura de capítulos que tend
 \begin{sidewaysfigure}
     \centering
     \includegraphics[width=1\textwidth]{img/intro/anteproyecto.drawio.png}
-    \caption{Proceso de detección y predicción de errores}
+    \caption{Secuencia de acciones para la detección y predicción de errores}
     \label{fig:intro}
 \end{sidewaysfigure}
 

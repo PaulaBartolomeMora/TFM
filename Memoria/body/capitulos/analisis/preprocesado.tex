@@ -14,14 +14,16 @@ Entonces, se puede expresar que la ejecución de los procesos anteriores proporc
 
 \vspace{3mm}
 
-Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml}. El conjunto de ficheros realizados se encuentran disponibles en el repositorio\footnote{https://github.com/PaulaBartolomeMora/TFM/tree/main/SustData} de GitHub dedicado a este proyecto y su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones que componen el procesamiento. Cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras. Adicionalmente, para la representación de las diferentes gráficas de la Sección se hará uso de los módulos \textit{matplotlib} y \textit{seaborn}. 
+Antes de comenzar a describir este procesamiento, es imprescindible destacar que este vendrá determinado principalmente por la creación y diseño de código programado en \textit{Python} en diferentes \textit{notebooks} de \textit{Jupyter}, ya que es el entorno más adecuado en el ámbito de la ciencia de datos y de la aplicación de técnicas de \gls{ml} y \gls{dl}. El conjunto de ficheros enfocados al preprocesado de datos se encuentran disponibles en el repositorio\footnote{https://github.com/PaulaBartolomeMora/TFM/tree/main/SustData} de GitHub dedicado a este proyecto y su empleo aportará la ventaja de poder depurar y comprobar paso a paso que se ejecutan de forma correcta cada una de las acciones requeridas en esta etapa. Cabe destacar el uso de algunas librerías que serán imprescindibles para el manejo de los datos, como son \textit{pandas}, \textit{csv} o \textit{numpy}, entre otras. Adicionalmente, para la representación de las diferentes gráficas de la Sección se hará uso de los módulos \textit{matplotlib} y \textit{seaborn}. 
+
+\clearpage
 
 \subsection{Procesado de datos de consumo}
 
 \subsubsection{Análisis de la situación inicial y primeros pasos}
 \label{sec:inicialproc}
 
-El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba en la Sección \ref{sec:sustdataed} como un conjunto de datos que abría multitud de posibilidades de implementación. Se puede expresar que esto venía justificado por el hecho de abarcar un extenso lapso temporal de medidas correspondientes a un gran número de viviendas. Además, estas medidas se caracterizaban por ser adquiridas a una frecuencia de muestreo de un minuto, lo que aportaba una buena resolución para analizar el comportamiento eléctrico de todos los usuarios implicados. Como también se exponía en la Sección \ref{sec:sustdataed}, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, cada uno con diferentes rangos temporales de medición y con un conjunto de viviendas determinado. 
+El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba en la Sección \ref{sec:sustdataed} como un conjunto de datos que abría multitud de posibilidades de implementación. Se puede expresar que esto venía justificado por el hecho de abarcar un extenso lapso temporal de medidas, correspondientes a un gran número de viviendas. Además, estas medidas se caracterizaban por ser adquiridas a una frecuencia de muestreo de un minuto, lo que aportaba una buena resolución para analizar el comportamiento eléctrico de todos los usuarios implicados. Como también se exponía en la Sección \ref{sec:sustdataed}, especialmente en la Figura \ref{fig:despliegues}, el dataset \textit{SustDataED} se estructuraba en cuatro despliegues diferentes, cada uno con diferentes rangos temporales de medición y con un conjunto de viviendas determinado. 
 
 \vspace{3mm}
 
@@ -86,7 +88,7 @@ No obstante, antes de dividir los ficheros, se debe volver a la Tabla que hace r
 
 \vspace{3mm}
 
-A modo de simplificar esta información temporal, se crea un nuevo \textit{notebook} de \textit{Jupyter}, denominado como \textit{preprocessing\_nodes.ipynb}, que va a importa la librería \textit{time} para añadir tres nuevas columnas al dataset que separen los datos de la fecha (columna \textit{datetime}), el instante exacto de la muestra (hora, minuto y segundo) (columna \textit{hour}) y la hora como un valor entero (columna \textit{H}). En el caso de esta última columna, su utilidad vendrá descrita por los requerimientos de la siguiente Sección (ver Sección \ref{sec:datasamples}).
+A modo de simplificar esta información temporal, se crea un nuevo \textit{notebook} de \textit{Jupyter}, denominado como \textit{preprocessing\_nodes.ipynb}, que va a importa la librería \textit{time} para añadir tres nuevas columnas al dataset que separen los datos de la fecha (columna \textit{datetime}), el instante exacto de la muestra (hora, minuto y segundo) (columna \textit{hour}) y la hora como un valor entero (columna \textit{H}). En el caso de esta última columna, su utilidad vendrá descrita por los requerimientos del Apartado posterior (ver Sección \ref{sec:datasamples}).
 
 \vspace{3mm}
 
@@ -153,7 +155,7 @@ La presente Sección se dedicará principalmente a la reducción de la informaci
 
 \vspace{3mm}
 
-En primera instancia, para simplificar la programación, se crea un primer \textit{notebook} básico que realice el procedimiento de reducción de datos para uno de los ficheros fragmentados que se han obtenido a partir de \textit{split.ipynb}. Este nuevo \textit{notebook} se denomina como \textit{datasamples\_onenode.ipynb} y aplica el promedio únicamente a las medidas de un nodo contenidas en una hora y fecha determinadas. Estos valores son determinados como parámetros de entrada y, en el caso de la hora, es preciso hacer uso de la columna \textit{H}, definida en la Sección anterior (ver Sección \ref{sec:inicialproc}) para determinar la hora a la que pertenece la medida como un valor entero.
+En primera instancia, para simplificar la programación, se crea un primer \textit{notebook} básico que realice el procedimiento de reducción de datos para uno de los ficheros fragmentados que se han obtenido a partir de \textit{split.ipynb}. Este nuevo \textit{notebook} se denomina como \textit{datasamples\_onenode.ipynb} y aplica el promedio únicamente a las medidas correspondientes a una hora y día determinados de una vivienda en particular. Estos valores son determinados como parámetros de entrada y, en el caso de la hora, es preciso hacer uso de la columna \textit{H}, definida en la Sección anterior (ver Sección \ref{sec:inicialproc}) para determinar la hora a la que pertenece la medida como un valor entero.
 
 \vspace{3mm}
 
@@ -161,7 +163,7 @@ Por tanto, una vez definidos los valores de los parámetros de entrada, se aplic
 
 \vspace{3mm}
 
-El resultado de este proceso supone una única fila con todos los valores promediados de una hora. En la Figura \ref{fig:datasamples} se muestra como ejemplo la salida que se obtiene tras aplicar el promedio a las medidas adquiridas en la vivienda con identificador 25 en el instante temporal correspondiente al 8 de abril de 2013 con hora 15:00.
+El resultado de este proceso supone una única fila con todos los valores de los parámetros promediados de una hora. En la Figura \ref{fig:datasamples}, se muestra como ejemplo la salida que se obtiene tras aplicar el promedio a las medidas adquiridas en la vivienda con identificador 25 en el instante temporal correspondiente al 8 de abril de 2013 con hora 15:00.
 
 \vspace{3mm}
 
@@ -179,7 +181,7 @@ Como se viene exponiendo en la Sección anterior (ver Sección \ref{sec:datasamp
 
 \vspace{3mm}
 
-Esta característica supone que, si se desea aplicar el promedio a los valores de las medidas de cada hora para todo el rango temporal que abarca cada uno de los nodos, se debe automatizar el proceso. Por ello, se crea un nuevo archivo de \textit{Python}, denominado como \textit{datasamples\_process.py}, que incluirá todas las funciones necesarias para llevar a cabo el procedimiento de automatización. Es importante comentar que en esta Sección se pone el foco en los datos de consumo. Sin embargo, las funciones que se van a exponer a continuación, serán configuradas para ser empleadas también, en el caso de los datos relativos a la producción y al clima de \textit{SustDataED}.
+Esta característica supone que, si se desea aplicar el promedio a los valores de las medidas de cada hora para todo el rango temporal que abarca cada uno de los nodos, se debe automatizar el proceso. Ante esta necesidad, se crea un nuevo archivo de \textit{Python}, denominado como \textit{datasamples\_process.py}, que incluirá todas las funciones necesarias para llevar a cabo el procedimiento de automatización. Es importante comentar que en esta Sección se pone el foco en los datos de consumo. Sin embargo, las funciones que se van a exponer a continuación, serán configuradas para ser empleadas también, en el caso de los datos relativos a la producción y al clima de \textit{SustDataED}.
 
 \vspace{3mm}
 
@@ -187,7 +189,7 @@ En primer lugar, \textit{datasamples\_process.py} describe una función de lectu
 
 \vspace{3mm}
 
-En el paso de lectura se extraen también los identificadores de las viviendas que vienen contenidos en cada fichero. Finalmente, se devuelve el \textit{dataframe} completo, la variable X y dos listas: una con los identificadores extraídos en el paso anterior y otra con todas las fechas únicas (columna \textit{datetime}) que contiene el \textit{dataframe}.
+En el paso de lectura se extraen también los identificadores de las viviendas que vienen contenidos en cada fichero. Finalmente, se devuelven el \textit{dataframe} completo, la variable X y dos listas: una con los identificadores extraídos en el paso anterior y otra con todas las fechas únicas (columna \textit{datetime}) que contiene el \textit{dataframe}.
 
 \vspace{3mm}
 
@@ -644,7 +646,7 @@ Por otro lado, a modo de simplificar la información y de visualizar de una form
   \label{fig:corr}
 \end{figure}
 
-De la misma forma que se ha realizado en la Sección \ref{sec:preprocsust} para los datos de \textit{SustDataED}, se representa la primera semana de agosto a modo de ejemplo para observar la correlación entre los valores de potencia en cada instante y los parámetros ambientales y climáticos. En la Figura \ref{fig:energiavstempcel} se comparan los valores de temperatura, tanto ambiental como de la célula, con los de potencia generada en órdenes de kW. Se puede apreciar que, a mayores temperaturas adquiridas por la célula fotovoltaica, se incrementa la potencia generada. No obstante, es preciso indicar que la temperatura de las células puede llegar a ser un factor limitante si se supera el máximo recomendado, puesto que perjudicaría gravemente al rendimiento del sistema.
+De la misma forma que se ha realizado en la Sección \ref{sec:preprocsust} para los datos de \textit{SustDataED}, se representa la primera semana de agosto a modo de ejemplo para observar la correlación entre los valores de potencia en cada instante y los parámetros ambientales y climáticos. En la Figura \ref{fig:energiavstempcel}, se comparan los valores de temperatura, tanto ambiental como de la célula, con los de potencia generada en órdenes de kW. Se puede apreciar que, a mayores temperaturas adquiridas por la célula fotovoltaica, se incrementa la potencia generada. No obstante, es preciso indicar que la temperatura de las células puede llegar a ser un factor limitante si se supera el máximo recomendado, puesto que perjudicaría gravemente al rendimiento del sistema.
 
 \vspace{3mm}
 
@@ -655,7 +657,7 @@ De la misma forma que se ha realizado en la Sección \ref{sec:preprocsust} para 
   \label{fig:energiavstempcel}
 \end{figure}
 
-Por otro lado, en la Figura \ref{fig:energiavsrad} se representan los valores de índice de radiación en el plano del array (\gls{poa}) y de radiación difusa (\gls{dif}) frente a la potencia en cada instante. Como se expuso en la Sección \ref{sec:resultadossimu}, el primero está directamente relacionado con el índice de radiación directa normal (\gls{dni}) y se calcula como el producto del mismo por el ángulo de inclinación de las células. Debido a este motivo y a que el \gls{dif} depende de la dispersión introducida por la atmósfera, se observa una mayor correlación entre los valores de energía generada y los de \gls{poa}.
+Por otro lado, en la Figura \ref{fig:energiavsrad}, se representan los valores de índice de radiación en el plano del array (\gls{poa}) y de radiación difusa (\gls{dif}) frente a la potencia en cada instante. Como se expuso en la Sección \ref{sec:resultadossimu}, el primero está directamente relacionado con el índice de radiación directa normal (\gls{dni}) y se calcula como el producto del mismo por el ángulo de inclinación de las células. Debido a este motivo y a que el \gls{dif} depende de la dispersión introducida por la atmósfera, se observa una mayor correlación entre los valores de energía generada y los de \gls{poa}.
 
 \vspace{3mm}
 

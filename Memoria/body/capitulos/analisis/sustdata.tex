@@ -10,7 +10,7 @@ En este contexto han cobrado gran importancia las técnicas de Monitorización d
 
 \vspace{3mm}
 
-Teniendo esto en cuenta, se puede expresar que las técnicas de \gls{nilm} se caracterizan por su bajo coste y por su facilidad y flexibilidad de despliegue. No obstante, el proceso de medición y recolección de datos puede llegar a requerir mucho tiempo y esfuerzo. Por ello, en el contexto de la investigación es importante que los datos tengan una disponibilidad pública para progresar en el desarrollo de técnicas de minería de datos y de aprendizaje automático en el ámbito energético. 
+Teniendo esto en cuenta, se puede expresar que las técnicas de \gls{nilm} se caracterizan por su bajo coste y por su facilidad y flexibilidad de despliegue. No obstante, el proceso de medición y recolección de datos puede llegar a requerir mucho tiempo y esfuerzo y, por ello, en el contexto de la investigación es importante que los datos tengan una disponibilidad pública para progresar en el desarrollo de técnicas de minería de datos y de aprendizaje automático en el ámbito energético. 
 
 \vspace{3mm}
 
@@ -19,8 +19,8 @@ En la Tabla \ref{tab:datasets} se exponen los múltiples datasets residenciales 
 \vspace{1mm}
 
 \begin{itemize}
-    \item Cantidad: En primera instancia, es imprescindible revisar la cantidad de datos que aporta cada conjunto. En otros términos, para llevar a cabo un análisis estadístico del comportamiento energético de una ubicación se requiere partir de un conjunto de datos que agrupe las mediciones de un gran número de edificios residenciales. Adicionalmente, este análisis debe comprender extensos períodos temporales de medición para visualizar de forma correcta el comportamiento de los usuarios y predecir patrones de consumo a lo largo del tiempo.
-    \item Calidad: Se debe evaluar la calidad de los datos recogidos, la cual responde en parte con la resolución de las medidas que se toman. Como se puede observar en la Tabla \ref{tab:datasets}, algunos datasets como \textit{REDD} y \textit{BLUED} se centran en monitorizar los edificios residenciales a una frecuencia de muestreo alta. En el contexto de las tecnologías de \gls{nilm}, esto aporta una vista más representativa del comportamiento energético a nivel interno en una vivienda y permite una desagregación energética más precisa. Por lo tanto, cuanto mayor sea la frecuencia de adquisición de medidas, mayor será la resolucion de los datos. 
+    \item Cantidad: En primera instancia, es imprescindible revisar la cantidad de datos que aporta cada conjunto. En otros términos, para llevar a cabo un análisis estadístico del comportamiento energético de una ubicación, se requiere partir de un conjunto de datos que agrupe las mediciones de un gran número de edificios residenciales. Adicionalmente, este análisis debe comprender extensos períodos temporales de medición, que permitan visualizar de forma correcta el comportamiento de los usuarios y predecir patrones de consumo a lo largo del tiempo.
+    \item Calidad: Se debe evaluar la calidad de los datos recogidos, la cual responde con la resolución de las medidas que se toman. Como se puede observar en la Tabla \ref{tab:datasets}, algunos datasets como \textit{REDD} y \textit{BLUED} se centran en monitorizar los edificios residenciales a una frecuencia de muestreo alta. En el contexto de las tecnologías de \gls{nilm}, esto aporta una vista más representativa del comportamiento energético a nivel interno en una vivienda y permite una desagregación energética más precisa. Por lo tanto, cuanto mayor sea la frecuencia de adquisición de medidas, mayor será la resolucion de los datos. 
     \item Ubicación: En términos de la ubicación de la implementación real sobre la que se han adquirido las mediciones, es de importancia conocer a la hora de analizar los datos las diferencias de voltaje que se manejan en cada país. Por ejemplo, en el caso de datasets como \textit{BLUED} o \textit{Smart*}, los cuales provienen de ciudades de Estados Unidos, trabajarán a tensiones menores de 120V, mientras que otros como \textit{ECO} o \textit{GREEND}, cuyos datos se han adquirido en países europeos, lo harán con tensiones de hasta 230V. \cite{greend} \cite{powercons}
     \item Parametrización: Por lo general, un dataset dedicado a las tecnologías de \gls{nilm} estará constituido por una colección de muestras de voltaje (V), corriente (I) y potencia activa (P), reactiva (Q) y aparente (S). Cada una de estas muestras vendrá asociada a una marca de tiempo y a un identificador que haga referencia a la vivienda o medidores a los que corresponde. Adicionalmente, algunos de los datasets que se exponen en la Tabla \ref{tab:datasets}, como son \textit{HUE} o \textit{SustDataED}, también incluyen información relativa a parámetros ambientales. Esto, sobre todo en el contexto de las \gls{sg}s, proporciona información fundamental sobre el impacto de las condiciones climáticas en el comportamiento de los usuarios.
     \item Generación fotovoltaica: Considerando el contexto de \gls{sg}s en el que se engloba este \gls{tfm}, es de vital importancia seleccionar un conjunto de datos que aporte información relativa a la generación de energía a través de fuentes renovables, como ocurre en el caso de \textit{Smart*} o \textit{SustDataED}. En relación con esto, se expondrá en la Sección \ref{sec:simuprod} el estudio de una plataforma específica dedicada a la adquisición de datos de generación energética.
@@ -28,7 +28,7 @@ En la Tabla \ref{tab:datasets} se exponen los múltiples datasets residenciales 
 
 \begin{sidewaystable}
     \centering 
-    \begin{tabularx}{\textheight}{|X|X|X|X|X|X|}
+    \begin{tabularx}{\textheight}{|X|X|c|c|c|c|}
         \hline
         \rowcolor[HTML]{EFEFEF} 
         Nombre & Localización & Nº de residencias & Período de medición (días) & Resolución de medición & Parámetros \\ \hline
@@ -49,7 +49,7 @@ En la Tabla \ref{tab:datasets} se exponen los múltiples datasets residenciales 
 
 \pagebreak
 
-Como se ha introducido en el Capítulo \ref{ch:intro}, el objetivo principal que se prentende con este \gls{tfm} es desarrollar técnicas de \gls{ml} para identificar y predecir de forma precisa los errores que se pueden producir en una \gls{sg} durante el proceso de distribución energética. A partir de ello, se expresa la necesidad de seleccionar un conjunto de datos en el que se pueda analizar el comportamiento de múltiples usuarios, tanto de consumo como de producción, durante un extenso período de tiempo. 
+Como se ha introducido en el Capítulo \ref{ch:intro}, el objetivo principal que se prentende con este \gls{tfm} es desarrollar técnicas de \gls{ml} y \gls{dl} para identificar y predecir de forma precisa los errores que se pueden producir en una \gls{sg} durante el proceso de distribución energética. A partir de ello, se expresa la necesidad de seleccionar un conjunto de datos en el que se pueda analizar el comportamiento de múltiples usuarios, tanto de consumo como de producción, durante un extenso período de tiempo. 
 
 \vspace{3mm}
 
@@ -227,7 +227,7 @@ De forma adicional, el dataset \textit{SustDataED} incluye otra tabla con datos 
 \subsubsection{Medidas de producción de energía}
 \label{sec:prodsustdata}
 
-El dataset \textit{SustDataED} recoge a nivel global los datos respectivos a la producción de electricidad en intervalos de 15 minutos. La energía generada se desagrega según su fuente de procedencia, dando protagonismo a las fuentes renovables. En la Tabla \ref{tab:prod} se indican los campos que han sido definidos para cuantificar las medidas. Adicionalmente, en la Figura \ref{fig:fuentes} se representan gráficamente los valores recogidos en el dataset a lo largo del tiempo para cada una de las fuentes de energía dadas. En este caso se emplea la librería de \textit{Python} \textit{matplotlib}.
+El dataset \textit{SustDataED} recoge a nivel global los datos respectivos a la producción de electricidad en intervalos de 15 minutos. La energía generada se desagrega según su fuente de procedencia, dando protagonismo a las fuentes renovables. En la Tabla \ref{tab:prod} se indican los campos que han sido definidos para cuantificar las medidas. Adicionalmente, en la Figura \ref{fig:fuentes}, se representan gráficamente los valores recogidos en el dataset a lo largo del tiempo para cada una de las fuentes de energía dadas. En este caso se emplea la librería de \textit{Python}, \textit{matplotlib}.
 
 \vspace{3mm}
 
