@@ -38,7 +38,7 @@ En la Tabla \ref{tab:mlpaccuracy} se pueden encontrar varias combinaciones de hi
 
 \pagebreak
 
-En el caso de la desviación típica, como se observa en la Tabla \ref{tab:mlpstd}, no se producen grandes diferencias de valores entre las configuraciones en cuestión, por lo que, a priori, no es un factor determinante a tener en cuenta en la selección. No obstante, en el caso de los tiempos sí existen variaciones, las cuales se deben al número de iteraciones que son necesarias para alcanzar la convergencia para cada versión de \gls{mlp} y a la duración que supone cada iteración. 
+En el caso de la desviación típica, como se observa en la Tabla \ref{tab:mlpstd}, no se producen grandes diferencias de valores entre las configuraciones en cuestión, por lo que, a priori, no es un factor determinante a tener en cuenta en la selección. Sin embargo, en el caso de los tiempos sí existen variaciones, las cuales se deben al número de iteraciones que son necesarias para alcanzar la convergencia para cada versión de \gls{mlp} y a la duración que supone cada iteración. 
 
 \vspace{3mm}
 
@@ -141,11 +141,11 @@ Por lo tanto, tras analizar los resultados, se expone de forma concluyente que l
 
 \subsubsection{Ejecución del modelo de \acrshort{ann} de \textit{keras} y evaluación de resultados}
 
-Una vez seleccionada la combinación de hiperparámetros que produce un rendimiento óptimo del \gls{mlp}, el siguiente paso consiste en aplicar la configuración en cuestión a un nuevo modelo de \gls{ann}. El objetivo es realizar una comparativa entre dos \gls{ann}s proporcionadas por distintas librerías, como son en este caso \textit{sklearn} y el módulo \textit{keras} de \textit{tensorflow}, y comprobar que los resultados obtenidos de aplicar el método \textit{Grid Search} anteriormente son coherentes. 
+Una vez seleccionada la combinación de hiperparámetros que produce un rendimiento óptimo del \gls{mlp}, el siguiente paso consiste en aplicar la configuración en cuestión a un nuevo modelo de \gls{ann}. Como se había introducido al comienzo de la Sección \ref{sec:ann}, el objetivo es realizar una comparativa entre dos \gls{ann}s proporcionadas por distintas librerías, como son en este caso \textit{sklearn} y el módulo \textit{keras} de \textit{tensorflow}, y así, comprobar que los resultados obtenidos de aplicar el método \textit{Grid Search} anteriormente son coherentes. 
 
 \vspace{3mm}
 
-Por ello, se define la estructura del modelo de \gls{ann} de \textit{keras} con las dos capas ocultas de 5 neuronas y una capa de una neurona a la salida, puesto que se trabaja con un conjunto de datos con etiquetas binarias. Además, es necesario especificar a la entrada el número de características (\textit{input\_shape}), ya que será igual al número de entradas de la red neuronal. La estructura del modelo definido se representa gráficamente en la Figura \ref{fig:neuronas} mediante el uso de la herramienta online proporcionada por \textit{TensorFlow}. \cite{seq}
+Teniendo esto en cuenta, se define la estructura del modelo de \gls{ann} de \textit{keras} con dos capas ocultas de 5 neuronas y una capa de una neurona a la salida, puesto que se trabaja con un conjunto de datos con etiquetas binarias. Además, es necesario especificar a la entrada el número de características (\textit{input\_shape}), ya que será igual al número de entradas de la red neuronal. La estructura del modelo definido se representa gráficamente en la Figura \ref{fig:neuronas} mediante el uso de la herramienta online proporcionada por \textit{TensorFlow}. \cite{seq}
 
 \vspace{3mm}
 
@@ -183,7 +183,7 @@ De la misma forma que en el modelo anterior, se almacenan los valores de precisi
 
 \vspace{3mm}
 
-Una vez se han definido y entrenado los dos modelos de \gls{ann} anteriores, se introduce una etapa final de evaluación y validación mediante dos técnicas. Por un lado, se aplica la matriz de confusión, al igual que se realizaba para los modelos de \gls{ml} y, por otro lado, se hace empleo de los propios métodos de evaluación que ofrecen ambas \gls{ann}s. Como en esta Sección enfocada al \gls{dl} no se lleva a cabo una etapa de selección de características, la evaluación se ciñe a la comparación de resultados de ambos modelos de \gls{ann}s. 
+Una vez se han definido y entrenado los dos modelos de \gls{ann} anteriores, se introduce una etapa final de evaluación y validación mediante dos técnicas. Por un lado, se aplica la matriz de confusión, al igual que se realizaba para los modelos de \gls{ml} y, por otro lado, se hace empleo de los propios métodos de evaluación que ofrecen ambas \gls{ann}s. Como en esta Sección, enfocada al \gls{dl}, no se lleva a cabo una etapa de selección de características, la evaluación se ciñe a la comparación de resultados de ambos modelos de \gls{ann}s. 
 
 \vspace{3mm}
 

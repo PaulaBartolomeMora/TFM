@@ -1,11 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulación de las topologías en \acrshort{den2ne}}
 
-Esta Sección viene dada por el objetivo de obtener el conjunto de datos final sobre el que se basará el desarrollo en el Capítulo \ref{cha:desarrollo}. Para lograrlo, se requiere llevar a cabo un gran número de  simulaciones en \gls{den2ne} a partir de las topologías generadas con la herramienta \gls{brite} (ver Sección \ref{sec:ejebrite}). 
-
-\vspace{3mm}
-
-No obstante, previamente a la ejecución del algoritmo, es imprescindible implementar una serie de modificaciones en el mismo para ajustar su funcionamiento para obtener resultados de utilidad para el presente \gls{tfm}. La secuencia de acciones que se llevará a cabo se detallará en la Sección \ref{sec:cambiosden2ne}. De la misma forma, se justificará el criterio escogido para determinar cúando se producen errores en el proceso de distribución energética. Esto servirá de base para después entrenar los modelos de \gls{ml} y \gls{dl}.
+Esta Sección viene dada por el objetivo de obtener el conjunto de datos final sobre el que se basará el desarrollo en el Capítulo \ref{cha:desarrollo}. Para lograrlo, se requiere llevar a cabo un gran número de  simulaciones en \gls{den2ne} a partir de las topologías generadas con la herramienta \gls{brite} (ver Sección \ref{sec:ejebrite}). No obstante, previamente a la ejecución del algoritmo, es imprescindible implementar una serie de modificaciones en el mismo para ajustar su funcionamiento para obtener resultados de utilidad para el presente \gls{tfm}. La secuencia de acciones que se llevará a cabo se detallará en la Sección \ref{sec:cambiosden2ne}. De la misma forma, se justificará el criterio escogido para determinar cúando se producen errores en el proceso de distribución energética. Esto servirá de base para después entrenar los modelos de \gls{ml} y \gls{dl}.
 
 \vspace{3mm}
 
@@ -43,8 +39,8 @@ Para extraer de la ejecución del algoritmo unos resultados que contengan toda l
 
 \begin{enumerate}
     \item Definición de la función \textit{getLinkDist} en \textit{graph.py}: Se incluye una función para obtener la distancia existente entre el nodo de origen y de destino.    
-    \item Introducción de la variable \textit{data\_topo} en la función \textit{globalBalance} en \textit{den2neALG.py}: Se define el diccionario \textit{data\_topo} y, para cada intercambio energético, se almacena en el mismo la información del nodo origen y destino (etiquetas jerárquicas y longitudes de las mismas), los datos del enlace (distancia y capacidad), el valor de la etiqueta de error y la carga que se intercambia. En el caso de las longitudes de las etiquetas jerárquicas, se añaden las líneas de código necesarias en \textit{globalBalance} para extraer las mismas.
-    Modificaciones en \textit{test\_topo.py}: Se cambia la llamada a la función \textit{globalBalance} para poder extraer el diccionario \textit{data\_topo} de la misma. También, se establece la nomenclatura que tendrán los ficheros de resultados. Como se expondrá más adelante en la Sección \ref{sec:datasetfinal}, esta nomenclatura se determina en base a la información dada por el instante temporal del fichero de test y por el resto de parámetros configurados en el script de automatización de pruebas \textit{auto\_run.sh}.
+    \item Introducción de la variable \textit{data\_topo} en la función \textit{globalBalance} en \textit{den2neALG.py}: Se define el diccionario \textit{data\_topo} y, para cada intercambio energético, se almacenan en el mismo la información del nodo origen y destino (etiquetas jerárquicas y longitudes de las mismas), los datos del enlace (distancia y capacidad), el valor de la etiqueta de error y la carga que se intercambia. En el caso de las longitudes de las etiquetas jerárquicas, se añaden las líneas de código necesarias en \textit{globalBalance} para extraer las mismas.
+    \item Modificaciones en \textit{test\_topo.py}: Se cambia la llamada a la función \textit{globalBalance} para poder extraer el diccionario \textit{data\_topo} de la misma. También, se establece la nomenclatura que tendrán los ficheros de resultados. Como se expondrá más adelante en la Sección \ref{sec:datasetfinal}, esta nomenclatura se determina en base a la información dada por el instante temporal del fichero de test y por el resto de parámetros configurados en el script de automatización de pruebas \textit{auto\_run.sh}.
     \item Modificaciones en \textit{auto\_run.sh}: Se añaden los parámetros que hacen referencia al directorio donde se ubican los ficheros de test y a cada uno de los mismos para automatizar las pruebas (ver Sección \ref{sec:datasetfinal}).
 \end{enumerate} 
 
@@ -70,18 +66,18 @@ Como paso adicional, se modifican las capacidades de los enlaces que se proporci
 \subsection{Configuración de los parámetros de entrada}
 \label{sec:confden2ne}
 
-Para ejecutar \gls{den2ne}, es preciso definir la configuración de los parámetros de entrada en el script \textit{auto\_run.sh}. Este script se diseña con el objetivo de automatizar las simulaciones en el algoritmo y, como se ha expuesto en la Sección \ref{sec:cambiosden2ne}, ha sido necesario ajustar el mismo a los requerimientos de las pruebas de este \gls{tfm}. El cálculo de la cantidad total de simulaciones que se pueden ejecutar en \gls{den2ne} viene dado por el producto de todas los parámetros siguientes:
+Para ejecutar \gls{den2ne}, es preciso definir la configuración de los parámetros de entrada en el script \textit{auto\_run.sh}. Este script se diseña con el objetivo de automatizar las simulaciones en el algoritmo y, como se ha expuesto en la Sección \ref{sec:cambiosden2ne}, ha sido necesario ajustar el mismo a los requerimientos de las pruebas de este \gls{tfm}. El cálculo de la cantidad total de simulaciones que se pueden ejecutar en \gls{den2ne} viene dado por el producto de todos los parámetros siguientes:
 
 \begin{itemize}
-    \item El número total de topologías generadas: En la Sección \ref{sec:gentopo} se especifica una cantidad total de 180 topologías obtenidas a la salida de la herramienta \gls{brite}.
-    \item El número de instantes temporales del dataset: El conjunto de datos resultante de la etapa de procesamiento, detallado en la Sección \ref{sec:combinacion} y, específicamente, en la Tabla \ref{tab:datacombinacion}, abarca una cantidad de filas igual al total de instantes temporales que se han tomado en consideración. En otros términos, al tratarse de muestras tomadas cada hora durante un rango temporal que comprende un año completo, su valor se calcula como 24x365=8760 instantes.
+    \item El número total de topologías generadas: En la Sección \ref{sec:gentopo}, se especifica una cantidad total de 180 topologías obtenidas a la salida de la herramienta \gls{brite}.
+    \item El número de instantes temporales del dataset: El conjunto de datos resultante de la etapa de procesamiento, detallado en la Sección \ref{sec:combinacion} y, específicamente, en la Tabla \ref{tab:datacombinacion}, abarca una cantidad de filas igual al total de instantes temporales que se han tomado en consideración. En otros términos, al tratarse de muestras tomadas cada hora durante un rango temporal que comprende un año completo, su valor se calcula como 24x365=8760 instantes. 
     \item El número de criterios: Como se detallaba en la Sección \ref{sec:den2ne}, \gls{den2ne} presenta 6 criterios de selección de los mejores caminos hacia el nodo raíz. En este caso, se implementan a las pruebas los 6 tipos.
     \item El número de tipos de escenarios de red: En la Sección \ref{sec:den2ne}, también se exponían los 4 tipos de escenarios que permite configurar el algoritmo. Teniendo en cuenta que las simulaciones deben acercarse a un entorno de \gls{sg} real y que el objetivo se basa en encontrar las transacciones energéticas entre nodos que superen la capacidad del enlace, se determina únicamente el escenario de pérdidas y límite de capacidad.
     \item Modo de limitación de carga: Se especifica únicamente el modo que determina valores de carga ilimitados.
-    \item El número de semillas de ejecución: De la misma manera que se ha especificado anteriormente para \gls{brite} (ver Sección \ref{sec:conftopo}), se aplica al algoritmo \gls{den2ne} un conjunto de archivos de semillas para obtener simulaciones diferentes a partir de una misma topología a la entrada. En este caso, debido a la cantidad de datos que ya se maneja y para no introducir latencias considerables en el lanzamiento de las pruebas, se especifican 5 semillas por topología.
+    \item El número de semillas de ejecución: De la misma manera que se ha especificado anteriormente para \gls{brite} (ver Sección \ref{sec:conftopo}), se aplica al algoritmo \gls{den2ne} un conjunto de archivos de semillas para obtener simulaciones diferentes a partir de una misma topología a la entrada. En este caso, debido a la cantidad de datos que ya se maneja y, para no introducir latencias considerables en el lanzamiento de las pruebas, se especifican 5 semillas por topología.
 \end{itemize}
 
-Por otro lado, en el caso de los parámetros de entrada referentes a las topologías, como son el número de nodos por topología, los modelos a simular y el número de semillas de generación, se sigue la misma configuración especificada en la ejecución de \gls{brite} (ver Sección \ref{sec:conftopo}). No obstante, para el grado de conectividad se determinan directamente los valores reales, suponiendo enlaces bidireccionales.
+En el caso de los parámetros de entrada referentes a las topologías, como son el número de nodos por topología, los modelos a simular y el número de semillas de generación, se sigue la misma configuración especificada en la ejecución de \gls{brite} (ver Sección \ref{sec:conftopo}). No obstante, para el grado de conectividad se determinan directamente los valores reales, suponiendo enlaces bidireccionales.
 
 \vspace{3mm}
 
@@ -105,12 +101,11 @@ Por tanto, teniendo en cuenta la configuración implementada para los parámetro
     \times \textit{Nescenarios} \times \textit{NNlimit} \times \textit{Nsem\_ejec}\]
     \[\textit{N\_sim} = 180 \times 8760 \times 6 \times 1 \times 1 \times 5 = 47.304.000\] 
 
-\pagebreak 
-
+    
 \subsection{Creación del dataset final y conclusiones de las pruebas}
 \label{sec:datasetfinal}
 
-Teniendo en cuenta el número total de simulaciones únicas posibles calculado en la Sección \ref{sec:confden2ne}, se debe decidir qué pruebas se van a realizar en el algoritmo para construir el dataset final, puesto que es ineficiente e inviable ejecutar todas las posibilidades. Por lo tanto, se opta por escoger 12 instantes temporales, haciendo referencia a una hora determinada de un día por cada mes. 
+Tomando en consideración el número total de simulaciones únicas posibles calculado en la Sección \ref{sec:confden2ne}, se debe decidir qué pruebas se van a realizar en el algoritmo para construir el dataset final, puesto que es ineficiente e inviable ejecutar todas las posibilidades. Por lo tanto, se opta por escoger 12 instantes temporales, haciendo referencia a una hora determinada de un día por cada mes. 
 
 \vspace{3mm}
 
@@ -151,15 +146,15 @@ La aplicación de cada fichero de test a la entrada proporciona a la salida un n
 
 \pagebreak
 
-Por lo tanto, se puede expresar que para cada prueba ejecutada o fichero de test a la entrada de \gls{den2ne}, se obtienen a la salida un total de 1080 ficheros de resultados. Cada uno de ellos presenta un número de filas igual a la cantidad de nodos de la topología simulada, o expresado de otra forma, igual al total de intercambios energéticos realizados (100, 150 o 200 filas). Con esto, ya es posible crear el dataset final mediante un nuevo \textit{notebook}, denominado como \textit{datafinal.ipynb}. A modo de simplificar el tratamiento de los resultados del algoritmo, se agrupa primero, en un mismo \textit{dataframe} el contenido de los 1080 ficheros resultantes de cada prueba. 
+Entonces, se puede expresar que para cada prueba ejecutada o fichero de test a la entrada de \gls{den2ne}, se obtienen a la salida un total de 1080 ficheros de resultados. Cada uno de ellos presenta un número de filas igual a la cantidad de nodos de la topología simulada, o expresado de otra forma, igual al total de intercambios energéticos realizados (100, 150 o 200 filas). Con esto, ya es posible crear el dataset final mediante un nuevo \textit{notebook}, denominado como \textit{datafinal.ipynb}. 
 
 \vspace{3mm}
 
-Después, se comprueba que el porcentaje total de intercambios erróneos o con exceso de capacidad de enlace no es nulo para la prueba en cuestión. Es decir, si no se obtiene ninguna fila con la etiqueta \textit{link\_overflow} activa, no se podrán predecir errores cuando se desarrollen y se entrenen los modelos y, por ello, se debería utilizar otro instante temporal para las simulaciones. 
+A modo de simplificar el tratamiento de los resultados del algoritmo, se agrupa primero, en un mismo \textit{dataframe} el contenido de los 1080 ficheros resultantes de cada prueba. Después, se comprueba que el porcentaje total de intercambios erróneos o con exceso de capacidad de enlace no es nulo para la prueba en cuestión. Es decir, si no se obtiene ninguna fila con la etiqueta \textit{link\_overflow} activa, no se podrán predecir errores cuando se desarrollen y se entrenen los modelos y, por ello, se debería utilizar otro instante temporal para las simulaciones. 
 
 \vspace{3mm}
 
-Una vez realizada esta comprobación, la siguiente acción se basa en combinar los ficheros de resultados con el resto de medidas que proporcionan los ficheros de test. Las filas de ambos se agrupan a partir del perfil de carga configurado en el nodo origen, especificado por el valor del identificador real. Tras esta operación, el nuevo \textit{dataframe} en \textit{datafinal.ipynb} se constituye por todas las columnas de datos. En este paso es importante revisar y eliminar aquellas que están replicadas, como ocurre en el caso del identificador y la fecha. 
+Una vez realizada esta comprobación, la siguiente acción se basa en combinar los ficheros de resultados con el resto de medidas que proporcionan los ficheros de test. Las filas de ambos se agrupan a partir del perfil de carga configurado en el nodo origen, especificado por el valor del identificador real. Tras esta operación, el nuevo \textit{dataframe} en \textit{datafinal.ipynb} se constituye por todas las columnas de datos. En este paso, es importante revisar y eliminar aquellas que están replicadas, como ocurre en el caso del identificador y la fecha. 
 
 \vspace{3mm}
 

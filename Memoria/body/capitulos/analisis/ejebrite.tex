@@ -2,7 +2,7 @@
 \section{Planteamiento de escenarios y generación de topologías en \acrshort{brite}}
 \label{sec:ejebrite}
 
-La presente Sección está dedicada al planteamiento de una serie de escenarios de red y a la consecuente generación de topologías mediante el empleo de la herramienta \gls{brite}, cuyo funcionamiento ha sido descrito en la Sección \ref{sec:brite}. La importancia de esta fase del diseño viene dada por la necesidad de aplicar la operativa del algoritmo \gls{den2ne} sobre múltiples topologías para obtener, finalmente, el dataset sobre el que se entrenarán y desarrollarán los modelos de \gls{ml}. Se debe tener en cuenta que, para que este conjunto de datos final permita aportar suficiente información útil a los modelos, el número de topologías aleatorias a generar en \gls{brite} debe de ser relativamente elevado.
+La presente Sección está dedicada al planteamiento de una serie de escenarios de red y a la consecuente generación de topologías mediante el empleo de la herramienta \gls{brite}, cuyo funcionamiento ha sido descrito en la Sección \ref{sec:brite}. La importancia de esta fase del diseño viene dada por la necesidad de aplicar la operativa del algoritmo \gls{den2ne} sobre múltiples topologías para obtener, finalmente, el dataset sobre el que se entrenarán y desarrollarán los modelos de \gls{ml} y \gls{dl}. Se debe tener en cuenta que, para que este conjunto de datos final permita aportar suficiente información útil a los modelos, el número de topologías aleatorias a generar en \gls{brite} debe de ser relativamente elevado.
 
 \vspace{3mm}
 
@@ -13,7 +13,7 @@ Para emplear la herramienta, se deben plantear los escenarios de red sobre los q
 
 \vspace{3mm}
 
-Por ello, se puede expresar que el cálculo del número total de topologías que se pueden generar con \gls{brite} resultará de operar el producto de los siguientes parámetros de entrada configurados:
+Entonces, se puede expresar que el cálculo del número total de topologías que se pueden generar con \gls{brite} resultará de operar el producto de los siguientes parámetros de entrada configurados:
 
 \begin{itemize}
     \item Número de modelos de topología a emplear: Como se había introducido en la Sección \ref{sec:modelostopos}, este \gls{tfm} se va a basar en el empleo de topologías aleatorias a nivel de router y, en particular, en los modelos Router Waxman y Router Barabasi-Albert. 

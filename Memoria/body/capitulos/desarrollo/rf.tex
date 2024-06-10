@@ -20,7 +20,7 @@ Por un lado, se estima la importancia de las características del conjunto, a pa
 
 \pagebreak
 
-Sin embargo, con este método surgen cierto sesgo hacia las características que presentan alta cardinalidad, o en otros términos, una gran cantidad de valores únicos. Esto se debe a que generan nodos de división con mayor profundidad en los árboles, puesto que existen más opciones de separación del conjunto de datos. Por lo tanto, este tipo de características pueden recibir una puntuación más inflada.
+Sin embargo, con este método surge cierto sesgo hacia las características que presentan alta cardinalidad, o en otros términos, una gran cantidad de valores únicos. Esto se debe a que generan nodos de división con mayor profundidad en los árboles, puesto que existen más opciones de separación del conjunto de datos. Por lo tanto, este tipo de características pueden recibir una puntuación más inflada.
 
 \vspace{3mm}
 
@@ -37,7 +37,7 @@ Teniendo esto en cuenta, se decide cuantificar la importancia también por el m�
 
 \vspace{4mm}
 
-En este segundo método los valores de las características se permutan una a una aleatoriamente y se evalúa en cada iteración los resultados del clasificador. Por tanto, cuando la variación de valores de una característica decrementa de forma considerable la precisión del modelo, puntúa una mayor importancia. Esta técnica es útil porque proporciona una evaluación imparcial de la importancia de las características. 
+En este segundo método, los valores de las características se permutan una a una aleatoriamente y se evalúa en cada iteración los resultados del clasificador. Por tanto, cuando la variación de valores de una característica decrementa de forma considerable la precisión del modelo, puntúa una mayor importancia. Esta técnica es útil porque proporciona una evaluación imparcial de la importancia de las características. 
 
 \newpage
 
@@ -51,7 +51,7 @@ En este segundo método los valores de las características se permutan una a un
 \subsubsection{Optimización de hiperparámetros}
 \label{rf2}
 
-Los hiperparámetros de un modelo se tratan de los parámetros de configuración o argumentos que son incluidos en el constructor de la clase del estimador o clasificador. En el caso del \gls{rf}, como ya se había introducido en el diseño del modelo por defecto, se pone el foco en dos hiperparámetros principales: el número de estimadores o árboles y el criterio de medición de la impureza. Para encontrar los valores que construyen el modelo óptimo de \gls{rf}, es preciso emplear la técnica \textit{Grid Search} \cite{gridsearch} y, específicamente, la clase \textit{GridSearchCV()} \cite{gridsearch2}. Esta realiza una búsqueda exhaustiva a partir de la definición de una cuadrícula de hiperparámetros para el estimador y extrae la combinación de valores que aporta una mayor precisión. Por ello, es necesario primero, definir en un diccionario una serie de valores para los dos hiperparámetros que se pretenden optimizar en el nuevo clasificador.
+Los hiperparámetros de un modelo se definen como los parámetros de configuración o argumentos que son incluidos en el constructor de la clase del estimador o clasificador. En el caso del \gls{rf}, como ya se había introducido en el diseño del modelo por defecto, se pone el foco en dos hiperparámetros principales: el número de estimadores o árboles y el criterio de medición de la impureza. Para encontrar los valores que construyen el modelo óptimo de \gls{rf}, es preciso emplear la técnica \textit{Grid Search} \cite{gridsearch} y, específicamente, la clase \textit{GridSearchCV()} \cite{gridsearch2}. Esta realiza una búsqueda exhaustiva a partir de la definición de una cuadrícula de hiperparámetros para el estimador y extrae la combinación de valores que aporta una mayor precisión. Por ello, es necesario primero, definir en un diccionario una serie de valores para los dos hiperparámetros que se pretenden optimizar en el nuevo clasificador.
 
 \begin{lstlisting}[style=Python, caption={Cuadrícula de parámetros RF}]
   param_grid = {
@@ -132,11 +132,7 @@ El proceso de selección de características viene dado por la necesidad de redu
 
 \vspace{3mm}
 
-En primer lugar, se introduce la técnica de eliminación recursiva de características con validación cruzada (del inglés \gls{rfecv}) \cite{rfecv}. Esta técnica se basa en la ejecución de un proceso iterativo para ir desechando las características que tienen menor influencia en los resultados de precisión, hasta que el rendimiento del modelo deja de mejorar significativamente. 
-
-\vspace{3mm}
-
-Por este motivo, además de proveer a su salida la lista de características más importantes, es capaz de indicar cuál es el número óptimo de características que se debería aplicar para maximizar la precisión en el entrenamiento del modelo, a la vez que se minimiza el volumen de datos en el mismo. En este caso, el \gls{rfecv} se configura con un total de 5 divisiones (\textit{cv}) del conjunto de datos para llevar a cabo el proceso de evaluación. Además, se determina la eliminación de una de las características disponibles en cada iteración (\textit{step}). 
+En primer lugar, se introduce la técnica de eliminación recursiva de características con validación cruzada (del inglés \gls{rfecv}) \cite{rfecv}. Esta técnica se basa en la ejecución de un proceso iterativo para ir desechando las características que tienen menor influencia en los resultados de precisión, hasta que el rendimiento del modelo deja de mejorar significativamente. Por este motivo, además de proveer a su salida la lista de características más importantes, es capaz de indicar cuál es el número óptimo de características que se debería aplicar para maximizar la precisión en el entrenamiento del modelo, a la vez que se minimiza el volumen de datos en el mismo. En este caso, el \gls{rfecv} se configura con 5 divisiones (\textit{cv}) del conjunto de datos para llevar a cabo el proceso de evaluación. Además, se determina la eliminación de una de las características disponibles en cada iteración (\textit{step}). 
 
 \vspace{3mm}
 
@@ -154,7 +150,7 @@ Por este motivo, además de proveer a su salida la lista de características má
 
 \vspace{3mm}
 
-Se puede visualizar el proceso de evaluación del número de características gráficamente en la Figura \ref{fig:rfecv}, en la cual se representa cómo la precisión del modelo es máxima cuando se utilizan 8. Por otro lado, en cuanto a la lista de características proporcionada por el \gls{rfecv}, es preciso llevar a cabo una comparación con las puntuaciones obtenidas en la Sección \ref{sec:rf1}. Volviendo a las Figuras \ref{fig:imp1} y \ref{fig:imp2}, se confirma que, exceptuando ligeras variaciones, la lista de características es coherente con las que presentan mayor grado de importancia.
+Se puede visualizar el proceso de evaluación del número de características gráficamente en la Figura \ref{fig:rfecv}, en la cual se representa cómo la precisión del modelo es máxima cuando se emplean 8. Por otro lado, en cuanto a la lista de características proporcionada por el \gls{rfecv}, es preciso llevar a cabo una comparación con las puntuaciones obtenidas en la Sección \ref{sec:rf1}. Volviendo a las Figuras \ref{fig:imp1} y \ref{fig:imp2}, se confirma que, exceptuando ligeras variaciones, la lista de características es coherente con las que presentan mayor grado de importancia.
 
 \vspace{3mm}
 
@@ -181,7 +177,7 @@ Después, se declara el objeto de la clase especificada para la técnica en cues
 
 \vspace{3mm}
 
-Una vez que se extraen, a partir del atributo \textit{feature\_names\_in}, aquellas características con mayor puntuación, se procede a transformar los conjuntos de entrenamiento y de test. Si se compara la lista proporcionada por el atributo anterior con las puntuaciones de las Figuras \ref{fig:imp1} y \ref{fig:imp2}, se puede comprobar que esta técnica no es tan precisa como en el caso del \gls{rfecv}, puesto que se seleccionan algunas características que no presentan tan buenas puntuaciones. Por ello, se estima a priori, que la implementación de la selección invariante no mejorará los resultados de precisión que se esperan con \gls{rfecv}.
+Una vez que se extraen aquellas características con mayor puntuación, a partir del atributo \textit{feature\_names\_in}, se procede a transformar los conjuntos de entrenamiento y de test. Si se compara la lista proporcionada por el atributo anterior con las puntuaciones de las Figuras \ref{fig:imp1} y \ref{fig:imp2}, se puede comprobar que esta técnica no es tan precisa como en el caso del \gls{rfecv}, puesto que se seleccionan algunas características que no presentan tan buenas puntuaciones. Con ello, se podría estimar, a priori, que la implementación de la selección invariante no mejorará los resultados de precisión que se esperan con \gls{rfecv}.
 
 \vspace{3mm}
 
@@ -195,7 +191,7 @@ Por último, se introduce una técnica, que no es estrictamente de selección de
 
 \vspace{3mm}
 
-No obstante, antes de aplicar el ajuste y la transformación al conjunto de datos a partir del \gls{pca}, se debe configurar el número de componentes a emplear. Para ello, se utiliza el ``método del codo" (del inglés \textit{Elbow Method}) para identificar el punto o ``codo" en el que el aumento del número de componentes no aporta mejoras significativas en el valor de la varianza. Como se representa en la Figura \ref{fig:pca}, en n=4 componentes, se produce el estancamiento más considerable de la varianza, en un valor del 6\% aproximadamente. Se puede visualizar que, para el caso de n=2 componentes, también ocurre pero en menor medida. Por ello, para comparar los resultados posteriormente, se considera aplicar el \gls{pca} en función de ambos números.
+No obstante, antes de aplicar el ajuste y la transformación al conjunto de datos a partir del \gls{pca}, se debe configurar el número de componentes a emplear. Para ello, se utiliza el ``método del codo" (del inglés \textit{Elbow Method}) con el fin de identificar el punto o ``codo" en el que el aumento del número de componentes no aporta mejoras significativas en el valor de la varianza. Como se representa en la Figura \ref{fig:pca}, en n=4 componentes, se produce el estancamiento más considerable de la varianza, en un valor del 6\% aproximadamente. Se puede visualizar que, para el caso de n=2 componentes, también ocurre pero en menor medida. Entonces, a modo comparativo, se considerará aplicar el \gls{pca} en función de ambos números.
 
 \vspace{3mm}
 
@@ -210,7 +206,7 @@ No obstante, antes de aplicar el ajuste y la transformación al conjunto de dato
 \subsubsection{Ejecución del modelo y evaluación de resultados}
 \label{sec:rf4}
 
-Por un lado, como se ha detallado en la Sección \ref{rf2}, el modelo que se considera más adecuado y, por tanto, sobre el que se decide trabajar, viene dado por la configuración de 25 estimadores y el criterio de la entropía.
+Por un lado, como se ha detallado en la Sección \ref{rf2}, el modelo que se considera más adecuado y, por tanto, sobre el que se decide trabajar, viene dado por la configuración de 25 estimadores y el criterio de la entropía. Por otro lado, en la Sección \ref{sec:rf3}, se han expuesto varias propuestas de selección de características o de reducción de dimensiones del conjunto de datos. 
 
 \vspace{3mm}
 
@@ -221,21 +217,17 @@ Por un lado, como se ha detallado en la Sección \ref{rf2}, el modelo que se con
   
 \vspace{3mm}
 
-Por otro lado, en la Sección \ref{sec:rf3} se han expuesto varias propuestas de selección de características o de reducción de dimensiones del conjunto de datos. Esta Sección viene dada por la necesidad de aplicar un proceso de evaluación sobre las diferentes implementaciones del modelo de \gls{rf} seleccionado con el fin de analizar el rendimiento y precisión que proporcionan cada una de ellas. 
+La presente Sección viene dada por la necesidad de aplicar un proceso de evaluación sobre las diferentes implementaciones del modelo de \gls{rf} seleccionado con el fin de analizar el rendimiento y precisión que proporcionan cada una de ellas. En primera instancia, se va a proceder a ejecutar el modelo de \gls{rf}, tanto empleando las diferentes opciones de reducción de dimensiones del conjunto de datos, como sin aplicar ninguna de ellas con el objetivo de realizar la comparativa. A modo de proveer una mayor comprensión del entrenamiento que se produce, se incluye la lógica de representación de los estimadores o árboles de decisión del \gls{rf}, mediante el empleo del método de conversión \textit{export\_graphviz} \cite{graphviz2} y la herramienta de generación de grafos, \textit{WebGraphViz}. En la Figura \ref{fig:tree} se expone uno de los árboles que se construyen en este proceso.
 
 \vspace{3mm}
 
-No obstante, en primera instancia, se va a proceder a ejecutar el modelo de \gls{rf}, tanto empleando las diferentes opciones de reducción de dimensiones del conjunto de datos, como sin aplicar ninguna de ellas para realizar la comparativa. A modo de proveer una mayor comprensión del entrenamiento que se produce, se incluye la lógica de representación de los estimadores o árboles de decisión del \gls{rf}, mediante el empleo del método de conversión \textit{export\_graphviz} \cite{graphviz2} y la herramienta de generación de grafos, \textit{WebGraphViz}. En la Figura \ref{fig:tree} se expone uno de los árboles que se construyen en este proceso.
-
-\vspace{3mm}
-
-Por consiguiente, una vez ejecutado, se puede llevar a cabo el proceso de evaluación, que consta de dos métodos: la matriz de confusión y el \textit{K-Fold Cross Validation}. La matriz de confusión \cite{cm} es un método de gran utilidad cuando se trabaja con técnicas de clasificación binaria, como se produce en este caso para detectar y predecir los intercambios energéticos con errores. Permite analizar la precisión del modelo mediante la organización de las predicciones en cuatro categorías diferentes (ver Figura \ref{fig:confusion}): 
+Por consiguiente, una vez ejecutado, se puede llevar a cabo el proceso de evaluación, que consta de dos métodos: la matriz de confusión y el \textit{K-Fold Cross Validation}. La matriz de confusión \cite{cm} es un método de gran utilidad cuando se trabaja con técnicas de clasificación binaria, como se produce en este caso, para detectar y predecir los intercambios energéticos con errores. Permite analizar la precisión del modelo mediante la organización de las predicciones en cuatro categorías diferentes (ver Figura \ref{fig:confusion}): 
 
 \begin{itemize}
-  \item Verdaderos positivos (TP): Predicciones correctas de intercambios sin errores.
-  \item Falsos positivos (FP): Predicciones incorrectas de intercambios sin errores.
-  \item Verdaderos negativos (TN): Predicciones correctas de intercambios con errores.
-  \item Falsos negativos (FN): Predicciones incorrectas de intercambios con errores.
+  \item Verdaderos positivos (TP): Predicciones correctas de intercambios con errores.
+  \item Falsos positivos (FP): Predicciones incorrectas de intercambios con errores.
+  \item Verdaderos negativos (TN): Predicciones correctas de intercambios sin errores.
+  \item Falsos negativos (FN): Predicciones incorrectas de intercambios sin errores.
 \end{itemize}
 
 \begin{sidewaysfigure}
@@ -302,7 +294,7 @@ A través de las categorías definidas en la matriz, se pueden obtener cuatro m�
 
 \vspace{3mm}
 
-Por tanto, con la aplicación de la matriz de confusión, se extraen los resultados expuestos en la Tabla \ref{tab:rfcm}. En la misma se puede visualizar la cantidad de predicciones, en función de cada una de las categorías de la matriz y los valores obtenidos del cálculo de las métricas anteriores. A priori, si solo se pone el foco en la precisión global del modelo (\textit{Accuracy}), las opciones que proveen valores más altos son la que no aplica ningún método de reducción de dimensiones y que por tanto, opera con todas las características del conjunto, y la que emplea la técnica \gls{rfecv}. 
+Por tanto, con la aplicación de la matriz de confusión, se extraen los resultados expuestos en la Tabla \ref{tab:rfcm}. En la misma, se puede visualizar la cantidad de predicciones, en función de cada una de las categorías de la matriz y los valores obtenidos del cálculo de las métricas anteriores. A priori, si solo se pone el foco en la precisión global del modelo (\textit{Accuracy}), las opciones que proveen valores más altos son la que no aplica ningún método de reducción de dimensiones y que por tanto, opera con todas las características del conjunto, y la que emplea la técnica \gls{rfecv}. 
 
 \vspace{3mm}
 
@@ -333,7 +325,7 @@ De la misma forma, se puede visualizar que para la métrica \textit{F1 Score} se
 
 \vspace{3mm}
 
-Por otro lado, en cuanto al método \textit{K-Fold Cross Validation} \cite{kfold}, se emplea la misma operativa que en el \textit{Grid SearchCV}. Como su nombre indica, se basa en un esquema de validación cruzada (\textit{cross validation}) y se divide el conjunto de datos en un total de 5 pliegues para evaluar el rendimiento del modelo. En la Tabla \ref{tab:rfk}, se determinan los resultados de su aplicación y, como se puede visualizar, los valores de precisión global son prácticamente iguales a los obtenidos anteriormente en la matriz de confusión. 
+Por otro lado, en cuanto al método \textit{K-Fold Cross Validation} \cite{kfold}, se emplea la misma operativa que en el \textit{Grid Search}. Como su nombre indica, se basa en un esquema de validación cruzada (\textit{cross validation}) y se divide el conjunto de datos en un total de 5 pliegues para evaluar el rendimiento del modelo. En la Tabla \ref{tab:rfk}, se determinan los resultados de su aplicación y, como se puede visualizar, los valores de precisión global son prácticamente iguales a los obtenidos anteriormente en la matriz de confusión. 
 
 \vspace{3mm}
 
