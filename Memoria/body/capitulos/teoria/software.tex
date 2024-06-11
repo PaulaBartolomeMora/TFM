@@ -39,7 +39,7 @@ La herramienta \gls{brite} basa el proceso de creación de topologías en la def
 \subsubsection{Modelos de topologías}
 \label{sec:modelostopos}
 
-Como se ha introducido, con \gls{brite} se posibilita el uso de múltiples modelos para crear topologías. En la Figura \ref{fig:brite}, se representan todos los que soporta la herramienta. No obstante, este \gls{tfm} se va a enfocar en la generación de topologías a nivel de router, como son los modelos Router Waxman \cite{waxman} y Router Barabasi-Albert \cite{barabasi}. 
+Como se ha introducido, con \gls{brite} se posibilita el uso de múltiples modelos para crear topologías. En la Figura \ref{fig:brite}, se representan todos los que soporta la herramienta. No obstante, este \gls{tfm} se va a enfocar en la generación de topologías a nivel de router, como son los modelos Router Waxman \cite{waxman} y Router Barabasi-Albert \cite{barabasi}. Se generan ejemplos de topologías de los mismos mediante la ejecución de un script en \textit{python} y se representan en las Figuras \ref{fig:waxmanpy} y \ref{fig:barabasipy}, respectivamente.
 
 \vspace{3mm}
 
@@ -52,7 +52,7 @@ Como se ha introducido, con \gls{brite} se posibilita el uso de múltiples model
 
 \vspace{3mm}
 
-Por un lado, el modelo Router Waxman, como su nombre indica, emplea un modelo de probabilidad Waxman para establecer la Interconexión de los nodos en la topología \cite{brite_zegura}:
+Por un lado, el modelo Router Waxman (ver Figura \ref{fig:waxmanpy}), como su nombre indica, emplea un modelo de probabilidad Waxman para establecer la Interconexión de los nodos en la topología \cite{brite_zegura}:
 
 \begin{equation}
     \begin{aligned}
@@ -71,13 +71,20 @@ Por un lado, el modelo Router Waxman, como su nombre indica, emplea un modelo de
     \item \textit{L} es la máxima distancia entre dos nodos cualesquiera.
 \end{itemize}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.65\textwidth]{img/diseno/waxmanpy.PNG}
+    \caption{Ejemplo de topología Router Waxman}
+    \label{fig:waxmanpy}
+\end{figure}
+
 \vspace{3mm}
 
-Por otro lado, el modelo Router Barabasi-Albert está basado en la generación de topologías aleatorias con un incremento exponencial del número de nodos a lo largo del tiempo, también conocidas como \textit{scale-free} o de tipo \textit{hub-and-spoke}. Además, se permite una conexión preferencial, suponiendo que cuanto mayor grado de conectividad abarque un nodo, mayor será la probabilidad de que este añada nuevos enlaces. Por lo tanto, el plano de la topología comienza con un número de nodos inicial \textit{N0} y se van añadiendo los demás uno a uno. Cada uno de estos nuevos nodos se conectará a \textit{N} nodos ya añadidos a la topología con una probabilidad \cite{brite_zegura}:
+Por otro lado, el modelo Router Barabasi-Albert (ver Figura \ref{fig:barabasipy}) está basado en la generación de topologías aleatorias con un incremento exponencial del número de nodos a lo largo del tiempo, también conocidas como \textit{scale-free} o de tipo \textit{hub-and-spoke}. Además, se permite una conexión preferencial, suponiendo que cuanto mayor grado de conectividad abarque un nodo, mayor será la probabilidad de que este añada nuevos enlaces. Por lo tanto, el plano de la topología comienza con un número de nodos inicial \textit{N0} y se van añadiendo los demás uno a uno. Cada uno de estos nuevos nodos se conectará a \textit{N} nodos ya añadidos a la topología con una probabilidad \cite{brite_zegura}:
 
 \begin{equation}
     \begin{aligned}
-        P_{\text{Barabási-Albert}}(k_i) = \frac{k_i}{\sum_{j}^{}k_j}
+        P_{\text{Barabasi-Albert}}(k_i) = \frac{k_i}{\sum_{j}^{}k_j}
     \end{aligned}
 \end{equation} 
     
@@ -87,6 +94,15 @@ Por otro lado, el modelo Router Barabasi-Albert está basado en la generación d
     \item \textit{P(k)} es la probabilidad de conexión del nodo \textit{i} con grado \textit{k}.
     \item $\sum_{j}^{}k_j$ es el sumatorio de los grados de todos los nodos de la topología.
 \end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.65\textwidth]{img/diseno/barabasipy.PNG}
+    \caption{Ejemplo de topología Router Barabasi-Albert}
+    \label{fig:barabasipy}
+\end{figure}
+
+\vspace{3mm}
 
 \subsubsection{Automatización de la ejecución}
 \label{sec:brite_eje}
