@@ -1,12 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Análisis de los datasets disponibles}
+\section{Análisis de los \textit{datasets} disponibles}
 \label{sec:sustdata}
 
-En ámbitos como el Procesado de Lenguaje Natural (del inglés \gls{nlp}) o el reconocimiento facial, la disponibilidad de numerosas fuentes de datos ha sido imprescindible para acelerar el desarrollo de técnicas de minería de datos y de aprendizaje automático (\gls{ml}). A diferencia de estos campos, el contexto energético experimenta un menor grado de disponiblidad de datasets. La protección de la privacidad de los usuarios en el proceso de medición y análisis de su comportamiento energético supone que exista un menor número de datasets públicos enfocados a implementaciones reales. No obstante, la búsqueda de la optimización de la distribución energética y de la reducción del consumo de los usuarios, aparte de otras motivaciones ambientales, ha instado en los últimos años a múltiples ingenieros y científicos a lo largo del mundo a crear datasets públicos enfocados a la investigación (ver Tabla \ref{tab:datasets}). 
+En ámbitos como el Procesado de Lenguaje Natural (del inglés \acrfull{nlp}) o el reconocimiento facial, la disponibilidad de numerosas fuentes de datos ha sido imprescindible para acelerar el desarrollo de técnicas de minería de datos y de aprendizaje automático (\gls{ml}). A diferencia de estos campos, el contexto energético experimenta un menor grado de disponiblidad de conjuntos de datos. La protección de la privacidad de los usuarios en la medición y análisis de su comportamiento energético reduce el número de \textit{datasets} públicos disponibles, ya que dependen principalmente de las empresas energéticas. No obstante, la búsqueda de la optimización de la distribución energética y de la reducción del consumo de los usuarios, aparte de otras motivaciones ambientales, ha instado en los últimos años a múltiples ingenieros y científicos a lo largo del mundo a crear datasets públicos enfocados a la investigación (ver Tabla \ref{tab:datasets}). 
 
 \vspace{3mm}
 
-En este contexto han cobrado gran importancia las técnicas de Monitorización de Cargas no Intrusiva (del inglés \gls{nilm}). Como se ha introducido en la Sección \ref{sec:ioe}, cada vez se produce una mayor integración de las tecnologías de \gls{ioe} en el ámbito de las \gls{sg}s para obtener una mayor monitorización del comportamiento energético en los hogares. Es por ello que el fin principal de las técnicas de \gls{nilm} reside en establecer una desagregación energética para poder estimar de una forma precisa el consumo individual de cada uno de los dispositivos y electrodomésticos que hay en una vivienda. Para ello, se instalan medidores en cada circuito y después, se analizan, tanto a nivel interno como a nivel externo de la vivienda, los cambios de los parámetros eléctricos en cada instante temporal.~\cite{nilm} \cite{greend}
+En este contexto han cobrado gran importancia las técnicas de Monitorización de Cargas no Intrusiva (del inglés \gls{nilm}). Como se ha introducido en la Sección \ref{sec:ioe}, cada vez se produce una mayor integración de las tecnologías de \gls{ioe} en el ámbito de las \gls{sg}s para obtener una mayor monitorización del comportamiento energético en los hogares. Es por ello que el fin principal de las técnicas de \gls{nilm} reside en establecer una desagregación energética para poder estimar de una forma precisa el consumo individual de cada uno de los dispositivos y electrodomésticos que hay en una vivienda. Para ello, se instalan medidores en cada circuito y después, se analizan, tanto a nivel interno como a nivel externo de la vivienda, los cambios de los parámetros eléctricos en cada instante temporal~\cite{nilm} \cite{greend}.
 
 \vspace{3mm}
 
@@ -19,11 +19,11 @@ En la Tabla \ref{tab:datasets} se exponen los múltiples datasets residenciales 
 \vspace{1mm}
 
 \begin{itemize}
-    \item Cantidad: En primera instancia, es imprescindible revisar la cantidad de datos que aporta cada conjunto. En otros términos, para llevar a cabo un análisis estadístico del comportamiento energético de una ubicación, se requiere partir de un conjunto de datos que agrupe las mediciones de un gran número de edificios residenciales. Adicionalmente, este análisis debe comprender extensos períodos temporales de medición, que permitan visualizar de forma correcta el comportamiento de los usuarios y predecir patrones de consumo a lo largo del tiempo.
-    \item Calidad: Se debe evaluar la calidad de los datos recogidos, la cual responde con la resolución de las medidas que se toman. Como se puede observar en la Tabla \ref{tab:datasets}, algunos datasets como \textit{REDD} y \textit{BLUED} se centran en monitorizar los edificios residenciales a una frecuencia de muestreo alta. En el contexto de las tecnologías de \gls{nilm}, esto aporta una vista más representativa del comportamiento energético a nivel interno en una vivienda y permite una desagregación energética más precisa. Por lo tanto, cuanto mayor sea la frecuencia de adquisición de medidas, mayor será la resolucion de los datos. 
-    \item Ubicación: En términos de la ubicación de la implementación real sobre la que se han adquirido las mediciones, es de importancia conocer a la hora de analizar los datos las diferencias de voltaje que se manejan en cada país. Por ejemplo, en el caso de datasets como \textit{BLUED} o \textit{Smart*}, los cuales provienen de ciudades de Estados Unidos, trabajarán a tensiones menores de 120V, mientras que otros como \textit{ECO} o \textit{GREEND}, cuyos datos se han adquirido en países europeos, lo harán con tensiones de hasta 230V. \cite{greend} \cite{powercons}
-    \item Parametrización: Por lo general, un dataset dedicado a las tecnologías de \gls{nilm} estará constituido por una colección de muestras de voltaje (V), corriente (I) y potencia activa (P), reactiva (Q) y aparente (S). Cada una de estas muestras vendrá asociada a una marca de tiempo y a un identificador que haga referencia a la vivienda o medidores a los que corresponde. Adicionalmente, algunos de los datasets que se exponen en la Tabla \ref{tab:datasets}, como son \textit{HUE} o \textit{SustDataED}, también incluyen información relativa a parámetros ambientales. Esto, sobre todo en el contexto de las \gls{sg}s, proporciona información fundamental sobre el impacto de las condiciones climáticas en el comportamiento de los usuarios.
-    \item Generación fotovoltaica: Considerando el contexto de \gls{sg}s en el que se engloba este \gls{tfm}, es de vital importancia seleccionar un conjunto de datos que aporte información relativa a la generación de energía a través de fuentes renovables, como ocurre en el caso de \textit{Smart*} o \textit{SustDataED}. En relación con esto, se expondrá en la Sección \ref{sec:simuprod} el estudio de una plataforma específica dedicada a la adquisición de datos de generación energética.
+    \item \textbf{Cantidad}: En primera instancia, es imprescindible revisar la cantidad de datos que aporta cada conjunto. En otros términos, para llevar a cabo un análisis estadístico del comportamiento energético de una ubicación, se requiere partir de un conjunto de datos que agrupe las mediciones de un gran número de edificios residenciales. Adicionalmente, este análisis debe comprender extensos períodos temporales de medición, que permitan visualizar de forma correcta el comportamiento de los usuarios y predecir patrones de consumo a lo largo del tiempo.
+    \item \textbf{Calidad}: Se debe evaluar la calidad de los datos recogidos, la cual responde con la resolución de las medidas que se toman. Como se puede observar en la Tabla \ref{tab:datasets}, algunos datasets como \textit{REDD} y \textit{BLUED} se centran en monitorizar los edificios residenciales a una frecuencia de muestreo alta. En el contexto de las tecnologías de \gls{nilm}, esto aporta una vista más representativa del comportamiento energético a nivel interno en una vivienda y permite una desagregación energética más precisa. Por lo tanto, cuanto mayor sea la frecuencia de adquisición de medidas, mayor será la resolucion de los datos. 
+    \item \textbf{Ubicación}: En términos de la ubicación de la implementación real sobre la que se han adquirido las mediciones, es de importancia conocer a la hora de analizar los datos las diferencias de voltaje que se manejan en cada país. Por ejemplo, en el caso de datasets como \textit{BLUED} o \textit{Smart*}, los cuales provienen de ciudades de Estados Unidos, trabajarán a tensiones menores de 120V, mientras que otros como \textit{ECO} o \textit{GREEND}, cuyos datos se han adquirido en países europeos, lo harán con tensiones de hasta 230V \cite{greend} \cite{powercons}.
+    \item \textbf{Parametrización}: Por lo general, un dataset dedicado a las tecnologías de \gls{nilm} estará constituido por una colección de muestras de voltaje (V), corriente (I) y potencia activa (P), reactiva (Q) y aparente (S). Cada una de estas muestras vendrá asociada a una marca de tiempo y a un identificador que haga referencia a la vivienda o medidores a los que corresponde. Adicionalmente, algunos de los datasets que se exponen en la Tabla \ref{tab:datasets}, como son \textit{HUE} o \textit{SustDataED}, también incluyen información relativa a parámetros ambientales. Esto, sobre todo en el contexto de las \gls{sg}s, proporciona información fundamental sobre el impacto de las condiciones climáticas en el comportamiento de los usuarios.
+    \item \textbf{Generación fotovoltaica}: Considerando el contexto de \gls{sg}s en el que se engloba este \gls{tfm}, es de vital importancia seleccionar un conjunto de datos que aporte información relativa a la generación de energía a través de fuentes renovables, como ocurre en el caso de \textit{Smart*} o \textit{SustDataED}. En relación con esto, se expondrá en la Sección \ref{sec:simuprod} el estudio de una plataforma específica dedicada a la adquisición de datos de generación energética.
 \end{itemize}
 
 \begin{sidewaystable}
@@ -31,17 +31,17 @@ En la Tabla \ref{tab:datasets} se exponen los múltiples datasets residenciales 
     \begin{tabularx}{\textheight}{|X|X|c|c|c|c|}
         \hline
         \rowcolor[HTML]{EFEFEF} 
-        Nombre & Localización & Nº de residencias & Período de medición (días) & Resolución de medición & Parámetros \\ \hline
-        \textit{AMPds2} \cite{ampds2} & Vancouver (Canadá) & 1 & 730 & 1min &  I, V, P, S, F, pf \\ \hline
-        \textit{BLUED} \cite{blued} & Pittsburg (Estados Unidos) & 1 & 8 & 12KHz &  I, V, eventos de switch \\ \hline
-        \textit{ECO} \cite{eco} & Thun (Suiza) & 6 & 244 & 1Hz & P \\ \hline
-        \textit{GREEND} \cite{greend} & Italia y Austria & 9 & 310 & 1Hz & P \\ \hline
-        \textit{HUE} \cite{hue} & British Columbia, Canada & 28 & 60 & 1Hz & P \\ \hline
-        \textit{iAWE} \cite{iawe} & Nueva Delhi (La India) & 1 & 73 & 1Hz & V, I, P, S \\ \hline
-        \textit{REDD} \cite{redd} & Boston (Estados Unidos) & 6 & 119 & 15KHz & I, V, P \\ \hline
-        \textit{Smart*} \cite{smart*} & Massachussets (Estados Unidos) & 3 & 90 & 1min & P, S, V, I \\ \hline
-        \textit{SustDataED} \cite{sustdata} & Madeira (Portugal) & 50 & 1144 & 1min & I, V, P, Q, S \\ \hline
-        \textit{UK-DALE} \cite{ukdale} & Reino Unido & 5 & 499 & 16KHz & P, estado de switch \\ \hline
+        Nombre & Localización & Nº residencias & Período de medición (días) & Resolución de medición & Parámetros \\ \hline
+        \textit{AMPds2} \cite{ampds2} & Vancouver (Canadá) & 1 & 730 & 60s &  I, V, P, S, F, pf \\ \hline
+        \textit{BLUED} \cite{blued} & Pittsburg (Estados Unidos) & 1 & 8 & 83,33us &  I, V, eventos de switch \\ \hline
+        \textit{ECO} \cite{eco} & Suiza & 6 & 244 & 1s & P \\ \hline
+        \textit{GREEND} \cite{greend} & Italia y Austria & 9 & 310 & 1s & P \\ \hline
+        \textit{HUE} \cite{hue} & British Columbia, Canada & 28 & 60 & 1s & P \\ \hline
+        \textit{iAWE} \cite{iawe} & Nueva Delhi (La India) & 1 & 73 & 1s & V, I, P, S \\ \hline
+        \textit{REDD} \cite{redd} & Boston (Estados Unidos) & 6 & 119 & 66,66us & I, V, P \\ \hline
+        \textit{Smart*} \cite{smart*} & Massachussets (Estados Unidos) & 3 & 90 & 60s & P, S, V, I \\ \hline
+        \textit{SustDataED} \cite{sustdata} & Madeira (Portugal) & 50 & 1144 & 60s & I, V, P, Q, S \\ \hline
+        \textit{UK-DALE} \cite{ukdale} & Reino Unido & 5 & 499 & 62,5us & P, estado de switch \\ \hline
     \end{tabularx}
     \caption{Comparación entre datasets públicos en el ámbito \acrshort{nilm} \cite{greend} \cite{intrusive} \cite{tabladatasets} \cite{powercons}}
     \label{tab:datasets}
@@ -58,11 +58,7 @@ De igual manera, es importante que las muestras tengan una buena resolución y q
 \subsection{\textit{SustDataED}}
 \label{sec:sustdataed}
 
-El dataset \textit{SustDataED} \cite{sustdata} es creado a partir del proyecto de investigación \gls{sinais}, dedicado al diseño, implementación y despliegue de sistemas \gls{nilm} de bajo coste. Surge con el objetivo de proporcionar una retroalimentación ecológica a los usuarios para fomentar un comportamiento energético sostenible y un mayor uso de las fuentes de energía renovables.
-
-\vspace{3mm}
-
-El dataset \textit{SustDataED} engloba cinco años de datos de consumo y producción energética de 50 hogares de la ciudad de Funchal (Madeira, Portugal) con una resolución o frecuencia de adquisición de nuevas muestras por minuto. Debido a esto, se caracteriza por comprender una gran cantidad de información eléctrica que tendrá que ser posteriormente procesada de forma exhaustiva (ver Sección~\ref{sec:preprocesado}).
+El dataset \textit{SustDataED} \cite{sustdata} es creado a partir del proyecto de investigación \gls{sinais}, dedicado al diseño, implementación y despliegue de sistemas \gls{nilm} de bajo coste. Surge con el objetivo de proporcionar una retroalimentación ecológica a los usuarios para fomentar un comportamiento energético sostenible y un mayor uso de las fuentes de energía renovables. Como conjunto de datos, engloba cinco años de datos de consumo y producción energética de 50 hogares de la ciudad de Funchal (Madeira, Portugal) con una resolución o frecuencia de adquisición de nuevas muestras por minuto. Debido a esto, se caracteriza por comprender una gran cantidad de información eléctrica que tendrá que ser posteriormente procesada de forma exhaustiva (ver Sección~\ref{sec:preprocesado}).
 
 \vspace{3mm}
 
@@ -71,7 +67,7 @@ Pese a la necesidad de procesamiento que conlleva, el uso de \textit{SustDataED}
 \subsection{Estructura del dataset \textit{SustDataED}}
 \label{sec:estructurasustdata}
 
-El proceso de adquisición y recolección de los datos de los 50 hogares que constituyen el dataset se divide en cuatro despliegues diferentes (ver Figura \ref{fig:despliegues}):
+El proceso de adquisición y recolección de los datos de los 50 hogares que constituyen el dataset se divide en cuatro despliegues\footnote{Período temporal de implementación y operación de un sistema de adquisición de datos en un grupo de hogares para recopilar información energética} diferentes (ver Figura \ref{fig:despliegues}):
 
 \pagebreak
 

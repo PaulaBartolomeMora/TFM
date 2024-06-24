@@ -2,11 +2,11 @@
 \section{Inteligencia Artificial}
 \label{sec:iateoria}
 
-La inteligencia artificial (\gls{ia}) se constituye como la disciplina de diseño y creación de sistemas de software o hardware de imitación de la inteligencia humana para la realización de tareas. Generalmente, estos sistemas obtienen la capacidad de aprendizaje, razonamiento, planificación y toma de decisiones a partir del entrenamiento basado en grandes cantidades de información. En otros términos, adquieren e interpretan datos del entorno o de un contexto específico y, teniendo en cuenta un objetivo determinado, procesan la información contenida para decidir la siguiente acción a realizar. Adicionalmente, son capaces de adaptar su comportamiento ante el análisis o detección de cambios en el entorno. \cite{iagov} \cite{iaazure}
+La inteligencia artificial (\gls{ia}) \cite{iagov} \cite{iaazure} se constituye como la disciplina de diseño y creación de sistemas de software o hardware de imitación de la inteligencia humana para la realización de tareas. Generalmente, estos sistemas obtienen la capacidad de aprendizaje, razonamiento, planificación y toma de decisiones a partir del entrenamiento basado en grandes cantidades de información. En otros términos, adquieren e interpretan datos del entorno o de un contexto específico y, teniendo en cuenta un objetivo determinado, procesan la información contenida para decidir la siguiente acción a realizar. Adicionalmente, son capaces de adaptar su comportamiento ante el análisis o detección de cambios en el entorno. 
 
 \vspace{3mm}
 
-La \gls{ia} se postula como una de las tecnologías más revolucionarias y transformadoras de la actualidad y del futuro cercano por su potencial de aplicación en numerosos ámbitos. No obstante, el origen del término se remonta al año 1956, cuando el científico John McCarthy introdujo la idea de crear máquinas inteligentes tomando como base las teorías de computación de los matemáticos Norbert Wiener y John von Neumann en los años 40.~\cite{iagov}
+La \gls{ia}~\cite{iagov} se postula como una de las tecnologías más revolucionarias y transformadoras de la actualidad y del futuro cercano por su potencial de aplicación en numerosos ámbitos. No obstante, el origen del término se remonta al año 1956, cuando el científico John McCarthy introdujo la idea de crear máquinas inteligentes tomando como base las teorías de computación de los matemáticos Norbert Wiener y John von Neumann en los años 40.
 
 \vspace{3mm}
 
@@ -19,7 +19,7 @@ Entrando en estas técnicas, se establecen dos divisiones dentro del campo de la
 \subsection{Machine Learning (\acrshort{ml})}
 \label{sec:ml}
 
-La rama de aprendizaje automático (\acrfull{ml}) se enfoca en el desarrollo de modelos que sean capaces de aprender y tomar decisiones en base a la introducción de datos. Durante el proceso se realizan observaciones a la información existente y, en función de la técnica a emplear, se aplican algoritmos estadísticos para identificar patrones en los datos. Por lo tanto, mediante un entrenamiento progresivo en el tiempo, un modelo de \gls{ml} puede llegar a realizar predicciones sobre datos futuros sin la intervención humana y con una alta precisión. Como se representa en la Figura \ref{fig:ml}, las técnicas de \gls{ml} pueden pertenecer a tres categorías diferentes en función del enfoque de la información y de los objetivos que se pretenden conseguir con su aplicación: \cite{mlcat} \cite{iageeks} \cite{mltlf}
+La rama de aprendizaje automático (\acrfull{ml}) se enfoca en el desarrollo de modelos que sean capaces de aprender y tomar decisiones en base a la introducción de datos. Durante el proceso se realizan observaciones a la información existente y, en función de la técnica a emplear, se aplican algoritmos estadísticos para identificar patrones en los datos. Por lo tanto, mediante un entrenamiento progresivo en el tiempo, un modelo de \gls{ml} puede llegar a realizar predicciones sobre datos futuros sin la intervención humana y con una alta precisión. Como se representa en la Figura \ref{fig:ml}, las técnicas de \gls{ml} pueden pertenecer a tres categorías diferentes en función del enfoque de la información y de los objetivos que se pretenden conseguir con su aplicación \cite{mlcat} \cite{iageeks} \cite{mltlf}:
 
 \vspace{3mm}
 
@@ -31,9 +31,9 @@ La rama de aprendizaje automático (\acrfull{ml}) se enfoca en el desarrollo de 
 \end{figure}
 
 \begin{itemize}
-    \item Aprendizaje no supervisado: Se parte de datos sin etiquetar para el entrenamiento de los modelos. Es decir, se parte del conocimiento de unos datos de entrada, pero no de la salida, por lo que el objetivo de los modelos no supervisados se basa en explorar posibles patrones en los datos mediante \textit{clustering}.
-    \item Aprendizaje supervisado: Se manejan conjuntos de datos con un conocimiento de las posibles salidas, las cuales se proporcionan en forma de etiquetas o de valores numéricos. Las técnicas de aprendizaje supervisado buscan una función óptima que consiga, dadas unas determinadas variables o características de entrada, predecir la salida con cierta precisión. Son aplicables a dos tipos de problemas: de regresión, si a partir de las variables de entrada se desea predecir un valor numérico continuo a la salida, o de clasificación, si se predefinen diferentes clases y se asignan las variables de entrada a una de ellas. 
-    \item Aprendizaje por refuerzo: Las técnicas englobadas en este tipo aprenden por prueba y error, por lo que su entrenamiento a lo largo del tiempo y la experiencia permiten optimizar los resultados sin la necesidad de disponer de un gran volumen de datos.
+    \item \textbf{Aprendizaje no supervisado}: Se parte de datos sin etiquetar para el entrenamiento de los modelos. Es decir, se parte del conocimiento de unos datos de entrada, pero no de la salida, por lo que el objetivo de los modelos no supervisados se basa en explorar posibles patrones en los datos mediante \textit{clustering}.
+    \item \textbf{Aprendizaje supervisado}: Se manejan conjuntos de datos con un conocimiento de las posibles salidas, las cuales se proporcionan en forma de etiquetas o de valores numéricos. Las técnicas de aprendizaje supervisado buscan una función óptima que consiga, dadas unas determinadas variables o características de entrada, predecir la salida con cierta precisión. Son aplicables a dos tipos de problemas: de regresión, si a partir de las variables de entrada se desea predecir un valor numérico continuo a la salida, o de clasificación, si se predefinen diferentes clases y se asignan las variables de entrada a una de ellas. 
+    \item \textbf{Aprendizaje por refuerzo}: Las técnicas englobadas en este tipo aprenden por prueba y error, por lo que su entrenamiento a lo largo del tiempo y la experiencia permiten optimizar los resultados sin la necesidad de disponer de un gran volumen de datos.
 \end{itemize}
 
 Una vez expuestas las diferentes categorías donde se engloban las técnicas de \gls{ml}, es preciso indicar que se va a centrar el estudio en el \textbf{aprendizaje supervisado} y, en particular, en la resolución de problemas de \textbf{clasificación binaria}. El motivo principal viene dado porque el objetivo que se persigue con la realización de este \gls{tfm} se basa en el desarrollo de modelos que permitan detectar y predecir posibles errores que se pueden producir en una \gls{sg} durante el proceso de distribución energética. 
@@ -45,11 +45,11 @@ Como se detallará más adelante en la Sección \ref{sec:cambiosden2ne}, se crea
 \subsubsection{Random Forest (\acrshort{rf})}
 \label{sec:mlrf}
 
-El modelo de Bosques Aleatorios (del inglés \acrfull{rf}) está fundamentado en la aplicación de un conjunto de árboles de decisión. Cada uno de estos árboles se definen como estimadores y crecen mediante un proceso de entrenamiento sobre un subconjunto de datos extraído de forma aleatoria del conjunto completo. A la salida del esquema de estimadores se obtiene una predicción final basada en la votación mayoritaria de los árboles. No obstante, es un método que se puede emplear también en problemas de regresión y, en este caso, se proporcionaría un valor numérico promedio, calculado a partir de todas las salidas. En la Figura \ref{fig:rf}, se representa de forma gráfica el diagrama de flujo que expone el funcionamiento del modelo. \cite{rfmedium}
+El modelo de Bosques Aleatorios (del inglés \acrfull{rf}) está fundamentado en la aplicación de un conjunto de árboles de decisión. Cada uno de estos árboles se definen como estimadores y crecen mediante un proceso de entrenamiento sobre un subconjunto de datos extraído de forma aleatoria del conjunto completo. A la salida del esquema de estimadores se obtiene una predicción final basada en la votación mayoritaria de los árboles. No obstante, es un método que se puede emplear también en problemas de regresión y, en este caso, se proporcionaría un valor numérico promedio, calculado a partir de todas las salidas. En la Figura \ref{fig:rf}, se representa de forma gráfica el diagrama de flujo que expone el funcionamiento del modelo \cite{rfmedium}.
 
 \vspace{3mm}
 
-El proceso de construcción de los árboles de decisión se constituye por operaciones de división que van formando nodos y ramificaciones de forma iterativa. El objetivo es lograr la mayor ganancia de información posible a través de la valoración de la importancia que presentan cada una de las características del conjunto de datos. En otros términos, en cada nodo \textit{m} del árbol se cuantifica la ganancia de información que presenta cada característica y, después, se selecciona la que tenga el mayor valor (\textit{j}). Se aplica una división de los datos existentes en dos subconjuntos homogéneos de menor tamaño: \cite{rfmedium2}
+El proceso de construcción de los árboles de decisión se constituye por operaciones de división que van formando nodos y ramificaciones de forma iterativa. El objetivo es lograr la mayor ganancia de información posible a través de la valoración de la importancia que presentan cada una de las características del conjunto de datos. En otros términos, en cada nodo \textit{m} del árbol se cuantifica la ganancia de información que presenta cada característica y, después, se selecciona la que tenga el mayor valor (\textit{j}). Se aplica una división de los datos existentes en dos subconjuntos homogéneos de menor tamaño \cite{rfmedium2}:
 
 \begin{equation}
     \begin{aligned}
@@ -124,7 +124,7 @@ Donde:
 \subsubsection{Support Vector Machines (\acrshort{svm})}
 \label{sec:mlsvm}
 
-El modelo de Máquinas de Vector Soporte (del inglés \acrfull{svm}) es una técnica que se emplea tanto en problemas de regresión como de clasificación. Se basa en el concepto del \textit{Maximal Margin Classifier} o \textit{Hard Margin Classifier}, puesto que tiene el fin principal de encontrar el hiperplano óptimo que consiga una máxima separación entre dos clases diferentes dentro de un espacio de características. Esta separación se define como margen y se mide como la distancia perpendicular que existe desde el hiperplano hacia los vectores de soporte, que son las muestras más cercanas a la frontera de separación de clases. En la Figura \ref{fig:svm}, se representa el cálculo del mejor hiperplano entre dos clases de datos. \cite{svmmedium2} \cite{svmciencia}
+El modelo de Máquinas de Vector Soporte (del inglés \acrfull{svm}) \cite{svmmedium2} \cite{svmciencia} es una técnica que se emplea tanto en problemas de regresión como de clasificación. Se basa en el concepto del \textit{Maximal Margin Classifier} o \textit{Hard Margin Classifier}, puesto que tiene el fin principal de encontrar el hiperplano óptimo que consiga una máxima separación entre dos clases diferentes dentro de un espacio de características. Esta separación se define como margen y se mide como la distancia perpendicular que existe desde el hiperplano hacia los vectores de soporte, que son las muestras más cercanas a la frontera de separación de clases. En la Figura \ref{fig:svm}, se representa el cálculo del mejor hiperplano entre dos clases de datos.
 
 \vspace{3mm}
 
@@ -157,7 +157,7 @@ Por ello, se puede expresar que los vectores de soporte son los puntos más crí
 
 \vspace{3mm}
 
-No obstante, en la práctica es complicado determinar un hiperplano si no se trata de un problema ideal y basado en datos linearmente separables. Generalmente, en los casos reales si se intenta forzar un máximo margen, se pueden llegar a producir problemas de sobreentrenamiento, ya que nuevos datos pueden suponer grandes variaciones en el hiperplano. En la Figura \ref{fig:svmerror}, se representa la opción alternativa que se lleva a cabo en la mayoría de casos, basada en obtener un margen máximo, permitiendo cierto grado de error (\textit{Soft Margin Classifier}). \cite{matlab} \cite{svmciencia}
+No obstante, en la práctica es complicado determinar un hiperplano si no se trata de un problema ideal y basado en datos linearmente separables \cite{matlab} \cite{svmciencia}. Generalmente, en los casos reales si se intenta forzar un máximo margen, se pueden llegar a producir problemas de sobreentrenamiento, ya que nuevos datos pueden suponer grandes variaciones en el hiperplano. En la Figura \ref{fig:svmerror}, se representa la opción alternativa que se lleva a cabo en la mayoría de casos, basada en obtener un margen máximo, permitiendo cierto grado de error (\textit{Soft Margin Classifier}). 
 
 \vspace{3mm}
 
@@ -192,7 +192,7 @@ Estas variables determinan si un vector está correctamente clasificado o si se 
 
 \pagebreak
 
-El sumatorio de todas las variables de holgura que existen en el plano vienen incluidas en el objetivo de la función de pérdida del modelo para que el error de clasificación sea mínimo, a la vez que el margen es máximo. Como es preciso encontrar un cierto equilibrio entre ambos, el \gls{svm} se determina como una técnica de optimización convexa que se fundamenta en el hiperparámetro \textit{C}. En la Figura \ref{fig:parametroc}, se representa de forma gráfica cómo su valor establece el control de forma inversamente proporcional de la cantidad de muestras clasificadas erróneamente, por lo que se define como el parámetro de regularización del modelo. Es decir, cuanto más alto sea su valor, menores violaciones del margen y del hiperplano serán permitidas y más se enfocará el modelo en un \textit{Maximal Margin Classifier}.~\cite{svmciencia}
+El sumatorio de todas las variables de holgura que existen en el plano vienen incluidas en el objetivo de la función de pérdida del modelo para que el error de clasificación sea mínimo, a la vez que el margen es máximo. Como es preciso encontrar un cierto equilibrio entre ambos, el \gls{svm} se determina como una técnica de optimización convexa que se fundamenta en el hiperparámetro \textit{C}. En la Figura \ref{fig:parametroc}, se representa de forma gráfica cómo su valor establece el control de forma inversamente proporcional de la cantidad de muestras clasificadas erróneamente, por lo que se define como el parámetro de regularización del modelo. Es decir, cuanto más alto sea su valor, menores violaciones del margen y del hiperplano serán permitidas y más se enfocará el modelo en un \textit{Maximal Margin Classifier}~\cite{svmciencia}.
 
 \vspace{3mm}
 
@@ -205,7 +205,7 @@ El sumatorio de todas las variables de holgura que existen en el plano vienen in
 
 \vspace{3mm}
 
-Además de permitir cierto grado de error, como se ha expuesto anteriormente, para enfrentar problemas con datos no linearmente separables, es imprescindible incrementar las dimensiones del espacio original de características. En este caso, se introduce el concepto de kernel como función para obtener un nuevo espacio dimensional diferente al original donde exista una mayor probabilidad de que los datos sí sean linearmente separables. La aplicación de los diferentes tipos de kernels que permiten las \gls{svm} se caracteriza a partir de las expresiones expuestas a continuación:~\cite{svmciencia}~\cite{velocity}
+Además de permitir cierto grado de error, como se ha expuesto anteriormente, para enfrentar problemas con datos no linearmente separables, es imprescindible incrementar las dimensiones del espacio original de características. En este caso, se introduce el concepto de kernel como función para obtener un nuevo espacio dimensional diferente al original donde exista una mayor probabilidad de que los datos sí sean linearmente separables. La aplicación de los diferentes tipos de kernels que permiten las \gls{svm} se caracteriza a partir de las expresiones expuestas a continuación~\cite{svmciencia}~\cite{velocity}:
 
 \begin{equation}
     \begin{aligned}
@@ -233,7 +233,7 @@ Para obtener una mayor compresión, se representa de forma adicional la Figura \
 \subsection{Deep Learning (\acrshort{dl})}
 \label{sec:dl}
 
-El campo del aprendizaje profundo (\acrfull{dl}) se enfoca principalmente en la creación de redes neuronales que imiten el comportamiento y la estructura lógica que tiene el cerebro humano para buscar patrones en los datos. A diferencia de las técnicas de \gls{ml}, el \gls{dl} se vuelve mucho más eficiente en el análisis de grandes volúmenes de datos, puesto que generalmente el \gls{ml} presenta ciertas limitaciones en este aspecto. \cite{metal} 
+El campo del aprendizaje profundo (\acrfull{dl}) se enfoca principalmente en la creación de redes neuronales que imiten el comportamiento y la estructura lógica que tiene el cerebro humano para buscar patrones en los datos. A diferencia de las técnicas de \gls{ml}, el \gls{dl} se vuelve mucho más eficiente en el análisis de grandes volúmenes de datos, puesto que generalmente el \gls{ml} presenta ciertas limitaciones \cite{metal} en este aspecto.
 
 \vspace{3mm}
 
@@ -241,7 +241,7 @@ De la misma forma, el \gls{dl} presenta un mejor funcionamiento en la identifica
 
 \vspace{3mm}
 
-De la misma forma, a nivel estructural, las diferencias entre las técnicas de \gls{ml} y las de \gls{dl} radican principalmente en el tratamiento de las características o variables de los datos. En el caso de emplear \gls{ml}, si se manejan conjuntos con un gran número de características, sería necesario introducir un paso previo de diseño y selección de las más relevantes. Esto, como se puede apreciar en la Figura \ref{fig:features}, no ocurre en el desarrollo de un modelo de \gls{dl}, ya que el tratamiento se produce internamente dentro de la red reuronal. \cite{valohai}
+De la misma forma, a nivel estructural, las diferencias entre las técnicas de \gls{ml} y las de \gls{dl} radican principalmente en el tratamiento de las características o variables de los datos. En el caso de emplear \gls{ml}, si se manejan conjuntos con un gran número de características, sería necesario introducir un paso previo de diseño y selección de las más relevantes. Esto, como se puede apreciar en la Figura \ref{fig:features}, no ocurre en el desarrollo de un modelo de \gls{dl}, ya que el tratamiento se produce internamente dentro de la red reuronal \cite{valohai}.
 
 \vspace{3mm}
 
@@ -259,7 +259,7 @@ Una vez presentada la rama de aprendizaje profundo, se introduce una Sección de
 \subsubsection{Red Neuronal Artificial (\acrshort{ann}) y Perceptrón Multicapa (\acrshort{mlp})}
 \label{sec:dlann}
 
-Las redes neuronales artificiales (\gls{ann}) y, en particular, los perceptrones multicapa (del inglés \gls{mlp}), se construyen a partir de distintas capas de nodos y conexiones que replican la estructura neuronal que tiene el cerebro humano. Como se representa en la Figura \ref{fig:ann}, se define una capa de entrada (\textit{input layer}), una o múltiples capas ocultas (\textit{hidden layer}) y una capa de salida (\textit{output layer}). El entrenamiento de la arquitectura de neuronas viene dado por las conexiones que se van estableciendo entre los nodos de las capas y los pesos y los valores de umbral que se van especificando durante el proceso. \cite{ibmann}
+Las redes neuronales artificiales (\gls{ann}) y, en particular, los perceptrones multicapa (del inglés \gls{mlp}) \cite{ibmann}, se construyen a partir de distintas capas de nodos y conexiones que replican la estructura neuronal que tiene el cerebro humano. Como se representa en la Figura \ref{fig:ann}, se define una capa de entrada (\textit{input layer}), una o múltiples capas ocultas (\textit{hidden layer}) y una capa de salida (\textit{output layer}). El entrenamiento de la arquitectura de neuronas viene dado por las conexiones que se van estableciendo entre los nodos de las capas y los pesos y los valores de umbral que se van especificando durante el proceso. 
 
 \vspace{3mm}
 
@@ -291,7 +291,7 @@ Donde:
 
 \vspace{3mm}
 
-De la misma forma, en cada capa oculta se aplica una función de activación o de umbral, que impone un valor límite a la salida final del nodo en cuestión y, en consecuencia, a la entrada del nodo siguiente al que se encuentre conectado. Las funciones de activación principales que se pueden emplear se representan en la Figura \ref{fig:functions} y vienen dadas por las siguientes expresiones: \cite{factiv} \cite{functions}
+De la misma forma, en cada capa oculta se aplica una función de activación o de umbral, que impone un valor límite a la salida final del nodo en cuestión y, en consecuencia, a la entrada del nodo siguiente al que se encuentre conectado. Las funciones de activación principales que se pueden emplear se representan en la Figura \ref{fig:functions} y vienen dadas por las siguientes expresiones \cite{factiv} \cite{functions}:
 
 \begin{equation}
     \begin{aligned}
@@ -317,6 +317,6 @@ Teniendo todo el procedimiento anterior en cuenta, se puede expresar que, a part
 
 \vspace{3mm}
 
-No obstante, para ajustar las ponderaciones se aporta una retroalimentación, que depende directamente de la función de coste y de la salida del modelo en cada ejecución o \textit{epoch}. Principalmente, se pueden utilizar dos métodos para minimizar la función de coste: el algoritmo adaptativo \textit{adam} (del inglés \textit{Adaptive Moment Estimation}), que presenta una tasa de aprendizaje adaptativa para cada parámetro, y el gradiente descendiente (del inglés \gls{sgd}), que actualiza los pesos de la red en función del gradiente de la función de pérdida con respecto a los pesos. \cite{ibmann}
+No obstante, para ajustar las ponderaciones se aporta una retroalimentación, que depende directamente de la función de coste y de la salida del modelo en cada ejecución o \textit{epoch}. Principalmente, se pueden utilizar dos métodos para minimizar la función de coste: el algoritmo adaptativo \textit{adam} (del inglés \textit{Adaptive Moment Estimation}), que presenta una tasa de aprendizaje adaptativa para cada parámetro, y el gradiente descendiente (del inglés \gls{sgd}), que actualiza los pesos de la red en función del gradiente de la función de pérdida con respecto a los pesos \cite{ibmann}.
 
 \pagebreak

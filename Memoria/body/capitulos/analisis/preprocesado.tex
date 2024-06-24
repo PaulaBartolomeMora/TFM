@@ -2,7 +2,7 @@
 \section{Procesado de los datos}
 \label{sec:preprocesado}
 
-En las Secciones anteriores, se ha detallado el proceso de búsqueda y recolección de datos energéticos en entornos residenciales a partir de las fuentes públicas disponibles. Este proceso ha venido acompañado por un estudio y análisis en profundidad para exponer de forma justificada las razones de la selección de los conjuntos de datos que servirán como base de este \gls{tfm}. 
+En las secciones anteriores, se ha detallado el proceso de búsqueda y recolección de datos energéticos en entornos residenciales a partir de las fuentes públicas disponibles. Este proceso ha venido acompañado por un estudio y análisis en profundidad para exponer de forma justificada las razones de la selección de los conjuntos de datos que servirán como base de este \gls{tfm}. 
 
 \vspace{3mm}
 
@@ -27,7 +27,7 @@ El dataset seleccionado para este \gls{tfm}, \textit{SustDataED}, se detallaba e
 
 \vspace{3mm}
 
-Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue. \cite{sustdata}
+Poniendo el enfoque en las medidas de consumo, esto supone que se termine coleccionando en conjunto hasta un total de 24.512.181 muestras, correspondientes a 1144 días de medición. A modo de síntesis, se aporta la Tabla \ref{tab:resumen} con la información respectiva a cada despliegue \cite{sustdata}.
 
 \vspace{3mm}
 
@@ -351,7 +351,7 @@ Se plantea en primera instancia, establecer una ejecución multihilo. Cuando se 
 
 \vspace{3mm}
 
-Esto se debe a que los hilos no son procesos y están principalmente enfocados a la concurrencia. Es decir, el planificador del kernel establece en qué core se va a ejecutar cada una de las tareas y se producen cambios de contexto, que tienen como consecuencia, la introducción de latencias y una pérdida de eficiencia en la ejecución de las pruebas. Teniendo esto en cuenta, se toma la decisión de operar con la librería de \textit{multiprocessing}. En este caso, no se van a producir desalojos, dado que la tarea sí es un proceso. Además, se establece uno para cada identificador, suponiendo que cada uno de ellos se ejecute completamente en un core. En la Figura \ref{fig:multiprocess}, se muestran los cambios comentados. \cite{thread}
+Esto se debe a que los hilos no son procesos y están principalmente enfocados a la concurrencia. Es decir, el planificador del kernel establece en qué core se va a ejecutar cada una de las tareas y se producen cambios de contexto, que tienen como consecuencia, la introducción de latencias y una pérdida de eficiencia en la ejecución de las pruebas. Teniendo esto en cuenta, se toma la decisión de operar con la librería de \textit{multiprocessing} \cite{thread}. En este caso, no se van a producir desalojos, dado que la tarea sí es un proceso. Además, se establece uno para cada identificador, suponiendo que cada uno de ellos se ejecute completamente en un core. En la Figura \ref{fig:multiprocess}, se muestran los cambios comentados. 
 
 \vspace{3mm}
 

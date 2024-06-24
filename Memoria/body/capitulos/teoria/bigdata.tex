@@ -6,11 +6,11 @@
 El \textit{Big Data} \cite{stab} se puede definir como el manejo y el análisis de un conjunto extremadamente grande de datos, los cuales provienen de fuentes diferentes y no correlacionadas. Debido a su complejidad y volumen, no pueden ser procesados con software o herramientas tradicionales de gestión de bases de datos y se requieren soluciones tecnológicas más avanzadas. El concepto de \textit{Big Data} se basa en tres componentes principales, denominadas como las 5 Vs \cite{5vs} \cite{5vs2}:
 
 \begin{itemize}
-    \item Variedad: Hace referencia a la heterogeneidad de la información. Existen distintos tipos de datos a procesar de diferentes fuentes, formas y resoluciones. Se puede simplificar su gestión si estos son estructurados (en forma de tablas de bases de datos) o dificultar, si estos no tienen una estructura definida (en formato de texto o imagen). También, pueden ser semiestructurados (en formato JSON o XML).
-    \item Velocidad: Es un parámetro crítico, ya que algunos entornos requieren de una toma de decisiones a tiempo real y los datos deben de ser generados, procesados y analizados rápidamente. 
-    \item Volumen: Es imprescindible tener la capacidad de gestionar una gran cantidad de datos (en el orden de los TB) que además, es creciente en el tiempo. El almacenamiento y la minería de datos deben de ser eficientes para manejarlos de forma correcta 
-    \item Veracidad: Mide la calidad y confiabilidad de la información que se adquiere. Se comprueba su autenticidad e integridad para asegurar que proviene de una fuente legítima, por lo que se deben aplicar mecanismos de seguridad como la encriptación o herramientas de detección y mitigación de ataques a la red (ver Sección \ref{sec:seg}). También, se verifica que la información no contenga errores y que sea lo más precisa posible.
-    \item Valor: La masividad de datos introduce mucho ruido y confusión en la información y debe de seleccionarse solamente aquella de utilidad, aplicando minería de datos y procesamiento adicional.
+    \item \textbf{Variedad}: Hace referencia a la heterogeneidad de la información. Existen distintos tipos de datos a procesar de diferentes fuentes, formas y resoluciones. Se puede simplificar su gestión si estos son estructurados (en forma de tablas de bases de datos) o dificultar, si estos no tienen una estructura definida (en formato de texto o imagen). También, pueden ser semiestructurados (en formato JSON o XML).
+    \item \textbf{Velocidad}: Es un parámetro crítico, ya que algunos entornos requieren de una toma de decisiones a tiempo real y los datos deben de ser generados, procesados y analizados rápidamente. 
+    \item \textbf{Volumen}: Es imprescindible tener la capacidad de gestionar una gran cantidad de datos (en el orden de los TB) que además, es creciente en el tiempo. El almacenamiento y la minería de datos deben de ser eficientes para manejarlos de forma correcta 
+    \item \textbf{Veracidad}: Mide la calidad y confiabilidad de la información que se adquiere. Se comprueba su autenticidad e integridad para asegurar que proviene de una fuente legítima, por lo que se deben aplicar mecanismos de seguridad como la encriptación o herramientas de detección y mitigación de ataques a la red (ver Sección \ref{sec:seg}). También, se verifica que la información no contenga errores y que sea lo más precisa posible.
+    \item \textbf{Valor}: La masividad de datos introduce mucho ruido y confusión en la información y debe de seleccionarse solamente aquella de utilidad, aplicando minería de datos y procesamiento adicional.
 \end{itemize}
 
 \vspace{1mm}
@@ -19,7 +19,7 @@ Durante los últimos años el \textit{Big Data} se ha adoptado en multitud de se
 
 \vspace{3mm}
 
-En este contexto, la efectividad del empleo de la información reside en la búsqueda de la correlación entre los datos adquiridos de la red eléctrica y el resto de características que pueden influir en los mismos, como son el comportamiento de los usuarios finales, las condiciones de estabilidad, la disponibilidad de recursos, el estado de las cargas o las condiciones climáticas en un determinado instante temporal. La coordinación de las mediciones que se realizan en la red junto con la información que se dispone del entorno es crucial para la monitorización, el control y la operativa llevada a cabo dentro de la \gls{sg}.~\cite{stab} 
+En este contexto, la efectividad del empleo de la información reside en la búsqueda de la correlación entre los datos adquiridos de la red eléctrica y el resto de características que pueden influir en los mismos, como son el comportamiento de los usuarios finales, las condiciones de estabilidad, la disponibilidad de recursos, el estado de las cargas o las condiciones climáticas en un determinado instante temporal. La coordinación de las mediciones que se realizan en la red junto con la información que se dispone del entorno es crucial para la monitorización, el control y la operativa llevada a cabo dentro de la \gls{sg}~\cite{stab}.
 
 \vspace{3mm}
 
@@ -29,7 +29,7 @@ En otros términos, un análisis efectivo del \textit{Big Data} conducirá a una
 
 \subsection{Computación en nube}
 
-En la Figura \ref{fig:bigdata2} se representa la infraestructura de procesos dedicados al \textit{Big Data} en un ámbito de \gls{sg}s. Como se puede visualizar, se compone de tres capas operativas: la superior está enfocada al almacenamiento y computación de datos, la intermedia, a la gestión, compartición e integración de datos de diferentes aplicaciones o fuentes y la inferior, a todos los procesos y técnicas que se encargan del procesamiento, minería, clusterización y clasificación final. \cite{stab} 
+En la Figura \ref{fig:bigdata2} se representa la infraestructura de procesos dedicados al \textit{Big Data} en un ámbito de \gls{sg}s. Como se puede visualizar, se compone de tres capas operativas: la superior está enfocada al almacenamiento y computación de datos, la intermedia, a la gestión, compartición e integración de datos de diferentes aplicaciones o fuentes y la inferior, a todos los procesos y técnicas que se encargan del procesamiento, minería, clusterización y clasificación final \cite{stab}.
 
 \begin{figure}[h!]
   \centering
@@ -52,12 +52,12 @@ Para implementar esta infraestructura, es preciso hacer uso de un entorno de com
 La computación en la nube se basa en el concepto de virtualización, el cual se puede definir como la tecnología que permite la creación de diferentes entornos virtuales aislados a partir de los recursos hardware disponibles y con independencia de este. Los proveedores de servicios emplean la virtualización para crear múltiples \gls{vm} y ofrecer recursos, como pueden ser el almacenamiento, la potencia de procesamiento o las aplicaciones de la nube, como diferentes servicios virtualizados. Esto aporta las siguientes ventajas a la computación en nube \cite{bigdata} \cite{virt}:
 
 \begin{itemize}
-  \item Escalabilidad: Se pueden aumentar o reducir recursos de la nube según las necesidades en cada instante temporal. Los usuarios consiguen un autoprovisionamiento de los recursos, ya que pueden desplegar instancias virtuales cuando lo deseen de forma manual o automática.
-  \item Flexibilidad: Se ofrecen muchas posibilidades de configuración de los servicios de la nube.
-  \item Interoperabilidad: Se emplean Interfaces de Programación de Aplicaciones (del ingles \gls{api}) para integrar plataformas y aplicaciones heterogéneas. El objetivo es soportar la comunicación entre las mismas y que se produzca una interpretación de los datos de forma correcta. Por ello, también se estandarizan los protocolos para que sean comunes. 
-  \item Seguridad: Las plataformas de servicios de nube ofrecen un gran nivel de seguridad e implementan medidas como la encriptación de los datos y restricción de acceso o de permisos. Además, el aislamiento de los recursos y de las aplicaciones en diferentes \gls{vm} permite coonfigurar e implementar diferentes políticas de seguridad según las necesidades.
-  \item Ahorro de costes: Se implementa un modelo de pago por uso en función de los recursos que se han consumido y se evita la inversión inicial necesaria para la instalación de una infraestructura física, además de su mantenimiento en el tiempo (CAPEX y OPEX).
-  \item Disponibilidad: Se garantiza el acceso a los servicios y la confiabilidad de los mismos. Para ello, implementa técnicas de redundancia y aporta una buena toleracia a fallos.
+  \item \textbf{Escalabilidad}: Se pueden aumentar o reducir recursos de la nube según las necesidades en cada instante temporal. Los usuarios consiguen un autoprovisionamiento de los recursos, ya que pueden desplegar instancias virtuales cuando lo deseen de forma manual o automática.
+  \item \textbf{Flexibilidad}: Se ofrecen muchas posibilidades de configuración de los servicios de la nube.
+  \item \textbf{Interoperabilidad}: Se emplean Interfaces de Programación de Aplicaciones (del ingles \gls{api}) para integrar plataformas y aplicaciones heterogéneas. El objetivo es soportar la comunicación entre las mismas y que se produzca una interpretación de los datos de forma correcta. Por ello, también se estandarizan los protocolos para que sean comunes. 
+  \item \textbf{Seguridad}: Las plataformas de servicios de nube ofrecen un gran nivel de seguridad e implementan medidas como la encriptación de los datos y restricción de acceso o de permisos. Además, el aislamiento de los recursos y de las aplicaciones en diferentes \gls{vm} permite coonfigurar e implementar diferentes políticas de seguridad según las necesidades.
+  \item \textbf{Ahorro de costes}: Se implementa un modelo de pago por uso en función de los recursos que se han consumido y se evita la inversión inicial necesaria para la instalación de una infraestructura física, además de su mantenimiento en el tiempo (CAPEX y OPEX).
+  \item \textbf{Disponibilidad}: Se garantiza el acceso a los servicios y la confiabilidad de los mismos. Para ello, implementa técnicas de redundancia y aporta una buena toleracia a fallos.
 \end{itemize}
 
 

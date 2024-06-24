@@ -6,7 +6,7 @@ Antes de entrar en detalle en la optimización de hiperparámetros de la \gls{an
 
 \subsubsection{Optimización de hiperparámetros y ejecución del modelo de \acrshort{ann} de \textit{sklearn}}
 
-En primera instancia, se determinan los hiperparámetros que se van a estudiar del \gls{mlp}. Estos hacen referencia a la configuración de capas ocultas y al número de neuronas que puede tener cada capa (\textit{hidden\_layer\_sizes}), a la función de activación que se aplica (\textit{activation}) y al algoritmo de optimización de los pesos de la red durante el proceso de entrenamiento (\textit{solver}). \cite{mlp}
+En primera instancia, se determinan los hiperparámetros que se van a estudiar del \gls{mlp} \cite{mlp}. Estos hacen referencia a la configuración de capas ocultas y al número de neuronas que puede tener cada capa (\textit{hidden\_layer\_sizes}), a la función de activación que se aplica (\textit{activation}) y al algoritmo de optimización de los pesos de la red durante el proceso de entrenamiento (\textit{solver}). 
 
 \vspace{3mm}
 
@@ -145,7 +145,7 @@ Una vez seleccionada la combinación de hiperparámetros que produce un rendimie
 
 \vspace{3mm}
 
-Teniendo esto en cuenta, se define la estructura del modelo de \gls{ann} de \textit{keras} con dos capas ocultas de 5 neuronas y una capa de una neurona a la salida, puesto que se trabaja con un conjunto de datos con etiquetas binarias. Además, es necesario especificar a la entrada el número de características (\textit{input\_shape}), ya que será igual al número de entradas de la red neuronal. La estructura del modelo definido se representa gráficamente en la Figura \ref{fig:neuronas} mediante el uso de la herramienta online proporcionada por \textit{TensorFlow}. \cite{seq}
+Teniendo esto en cuenta, se define la estructura del modelo de \gls{ann} de \textit{keras} \cite{seq} con dos capas ocultas de 5 neuronas y una capa de una neurona a la salida, puesto que se trabaja con un conjunto de datos con etiquetas binarias. Además, es necesario especificar a la entrada el número de características (\textit{input\_shape}), ya que será igual al número de entradas de la red neuronal. La estructura del modelo definido se representa gráficamente en la Figura \ref{fig:neuronas} mediante el uso de la herramienta online proporcionada por \textit{TensorFlow}. 
 
 \vspace{3mm}
 
@@ -168,7 +168,7 @@ Teniendo esto en cuenta, se define la estructura del modelo de \gls{ann} de \tex
 
 \vspace{3mm}
 
-Por consiguiente, se compila la red configurando el algoritmo de optimización \gls{sgd}. También, la función de pérdidas binaria (\textit{binary\_crossentropy}), cuyo valor vendrá dado por la entropía cruzada media entre los positivos que se predicen y los que realmente lo son. Después, se inicia el entrenamiento para un total de 100 iteraciones y se activa la finalización temprana del proceso, en el caso de acontecer 10 iteraciones seguidas sin mejoras significativas (0.00001) en la función de pérdidas. \cite{early}
+Por consiguiente, se compila la red configurando el algoritmo de optimización \gls{sgd}. También, la función de pérdidas binaria (\textit{binary\_crossentropy}), cuyo valor vendrá dado por la entropía cruzada media entre los positivos que se predicen y los que realmente lo son. Después, se inicia el entrenamiento para un total de 100 iteraciones y se activa la finalización temprana \cite{early} del proceso, en el caso de acontecer 10 iteraciones seguidas sin mejoras significativas (0.00001) en la función de pérdidas. 
 
 \vspace{3mm}
 
